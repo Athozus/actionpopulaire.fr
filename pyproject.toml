@@ -6,7 +6,7 @@ authors = ["La France insoumise <site@lafranceinsoumise.fr>"]
 license = "AGPL-3.0"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.10,<4.0"
 # Django et extensions
 
 django = "^4.2"
@@ -70,7 +70,7 @@ pyrogram = "==2.*"
 tgcrypto = "*"
 tenacity = "*"
 pandas = "==1.*"
-data-france = "^0.14.7"
+data-france = "0.15.0a3"
 beautifultable = "==1.1.*"
 scipy = "==1.*"
 PyYAML = "==6.*"

@@ -48,6 +48,11 @@ def display_address(object):
     return format_html_join(mark_safe("<br/>"), "{}", ((part,) for part in parts))
 
 
+import logging
+
+logger = logging.getLogger(__name__)
+
+
 def display_price(price, price_in_cents=True):
     """Représente correctement un prix exprimé comme un nombre entier de centimes
 
@@ -56,7 +61,9 @@ def display_price(price, price_in_cents=True):
     """
     if price_in_cents:
         price = price / 100
-    return "{}\u00A0€".format(floatformat(price, 2))
+    price = float(floatformat(price, 2).replace(",", "."))
+    price = f"{price:_}".replace("_", " ")
+    return "{}\u00A0€".format(price)
 
 
 def display_allocations(allocations):

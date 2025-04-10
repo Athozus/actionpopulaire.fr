@@ -9,6 +9,11 @@ from ..display import (
 register = template.Library()
 
 
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
+
+
 @register.filter(name="display_price_in_cent")
 def display_price_in_cent(value):
     if isinstance(value, str):

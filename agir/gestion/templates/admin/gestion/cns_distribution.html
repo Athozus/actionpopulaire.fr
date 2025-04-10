@@ -1,0 +1,112 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static admin_list crispy_forms_tags %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static "admin/css/changelists.css" %}">
+    {% if cl.formset %}
+        <link rel="stylesheet" href="{% static "admin/css/forms.css" %}">
+    {% endif %}
+    {% if cl.formset or action_form %}
+        <script src="{% url 'admin:jsi18n' %}"></script>
+    {% endif %}
+    {{ media.css }}
+    {% if not actions_on_top and not actions_on_bottom %}
+        <style>
+            #changelist table thead th:first-child {
+                width: inherit
+            }
+        </style>
+    {% endif %}
+{% endblock %}
+
+{% if not is_popup %}
+    {% block breadcrumbs %}
+        <div class="breadcrumbs">
+            <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
+            &rsaquo; <a
+                href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a>
+            &rsaquo; {{ opts.verbose_name_plural|capfirst }}
+        </div>
+    {% endblock %}
+{% endif %}
+
+
+{% block coltype %}{% endblock %}
+{% load display_lib %}
+{% block content %}
+
+    <h1>Redistribution de la Caisse nationale de Solidarité</h1>
+
+    <div style="display: flex;">
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <th scope="col">Code département</th>
+                    <th scope="col">Départemet</th>
+                    <th scope="col">Nombre de GA certifié</th>
+                    <th scope="col">Montant à redistribuer</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for departement in departements_sans_depute_lfi %}
+                    <tr>
+                        <th scope="row">{{ departement.code }}</th>
+                        <td>{{ departement.nom }}</td>
+                        <td>
+                            {% if nb_ga_certifie_per_dep|get_item:departement.code == None %}
+                                0
+                            {% else %}
+                                {{ nb_ga_certifie_per_dep|get_item:departement.code }}</td>
+                            {% endif %}
+                        <td>{% if montant_per_departement|get_item:departement.code == None %}
+                            0 €
+                        {% else %}
+                            {{ montant_per_departement|get_item:departement.code }}
+                        {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+        <div style="padding: 20px;">
+            <p>Montant de la CNS : <b>{{ cns_balance|display_price_in_cent }}</b></p>
+            {% if confirm %}
+                Confirmer la redistribution de <b>{{ amount_to_distribute|display_price_in_cent }}</b> ?
+
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="montant" value="{{ amount_to_distribute }}" class="numberinput form-control" id="id_montant">
+                    <input name="oui" type="submit" value="Oui">
+                    -
+                    <input name="non" type="submit" value="Non">
+                </form>
+            {% else %}
+                {% crispy form %}
+            {% endif %}
+
+            <div class="payment-warning" style="margin-top:20px;">
+                {% if has_ga_without_dep %}
+                    <p><span>⚠</span> Un ou plusieurs groupe d'action certifié ne sont pas lié à un département,<br/>ces départements ne
+                        sont pas pris en compte
+                        pour le calcul de la redistribution.</p>
+
+                    <ul>
+                        {% for ga in ga_cert_without_dep %}
+                            <li style="font-size:1rem;"><a href="{% url 'admin:groups_supportgroup_change' ga.pk %}">
+                                {{ ga.name }}
+                            </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

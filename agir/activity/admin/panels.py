@@ -4,7 +4,6 @@ from django.contrib import admin, messages
 from django.http import HttpResponseRedirect
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
-from django.utils.translation import ngettext
 
 from agir.activity.models import Activity, Announcement, PushAnnouncement
 from agir.lib.admin.utils import display_json_details

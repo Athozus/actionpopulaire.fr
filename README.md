@@ -22,6 +22,7 @@ cd actionpopulaire.fr
 touch .env
 lando start
 lando manage migrate 
+lando manage update_data_france
 
 # Faire un super user pour la partie admin
 # garder bien de côté vos identifiants

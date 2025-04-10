@@ -4,3 +4,4 @@ from .commentaires import *
 from .depenses import *
 from .documents import *
 from .virements import *
+from .cns import *
