@@ -18,7 +18,7 @@ import logging
 import io
 
 
-@permission_required("spendingrequest.view_spendingrequest", raise_exception=True)
+@permission_required("donations.review_spendingrequest", raise_exception=True)
 def spending_request_download_all_documents(request, pk):
     spending_request = get_object_or_404(SpendingRequest, pk=pk)
 
