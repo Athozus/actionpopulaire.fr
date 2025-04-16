@@ -67,11 +67,13 @@ const ThematicGroupPage = () => {
       <header>
         <h2>Les groupes thématiques de l'espace programme</h2>
         <p>
-          Les groupes thématiques de l'espace programme sont issus des travaux
-          des livrets pendant la campagne présidentielle. Ils ont été constitués
-          pour faire vivre les thèmes initiés en 2017. Aujourd’hui, ces groupes
-          continuent de produire du contenu, de réagir à l’actualité et de
-          monter des initiatives.
+          Les groupes thématiques de la France insoumise sont ouverts à toutes
+          celles et ceux qui souhaitent s’impliquer.
+          <br />
+          Au nombre de 40, ils font vivre le programme L’Avenir en commun en
+          participant à ses actualisations, en entretenant des liens avec les
+          acteurs de leur secteur, en relayant les mobilisations et en
+          produisant des contenus d’actualité sur leur thématique respective.
         </p>
         <StyledWarning>
           <RawFeatherIcon name="info" />
