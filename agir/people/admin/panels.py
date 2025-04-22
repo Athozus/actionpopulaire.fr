@@ -79,7 +79,7 @@ __all__ = [
 
 @admin.register(Person)
 class PersonAdmin(
-    DisplayContactPhoneMixin, CenterOnFranceMixin, OSMGeoAdmin, CursorPaginatorAdmin
+    DisplayContactPhoneMixin, CenterOnFranceMixin, OSMGeoAdmin
 ):
     list_display = (
         "__str__",
