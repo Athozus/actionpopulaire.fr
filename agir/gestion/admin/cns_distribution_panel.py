@@ -42,7 +42,7 @@ q_in_france = Q(location_country__in=["", *FRENCH_COUNTRY_CODES])
 class CNSDistributionAdmin(admin.ModelAdmin):
     change_list_template = "admin/gestion/cns_distribution.html"
 
-    current_amount_to_distribute = get_cns_balance()
+    current_amount_to_distribute = 0
 
     def repartition_per_ga(self):
         # on récupère le nombre de GA certifiés par département.
@@ -167,6 +167,7 @@ class CNSDistributionAdmin(admin.ModelAdmin):
                         self.current_amount_to_distribute = form.cleaned_data["montant"]
                     on_confirm = True
         else:
+            self.current_amount_to_distribute = get_cns_balance()
             form = CNSDistributionForm(initial={"montant": get_cns_balance()})
 
         montant_per_departement = self.get_montant_per_departement(

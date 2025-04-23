@@ -23,7 +23,7 @@ class CNSDistributionForm(forms.Form):
     montant = MoneyField(
         label="Montant à redistribuer",
         min_value=10,
-        initial=get_cns_balance(),
+        initial=get_cns_balance,
         required=False,
         validators=[validate_montant_to_distribute],
     )
