@@ -13,3 +13,5 @@ RUN apt-get install python3-pip build-essential git language-pack-fr libgdal-dev
 RUN apt-get install librsvg2-bin -y
 RUN ln -sfn /usr/bin/python3.12 /usr/bin/python3
 RUN pipx install poetry
+RUN pipx ensurepath
+ENV PATH="$PATH:/root/.local/share/pipx/venvs/poetry/bin"
