@@ -1,7 +1,7 @@
 import datetime
 import django.contrib.postgres.fields.ranges
 from django.db import migrations
-from psycopg2._range import DateRange
+from psycopg.types.range import DateRange
 
 TABLES = [
     "elus_mandatmunicipal",

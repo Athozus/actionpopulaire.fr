@@ -20,7 +20,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse, path
 from django.utils.html import format_html, format_html_join
 from django.utils.safestring import mark_safe
-from psycopg2._range import DateRange
+from psycopg.types.range import DateRange
 from reversion.admin import VersionAdmin
 
 from agir.elus.models import (

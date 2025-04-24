@@ -5,7 +5,7 @@ import datetime
 import django.contrib.postgres.fields.ranges
 from django.db import migrations, models
 import django.db.models.deletion
-import psycopg2.extras
+from psycopg.types.range import DateRange
 
 
 class Migration(migrations.Migration):
@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
             model_name="mandatdepartemental",
             name="dates",
             field=django.contrib.postgres.fields.ranges.DateRangeField(
-                default=psycopg2.extras.DateRange(
+                default=DateRange(
                     datetime.date(2021, 7, 1), datetime.date(2027, 3, 31), "[)"
                 ),
                 help_text="La date de fin correspond à la date théorique de fin du mandat si elle est dans le futur et à la date effective sinon.",
@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
             model_name="mandatregional",
             name="dates",
             field=django.contrib.postgres.fields.ranges.DateRangeField(
-                default=psycopg2.extras.DateRange(
+                default=DateRange(
                     datetime.date(2021, 7, 1), datetime.date(2027, 3, 31), "[)"
                 ),
                 help_text="La date de fin correspond à la date théorique de fin du mandat si elle est dans le futur et à la date effective sinon.",

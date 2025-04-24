@@ -10,7 +10,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.html import format_html
-from psycopg2._range import DateRange
+from psycopg.types.range import DateRange
 
 from agir.lib.display import genrer
 from agir.lib.history import HistoryMixin
