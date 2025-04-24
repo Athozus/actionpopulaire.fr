@@ -1,5 +1,6 @@
 import datetime
 import string
+from decimal import Decimal
 
 from django.template.defaultfilters import floatformat
 from django.utils.formats import date_format
@@ -48,11 +49,6 @@ def display_address(object):
     return format_html_join(mark_safe("<br/>"), "{}", ((part,) for part in parts))
 
 
-import logging
-
-logger = logging.getLogger(__name__)
-
-
 def display_price(price, price_in_cents=True):
     """Représente correctement un prix exprimé comme un nombre entier de centimes
 
@@ -61,9 +57,9 @@ def display_price(price, price_in_cents=True):
     """
     if price_in_cents:
         price = price / 100
-    price = float(floatformat(price, 2).replace(",", "."))
-    price = f"{price:_}".replace("_", " ")
-    return "{}\u00A0€".format(price)
+    if isinstance(price, Decimal):
+        price = float(price)
+    return f"{price:_.2f}\u00A0€".replace(".", ",").replace("_", " ")
 
 
 def display_allocations(allocations):

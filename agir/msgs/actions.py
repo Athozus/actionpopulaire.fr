@@ -451,12 +451,12 @@ def prefetch_recent_comments(qs):
               row_number() OVER (PARTITION BY message_id ORDER BY created DESC) AS rang
             FROM msgs_supportgroupmessagecomment
             WHERE
-              message_id IN %(message_ids)s
+              message_id = ANY(%(message_ids)s)
               AND NOT deleted
         )
         SELECT * from comments WHERE rang < %(nb_comments)s;
         """,
-        {"message_ids": tuple(m.id for m in qs), "nb_comments": RECENT_COMMENT_LIMIT},
+        {"message_ids": [m.id for m in qs], "nb_comments": RECENT_COMMENT_LIMIT},
     )
     comments_by_message = {}
     for c in comments:
