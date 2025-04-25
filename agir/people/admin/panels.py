@@ -78,9 +78,7 @@ __all__ = [
 
 
 @admin.register(Person)
-class PersonAdmin(
-    DisplayContactPhoneMixin, CenterOnFranceMixin, OSMGeoAdmin
-):
+class PersonAdmin(DisplayContactPhoneMixin, CenterOnFranceMixin, OSMGeoAdmin):
     list_display = (
         "__str__",
         "display_contact_phone",

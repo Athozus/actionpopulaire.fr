@@ -26,11 +26,7 @@ def field_expression(f):
     elif isinstance(f, StdImageField):
         return (
             f.name,
-            lambda u: (
-                u.url
-                if u and getattr(u, "url", None)
-                else ""
-            ),
+            lambda u: (u.url if u and getattr(u, "url", None) else ""),
         )
     elif f.name == "password":
         return Literal("(caché)")
