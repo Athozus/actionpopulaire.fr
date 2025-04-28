@@ -1,5 +1,8 @@
-from agir.api.settings import BLACK_LIST_DF
+from celery.utils.term import BLACK
+
+from agir.api import settings
 from django.core.exceptions import ValidationError
+import re
 
 import logging
 
@@ -20,23 +23,17 @@ class BlackListFieldMixin:
                 )
 
 
-def clear_nan(df):
-    for column in df.columns:
-        df[column].dropna()
+def word_is_not_allowed(word, value):
+    if str(word).startswith("\\"):
+        match = re.findall(rf"{word}", value, re.IGNORECASE)
+        return len(match) > 0
+    return str(word).lower() in value
 
 
 def field_allowed(model, field, value):
     attribute = f"{model}.{field}".lower()
-    if attribute in BLACK_LIST_DF:
-        result = (
-            BLACK_LIST_DF["person.last_name"]
-            .dropna()
-            .loc[
-                BLACK_LIST_DF[attribute].apply(lambda word: str(word).lower() in value)
-            ]
-        )
+    if attribute in settings.BLACK_LIST_DF:
+        column = settings.BLACK_LIST_DF[attribute].dropna()
+        result = column.loc[column.apply(lambda word: word_is_not_allowed(word, value))]
         return len(result.index) == 0
     return True
-
-
-clear_nan(BLACK_LIST_DF)

@@ -1,0 +1,3 @@
+event_name,event_description,person.first_name,person.last_name,supportgroup.name
+marabout,marabout,marabout,marabout,marabout
+whatsapp,sylla,\bcanard\b,\bcanard\b,\bcanard\b

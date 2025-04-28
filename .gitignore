@@ -29,6 +29,7 @@ db.sqlite3
 # All CSV files are ignored by default
 *.csv
 !agir/elections/data/*.csv
+!agir/api/tests/*.csv
 
 # clé google
 gce.json
