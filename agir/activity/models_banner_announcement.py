@@ -116,7 +116,7 @@ class BannerAnnouncement(BaseAPIResource, DescriptionMixin):
         related_query_name="notification",
         null=True,
         blank=True,
-        help_text="Segment des personnes auquel ce message sera montré",
+        help_text="Segment des personnes auquel ce message sera montré, si aucun segment sera montré à tout le monde.",
     )
 
     def __str__(self):
@@ -136,7 +136,7 @@ class BannerAnnouncement(BaseAPIResource, DescriptionMixin):
                 ).count()
                 == 0
             )
-        return False
+        return True
 
     def answer_to_slug(self, answer):
         length_prefix = 100 - len(answer)
