@@ -26,6 +26,9 @@ lando manage migrate
 # Faire un super user pour la partie admin
 # garder bien de côté vos identifiants
 lando manage createsuperperson
+
+# peupler la base de données
+lando manage shell < agir/api/fixtures/populate.py 
 ```
 Une fois le compte crée, vous connectez via l'interface admin http://ap.lfi.site/admin
 Dans le même temps, vous serez connecté à action populaire : http://ap.lfi.site/
