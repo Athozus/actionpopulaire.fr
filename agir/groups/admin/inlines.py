@@ -69,7 +69,12 @@ class MembershipInline(admin.TabularInline):
     )
 
     def get_queryset(self, request):
-        return super().get_queryset(request).select_related("supportgroup", "person")
+        return (
+            super()
+            .get_queryset(request)
+            .select_related("person", "supportgroup", "person__public_email")
+            .prefetch_related("person__emails")
+        )
 
     @admin.display(description="Personne")
     def person_link(self, obj):
@@ -77,7 +82,7 @@ class MembershipInline(admin.TabularInline):
             '<a href="%s">%s</a>'
             % (
                 reverse("admin:people_person_change", args=(obj.person.id,)),
-                escape(obj.person),
+                escape(obj.person.id),
             )
         )
 

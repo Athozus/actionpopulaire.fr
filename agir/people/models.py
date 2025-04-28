@@ -768,7 +768,9 @@ class Person(
 
     @cached_property
     def primary_email(self):
-        return self.emails.filter(_bounced=False).first() or self.emails.first()
+        emails = list(self.emails.all())
+        valid_email = next((email for email in emails if not email.bounced), None)
+        return valid_email or (emails[0] if emails else None)
 
     @property
     def display_email(self):
