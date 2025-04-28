@@ -82,7 +82,7 @@ class MembershipInline(admin.TabularInline):
             '<a href="%s">%s</a>'
             % (
                 reverse("admin:people_person_change", args=(obj.person.id,)),
-                escape(obj.person.id),
+                escape(obj.person),
             )
         )
 
