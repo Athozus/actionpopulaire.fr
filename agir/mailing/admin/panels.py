@@ -305,6 +305,10 @@ class SegmentAdmin(CenterOnFranceMixin, OSMGeoAdmin):
             ),
         ] + super().get_urls()
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.prefetch_related("tags", "excluded_tags", "supportgroup_subtypes")
+
     class Media:
         pass
 
