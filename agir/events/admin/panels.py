@@ -425,7 +425,12 @@ class EventAdmin(FormSubmissionViewsMixin, CenterOnFranceMixin, OSMGeoAdmin):
     )
 
     def get_queryset(self, request):
-        return super().get_queryset(request).prefetch_related("calendars")
+        return (
+            super()
+            .get_queryset(request)
+            .prefetch_related("calendars")
+            .select_related("subtype")
+        )
 
     def get_search_results(self, request, queryset, search_term):
         if search_term:
