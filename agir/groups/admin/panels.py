@@ -4,7 +4,7 @@ from functools import partial, update_wrapper
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.gis.admin import OSMGeoAdmin
-from django.db.models import QuerySet
+from django.db.models import QuerySet, Prefetch
 from django.db.models.expressions import RawSQL
 from django.urls import path
 from django.urls import reverse
@@ -32,6 +32,7 @@ from .fields_views import group_criteria_view, warning_date_view, group_referent
 from .forms import SupportGroupAdminForm
 from .. import models
 from ..actions.promo_codes import get_promo_codes
+from ..models import Membership
 from ..utils.certification import (
     check_certification_criteria,
 )
@@ -253,7 +254,7 @@ class SupportGroupAdmin(VersionAdmin, CenterOnFranceMixin, OSMGeoAdmin):
     membership_count.admin_order_field = "membership_count"
 
     def allocation(self, obj, show_add_button=False):
-        allocation = obj and obj.get_allocation() or None
+        allocation = getattr(obj, "allocation", None)
         value = display_price(allocation) if allocation else "-"
 
         if show_add_button:
@@ -302,23 +303,22 @@ class SupportGroupAdmin(VersionAdmin, CenterOnFranceMixin, OSMGeoAdmin):
 
         action_buttons = []
 
-        if obj.has_automatic_memberships:
-            action_buttons.append(
-                (
-                    admin_url(
-                        "admin:groups_supportgroup_refresh_memberships",
-                        args=(obj.pk,),
-                    ),
-                    "↻ Mettre à jour les membres",
-                )
+        action_buttons.append(
+            (
+                admin_url(
+                    "admin:groups_supportgroup_refresh_memberships",
+                    args=(obj.pk,),
+                ),
+                "↻ Mettre à jour les membres",
             )
-        else:
-            action_buttons.append(
-                (
-                    admin_url("admin:groups_supportgroup_add_member", args=(obj.pk,)),
-                    "➕ Ajouter un membre",
-                )
+        )
+
+        action_buttons.append(
+            (
+                admin_url("admin:groups_supportgroup_add_member", args=(obj.pk,)),
+                "➕ Ajouter un membre",
             )
+        )
 
         action_buttons.append(
             (
@@ -482,7 +482,7 @@ class SupportGroupAdmin(VersionAdmin, CenterOnFranceMixin, OSMGeoAdmin):
         qs: QuerySet = super().get_queryset(request)
 
         # noinspection SqlResolve
-        return qs.annotate(
+        qs = qs.annotate(
             membership_count=RawSQL(
                 'SELECT COUNT(*) FROM "groups_membership" WHERE "supportgroup_id" = "groups_supportgroup"."id"',
                 (),
@@ -491,6 +491,14 @@ class SupportGroupAdmin(VersionAdmin, CenterOnFranceMixin, OSMGeoAdmin):
                 'SELECT SUM(amount) FROM "donations_operation" WHERE "group_id" = "groups_supportgroup"."id"',
                 (),
             ),
+        )
+
+        return qs.prefetch_related(
+            Prefetch(
+                "memberships",
+                queryset=Membership.objects.select_related("person"),
+                to_attr="prefetched_memberships",
+            )
         )
 
     def get_search_results(self, request, queryset, search_term):

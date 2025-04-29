@@ -446,9 +446,13 @@ class SupportGroup(
 
     @property
     def referents(self):
+        memberships = getattr(
+            self, "prefetched_memberships", self.memberships.select_related("person")
+        )
         return [
             m.person
-            for m in self.memberships.referents().select_related("person").with_email()
+            for m in memberships
+            if m.membership_type == Membership.MEMBERSHIP_TYPE_REFERENT
         ]
 
     @property
