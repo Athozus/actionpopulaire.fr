@@ -155,6 +155,7 @@ INSTALLED_APPS = [
     "agir.legislatives2022.apps.Legislatives2022Config",
     "agir.europeennes2024.apps.Europeennes2024Config",
     "agir.cagnottes.apps.CagnottesConfig",
+    "agir.diffusion",
     "agir.ilb.apps.ILBAppConfig",
     "agir.statistics",
     # default contrib apps

@@ -29,13 +29,17 @@ SFR_CSV_HEADERS = [
 ]
 
 
-def download_segment_as_csv_for_sms(segment):
-    people = (
+def extract_people_for_sms_query(segment):
+    return (
         segment.get_people()
         .exclude(contact_phone__exact="")
         .filter(subscribed_sms=True)
         .only("last_name", "first_name", "contact_phone", "pk")
     )
+
+
+def extract_people_for_sms(segment):
+    people = extract_people_for_sms_query(segment)
     people = [
         {
             "NAME": p.last_name.title(),
@@ -51,6 +55,11 @@ def download_segment_as_csv_for_sms(segment):
         .dropna(subset=["PHONENUMBER1"])
         .fillna("")
     )
+    return people
+
+
+def download_segment_as_csv_for_sms(segment):
+    people = extract_people_for_sms(segment)
 
     csv = people.to_csv(index=False, sep=";").encode("latin1")
     response = HttpResponse(csv, content_type="text/csv")

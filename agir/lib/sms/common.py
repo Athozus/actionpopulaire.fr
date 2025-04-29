@@ -1,11 +1,33 @@
 from collections import namedtuple
+from enum import IntEnum
 from math import ceil
 
 from phonenumber_field.phonenumber import PhoneNumber
 from phonenumbers import number_type, PhoneNumberType
+from pypdf.constants import StrEnum
 from unidecode import unidecode
 
 from agir.people.models import PersonQueryset
+
+
+class SfrStatusCode(StrEnum):
+    BR_FINISHED = "Terminé"
+    BR_OFF_SCHEDULE = "Démarrage différé"
+    BR_RUNNING = "En cours"
+    BR_EDITION = "Édition en cours"
+    BR_LOADING = "En chargement"
+    UNKNOWN = "Inconnu"
+
+    @classmethod
+    def _missing_(cls, value):
+        return cls.UNKNOWN
+
+
+class CallPlanningId(IntEnum):
+    PLANNING_24_7 = (13015,)
+    JOURNEE_LONGUE = (13092,)
+    HEURES_OUVRES = (13016,)
+
 
 GSM7_CODEPOINTS = {
     0x0040: 1,  # 	COMMERCIAL AT
