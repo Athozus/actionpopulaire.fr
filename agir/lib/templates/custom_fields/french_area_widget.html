@@ -2,17 +2,17 @@
 {% include "gis/admin/osm.html" %}
 
 <div class="form-row">
-  <label><p>Ajouter un département ou une région à la sélection&nbsp;:</p>
+  <label><p>Ajouter un département, une région ou un arrondissement à la sélection&nbsp;:</p>
     <select id="french-area-widget-select-1">
       <option></option>
     </select><br/>
     <button id="french-area-widget-button-1" class="button">Ajouter</button>
   </label>
-  <div class="help">Mais en vrai vous devriez pas en avoir besoin, utilisez le filtre par code postal.</div>
+  <div class="help">Mais en vrai vous ne devriez pas en avoir besoin, utilisez le filtre par code postal.</div>
 </div>
 
 <div class="form-row">
-  <label style="width: auto;"><p>Ajouter un commune à la sélection&nbsp;:</p>
+  <label style="width: auto;"><p>Ajouter une commune à la sélection&nbsp;:</p>
     <select id="french-area-widget-select-2" style="width: 150px;"></select><br/>
     <button id="french-area-widget-button-2" class="button">Ajouter</button>
   </label><br/>
@@ -49,17 +49,24 @@
 
     $.when(
       $.getJSON("{% static "lib/regions-100m.geojson" %}"),
-      $.getJSON("{% static "lib/departements-100m.geojson" %}")
-    ).then(function(dataRegions, dataDepartements) {
-      var features = dataRegions[0].features.concat(dataDepartements[0].features);
+      $.getJSON("{% static "lib/departements-100m.geojson" %}"),
+      $.getJSON("{% static "lib/arrondissements_paris.geojson" %}"),
+      $.getJSON("{% static "lib/arrondissements_marseille.geojson" %}"),
+      $.getJSON("{% static "lib/arrondissements_lyon.geojson" %}")
+    ).then(function(dataRegions, dataDepartements, arrondissementsParis, arrondissementsMarseille, arrondissementsLyon) {
+      const features = dataRegions[0].features
+        .concat(dataDepartements[0].features)
+        .concat(arrondissementsParis[0].features)
+        .concat(arrondissementsMarseille[0].features)
+        .concat(arrondissementsLyon[0].features);
       $.each(features, function(key, feature) {
-        $select1.append($("<option></option>").attr("value", key).text(feature.properties.nom));
+          $select1.append($("<option></option>").attr("value", key).text(feature.properties.nom ?? feature.properties.com_arm_name?.[0]));
       });
 
       $select1.select2();
       $button1.click(function (e) {
         e.preventDefault();
-        var feature = geojson_format.read(features[$select1.val()], "Feature");
+        const feature = geojson_format.read(features[$select1.val()], "Feature");
         $select1.val(null).trigger("change");
         addToField(feature);
       });
