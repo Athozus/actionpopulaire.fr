@@ -254,7 +254,7 @@ class SupportGroupAdmin(VersionAdmin, CenterOnFranceMixin, OSMGeoAdmin):
     membership_count.admin_order_field = "membership_count"
 
     def allocation(self, obj, show_add_button=False):
-        allocation = getattr(obj, "allocation", None)
+        allocation = obj and obj.get_allocation() or None
         value = display_price(allocation) if allocation else "-"
 
         if show_add_button:
