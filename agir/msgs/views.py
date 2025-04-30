@@ -46,6 +46,7 @@ class UserMessageRecipientsView(ListAPIView):
                 memberships__person__role__is_active=True,
                 memberships__membership_type__gte=Membership.MEMBERSHIP_TYPE_MANAGER,
             )
+            .select_related("memberships__person", "memberships__person__role", "memberships__membership_type")
             .values("id", "name")
             .order_by("name")
         )

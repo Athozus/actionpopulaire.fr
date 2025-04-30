@@ -12,8 +12,8 @@ class ListCreateDestroySubscriptionAPIView(ListCreateAPIView, DestroyAPIView):
     queryset = Subscription.objects.all()
 
     def get_queryset(self):
-        return self.queryset.filter(person=self.request.user.person).prefetch_related(
-            "membership"
+        return self.queryset.filter(person=self.request.user.person).select_related(
+            "membership__supportgroup"
         )
 
     def get_object(self):
