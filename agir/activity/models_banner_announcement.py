@@ -127,16 +127,16 @@ class BannerAnnouncement(BaseAPIResource, DescriptionMixin):
         verbose_name_plural = "Bannières d'annonce"
 
     def show_to_person(self, person):
+        already_closed = (
+            self.activities.filter(
+                person=person, state=AnnouncementActivity.STATE_CLOSED
+            ).count()
+            > 0
+        )
         if self.segment is not None:
             person_in_segment = self.segment.is_included(person)
-            return (
-                person_in_segment
-                and self.activities.filter(
-                    person=person, state=AnnouncementActivity.STATE_CLOSED
-                ).count()
-                == 0
-            )
-        return True
+            return person_in_segment and not already_closed
+        return not already_closed
 
     def answer_to_slug(self, answer):
         length_prefix = 100 - len(answer)
