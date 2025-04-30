@@ -13,7 +13,7 @@ class ListCreateDestroySubscriptionAPIView(ListCreateAPIView, DestroyAPIView):
 
     def get_queryset(self):
         return self.queryset.filter(person=self.request.user.person).select_related(
-            "membership__supportgroup"
+            "membership"
         )
 
     def get_object(self):
