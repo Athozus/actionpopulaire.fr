@@ -7,7 +7,7 @@ from django.contrib import admin, messages
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.shortcuts import reverse
+from django.shortcuts import reverse, get_object_or_404, render
 from django.template.response import TemplateResponse
 from django.utils import timezone
 from django.utils.html import escape
@@ -22,6 +22,11 @@ from ..actions.export import pdf_group_attendance_list
 from ..models import SupportGroup, Membership, MembershipRemoveRequest
 from ..tasks import send_email_remove_request_done_user
 from ...lib.utils import front_url
+from ...donations.allocations import (
+    get_account_name_for_group,
+    DONATIONS_ACCOUNT,
+    SPENDING_ACCOUNT,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -366,4 +371,29 @@ def delete_member_from_group(model_admin, request, pk, group_id, member_id):
 
     return HttpResponseRedirect(
         reverse("admin:groups_membershipremoverequest_change", args=(pk,))
+    )
+
+
+def allocation_amount_view(request, pk):
+    supportgroup = get_object_or_404(SupportGroup, id=pk)
+    allocation = supportgroup.get_allocation()
+    if allocation == 0:
+        allocation = "-"
+    add_operation_link = reverse("admin:donations_accountoperation_add")
+    group_account = get_account_name_for_group(supportgroup)
+    increase_link = (
+        f"{add_operation_link}?source={DONATIONS_ACCOUNT}&destination={group_account}"
+    )
+    decrease_link = (
+        f"{add_operation_link}?source={group_account}&destination={SPENDING_ACCOUNT}"
+    )
+    return render(
+        request,
+        "admin/supportgroups/allocation_amount.html",
+        {
+            "supportgroup": supportgroup,
+            "allocation": allocation,
+            "increase_link": increase_link,
+            "decrease_link": decrease_link,
+        },
     )

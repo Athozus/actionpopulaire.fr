@@ -30,6 +30,7 @@ from . import inlines
 from . import views
 from .fields_views import group_criteria_view, warning_date_view, group_referents_view
 from .forms import SupportGroupAdminForm
+from .views import allocation_amount_view
 from .. import models
 from ..actions.promo_codes import get_promo_codes
 from ..models import Membership
@@ -63,7 +64,7 @@ class SupportGroupAdmin(VersionAdmin, CenterOnFranceMixin, OSMGeoAdmin):
                     "last_manager_login",
                     "action_buttons",
                     "promo_code",
-                    "allocation",
+                    "allocation_amount",
                 )
             },
         ),
@@ -140,7 +141,7 @@ class SupportGroupAdmin(VersionAdmin, CenterOnFranceMixin, OSMGeoAdmin):
         "location_departement_id",
         "coordinates_type",
         "promo_code",
-        "allocation",
+        "allocation_amount",
         "is_certified",
         "certification_status",
         "certification_criteria",
@@ -159,7 +160,7 @@ class SupportGroupAdmin(VersionAdmin, CenterOnFranceMixin, OSMGeoAdmin):
         "membership_count",
         "creation_date",
         "referents",
-        "allocation",
+        "allocation_amount",
     )
     list_filter = (
         "published",
@@ -253,24 +254,24 @@ class SupportGroupAdmin(VersionAdmin, CenterOnFranceMixin, OSMGeoAdmin):
     membership_count.short_description = _("Nombre de membres")
     membership_count.admin_order_field = "membership_count"
 
-    def allocation(self, obj, show_add_button=False):
-        allocation = obj and obj.get_allocation() or None
-        value = display_price(allocation) if allocation else "-"
+    @admin.display(description="Allocation")
+    def allocation_amount(self, instance):
+        if not instance or instance.id is None:
+            return "-"
 
-        if show_add_button:
-            add_operation_link = reverse("admin:donations_accountoperation_add")
-            group_account = get_account_name_for_group(obj)
-            value = format_html(
-                '{value} (<a href="{increase_link}">Augmenter</a> ou <a href="{decrease_link}">diminuer</a>)',
-                value=value,
-                increase_link=f"{add_operation_link}?source={DONATIONS_ACCOUNT}&destination={group_account}",
-                decrease_link=f"{add_operation_link}?source={group_account}&destination={SPENDING_ACCOUNT}",
-            )
+        return mark_safe(
+            f"""
+                    <span id="allocation-amount-{instance.id}" 
+                          hx-get="/admin/groups/supportgroup/{instance.id}/allocation/amount/" 
+                          hx-trigger="revealed"
+                          hx-swap="innerHTML">
+                          Chargement..
+                    </span>
+                """
+        )
 
-        return value
-
-    allocation.short_description = _("Allocation")
-    allocation.admin_order_field = "allocation"
+    allocation_amount.short_description = _("Allocation")
+    allocation_amount.admin_order_field = "allocation"
 
     def link(self, object):
         if object.pk:
@@ -548,6 +549,13 @@ class SupportGroupAdmin(VersionAdmin, CenterOnFranceMixin, OSMGeoAdmin):
                 "<uuid:pk>/uncertify/",
                 self.admin_site.admin_view(self.uncertify_group),
                 name="{}_{}_uncertify".format(
+                    self.opts.app_label, self.opts.model_name
+                ),
+            ),
+            path(
+                "<uuid:pk>/allocation/amount/",
+                allocation_amount_view,
+                name="{}_{}_allocation_amount".format(
                     self.opts.app_label, self.opts.model_name
                 ),
             ),
