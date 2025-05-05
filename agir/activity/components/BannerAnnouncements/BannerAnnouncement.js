@@ -23,7 +23,7 @@ const Banner = styled.div`
     width: 100vw;
     min-height: 150px;
     background-color: ${(props) => props.theme.primary500};
-    color: white;
+    color: ${(props) => props.theme.text25};
     flex-direction: column;
     align-items: center;
     align-content: center;
@@ -39,7 +39,7 @@ const Banner = styled.div`
     }
     h2, h3, h4 {
         text-align: center;
-        color: ${(props) => props.theme.white};
+        color: ${(props) => props.theme.text25};
         margin-bottom: 0.7em;
         font-size: 1.2em;
         margin-top: 0;
@@ -48,7 +48,7 @@ const Banner = styled.div`
     span {
         max-width: 800px;
         a {
-            color: ${(props) => props.theme.white};
+            color: ${(props) => props.theme.text25};
             text-decoration: underline;
         }
     }
