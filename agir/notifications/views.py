@@ -13,13 +13,14 @@ class ListCreateDestroySubscriptionAPIView(ListCreateAPIView, DestroyAPIView):
 
     def get_queryset(self):
         return self.queryset.filter(person=self.request.user.person).select_related(
-            "membership"
+            "membership", "person"
         )
 
     def get_object(self):
         if self.request.method == "DELETE":
-            return self.get_queryset().filter(pk__in=self.request.data)
-        return super(ListCreateDestroySubscriptionAPIView, self).get_object()
+            subscription_ids = self.request.data.get("ids", [])
+            return self.get_queryset().filter(pk__in=subscription_ids)
+        return super().get_object()
 
     def get_serializer(self, *args, **kwargs):
         kwargs.update({"many": True})
