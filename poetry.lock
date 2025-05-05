@@ -1003,14 +1003,14 @@ files = [
 
 [[package]]
 name = "data-france"
-version = "0.15.0a5"
+version = "0.15.0"
 description = "Paquet agrégeant des données administratives publiques pour en rendre l'utilisation facile."
 optional = false
 python-versions = "<4.0,>=3.10"
 groups = ["main"]
 files = [
-    {file = "data_france-0.15.0a5-py3-none-any.whl", hash = "sha256:b985d9fc61858d7d3c6e1caebf74f084e05fb9d1c96df14f18962a12c528489d"},
-    {file = "data_france-0.15.0a5.tar.gz", hash = "sha256:76c229c7894bd6e7bf2331993f7198dffff0596bc1814b93279ec82982407b07"},
+    {file = "data_france-0.15.0-py3-none-any.whl", hash = "sha256:6311a8439b146cfdc6bd365fb350c88b496b59702a82eb0143d40c342b640b9c"},
+    {file = "data_france-0.15.0.tar.gz", hash = "sha256:948eded10b2ebaac2b5653ab07eff996705070a3ea201a22da6e6471dfbe2692"},
 ]
 
 [package.dependencies]
@@ -4798,4 +4798,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "105f0bd4ea0329001bbe63fe2dab3a97d0edad55f23d5b35a465dce898298ead"
+content-hash = "0a1395c03cb515fe1abb6621a83c7c37016411a1499e4930e0e521f9297084d5"
