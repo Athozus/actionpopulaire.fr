@@ -758,10 +758,10 @@ class GroupMembersAPIView(ListAPIView):
     def get_queryset(self):
         return (
             Membership.objects.active()
-            .with_serializer_prefetch()
+            .select_related("person", "supportgroup")
+            .prefetch_related("person__emails", "subscription_set", "tags")
             .filter(supportgroup_id=self.kwargs.get("pk"))
         )
-
 
 class GroupUpdatePermission(GlobalOrObjectPermissions):
     perms_map = {"PUT": [], "PATCH": []}
