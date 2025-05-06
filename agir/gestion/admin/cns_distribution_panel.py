@@ -7,7 +7,6 @@ from data_france.models import (
 from django.contrib.admin.options import csrf_protect_m
 from django.template.response import TemplateResponse
 from django.db.models import Q, Count, F
-from numpy.lib.utils import source
 
 from agir.donations.allocations import (
     get_cns_balance,
@@ -34,7 +33,11 @@ from agir.lib.templatetags.display_lib import display_price_in_cent
 
 logger = logging.getLogger(__name__)
 
-q_certifies = Q(type=SupportGroup.TYPE_LOCAL_GROUP) & ~Q(certification_date=None)
+q_certifies = (
+    Q(type=SupportGroup.TYPE_LOCAL_GROUP)
+    & ~Q(certification_date=None)
+    & Q(published=True)
+)
 q_in_france = Q(location_country__in=["", *FRENCH_COUNTRY_CODES])
 
 
