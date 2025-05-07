@@ -129,7 +129,7 @@ class CNSDistributionAdmin(admin.ModelAdmin):
             dep_montant = dep[1]
             group = SupportGroup.objects.filter(
                 type=SupportGroup.TYPE_BOUCLE_DEPARTEMENTALE,
-                location_departement_id=int(dep_code),
+                location_departement_id=str(dep_code),
             )
             if group:
                 AccountOperation.objects.create(
