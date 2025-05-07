@@ -21,6 +21,7 @@ from ..actions.automatic_memberships import maj_boucles, update_memberships_from
 from ..actions.export import pdf_group_attendance_list
 from ..models import SupportGroup, Membership, MembershipRemoveRequest
 from ..tasks import send_email_remove_request_done_user
+from ...lib.display import display_price
 from ...lib.utils import front_url
 from ...donations.allocations import (
     get_account_name_for_group,
@@ -377,8 +378,6 @@ def delete_member_from_group(model_admin, request, pk, group_id, member_id):
 def allocation_amount_view(request, pk):
     supportgroup = get_object_or_404(SupportGroup, id=pk)
     allocation = supportgroup.get_allocation()
-    if allocation == 0:
-        allocation = "-"
     add_operation_link = reverse("admin:donations_accountoperation_add")
     group_account = get_account_name_for_group(supportgroup)
     increase_link = (
@@ -392,7 +391,7 @@ def allocation_amount_view(request, pk):
         "admin/supportgroups/allocation_amount.html",
         {
             "supportgroup": supportgroup,
-            "allocation": allocation,
+            "allocation": display_price(allocation) if allocation != 0 else "-",
             "increase_link": increase_link,
             "decrease_link": decrease_link,
         },
