@@ -619,6 +619,12 @@ class EventRequestAdmin(admin.ModelAdmin):
     def create_event_speaker_requests(self, request, pk):
         return views.create_event_speaker_requests(self, request, pk)
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.select_related("event_theme").prefetch_related(
+            "event_theme__event_speakers__person"
+        )
+
     class Media:
         pass
 
