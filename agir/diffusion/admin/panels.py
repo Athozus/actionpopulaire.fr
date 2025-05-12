@@ -72,6 +72,8 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
             if (
                 status_code == SfrStatusCode.BR_FINISHED.name
                 or status_code == SfrStatusCode.BR_RUNNING.name
+                or status_code == SfrStatusCode.BR_LOADING.name
+                or status_code == SfrStatusCode.BR_STOPPED
             ):
                 return "-"
 
@@ -81,7 +83,7 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
                     "<input type='submit' "
                     "name='_program' "
                     "style='border-radius:8px;background:#571aff;font-weight:bold;' "
-                    "value='💬 &ensp;{}' />",
+                    "value='🗓️ &ensp;{}' />",
                     "Programmer",
                 )
                 if not obj.broadcast_id
