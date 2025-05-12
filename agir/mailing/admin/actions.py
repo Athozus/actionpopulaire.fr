@@ -61,7 +61,7 @@ def extract_people_for_sms(segment):
 def download_segment_as_csv_for_sms(segment):
     people = extract_people_for_sms(segment)
 
-    csv = people.to_csv(index=False, sep=";").encode("latin1")
+    csv = people.to_csv(index=False, sep=";").encode("latin1", errors="ignore")
     response = HttpResponse(csv, content_type="text/csv")
     filename = (
         f"SMS{segment.id}_{slugify(segment.name)}_{timezone.now().strftime('%Y-%m-%d')}"
