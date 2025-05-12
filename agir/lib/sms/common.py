@@ -18,6 +18,7 @@ class SfrStatusCode(StrEnum):
     BR_LOADING = "En chargement"
     BR_STOPPED = "Arrêté"
     BR_PAUSED = "En pause"
+    BR_STOP_BEING = "Arrêt demandé"
     UNKNOWN = "Inconnu"
 
     @classmethod
