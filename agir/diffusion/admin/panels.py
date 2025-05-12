@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.urls import path
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
+from django.utils.timezone import make_aware, get_current_timezone
 
 from agir.diffusion.admin.actions import (
     create_diffusion_with_segment,
@@ -42,7 +43,6 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
         "segment",
         "segment_size",
         "start_date",
-        "end_date",
         "program",
         "info",
         "broadcast_id",
@@ -86,7 +86,9 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
                 if not obj.broadcast_id
                 else format_html(
                     "<span>Envoi programmé pour le <b>{}</b> !</span><br /><br />",
-                    obj.start_date.strftime("%d/%m/%Y à %HH%M"),
+                    obj.start_date.astimezone(get_current_timezone()).strftime(
+                        "%d/%m/%Y à %HH%M"
+                    ),
                 )
             )
             + format_html(
@@ -136,6 +138,7 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         obj.creator = request.user.person
+        obj.end_date = obj.start_date + timedelta(days=1)
         obj.save()
 
     def response_change(self, request, obj: SMSDiffusion):
@@ -151,7 +154,7 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
 
         if "_send" in request.POST and has_stop_code:
             try:
-                obj.start_date = timezone.now() + timedelta(minutes=1)
+                obj.start_date = timezone.now()
                 obj.end_date = timezone.now() + timedelta(days=1)
                 obj.save()
                 if not obj.broadcast_id:

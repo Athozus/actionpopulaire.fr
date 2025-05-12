@@ -16,6 +16,8 @@ class SfrStatusCode(StrEnum):
     BR_RUNNING = "En cours"
     BR_EDITION = "Édition en cours"
     BR_LOADING = "En chargement"
+    BR_STOPPED = "Arrêté"
+    BR_PAUSED = "En pause"
     UNKNOWN = "Inconnu"
 
     @classmethod

@@ -290,6 +290,7 @@ MERGE_STRATEGIES = {
     "own_spending_request": merge_reassign_related,
     "membershipremoverequest": merge_reassign_related,
     "membership_remove_requests": merge_reassign_related,
+    "smsdiffusion_person": merge_reassign_related,
     "announcementactivity": None,
 }
 

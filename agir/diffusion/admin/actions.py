@@ -9,6 +9,7 @@ from agir.mailing.admin.actions import (
     extract_people_for_sms,
 )
 
+
 def create_diffusion_with_segment(diffusion: SMSDiffusion):
     dmc_diffusion = DmcWSDiffusion()
 
