@@ -918,7 +918,7 @@ class GroupFinanceAPIView(GenericAPIView):
             SpendingRequest.objects.filter(group=group)
             .exclude(status=SpendingRequest.Status.PAID)
             .order_by("-modified")
-            .only("id", "title", "status", "spending_date", "amount")
+            .only("id", "title", "status", "spending_date", "amount", "category")
         )
         last_year = timezone.now() - relativedelta(years=1)
         past_spending_requests = (
@@ -928,7 +928,7 @@ class GroupFinanceAPIView(GenericAPIView):
                 modified__gte=last_year,
             )
             .order_by("-modified")
-            .only("id", "title", "status", "spending_date", "amount")
+            .only("id", "title", "status", "spending_date", "amount", "category")
         )
         spending_requests = [
             {
