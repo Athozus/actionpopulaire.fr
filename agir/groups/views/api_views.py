@@ -759,7 +759,7 @@ class GroupMembersAPIView(ListAPIView):
         return (
             Membership.objects.active()
             .select_related("person", "supportgroup")
-            .prefetch_related("person__emails", "subscription_set", "tags")
+            .prefetch_related("person__emails", "subscription_set")
             .filter(supportgroup_id=self.kwargs.get("pk"))
         )
 
