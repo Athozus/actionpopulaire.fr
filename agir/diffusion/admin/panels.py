@@ -1,3 +1,4 @@
+import time
 from datetime import timedelta
 
 from django.utils import timezone
@@ -149,6 +150,8 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
                 request, messages.INFO, "Le message a bien été programmé !"
             )
             create_diffusion_with_segment(obj)
+            # wait to be sure diffusion created with contacts
+            time.sleep(1)
             trigger_diffusion(obj)
             return HttpResponseRedirect(".")
 

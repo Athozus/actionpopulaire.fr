@@ -165,6 +165,8 @@ class DmcWSDiffusion(SfrServiceAuth):
 
     def activate_broadcast(self, broadcast_id):
         result = self._make_request("activateBroadcast", {"broadcastId": broadcast_id})
+        if not result["success"]:
+            raise SMSException(f"Cannot activate broadcast {result}")
         return result["success"]
 
     def get_broadcast(self, broadcast_id):
