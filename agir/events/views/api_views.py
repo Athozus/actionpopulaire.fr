@@ -737,27 +737,28 @@ class EventProjectsAPIView(ListAPIView):
     def get_queryset(self):
         person = self.request.user.person
 
-        as_manager_events = (
-            OrganizerConfig.objects.filter(
-                Q(person=person)
-                | Q(
-                    as_group_id__in=Membership.objects.filter(
-                        person=person,
-                        membership_type__gte=Membership.MEMBERSHIP_TYPE_MANAGER,
-                    ).values_list("supportgroup_id", flat=True)
+        if not hasattr(self, "_as_manager_events"):
+            self._as_manager_events = list(
+                OrganizerConfig.objects.filter(
+                    Q(person=person)
+                    | Q(
+                        as_group_id__in=Membership.objects.filter(
+                            person=person,
+                            membership_type__gte=Membership.MEMBERSHIP_TYPE_MANAGER,
+                        ).values_list("supportgroup_id", flat=True)
+                    )
                 )
+                .exclude(event__visibility=Event.VISIBILITY_ADMIN)
+                .values_list("event_id", flat=True)
             )
-            .distinct("pk")
-            .exclude(event__visibility=Event.VISIBILITY_ADMIN)
-            .values_list("event_id", flat=True)
-        )
 
-        if len(as_manager_events) == 0:
+        if not self._as_manager_events:
             return self.queryset.none()
 
         return (
-            self.queryset.filter(event__in=as_manager_events)
+            self.queryset.filter(event__in=self._as_manager_events)
             .select_related("event", "event__subtype")
+            .prefetch_related("event__organizers_groups")
             .order_by("event__end_time")
         )
 
