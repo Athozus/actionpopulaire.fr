@@ -133,7 +133,7 @@ class EventSubtypeSerializer(DisplayEventSubtypeSerializer):
         return obj.visibility == EventSubtype.VISIBILITY_ALL
 
     def get_for_supportgroups(self, obj):
-        return list(obj.for_supportgroups.values("id", "name"))
+        return [{"id": sg.id, "name": sg.name} for sg in obj.for_supportgroups.all()]
 
     class Meta:
         model = models.EventSubtype
