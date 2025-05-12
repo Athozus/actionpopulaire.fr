@@ -763,6 +763,7 @@ class GroupMembersAPIView(ListAPIView):
             .filter(supportgroup_id=self.kwargs.get("pk"))
         )
 
+
 class GroupUpdatePermission(GlobalOrObjectPermissions):
     perms_map = {"PUT": [], "PATCH": []}
     object_perms_map = {
