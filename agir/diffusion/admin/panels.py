@@ -16,18 +16,23 @@ from agir.diffusion.admin.actions import (
     update_diffusion,
     get_diffusion_informations,
 )
-from agir.diffusion.admin.views import segment_sms_people_size
+from agir.diffusion.admin.views import segment_sms_people_size, diffusion_status
 from agir.diffusion.models import SMSDiffusion
 from django.contrib import messages
 
+from agir.lib.sms import SMSException
 from agir.lib.sms.common import SfrStatusCode
 
 STOP_SUBSCRIBE = "STOP au <#shortcode#>"
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 @admin.register(SMSDiffusion)
 class SMSDiffusionAdmin(admin.ModelAdmin):
-    list_display = ["title", "start_date", "segment", "creator"]
+    list_display = ["title", "start_date", "status", "segment", "creator"]
     readonly_fields = (
         "created",
         "modified",
@@ -44,21 +49,49 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
         "segment",
         "segment_size",
         "start_date",
+        "end_date",
         "program",
         "info",
         "broadcast_id",
     )
     autocomplete_fields = ("segment",)
 
+    def get_info(self, obj: SMSDiffusion):
+        if not obj or not obj.pk or not obj.broadcast_id:
+            return None
+        try:
+            self.informations = get_diffusion_informations(obj)
+        except SMSException:
+            logger.error(f"Cannot fetch diffusion {obj.id}")
+            return None
+        return self.informations
+
+    @admin.display(description="Status")
+    def status(self, obj: SMSDiffusion):
+        if not obj or not obj.pk:
+            return "-"
+
+        return mark_safe(
+            f"""
+                <span id="diffusion-status-{obj.id}" 
+                      hx-get="/admin/diffusion/smsdiffusion/{obj.id}/status/" 
+                      hx-trigger="load"
+                      hx-swap="innerHTML">
+                      Chargement..
+                </span>
+            """
+        )
+
     @admin.display(description="Informations")
     def info(self, obj: SMSDiffusion):
-        if not obj or not obj.pk or not obj.broadcast_id:
+        current_info = self.get_info(obj)
+        if current_info is None:
             return "-"
-        result = get_diffusion_informations(obj)
+
         return format_html(
             "<p>État : <b>{}</b></p><p>Détails : {}</p>",
-            SfrStatusCode[result["statusCode"]].value,
-            result,
+            SfrStatusCode[current_info["statusCode"]].value,
+            current_info,
         )
 
     @admin.display(description="Actions")
@@ -67,13 +100,14 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
             return "-"
 
         if obj.broadcast_id:
-            info = get_diffusion_informations(obj)
+            info = self.get_info(obj)
             status_code = info["statusCode"]
             if (
                 status_code == SfrStatusCode.BR_FINISHED.name
                 or status_code == SfrStatusCode.BR_RUNNING.name
                 or status_code == SfrStatusCode.BR_LOADING.name
-                or status_code == SfrStatusCode.BR_STOPPED
+                or status_code == SfrStatusCode.BR_STOPPED.name
+                or status_code == SfrStatusCode.BR_STOP_BEING.name
             ):
                 return "-"
 
@@ -137,6 +171,11 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
                     self.opts.app_label, self.opts.model_name
                 ),
             ),
+            path(
+                "<int:pk>/status/",
+                diffusion_status,
+                name="{}_{}_status".format(self.opts.app_label, self.opts.model_name),
+            ),
         ] + super().get_urls()
 
     def save_model(self, request, obj, form, change):
@@ -153,24 +192,24 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
             )
             create_diffusion_with_segment(obj)
             # wait to be sure diffusion created with contacts
-            time.sleep(1)
             trigger_diffusion(obj)
             return HttpResponseRedirect(".")
 
         if "_send" in request.POST and has_stop_code:
             try:
                 obj.start_date = timezone.now()
-                obj.end_date = timezone.now() + timedelta(days=1)
+                obj.end_date = timezone.now() + timedelta(hours=2)
                 obj.save()
                 if not obj.broadcast_id:
                     create_diffusion_with_segment(obj)
+                    trigger_diffusion(obj)
                 else:
                     update_diffusion(obj)
-                trigger_diffusion(obj)
+
                 messages.add_message(
                     request=request,
                     level=messages.INFO,
-                    message="Le sms va bien être envoyé !",
+                    message="Le sms est en cours d'envoie !",
                 )
             except Exception as e:
                 messages.add_message(

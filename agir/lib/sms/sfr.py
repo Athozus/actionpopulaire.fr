@@ -1,8 +1,12 @@
+import dataclasses
 import json
+import time
+from dataclasses import dataclass
 from enum import Enum
-
+from typing import TypedDict
 import requests
 from django.conf import settings
+from urllib3 import Retry, PoolManager
 
 from agir.api.settings import SFR_DEFAULT_SENDER
 from agir.diffusion.models import SMSDiffusion
@@ -51,6 +55,12 @@ def upload_file_to_ws(path):
     raise SMSException(f"Impossible d'uploader le fichier vers le service {path}")
 
 
+@dataclasses.dataclass
+class SfrResponse(TypedDict):
+    success: bool
+    response: dict
+
+
 class SfrServiceAuth:
     BASE_URL = ""
 
@@ -61,28 +71,47 @@ class SfrServiceAuth:
             "spaceId": settings.SFR_SPACE_ID,
         }
 
-    def _make_request(self, endpoint, data, base_url=None):
-        data = {"authenticate": json.dumps(self.authentication), **data}
-        if base_url is None:
-            base_url = self.BASE_URL
-        response = requests.get(
-            f"{base_url}/{endpoint}",
-            params=data,
-        )
+    @staticmethod
+    def handle_response(response, *args, **kwargs):
         if not response or response.text.startswith("KO"):
             raise SMSSendException(
                 f"L'API SFR a rencontré une erreur {response.text if response else ''}",
-                invalid=[data],
+                invalid=[],
             )
         if response.status_code != 200 and response.status_code != 201:
-            logger.error(f"Returned status error {response.status_code}")
-            logger.error(f"Error from remote service: {response.content}")
-            raise SMSException(f"Erreur lors de la requête {endpoint}: {response}")
-        return json.loads(response.content)
+            raise SMSException(f"Erreur lors de la requête {response.url} : {response}")
+        return response
+
+    def _make_request(
+        self, endpoint, data, base_url=None, max_attempt=1
+    ) -> SfrResponse:
+        data = {"authenticate": json.dumps(self.authentication), **data}
+        if base_url is None:
+            base_url = self.BASE_URL
+
+        attempt = 0
+        while attempt < max_attempt:
+            attempt += 1
+            try:
+                response = requests.get(
+                    f"{base_url}/{endpoint}",
+                    params=data,
+                    hooks={"response": self.handle_response},
+                )
+                json_response = json.loads(response.content)
+                if not json_response["success"]:
+                    raise SMSException(
+                        f"Request not succeeded {response.url}: {json_response}"
+                    )
+                return json_response
+            except SMSException as e:
+                if attempt == max_attempt:
+                    raise e
+                time.sleep(0.5)
 
 
 class DmcWSDiffusion(SfrServiceAuth):
-    BASE_URL = f"https://www.dmc.sfr-sh.fr/DmcWS/{API_VERSION}/JsonService/BroadcastWS/"
+    BASE_URL = f"https://www.dmc.sfr-sh.fr/DmcWS/{API_VERSION}/JsonService/BroadcastWS"
 
     def create_sms_diffusion(self, sms_diffusion: SMSDiffusion):
         try:
@@ -91,8 +120,10 @@ class DmcWSDiffusion(SfrServiceAuth):
                 {
                     "broadcast": json.dumps(
                         {
-                            "startDate": sms_diffusion.start_date.timestamp() * 1000,
-                            "stopDate": sms_diffusion.end_date.timestamp() * 1000,
+                            "startDate": int(
+                                sms_diffusion.start_date.timestamp() * 1000
+                            ),
+                            "stopDate": int(sms_diffusion.end_date.timestamp() * 1000),
                             "callPlanningId": CallPlanningId.JOURNEE_LONGUE.value,
                             "description": sms_diffusion.title,
                             "scenarioId": SMS_SCENARIO,
@@ -133,21 +164,16 @@ class DmcWSDiffusion(SfrServiceAuth):
             },
             f"https://www.dmc.sfr-sh.fr/DmcWS/{API_VERSION}/JsonService/DocumentsWS/",
         )
-        if result["success"]:
-            return result["response"]
-        raise SMSException(f"Impossible de lier le fichier à un document: {result}")
+        return result["response"]
 
     def add_contact_document_to_broadcast(self, document_id, broadcast_id):
-        result = self._make_request(
+        return self._make_request(
             "insertContactFromDocument",
             {"documentId": document_id, "broadcastId": broadcast_id},
         )
-        if result["success"]:
-            return result["response"]
-        raise SMSException(f"Impossible de lier le document à la diffusion: {result}")
 
     def update_broadcast(self, broadcast_id, diffusion: SMSDiffusion):
-        result = self._make_request(
+        return self._make_request(
             "updateBroadcast",
             {
                 "broadcastId": broadcast_id,
@@ -159,15 +185,11 @@ class DmcWSDiffusion(SfrServiceAuth):
                 ),
             },
         )
-        if result["success"]:
-            return result["response"]
-        raise SMSException(f"Impossible de mettre à jour la diffusion: {result}")
 
     def activate_broadcast(self, broadcast_id):
-        result = self._make_request("activateBroadcast", {"broadcastId": broadcast_id})
-        if not result["success"]:
-            raise SMSException(f"Cannot activate broadcast {result}")
-        return result["success"]
+        return self._make_request(
+            "activateBroadcast", {"broadcastId": broadcast_id}, max_attempt=4
+        )
 
     def get_broadcast(self, broadcast_id):
         return self._make_request("getBroadcast", {"broadcastId": broadcast_id})

@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from agir.lib.models import TimeStampedModel
 from django.contrib.gis.db import models
 from django.utils import timezone
@@ -11,7 +13,11 @@ class SMSDiffusion(TimeStampedModel):
         blank=True,
     )
     end_date = models.DateTimeField(
-        verbose_name="Date de fin de l'envoi", null=True, blank=True
+        verbose_name="Date de fin de l'envoi",
+        help_text="Date maximale d'envoie, utile pour de grand segment, ne pas toucher si vous êtes pas sûre.",
+        null=True,
+        blank=True,
+        default=lambda: timedelta(hours=2) + timezone.now(),
     )
 
     segment = models.ForeignKey(
