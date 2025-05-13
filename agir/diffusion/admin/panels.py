@@ -99,9 +99,9 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
         if not obj or not obj.pk:
             return "-"
 
-        if obj.broadcast_id:
-            info = self.get_info(obj)
-            status_code = info["statusCode"]
+        current_info = self.get_info(obj)
+        if current_info:
+            status_code = current_info["statusCode"]
             if (
                 status_code == SfrStatusCode.BR_FINISHED.name
                 or status_code == SfrStatusCode.BR_RUNNING.name
@@ -191,7 +191,6 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
                 request, messages.INFO, "Le message a bien été programmé !"
             )
             create_diffusion_with_segment(obj)
-            # wait to be sure diffusion created with contacts
             trigger_diffusion(obj)
             return HttpResponseRedirect(".")
 
