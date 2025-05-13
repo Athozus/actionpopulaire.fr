@@ -17,7 +17,9 @@ def create_diffusion_with_segment(diffusion: SMSDiffusion):
 
     people = extract_people_for_sms(diffusion.segment)
     with tempfile.NamedTemporaryFile(suffix=".csv") as temp:
-        people.to_csv(temp.name, index=False, sep=";", encoding="latin1")
+        people.to_csv(
+            temp.name, index=False, sep=";", encoding="latin1", errors="ignore"
+        )
         filename_uploaded = upload_file_to_ws(temp.name)
         document_id = dmc_diffusion.add_document(
             filename_uploaded, slugify(diffusion.title) + ".csv"
