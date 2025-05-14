@@ -9,7 +9,7 @@
 ## Mise en place du projet
 
 ### Pré-requis
-* Python >= 3.9
+* Python >= 3.10
 * Poetry >= 2.X
 * Docker
 * Lando >= 3.X
