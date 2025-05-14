@@ -63,6 +63,9 @@ function updateSegmentSize() {
     const segmentSizeElement = getSegmentSizeElement()
     if (segmentSizeElement.innerText.includes("Chargement") === false) {
         segmentSize = parseInt(segmentSizeElement.innerText)
+        if (segmentSize === 0) {
+            disableActions()
+        }
     }
 }
 
@@ -72,6 +75,20 @@ function getSegmentSizeElement() {
 
 function getMessageArea() {
     return document.getElementById("id_message")
+}
+
+function disableActions() {
+    const actionButtons = document.getElementsByClassName("action")
+    let lastButton = undefined
+    Array.from(actionButtons).forEach(button => {
+        button.setAttribute("disabled", "");
+        lastButton = button
+    })
+    if (lastButton) {
+        const p = document.createElement("p")
+        p.innerText = "Votre segment contient aucune personne, vous ne pouvez faire aucune action, sélectionnez un segment avec au moins une personne."
+        lastButton.parentElement.appendChild(p)
+    }
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {

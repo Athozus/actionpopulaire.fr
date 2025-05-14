@@ -116,6 +116,7 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
                 format_html(
                     "<input type='submit' "
                     "name='_program' "
+                    "class='action'"
                     "style='border-radius:8px;background:#571aff;font-weight:bold;' "
                     "value='🗓️ &ensp;{}' />",
                     "Programmer",
@@ -131,6 +132,7 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
             + format_html(
                 " <input type='submit' "
                 "name='_send' "
+                "class='action'"
                 "style='border-radius:8px;background:#571aff;font-weight:bold;' "
                 "value='💬 &ensp;{}' />",
                 "Envoyer maintenant !",
