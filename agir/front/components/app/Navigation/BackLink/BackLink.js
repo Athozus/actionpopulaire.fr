@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useEffect, useMemo } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { RawFeatherIcon } from "@agir/front/genericComponents/FeatherIcon";
 import Link from "@agir/front/app/Link";
@@ -28,7 +28,7 @@ const IconLink = styled(Link)`
   }
 `;
 
-const IconTextLink = styled.a`
+const IconTextLinkCss = css`
   font-weight: 600;
   font-size: 0.75rem;
   line-height: 1.4;
@@ -48,6 +48,14 @@ const IconTextLink = styled.a`
   @media (max-width: ${(props) => props.theme.collapse}px) {
     display: none;
   }
+`;
+
+const IconTextLinkBase = styled.a`
+  ${IconTextLinkCss}
+`;
+
+const IconTextLink = styled(Link)`
+    ${IconTextLinkCss}
 `;
 
 const DEFAULT_ROUTE = {
@@ -71,7 +79,7 @@ const GoBackLink = (props) => {
   const history = useHistory()
   const linkLabel = "Retour"
 
-  return <IconTextLink
+  return <IconTextLinkBase
       {...rest}
       title={linkLabel}
       aria-label={linkLabel}
@@ -84,7 +92,7 @@ const GoBackLink = (props) => {
           Retour
         </>
     )}
-  </IconTextLink>
+  </IconTextLinkBase>
 }
 
 const BackLink = (props) => {
