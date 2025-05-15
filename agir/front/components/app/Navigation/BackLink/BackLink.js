@@ -12,7 +12,7 @@ import {
 import { getBackLink } from "@agir/front/globalContext/reducers";
 import { routeConfig } from "@agir/front/app/routes.config";
 
-import { useLocation } from "react-router-dom";
+import {useHistory, useLocation} from "react-router-dom";
 import { setBackLink } from "@agir/front/globalContext/actions";
 
 const IconLink = styled(Link)`
@@ -28,7 +28,7 @@ const IconLink = styled(Link)`
   }
 `;
 
-const IconTextLink = styled(Link)`
+const IconTextLink = styled.a`
   font-weight: 600;
   font-size: 0.75rem;
   line-height: 1.4;
@@ -66,8 +66,34 @@ export const useBackLink = (link) => {
   return backLink;
 };
 
+const GoBackLink = (props) => {
+  const { children, ...rest } = props;
+  const history = useHistory()
+  const linkLabel = "Retour"
+
+  return <IconTextLink
+      {...rest}
+      title={linkLabel}
+      aria-label={linkLabel}
+      onClick={() => history.goBack()}
+  >
+    {children || (
+        <>
+          <RawFeatherIcon name="arrow-left" width="1rem" height="1rem" />
+          &ensp;
+          Retour
+        </>
+    )}
+  </IconTextLink>
+}
+
 const BackLink = (props) => {
   const { children, icon = false, label, ...rest } = props;
+  const history = useHistory()
+
+  if (history.length > 3) {
+    return <GoBackLink {...props} />
+  }
 
   const { pathname, state } = useLocation();
   const backLink = useSelector(getBackLink);
