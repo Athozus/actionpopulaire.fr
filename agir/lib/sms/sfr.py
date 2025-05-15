@@ -19,7 +19,7 @@ BULK_GROUP_SIZE = 100
 SMS_SCENARIO = 46367
 SMS_CUSTOMIZE_ID = 62658
 
-API_VERSION = "1.5.6"
+API_VERSION = "1.5.7"
 
 
 class DMCBufferWSMedia(Enum):
@@ -41,7 +41,7 @@ def upload_file_to_ws(path):
     files = {"upload_file": open(path, "rb")}
 
     response = requests.post(
-        "https://www.dmc.sfr-sh.fr/DmcWS/1.5.7/uploadService",
+        f"https://www.dmc.sfr-sh.fr/DmcWS/{API_VERSION}/uploadService",
         files=files,
         data={
             "serviceId": settings.SFR_SERVICE_ID,
@@ -62,7 +62,8 @@ class SfrResponse(TypedDict):
 
 
 class SfrServiceAuth:
-    BASE_URL = ""
+    BASE_URL = f"https://www.dmc.sfr-sh.fr/DmcWS/{API_VERSION}/JsonService"
+    SERVICE = ""
 
     def __init__(self):
         self.authentication = {
@@ -75,26 +76,24 @@ class SfrServiceAuth:
     def handle_response(response, *args, **kwargs):
         if not response or response.text.startswith("KO"):
             raise SMSSendException(
-                f"L'API SFR a rencontré une erreur {response.text if response else ''}",
+                f"L'API SFR a rencontré une erreur {response.text if response else ''} - {response.content} lors de l'appel {response.url}",
                 invalid=[],
             )
         if response.status_code != 200 and response.status_code != 201:
             raise SMSException(f"Erreur lors de la requête {response.url} : {response}")
         return response
 
-    def _make_request(
-        self, endpoint, data, base_url=None, max_attempt=1
-    ) -> SfrResponse:
+    def _make_request(self, endpoint, data, service=None, max_attempt=1) -> SfrResponse:
         data = {"authenticate": json.dumps(self.authentication), **data}
-        if base_url is None:
-            base_url = self.BASE_URL
+        if service is None:
+            service = self.SERVICE
 
         attempt = 0
         while attempt < max_attempt:
             attempt += 1
             try:
                 response = requests.get(
-                    f"{base_url}/{endpoint}",
+                    f"{self.BASE_URL}/{service}/{endpoint}",
                     params=data,
                     hooks={"response": self.handle_response},
                 )
@@ -111,7 +110,7 @@ class SfrServiceAuth:
 
 
 class DmcWSDiffusion(SfrServiceAuth):
-    BASE_URL = f"https://www.dmc.sfr-sh.fr/DmcWS/{API_VERSION}/JsonService/BroadcastWS"
+    SERVICE = "BroadcastWS"
 
     def create_sms_diffusion(self, sms_diffusion: SMSDiffusion):
         try:
@@ -162,7 +161,7 @@ class DmcWSDiffusion(SfrServiceAuth):
                 "fileSource": file_source,
                 "fileName": file_name,
             },
-            f"https://www.dmc.sfr-sh.fr/DmcWS/{API_VERSION}/JsonService/DocumentsWS/",
+            f"DocumentsWS",
         )
         return result["response"]
 
@@ -196,7 +195,7 @@ class DmcWSDiffusion(SfrServiceAuth):
 
 
 class DmcBufferWS(SfrServiceAuth):
-    BASE_URL = "https://www.dmc.sfr-sh.fr/DmcBufferWS/BufferMsg"
+    SERVICE = "MessagesUnitairesWS"
     TEMPLATE = {
         "transactional": "{message}",
         "marketing": "{message}\n\nSTOP au <#shortcode#>",
@@ -218,8 +217,8 @@ class DmcBufferWS(SfrServiceAuth):
                 {
                     "media": DMCBufferWSMedia.SMS.value,
                     "from": self.sender,
-                    "address": recipient.as_national,
-                    "msgContent": self.template.format(message=message),
+                    "to": recipient.as_national,
+                    "textMsg": self.template.format(message=message),
                 }
             )
         }
