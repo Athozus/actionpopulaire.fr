@@ -15,7 +15,7 @@ import { routeConfig } from "@agir/front/app/routes.config";
 import {useHistory, useLocation} from "react-router-dom";
 import { setBackLink } from "@agir/front/globalContext/actions";
 
-const IconLink = styled(Link)`
+const IconLinkCss = css`
   display: none;
   height: 2rem;
   width: 2rem;
@@ -26,6 +26,14 @@ const IconLink = styled(Link)`
   @media (max-width: ${(props) => props.theme.collapse}px) {
     display: flex;
   }
+`
+
+const IconLinkBase = styled.a`
+  ${IconLinkCss}
+`
+
+const IconLink = styled(Link)`
+  ${IconLinkCss}
 `;
 
 const IconTextLinkCss = css`
@@ -75,11 +83,17 @@ export const useBackLink = (link) => {
 };
 
 const GoBackLink = (props) => {
-  const { children, ...rest } = props;
+  const { children, icon = false, ...rest } = props;
   const history = useHistory()
   const linkLabel = "Retour"
 
-  return <IconTextLinkBase
+  return icon ? (
+      <IconLinkBase {...rest} onClick={() => history.goBack()}  title={linkLabel} aria-label={linkLabel}>
+        {children || (
+            <RawFeatherIcon name="arrow-left" width="1.5rem" height="1.5rem" />
+        )}
+      </IconLinkBase>
+  ) : (<IconTextLinkBase
       {...rest}
       title={linkLabel}
       aria-label={linkLabel}
@@ -93,6 +107,7 @@ const GoBackLink = (props) => {
         </>
     )}
   </IconTextLinkBase>
+  );
 }
 
 const BackLink = (props) => {
