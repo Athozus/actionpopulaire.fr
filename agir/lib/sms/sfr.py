@@ -123,7 +123,7 @@ class DmcWSDiffusion(SfrServiceAuth):
                                 sms_diffusion.start_date.timestamp() * 1000
                             ),
                             "stopDate": int(sms_diffusion.end_date.timestamp() * 1000),
-                            "callPlanningId": CallPlanningId.JOURNEE_LONGUE.value,
+                            "callPlanningId": CallPlanningId.PLANNING_24_7.value,
                             "description": sms_diffusion.title,
                             "scenarioId": SMS_SCENARIO,
                             "broadcastName": sms_diffusion.title,
