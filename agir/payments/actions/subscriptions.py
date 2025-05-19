@@ -33,6 +33,9 @@ def create_subscription(person, mode, amount, allocations=None, **kwargs):
 
     effect_date = kwargs.pop("effect_date", today + timedelta(days=1))
     day_of_month = effect_date.day
+    if "day_of_month" in kwargs:
+        # avoid multiple day_of_month in kwargs with the next create
+        kwargs.pop("day_of_month")
 
     if day_of_month >= 28:
         day_of_month = 1
