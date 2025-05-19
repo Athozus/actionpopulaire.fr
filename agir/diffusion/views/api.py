@@ -2,7 +2,7 @@ from glom import glom, Coalesce
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from agir.diffusion.serializers import PushCraSerializer, STATUS_LIST
+from agir.diffusion.serializers import PushCraSerializer
 from rest_framework import status
 import logging
 

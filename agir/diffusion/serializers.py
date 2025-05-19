@@ -12,6 +12,7 @@ STATUS_LIST = (
     "ESTABLISHED",
     "TRANSFERED",
     "ENDED",
+    "ABORTED",
     "ERROR/ABORTED",
 )
 
