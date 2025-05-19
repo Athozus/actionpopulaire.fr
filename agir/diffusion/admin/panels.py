@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 from django.urls import path
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
-from django.utils.timezone import make_aware, get_current_timezone
+from django.utils.timezone import get_current_timezone
 
 from agir.diffusion.admin.actions import (
     create_diffusion_with_segment,

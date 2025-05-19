@@ -27,7 +27,11 @@ from agir.lib.admin.utils import admin_url
 from agir.mailing.admin import list_filters, actions
 from agir.mailing.admin.forms import SegmentAdminForm
 from agir.mailing.models import Segment
-from agir.mailing.views import subscriber_count_view, people_count_view
+from agir.mailing.views import (
+    subscriber_count_view,
+    people_count_view,
+    people_sms_count_view,
+)
 
 
 @admin.register(Segment)
@@ -144,12 +148,7 @@ class SegmentAdmin(CenterOnFranceMixin, OSMGeoAdmin):
         ("Combiner des segments", {"fields": ("add_segments", "exclude_segments")}),
         (
             "Personnes",
-            {
-                "fields": (
-                    "subscribers_count",
-                    "people_count",
-                )
-            },
+            {"fields": ("subscribers_count", "people_count", "subscribers_sms_count")},
         ),
         (
             "Export",
@@ -175,7 +174,12 @@ class SegmentAdmin(CenterOnFranceMixin, OSMGeoAdmin):
         "forms",
         "polls",
     )
-    readonly_fields = ("people_count", "subscribers_count", "download_for_sms_link")
+    readonly_fields = (
+        "people_count",
+        "subscribers_count",
+        "subscribers_sms_count",
+        "download_for_sms_link",
+    )
     ordering = ("name",)
     search_fields = ("name",)
     list_filter = (
@@ -251,6 +255,22 @@ class SegmentAdmin(CenterOnFranceMixin, OSMGeoAdmin):
         """
         )
 
+    @admin.display(description="Nombre de personne avec un numéro de téléphone valide")
+    def subscribers_sms_count(self, instance):
+        if not instance or instance.id is None:
+            return "-"
+
+        return mark_safe(
+            f"""
+            <span id="subscribers-sms-count-{instance.id}" 
+                  hx-get="/admin/mailing/segment/{instance.id}/subscribers_sms/count/" 
+                  hx-trigger="load"
+                  hx-swap="innerHTML">
+                  Chargement..
+            </span>
+            """
+        )
+
     @admin.display(description="Abonné·es")
     def subscriber_list_link(self, instance):
         if not instance:
@@ -302,6 +322,11 @@ class SegmentAdmin(CenterOnFranceMixin, OSMGeoAdmin):
                 "<int:pk>/people/count/",
                 people_count_view,
                 name="subscriber_count",
+            ),
+            path(
+                "<int:pk>/subscribers_sms/count/",
+                people_sms_count_view,
+                name="people_sms_count_view",
             ),
         ] + super().get_urls()
 

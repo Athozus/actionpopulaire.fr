@@ -42,7 +42,7 @@ function getCounter() {
 function updateCounter() {
     const charAmount = document.getElementById("id_message")?.value?.length ?? 0
 
-    let coutText = "Chargement du coût.."
+    let coutText = "Chargement du coût, assurez-vous d'avoir sélectionner un Segment et d'avoir sauvegarder.."
     const amount_sms = Math.floor(charAmount/160) + 1
     if (segmentSize !== -1) {
         coutText = `Coût estimé : ${UNIT_SMS_PRICE * segmentSize * amount_sms} €`
