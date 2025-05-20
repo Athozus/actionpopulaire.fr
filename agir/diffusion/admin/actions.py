@@ -8,14 +8,15 @@ from agir.lib.sms.sfr import DmcWSDiffusion, upload_file_to_ws
 from agir.mailing.admin.actions import (
     extract_people_for_sms,
 )
+from agir.mailing.models import Segment
 
 
-def create_diffusion_with_segment(diffusion: SMSDiffusion):
+def create_dmc_diffusion_with_segment(diffusion: SMSDiffusion, segment: Segment):
     dmc_diffusion = DmcWSDiffusion()
 
     remote_diffusion_id = dmc_diffusion.create_sms_diffusion(diffusion)
 
-    people = extract_people_for_sms(diffusion.segment)
+    people = extract_people_for_sms(segment)
     with tempfile.NamedTemporaryFile(suffix=".csv") as temp:
         people.to_csv(
             temp.name, index=False, sep=";", encoding="latin1", errors="ignore"
@@ -27,42 +28,20 @@ def create_diffusion_with_segment(diffusion: SMSDiffusion):
         dmc_diffusion.add_contact_document_to_broadcast(
             document_id, remote_diffusion_id
         )
-
-    # at the end save the diffusion with the remote diffusion id
-    diffusion.broadcast_id = remote_diffusion_id
-    diffusion.save()
+    return remote_diffusion_id
 
 
-def check_broadcast_id(diffusion: SMSDiffusion):
-    if diffusion.broadcast_id is None:
-        raise ValueError(
-            "La diffusion n'a pas été créée auprès du service distance (SFR)."
-        )
-
-
-def trigger_diffusion(diffusion: SMSDiffusion):
-    """
-
-    :param diffusion:
-    :return: True when activation succeeded
-    """
-    check_broadcast_id(diffusion)
+def trigger_diffusion(broadcast_id):
     dmc_diffusion = DmcWSDiffusion()
-    return dmc_diffusion.activate_broadcast(diffusion.broadcast_id)
+    return dmc_diffusion.activate_broadcast(broadcast_id)
 
 
 def update_diffusion(diffusion: SMSDiffusion):
-    """
-    :param diffusion:
-    :return: True when activation succeeded
-    """
-    check_broadcast_id(diffusion)
     dmc_diffusion = DmcWSDiffusion()
     return dmc_diffusion.update_broadcast(diffusion.broadcast_id, diffusion)
 
 
 def get_diffusion_informations(diffusion: SMSDiffusion):
-    check_broadcast_id(diffusion)
     dmc = DmcWSDiffusion()
     result = dmc.get_broadcast(diffusion.broadcast_id)
     if "response" in result:

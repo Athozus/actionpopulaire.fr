@@ -5,6 +5,10 @@ from django.contrib.gis.db import models
 from django.utils import timezone
 
 
+def get_default_end_date():
+    return timedelta(hours=2) + timezone.now()
+
+
 class SMSDiffusion(TimeStampedModel):
     start_date = models.DateTimeField(
         "Date d'envoie",
@@ -17,7 +21,7 @@ class SMSDiffusion(TimeStampedModel):
         help_text="Date maximale d'envoie, utile pour de grand segment, ne pas toucher si vous êtes pas sûre.",
         null=True,
         blank=True,
-        default=lambda: timedelta(hours=2) + timezone.now(),
+        default=get_default_end_date,
     )
 
     segment = models.ForeignKey(
@@ -27,7 +31,18 @@ class SMSDiffusion(TimeStampedModel):
         related_query_name="notification",
         null=True,
         blank=True,
-        help_text="Segment auquel ce message sera envoyé, si aucun segment sera envoyé à tout le monde.",
+        help_text="Segment auquel ce message sera envoyé.",
+    )
+
+    test_segment = models.ForeignKey(
+        to="mailing.Segment",
+        verbose_name="Segment",
+        on_delete=models.SET_NULL,
+        related_name="+",
+        related_query_name="+",
+        null=True,
+        blank=True,
+        help_text="Segment des personnes pour tester le SMS",
     )
 
     title = models.CharField(

@@ -10,10 +10,10 @@ from django.utils.safestring import mark_safe
 from django.utils.timezone import get_current_timezone
 
 from agir.diffusion.admin.actions import (
-    create_diffusion_with_segment,
     trigger_diffusion,
     update_diffusion,
     get_diffusion_informations,
+    create_dmc_diffusion_with_segment,
 )
 from agir.diffusion.admin.views import segment_sms_people_size, diffusion_status
 from agir.diffusion.models import SMSDiffusion
@@ -37,23 +37,78 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
         "modified",
         "creator",
         "segment_size",
-        "program",
+        "test_recipient_size",
+        "test_action_button",
+        "actions_button",
         "info",
         "creator",
         "broadcast_id",
     )
-    fields = (
-        "title",
-        "message",
-        "segment",
-        "segment_size",
-        "start_date",
-        "end_date",
-        "program",
-        "info",
-        "broadcast_id",
+    fieldsets = (
+        (
+            "Paramètre du message",
+            {
+                "fields": (
+                    "title",
+                    "message",
+                )
+            },
+        ),
+        (
+            "Paramètres de test",
+            {
+                "fields": (
+                    "test_segment",
+                    "test_recipient_size",
+                    "test_action_button",
+                )
+            },
+        ),
+        (
+            "Paramètre d'envoi",
+            {
+                "fields": (
+                    "segment",
+                    "segment_size",
+                    "start_date",
+                    "end_date",
+                    "actions_button",
+                )
+            },
+        ),
+        (
+            "Paramètre SFR",
+            {
+                "fields": (
+                    "info",
+                    "broadcast_id",
+                )
+            },
+        ),
     )
-    autocomplete_fields = ("segment",)
+    autocomplete_fields = ("segment", "test_segment")
+
+    @admin.display(description="Nombre de personne qui vont reçevoir le SMS de test")
+    def test_recipient_size(self, obj: SMSDiffusion):
+        if not obj or not obj.pk:
+            return "-"
+        return self.display_segment_size(
+            obj.pk, obj.test_segment.id if obj.test_segment else None
+        )
+
+    @admin.display(description="Actions de test")
+    def test_action_button(self, obj: SMSDiffusion):
+        if not obj or not obj.pk or not obj.test_segment:
+            return "-"
+
+        return format_html(
+            "<input type='submit' "
+            "name='_send_test' "
+            "class='action'"
+            "style='border-radius:8px;background:#571aff;font-weight:bold;' "
+            "value='💬 &ensp;{}' />",
+            "Envoyer",
+        )
 
     def get_info(self, obj: SMSDiffusion):
         if not obj or not obj.pk or not obj.broadcast_id:
@@ -94,7 +149,7 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
         )
 
     @admin.display(description="Actions")
-    def program(self, obj: SMSDiffusion):
+    def actions_button(self, obj: SMSDiffusion):
         if not obj or not obj.pk:
             return "-"
 
@@ -149,13 +204,18 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
         if not obj or not obj.pk:
             return "-"
 
-        if obj.segment is None:
+        return self.display_segment_size(
+            obj.pk, obj.segment.id if obj.segment else None
+        )
+
+    def display_segment_size(self, diffusion_id, segment_id):
+        if segment_id is None:
             return "Vous devez d'abord sélectionner un segment pour estimer le nombre de personne."
 
         return mark_safe(
             f"""
                 <span id="segment-size" 
-                      hx-get="/admin/diffusion/smsdiffusion/{obj.id}/segment/size/" 
+                      hx-get="/admin/diffusion/smsdiffusion/{diffusion_id}/segment/{segment_id}/size/" 
                       hx-trigger="load"
                       hx-swap="innerHTML">
                       Chargement..
@@ -166,7 +226,7 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
     def get_urls(self):
         return [
             path(
-                "<int:pk>/segment/size/",
+                "<int:pk>/segment/<int:segment_id>/size/",
                 segment_sms_people_size,
                 name="{}_{}_segment_size".format(
                     self.opts.app_label, self.opts.model_name
@@ -184,39 +244,62 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
         obj.end_date = obj.start_date + timedelta(days=1)
         obj.save()
 
+    def send_test(self, request, obj: SMSDiffusion):
+        obj.start_date = timezone.now()
+        obj.end_date = timezone.now() + timedelta(hours=1)
+        obj.title = f"TEST - {obj.title}"
+        broadcast_id = create_dmc_diffusion_with_segment(obj, obj.test_segment)
+        trigger_diffusion(broadcast_id)
+        messages.add_message(
+            request, messages.INFO, "Message envoyé au segment de test !"
+        )
+        return HttpResponseRedirect(".")
+
+    def send(self, request, obj: SMSDiffusion):
+        obj.start_date = timezone.now()
+        obj.end_date = timezone.now() + timedelta(hours=2)
+        obj.save()
+        if not obj.broadcast_id:
+            broadcast_id = create_dmc_diffusion_with_segment(obj, obj.segment)
+            trigger_diffusion(broadcast_id)
+            obj.broadcast_id = broadcast_id
+            obj.save()
+        else:
+            update_diffusion(obj)
+
+        messages.add_message(
+            request=request,
+            level=messages.INFO,
+            message="Le sms est en cours d'envoie !",
+        )
+        return HttpResponseRedirect(".")
+
+    def program(self, request, obj: SMSDiffusion):
+        messages.add_message(
+            request, messages.INFO, "Le message a bien été programmé !"
+        )
+        broadcast_id = create_dmc_diffusion_with_segment(obj, obj.segment)
+        obj.broadcast_id = broadcast_id
+        trigger_diffusion(obj.broadcast_id)
+        obj.save()
+        return HttpResponseRedirect(".")
+
     def response_change(self, request, obj: SMSDiffusion):
         has_stop_code = STOP_SUBSCRIBE in obj.message
 
-        if "_program" in request.POST and has_stop_code:
+        try:
+            if "_program" in request.POST and has_stop_code:
+                return self.program(request, obj)
+            if "_send_test" in request.POST and has_stop_code:
+                return self.send_test(request, obj)
+            if "_send" in request.POST and has_stop_code:
+                return self.send(request, obj)
+        except Exception as e:
             messages.add_message(
-                request, messages.INFO, "Le message a bien été programmé !"
+                request=request,
+                level=messages.WARNING,
+                message=str(e),
             )
-            create_diffusion_with_segment(obj)
-            trigger_diffusion(obj)
-            return HttpResponseRedirect(".")
-
-        if "_send" in request.POST and has_stop_code:
-            try:
-                obj.start_date = timezone.now()
-                obj.end_date = timezone.now() + timedelta(hours=2)
-                obj.save()
-                if not obj.broadcast_id:
-                    create_diffusion_with_segment(obj)
-                    trigger_diffusion(obj)
-                else:
-                    update_diffusion(obj)
-
-                messages.add_message(
-                    request=request,
-                    level=messages.INFO,
-                    message="Le sms est en cours d'envoie !",
-                )
-            except Exception as e:
-                messages.add_message(
-                    request=request,
-                    level=messages.WARNING,
-                    message=str(e),
-                )
             return HttpResponseRedirect(".")
 
         if not has_stop_code:
