@@ -114,9 +114,9 @@ class MembershipRemoveRequestUpdateAPIView(UpdateAPIView):
             == MembershipRemoveRequest.Status.AWAIT_PEER_REVIEW
         ):
             if current_url.endswith("validate"):
-                request.data["status"] = (
-                    MembershipRemoveRequest.Status.AWAIT_ADMIN_REVIEW
-                )
+                request.data[
+                    "status"
+                ] = MembershipRemoveRequest.Status.AWAIT_ADMIN_REVIEW
                 send_email_remove_request_ga.delay(current_remove_request.id)
             elif current_url.endswith("refuse"):
                 request.data["status"] = MembershipRemoveRequest.Status.REFUSED
@@ -151,13 +151,17 @@ class MembershipRemoveRequestListAPIView(ListAPIView, HardLoginRequiredMixin):
     permission_classes = (IsPersonPermission, MembershipRemoveRequestPermissions)
 
     def get_queryset(self):
-        return MembershipRemoveRequest.objects.filter(
-            supportgroup__id=self.kwargs.get("pk")
-        ).exclude(
-            status__in=[
-                MembershipRemoveRequest.Status.DONE,
-                MembershipRemoveRequest.Status.REFUSED,
-            ]
+        return (
+            MembershipRemoveRequest.objects.filter(
+                supportgroup__id=self.kwargs.get("pk")
+            )
+            .select_related("person")
+            .exclude(
+                status__in=[
+                    MembershipRemoveRequest.Status.DONE,
+                    MembershipRemoveRequest.Status.REFUSED,
+                ]
+            )
         )
 
 
