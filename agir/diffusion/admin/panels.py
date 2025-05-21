@@ -104,7 +104,7 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
         return format_html(
             "<input type='submit' "
             "name='_send_test' "
-            "class='action'"
+            "class='action-test'"
             "style='border-radius:8px;background:#571aff;font-weight:bold;' "
             "value='💬 &ensp;{}' />",
             "Envoyer",

@@ -59,12 +59,11 @@ function listenCounter(area) {
     area.addEventListener("input", updateCounter)
 }
 
-function updateSegmentSize() {
-    const segmentSizeElement = getSegmentSizeElement()
-    if (segmentSizeElement.innerText.includes("Chargement") === false) {
-        segmentSize = parseInt(segmentSizeElement.innerText)
+function updateSegmentSize(element, env = "") {
+    if (element.innerText.includes("Chargement") === false) {
+        segmentSize = parseInt(element.innerText)
         if (segmentSize === 0) {
-            disableActions()
+            disableActions(env)
         }
     }
 }
@@ -73,12 +72,16 @@ function getSegmentSizeElement() {
     return document.getElementById("segment-size")
 }
 
+function getTestSegmentSizeElement() {
+    return document.getElementById("segment-size-test")
+}
+
 function getMessageArea() {
     return document.getElementById("id_message")
 }
 
-function disableActions() {
-    const actionButtons = document.getElementsByClassName("action")
+function disableActions(env) {
+    const actionButtons = document.getElementsByClassName(`action${env ? `-${env}` : ""}`)
     let lastButton = undefined
     Array.from(actionButtons).forEach(button => {
         button.setAttribute("disabled", "");
@@ -98,13 +101,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
         appendStopShortcodeButton()
         listenCounter(messageArea)
     }
-    const segmentSizeElement = getSegmentSizeElement()
 
-    const observer = new MutationObserver((mutationsList, observer) => {
-        updateSegmentSize()
+    const observer = new MutationObserver(() => {
+        updateSegmentSize(getSegmentSizeElement())
         updateCounter()
     });
-    observer.observe(segmentSizeElement, { childList: true });
+    const observerTest = new MutationObserver(() => {
+        updateSegmentSize(getTestSegmentSizeElement(), "test")
+    })
+    observer.observe(getSegmentSizeElement(), { childList: true });
+    observerTest.observe(getTestSegmentSizeElement(), { childList: true });
 
     setInterval(() => {
 
