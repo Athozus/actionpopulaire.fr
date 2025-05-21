@@ -410,8 +410,8 @@ class EventSerializer(FlexibleFieldsMixin, serializers.Serializer):
     def get_groups_attendees(self, obj):
         if hasattr(obj, "_pf_group_attendees"):
             groups = [
-                {"id": group.id, "name": group.name}
-                for group in obj._pf_group_attendees
+                {"id": attendee.group.id, "name": attendee.group.name}
+                for attendee in getattr(obj, "_pf_group_attendees", [])
             ]
         else:
             groups = list(obj.groups_attendees.distinct().values("id", "name"))
@@ -491,14 +491,13 @@ class EventAdvancedSerializer(EventSerializer):
         formatted_person = {
             "id": person.id,
             "displayName": person.display_name,
-            "image": None,
+            "image": person.image.thumbnail.url
+            if person.image and person.image.thumbnail
+            else None,
             "isOrganizer": is_organizer,
             "isEventSpeaker": is_speaker,
             "unavailable": unavailable,
         }
-
-        if person.image and person.image.thumbnail:
-            formatted_person["image"] = person.image.thumbnail.url
 
         if is_speaker:
             formatted_person["displayName"] = person.get_full_name()
@@ -506,9 +505,20 @@ class EventAdvancedSerializer(EventSerializer):
         if unavailable and not is_organizer:
             return formatted_person
 
+        emails = getattr(person, "_prefetched_objects_cache", {}).get("emails", [])
+        public_email = getattr(person, "public_email", None)
+
+        if public_email:
+            email = public_email.address
+        elif emails:
+            valid = next((e for e in emails if not e.bounced), None)
+            email = valid.address if valid else emails[0].address
+        else:
+            email = ""
+
         return {
             **formatted_person,
-            "email": person.display_email,
+            "email": email,
             "gender": person.gender,
         }
 
@@ -516,33 +526,35 @@ class EventAdvancedSerializer(EventSerializer):
         speaker_person_ids = list(
             obj.event_speakers.values_list("person_id", flat=True)
         )
+
         organizers = {
             str(person.id): self.format_person(
-                person, is_organizer=True, is_speaker=person.id in speaker_person_ids
+                person,
+                is_organizer=True,
+                is_speaker=person.id in speaker_person_ids,
             )
             for person in obj.get_organizer_people()
         }
+
         participants = {
             str(person.id): self.format_person(
                 person,
-                is_organizer=str(person.id) in organizers.keys(),
+                is_organizer=str(person.id) in organizers,
                 is_speaker=person.id in speaker_person_ids,
                 unavailable=person.unavailable,
             )
-            for person in obj.annotated_attendees
+            for person in getattr(obj, "annotated_attendees", [])
             if person.confirmed or person.unavailable
         }
-        participants = {
-            **organizers,
-            **participants,
-        }
+
+        participants.update(organizers)
 
         return participants.values()
 
     def get_groups_invited(self, obj):
         groups_invited = SupportGroup.objects.filter(
             invitations__status=Invitation.STATUS_PENDING, invitations__event=obj
-        )
+        ).distinct()
 
         return [
             {
