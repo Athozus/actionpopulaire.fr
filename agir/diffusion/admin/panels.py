@@ -93,7 +93,7 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
         if not obj or not obj.pk:
             return "-"
         return self.display_segment_size(
-            obj.pk, obj.test_segment.id if obj.test_segment else None
+            obj.pk, obj.test_segment.id if obj.test_segment else None, True
         )
 
     @admin.display(description="Actions de test")
@@ -208,13 +208,13 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
             obj.pk, obj.segment.id if obj.segment else None
         )
 
-    def display_segment_size(self, diffusion_id, segment_id):
+    def display_segment_size(self, diffusion_id, segment_id, test=False):
         if segment_id is None:
             return "Vous devez d'abord sélectionner un segment pour estimer le nombre de personne."
 
         return mark_safe(
             f"""
-                <span id="segment-size" 
+                <span id="segment-size{'-test' if test else ''}" 
                       hx-get="/admin/diffusion/smsdiffusion/{diffusion_id}/segment/{segment_id}/size/" 
                       hx-trigger="load"
                       hx-swap="innerHTML">
