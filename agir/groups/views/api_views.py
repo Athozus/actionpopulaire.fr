@@ -1,5 +1,6 @@
 import datetime
 import re
+from functools import cached_property
 
 import reversion
 from dateutil.relativedelta import relativedelta
@@ -339,20 +340,22 @@ class GroupEventListAPIView(ListAPIView):
     queryset = Event.objects.all()
     order_by = "start_time"
 
-    def check_permissions(self, request):
-        self.person = None
-        if self.request.user.is_authenticated and hasattr(self.request.user, "person"):
-            self.person = self.request.user.person
-        self.supportgroup = get_object_or_404(
+    @cached_property
+    def supportgroup(self):
+        return get_object_or_404(
             SupportGroup.objects.active(), pk=self.kwargs.get("pk")
         )
+
+    def check_permissions(self, request):
+        self.person = None
+        if request.user.is_authenticated and hasattr(request.user, "person"):
+            self.person = request.user.person
         super().check_permissions(request)
         self.check_object_permissions(request, self.supportgroup)
 
     def get_event_queryset(self):
         return self.queryset.filter(
-            Q(organizers_groups__in=(self.supportgroup,))
-            | Q(groups_attendees__in=(self.supportgroup,))
+            Q(organizers_groups=self.supportgroup) | Q(groups_attendees=self.supportgroup)
         )
 
     def get_queryset(self):
