@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import gettext_lazy as _
 from django_countries.serializer_fields import CountryField
@@ -108,14 +110,28 @@ class SimpleLocationSerializer(serializers.Serializer):
             return {}
         return data
 
+    @staticmethod
+    @lru_cache(maxsize=10000)
+    def _get_commune_cached(citycode, zipcode, city):
+        class Dummy:
+            location_citycode = citycode
+            location_zip = zipcode
+            location_city = city
+
+        return get_commune(Dummy)
+
     def get_commune(self, obj):
-        commune = get_commune(obj)
-        if commune is not None:
-            commune = {
+        commune = self._get_commune_cached(
+            (obj.location_citycode or "").strip(),
+            (obj.location_zip or "").strip(),
+            (obj.location_city or "").strip(),
+        )
+        if commune:
+            return {
                 "name": commune.nom_complet,
                 "nameOf": commune.nom_avec_charniere,
             }
-        return commune
+        return None
 
     def get_departement(self, obj):
         if hasattr(obj, "get_departement"):
