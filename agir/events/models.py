@@ -160,7 +160,7 @@ class EventQuerySet(models.QuerySet):
     def with_organizer_groups(self):
         return self.prefetch_related(
             Prefetch(
-                "groups_attendees",
+                "organizers_groups",
                 to_attr="_pf_organizer_groups",
             )
         )
@@ -168,8 +168,7 @@ class EventQuerySet(models.QuerySet):
     def with_group_attendees(self):
         return self.prefetch_related(
             Prefetch(
-                "event_participation",
-                queryset=GroupAttendee.objects.select_related("group", "organizer"),
+                "groups_attendees",
                 to_attr="_pf_group_attendees",
             )
         )
@@ -205,31 +204,17 @@ class EventQuerySet(models.QuerySet):
         )
 
     def with_serializer_prefetch(self, person):
-        from agir.people.models import Person
-
         qs = (
-            self.select_related(
-                "subtype",
-                "volunteer_application_form",
-            )
+            self.select_related("subtype", "volunteer_application_form")
             .prefetch_related(
-                "organizer_configs",
-                "event_speakers",
-                Prefetch(
-                    "event_speakers__person",
-                    queryset=Person.objects.select_related(
-                        "public_email"
-                    ).prefetch_related("emails"),
-                ),
+                "organizer_configs", "event_speakers", "event_speakers__person"
             )
             .with_organizer_groups()
             .with_group_attendees()
             .with_static_map_image()
         )
-
         if person:
             qs = qs.with_person_rsvps(person).with_person_organizer_configs(person)
-
         return qs
 
     def search(self, query):
@@ -266,6 +251,8 @@ class EventQuerySet(models.QuerySet):
             return self
 
         if radius is None:
+            from agir.people.models import Person
+
             radius = Person.DEFAULT_ACTION_RADIUS
 
         return (
@@ -1119,9 +1106,9 @@ class Event(
             schema["eventStatus"] = "https://schema.org/EventCancelled"
 
         if self.online_url:
-            schema[
-                "eventAttendanceMode"
-            ] = "https://schema.org/MixedEventAttendanceMode"
+            schema["eventAttendanceMode"] = (
+                "https://schema.org/MixedEventAttendanceMode"
+            )
             schema["location"] = [
                 schema["location"],
                 {"@type": "VirtualLocation", "url": self.online_url},

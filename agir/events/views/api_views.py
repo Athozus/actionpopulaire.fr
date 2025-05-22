@@ -1,7 +1,7 @@
 from datetime import timedelta
 
 from django.db import transaction, IntegrityError
-from django.db.models import Q, Value, CharField, Prefetch
+from django.db.models import Q, Value, CharField
 from django.http.response import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
@@ -386,12 +386,14 @@ class EventDetailAdvancedAPIView(RetrieveAPIView):
         EventManagementPermissions,
     )
     serializer_class = EventAdvancedSerializer
+    queryset = Event.objects.exclude(visibility=Event.VISIBILITY_ADMIN)
 
     def get_queryset(self):
-        person = getattr(self.request.user, "person", None)
-        return Event.objects.exclude(
-            visibility=Event.VISIBILITY_ADMIN
-        ).with_serializer_prefetch(person=person)
+        return (
+            super()
+            .get_queryset()
+            .with_serializer_prefetch(person=self.request.user.person)
+        )
 
 
 class UpdateEventAPIView(UpdateAPIView):
@@ -756,10 +758,7 @@ class EventProjectsAPIView(ListAPIView):
         return (
             self.queryset.filter(event__in=self._as_manager_events)
             .select_related("event", "event__subtype")
-            .prefetch_related(
-                "event__organizers_groups",
-                "documents",
-            )
+            .prefetch_related("event__organizers_groups")
             .order_by("event__end_time")
         )
 
