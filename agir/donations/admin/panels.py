@@ -34,6 +34,9 @@ from agir.lib.templatetags.display_lib import display_price_in_cent
 class SpendingRequestAdmin(VersionAdmin):
     save_as = True
     save_on_top = True
+
+    list_select_related = ("group",)
+
     list_display = [
         "title",
         "is_campaign",
