@@ -328,7 +328,7 @@ class PaymentsView(ProfileViewMixin, TemplateView):
         payments = self.request.user.person.payments.completed()
 
         query_payments_per_year = (
-            payments.filter(type="don")
+            payments.filter(type__in=["don", "contribution"])
             .values("created__year")
             .annotate(montant_dons=Sum("price"))
         )
