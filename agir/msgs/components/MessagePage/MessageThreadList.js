@@ -167,7 +167,6 @@ const DesktopThreadList = (props) => {
             onDelete={onDelete}
             onReportComment={onReportComment}
             onDeleteComment={onDeleteComment}
-            isManager={selectedMessage.group.isManager}
             groupURL={groupURL}
             commentErrors={commentErrors}
           />
@@ -255,7 +254,6 @@ const MobileThreadList = (props) => {
               onDelete={onDelete}
               onReportComment={onReportComment}
               onDeleteComment={onDeleteComment}
-              isManager={selectedMessage?.group.isManager}
               groupURL={groupURL}
               commentErrors={commentErrors}
             />
