@@ -114,9 +114,9 @@ class MembershipRemoveRequestUpdateAPIView(UpdateAPIView):
             == MembershipRemoveRequest.Status.AWAIT_PEER_REVIEW
         ):
             if current_url.endswith("validate"):
-                request.data[
-                    "status"
-                ] = MembershipRemoveRequest.Status.AWAIT_ADMIN_REVIEW
+                request.data["status"] = (
+                    MembershipRemoveRequest.Status.AWAIT_ADMIN_REVIEW
+                )
                 send_email_remove_request_ga.delay(current_remove_request.id)
             elif current_url.endswith("refuse"):
                 request.data["status"] = MembershipRemoveRequest.Status.REFUSED

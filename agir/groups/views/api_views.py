@@ -355,7 +355,8 @@ class GroupEventListAPIView(ListAPIView):
 
     def get_event_queryset(self):
         return self.queryset.filter(
-            Q(organizers_groups=self.supportgroup) | Q(groups_attendees=self.supportgroup)
+            Q(organizers_groups=self.supportgroup)
+            | Q(groups_attendees=self.supportgroup)
         )
 
     def get_queryset(self):
