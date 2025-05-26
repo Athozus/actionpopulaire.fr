@@ -43,6 +43,13 @@ def is_at_least_manager_for_group(role, obj=None):
     elif isinstance(obj, SupportGroupMessage):
         supportgroup = obj.supportgroup
     elif isinstance(obj, SupportGroupMessageComment):
+        on_special_group_rule = (
+            obj.message.supportgroup.type == SupportGroup.TYPE_FUNCTIONAL
+            or obj.message.supportgroup.type == SupportGroup.TYPE_BOUCLE_DEPARTEMENTALE
+        )
+        if on_special_group_rule:
+            return role.person in obj.message.supportgroup.referents
+
         supportgroup = obj.message.supportgroup
     elif isinstance(obj, Membership):
         supportgroup = obj.supportgroup
@@ -57,9 +64,6 @@ def is_at_least_manager_for_group(role, obj=None):
             supportgroup=supportgroup,
         ).exists()
     )
-
-
-import logging
 
 
 @rules.predicate
