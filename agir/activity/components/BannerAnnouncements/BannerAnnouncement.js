@@ -154,9 +154,11 @@ export default function BannerAnnouncement() {
     }
 
     async function closeAnnouncement() {
-        const result = await closeBannerAnnouncement(currentAnnouncement.id);
-        if (result.status === 204) {
-            await nextAnnouncement()
+        if (currentAnnouncement) {
+            const result = await closeBannerAnnouncement(currentAnnouncement.id);
+            if (result.status === 204) {
+                await nextAnnouncement()
+            }
         }
     }
 
