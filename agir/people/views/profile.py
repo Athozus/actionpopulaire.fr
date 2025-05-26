@@ -24,9 +24,11 @@ from agir.donations.actions import (
     existing_monthly_payment,
     is_renewable_contribution,
 )
+from django.db.models import Sum
 from agir.donations.allocations import get_allocation_list
 from agir.donations.forms import AllocationSubscriptionForm
 from agir.donations.views import DONATION_SESSION_NAMESPACE, AskAmountView
+from agir.lib.display import display_price
 from agir.payments.models import Subscription
 from agir.people.actions.management import merge_persons
 from agir.people.admin.actions import unsubscribe_from_all_newsletters
@@ -323,10 +325,23 @@ class PaymentsView(ProfileViewMixin, TemplateView):
             type=Document.Type.RECU_FISCAL,
         ).order_by("-date")
 
+        payments = self.request.user.person.payments.completed()
+
+        query_payments_per_year = (
+            payments.filter(type="don")
+            .values("created__year")
+            .annotate(montant_dons=Sum("price"))
+        )
+        dons_per_year = {
+            dons_year["created__year"]: display_price(dons_year["montant_dons"])
+            for dons_year in query_payments_per_year
+        }
+
         return super().get_context_data(
             is_hard_logged=is_hard_logged(self.request),
             pending_payments=self.request.user.person.payments.awaiting().checks(),
-            payments=self.request.user.person.payments.completed(),
+            payments=payments,
+            dons_per_year=dons_per_year,
             subscriptions=self.subscriptions,
             **kwargs,
         )

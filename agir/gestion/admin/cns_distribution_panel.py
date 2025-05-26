@@ -18,7 +18,6 @@ from agir.gestion.admin.cns_distribution_form import CNSDistributionForm
 from agir.gestion.models import CNSDistribution
 from agir.lib.display import display_price
 from agir.lib.geo import FRENCH_COUNTRY_CODES
-from django.urls import path
 
 from django.contrib import admin, messages
 

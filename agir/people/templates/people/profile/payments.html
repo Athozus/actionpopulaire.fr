@@ -1,5 +1,6 @@
 {% extends "front/layout.html" %}
 {% load static %}
+{% load display_lib %}
 
 {% block title %}Dons et paiements{% endblock %}
 
@@ -164,7 +165,7 @@
                   <h4 class="panel-title">
                     <a {% if not forloop.first %}class="collapsed"{% endif %} role="button" data-toggle="collapse"
                        data-parent="#payments-accordion" href="#payments-year-{{ year }}" aria-expanded="true">
-                      En {{ year }}&nbsp;
+                      En {{ year }}&nbsp; - Montant total des dons sur l'année : {{ dons_per_year|get_item:year }}
                     </a>
                   </h4>
                 </div>
