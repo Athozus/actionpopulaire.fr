@@ -1,5 +1,6 @@
 import datetime
 import re
+from collections import defaultdict
 from functools import cached_property
 
 import reversion
@@ -404,6 +405,32 @@ class GroupPastEventReportsAPIView(GroupEventListAPIView):
 
     def get_event_queryset(self):
         return self.supportgroup.organized_events.past().exclude(report_content="")
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+
+        if self.request.GET.get("onlyCards") == "1":
+            subtype_ids = (
+                self.get_queryset().values_list("subtype_id", flat=True).distinct()
+            )
+
+            supportgroup_links = SupportGroup.subtypes.through.objects.filter(
+                eventsubtype_id__in=subtype_ids
+            ).select_related("supportgroup")
+
+            group_ids = {link.supportgroup_id for link in supportgroup_links}
+
+            groups = SupportGroup.objects.filter(id__in=group_ids).only("id", "name")
+            groups_map = {g.id: g for g in groups}
+
+            subtype_group_map = defaultdict(list)
+            for link in supportgroup_links:
+                group = groups_map[link.supportgroup_id]
+                subtype_group_map[link.eventsubtype_id].append(group)
+
+            context["subtype_group_map"] = subtype_group_map
+
+        return context
 
 
 class GroupMessagesPermissions(GlobalOrObjectPermissions):

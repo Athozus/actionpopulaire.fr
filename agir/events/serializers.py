@@ -133,7 +133,9 @@ class EventSubtypeSerializer(DisplayEventSubtypeSerializer):
         return obj.visibility == EventSubtype.VISIBILITY_ALL
 
     def get_for_supportgroups(self, obj):
-        return [{"id": sg.id, "name": sg.name} for sg in obj.for_supportgroups.all()]
+        subtype_group_map = self.context.get("subtype_group_map", {})
+        groups = subtype_group_map.get(obj.id, [])
+        return [{"id": g.id, "name": g.name} for g in groups]
 
     class Meta:
         model = models.EventSubtype
@@ -381,6 +383,11 @@ class EventSerializer(FlexibleFieldsMixin, serializers.Serializer):
 
     def get_groups(self, obj):
         if self.is_event_card:
+            subtype_group_map = self.context.get("subtype_group_map")
+            if subtype_group_map:
+                groups = subtype_group_map.get(obj.subtype_id, [])
+                return [{"id": group.id, "name": group.name} for group in groups]
+
             if hasattr(obj, "_pf_organizer_groups"):
                 return [
                     {"id": group.id, "name": group.name}
