@@ -401,37 +401,37 @@ def build_commune_key(item):
 @redis_cache(timeout=600, key_func=lambda item: item.id, as_model_id=True)
 def get_commune(item) -> Commune:
     commune = None
+
     if item.location_citycode:
         try:
             commune = Commune.objects.get(code=item.location_citycode)
+            return commune
         except Commune.MultipleObjectsReturned:
-            commune = Commune.objects.get(
-                code=item.location_citycode, type=Commune.TYPE_COMMUNE
-            )
+            try:
+                commune = Commune.objects.get(
+                    code=item.location_citycode, type=Commune.TYPE_COMMUNE
+                )
+                return commune
+            except Commune.DoesNotExist:
+                pass
         except Commune.DoesNotExist:
             pass
 
-    if not commune and item.location_zip:
+    if item.location_zip:
         try:
             code_postal = CodePostal.objects.get(code=item.location_zip)
-        except CodePostal.DoesNotExist:
-            pass
-        else:
             nb_communes = code_postal.communes.count()
             if nb_communes == 1:
-                commune = code_postal.communes.get()
+                return code_postal.communes.get()
             elif nb_communes > 1 and item.location_city:
                 nom_normalise = normaliser_nom_ville(item.location_city)
-                commune = next(
-                    (
-                        v
-                        for v in code_postal.communes.all()
-                        if normaliser_nom_ville(v.nom) == nom_normalise
-                    ),
-                    None,
-                )
+                for v in code_postal.communes.all():
+                    if normaliser_nom_ville(v.nom) == nom_normalise:
+                        return v
+        except CodePostal.DoesNotExist:
+            pass
 
-    if not commune and item.location_city:
+    if item.location_city:
         nom_normalise = normaliser_nom_ville(item.location_city)
         communes = [
             c
@@ -439,9 +439,9 @@ def get_commune(item) -> Commune:
             if normaliser_nom_ville(c.nom_complet) == nom_normalise
         ]
         if len(communes) == 1:
-            commune = communes[0]
+            return communes[0]
 
-    return commune
+    return None
 
 
 def filter_queryset_by_commune(queryset, commune):
