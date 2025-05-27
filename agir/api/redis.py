@@ -1,7 +1,9 @@
+import logging
 from contextlib import contextmanager
 from unittest.mock import patch
 
 import redis
+import json
 from django.conf import settings
 from functools import wraps
 
@@ -79,3 +81,40 @@ def using_separate_redis_server(decorated=None):
             return decorated(*args, **kwargs)
 
     return inner
+
+
+def redis_cache(timeout=3600, key_func=None, as_model_id=False):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            key = key_func(*args, **kwargs)
+            full_key = f"Cache:{func.__name__}:{key}"
+
+            client = get_auth_redis_client()
+            result = client.get(full_key)
+
+            if result is not None:
+                if as_model_id:
+                    model = func.__annotations__.get("return")
+                    if model:
+                        return model.objects.get(pk=int(result))
+                return result
+
+            result = func(*args, **kwargs)
+
+            if result is None:
+                return None
+
+            try:
+                if as_model_id and hasattr(result, "pk"):
+                    client.set(full_key, result.pk, ex=timeout)
+                else:
+                    client.set(full_key, result, ex=timeout)
+            except Exception:
+                pass
+
+            return result
+
+        return wrapper
+
+    return decorator

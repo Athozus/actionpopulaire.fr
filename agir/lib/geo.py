@@ -1,3 +1,4 @@
+import hashlib
 import logging
 import re
 
@@ -9,6 +10,7 @@ from unidecode import unidecode
 
 from .data import code_postal_vers_code_departement
 from .models import LocationMixin
+from ..api.redis import redis_cache
 
 logger = logging.getLogger(__name__)
 
@@ -391,7 +393,13 @@ def geocode_internationally(item):
         return
 
 
-def get_commune(item):
+def build_commune_key(item):
+    raw_key = f"{item.location_citycode}|{item.location_zip}|{item.location_city}"
+    return hashlib.md5(raw_key.encode()).hexdigest()
+
+
+@redis_cache(timeout=600, key_func=lambda item: item.id, as_model_id=True)
+def get_commune(item) -> Commune:
     commune = None
     if item.location_citycode:
         try:
@@ -401,8 +409,9 @@ def get_commune(item):
                 code=item.location_citycode, type=Commune.TYPE_COMMUNE
             )
         except Commune.DoesNotExist:
-            commune = None
-    if item.location_zip:
+            pass
+
+    if not commune and item.location_zip:
         try:
             code_postal = CodePostal.objects.get(code=item.location_zip)
         except CodePostal.DoesNotExist:
@@ -411,17 +420,18 @@ def get_commune(item):
             nb_communes = code_postal.communes.count()
             if nb_communes == 1:
                 commune = code_postal.communes.get()
-            if nb_communes > 1 and item.location_city:
+            elif nb_communes > 1 and item.location_city:
                 nom_normalise = normaliser_nom_ville(item.location_city)
-                try:
-                    commune = next(
+                commune = next(
+                    (
                         v
                         for v in code_postal.communes.all()
                         if normaliser_nom_ville(v.nom) == nom_normalise
-                    )
-                except StopIteration:
-                    pass
-    if item.location_city:
+                    ),
+                    None,
+                )
+
+    if not commune and item.location_city:
         nom_normalise = normaliser_nom_ville(item.location_city)
         communes = [
             c
