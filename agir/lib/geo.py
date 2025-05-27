@@ -398,7 +398,7 @@ def build_commune_key(item):
     return hashlib.md5(raw_key.encode()).hexdigest()
 
 
-@redis_cache(timeout=600, key_func=lambda item: item.id, as_model_id=True)
+@redis_cache(timeout=None, key_func=lambda item: item.id, as_model_id=True)
 def get_commune(item) -> Commune:
     commune = None
 
