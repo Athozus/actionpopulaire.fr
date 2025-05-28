@@ -20,6 +20,9 @@ from django.db.models import (
     Avg,
     ExpressionWrapper,
     DurationField,
+    Exists,
+    OuterRef,
+    Subquery,
 )
 from django.db.models.functions import Greatest, Concat
 from django.utils import timezone
@@ -57,7 +60,7 @@ from agir.groups.models import (
     SupportGroup,
     SupportGroupSubtype,
     Membership,
-    SupportGroupExternalLink,
+    SupportGroupExternalLink, SupportGroupTag,
 )
 from agir.groups.proxys import ThematicGroup
 from agir.groups.serializers import (
@@ -150,7 +153,7 @@ class LegacyGroupSearchAPIView(ListAPIView):
 
 
 class GroupSearchAPIView(ListAPIView):
-    queryset = SupportGroup.objects.active()
+    queryset = SupportGroup.objects.active().with_static_map_image()
     filter_backends = (DjangoFilterBackend,)
     filterset_class = GroupAPIFilterSet
     serializer_class = SupportGroupDetailSerializer
@@ -208,18 +211,13 @@ class UserGroupsView(ListAPIView):
     serializer_class = SupportGroupSerializer
     permission_classes = (IsPersonOrTokenHasScopePermission,)
     required_scopes = ("view_membership",)
-    queryset = SupportGroup.objects.active()
 
     def get_queryset(self):
         return (
             SupportGroup.objects.active()
-            .with_serializer_prefetch(person=self.request.user.person)
-            .filter(
-                id__in=self.request.user.person.supportgroups.values_list(
-                    "id", flat=True
-                )
-            )
+            .filter(memberships__person=self.request.user.person)
             .order_by("name")
+            .with_serializer_prefetch(person=self.request.user.person)
         )
 
 
