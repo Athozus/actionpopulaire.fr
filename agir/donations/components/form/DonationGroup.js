@@ -56,7 +56,7 @@ export default function DonationGroup() {
         if (group && !currentGroup) {
             setupSelectedGroup(group)
         }
-    }, [group]);
+    }, [group, groups]);
 
     useEffect(() => {
         if (currentGroup && hasSelectedGroup && !open) {
