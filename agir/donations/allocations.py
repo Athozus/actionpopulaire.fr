@@ -17,6 +17,10 @@ CNS_ACCOUNT = "actif:cns"
 SPENDING_ACCOUNT = "depenses"
 REMBOURSEMENT_EUROPEENES_2024 = "remboursement:europeenes2024"
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 def get_account_name_for_departement(departement):
     departement = departement.zfill(2)
@@ -128,12 +132,19 @@ def apply_payment_allocation(payment, allocation):
             defaults={"amount": allocation["amount"]},
         )
     elif allocation_type == AllocationModelMixin.TYPE_DEPARTEMENT:
-        AccountOperation.objects.update_or_create(
-            payment=payment,
-            source=DONATIONS_ACCOUNT,
-            destination=get_account_name_for_departement(allocation["departement"]),
-            defaults={"amount": allocation["amount"]},
+        boucle_departementale = SupportGroup.objects.filter(
+            type=SupportGroup.TYPE_BOUCLE_DEPARTEMENTALE,
+            location_departement_id=str(allocation["departement"]),
         )
+        if boucle_departementale:
+            AccountOperation.objects.update_or_create(
+                payment=payment,
+                source=DONATIONS_ACCOUNT,
+                destination=get_account_name_for_group(boucle_departementale.first()),
+                defaults={"amount": allocation["amount"]},
+            )
+        else:
+            logger.error(f"Group not found for dep code {allocation['departement']}")
     elif allocation_type == AllocationModelMixin.TYPE_CNS:
         AccountOperation.objects.update_or_create(
             payment=payment,
