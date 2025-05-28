@@ -91,7 +91,8 @@ MessageReadonlyHeader.propTypes = {
 };
 
 const MessageHeader = (props) => {
-  const { message, subject, isManager, isAuthor, readOnly } = props;
+  const { message, subject, isAuthor, readOnly } = props;
+  const {isManager} = message.group
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 

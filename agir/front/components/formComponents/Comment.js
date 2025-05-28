@@ -182,7 +182,6 @@ const Comment = (props) => {
   const { comment, onDelete, onReport, isAuthor, group } = props;
   const { author, text, attachment, created } = comment;
 
-  console.log("group", group)
   const canDelete = typeof onDelete === "function" && (isAuthor || allowDeleteFromGroup(group));
   const canReport = typeof onReport === "function" && !isAuthor;
   const hasActions = canDelete || canReport;

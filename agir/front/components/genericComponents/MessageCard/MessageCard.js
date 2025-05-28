@@ -182,7 +182,6 @@ const MessageCard = (props) => {
         <MessageHeader
           subject={subject}
           message={message}
-          isManager={isManager}
           isAuthor={isAuthor}
         />
       )}
@@ -380,7 +379,6 @@ MessageCard.propTypes = {
   onReport: PropTypes.func,
   isLoading: PropTypes.bool,
   withMobileCommentField: PropTypes.bool,
-  isManager: PropTypes.bool,
   autoScrollOnComment: PropTypes.bool,
   commentErrors: PropTypes.object,
 };
