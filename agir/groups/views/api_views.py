@@ -60,7 +60,8 @@ from agir.groups.models import (
     SupportGroup,
     SupportGroupSubtype,
     Membership,
-    SupportGroupExternalLink, SupportGroupTag,
+    SupportGroupExternalLink,
+    SupportGroupTag,
 )
 from agir.groups.proxys import ThematicGroup
 from agir.groups.serializers import (
