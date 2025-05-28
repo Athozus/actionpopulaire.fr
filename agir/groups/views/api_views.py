@@ -72,7 +72,6 @@ from agir.groups.serializers import (
     ThematicGroupSerializer,
 )
 from agir.groups.utils.supportgroup import is_active_group_filter
-from agir.lib.http import HttpResponseUnauthorized
 from agir.lib.pagination import (
     APIPageNumberPagination,
 )

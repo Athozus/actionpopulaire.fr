@@ -1,5 +1,3 @@
-import unittest
-
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.utils import timezone
 from rest_framework.test import APITestCase
@@ -269,13 +267,7 @@ class GroupMessagesTestAPICase(APITestCase):
         self.assertEqual(res.data["attachment"], None)
         self.assertEqual(
             res.data["group"],
-            {
-                "id": self.group.id,
-                "name": self.group.name,
-                "isManager": False,
-                "isReferent": False,
-                "type": "L",
-            },
+            {"id": self.group.id, "name": self.group.name, "isManager": False},
         )
         self.assertNotIn("recentComments", res.data)
 
@@ -621,33 +613,14 @@ class GroupMessageCommentAPITestCase(APITestCase):
         res = self.client.delete(f"/api/groupes/messages/comments/{comment.pk}/")
         self.assertEqual(res.status_code, 403)
 
-    @unittest.skip("Utils function skipped")
-    def test_manager_can_delete_comment_from_group_type(self, group_type, allow=False):
-        self.group.type = group_type
-        self.group.save()
+    def test_manager_can_delete_comment(self):
         comment = SupportGroupMessageComment.objects.create(
             message=self.message, author=self.member, text="Lorem"
         )
         self.client.force_login(self.manager.role)
         res = self.client.delete(f"/api/groupes/messages/comments/{comment.pk}/")
-        self.assertEqual(res.status_code, 204 if allow else 403)
-        if allow:
-            self.assertEqual(self.message.comments.first().deleted, True)
-
-    def test_manager_local_group_can_delete_comment(self):
-        self.test_manager_can_delete_comment_from_group_type(
-            SupportGroup.TYPE_LOCAL_GROUP, True
-        )
-
-    def test_manager_departemental_group_cannot_delete_comment(self):
-        self.test_manager_can_delete_comment_from_group_type(
-            SupportGroup.TYPE_BOUCLE_DEPARTEMENTALE, False
-        )
-
-    def test_manager_functional_group_cannot_delete_comment(self):
-        self.test_manager_can_delete_comment_from_group_type(
-            SupportGroup.TYPE_FUNCTIONAL, False
-        )
+        self.assertEqual(res.status_code, 204)
+        self.assertEqual(self.message.comments.first().deleted, True)
 
     def test_cannot_retrieve_private_message_comments_if_group_messaging_is_disabled(
         self,

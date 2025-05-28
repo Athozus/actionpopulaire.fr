@@ -10,7 +10,6 @@ import { RawFeatherIcon } from "@agir/front/genericComponents/FeatherIcon";
 import InlineMenu from "@agir/front/genericComponents/InlineMenu";
 import ParsedString from "@agir/front/genericComponents/ParsedString";
 import MessageAttachment from "./MessageAttachment";
-import {GROUP_TYPE} from "@agir/groups/utils/group";
 
 const StyledInlineMenuItems = styled.div`
   cursor: pointer;
@@ -171,19 +170,11 @@ const StyledWrapper = styled(animated.div)`
   }
 `;
 
-function allowDeleteFromGroup(group) {
-  if (group.type === GROUP_TYPE.DEPARTEMENTALE || group.type === GROUP_TYPE.FUNCTIONAL) {
-    return group.isReferent
-  }
-  return group.isManager;
-}
-
 const Comment = (props) => {
-  const { comment, onDelete, onReport, isAuthor, group } = props;
+  const { comment, onDelete, onReport, isAuthor, isManager } = props;
   const { author, text, attachment, created } = comment;
 
-  console.log("group", group)
-  const canDelete = typeof onDelete === "function" && (isAuthor || allowDeleteFromGroup(group));
+  const canDelete = typeof onDelete === "function" && (isAuthor || isManager);
   const canReport = typeof onReport === "function" && !isAuthor;
   const hasActions = canDelete || canReport;
 

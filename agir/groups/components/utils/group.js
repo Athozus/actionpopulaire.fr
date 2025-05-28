@@ -21,13 +21,6 @@ export const MEMBERSHIP_TYPE_LABEL = {
   [MEMBERSHIP_TYPES.REFERENT]: ["Animateur·ice", "Animatrice", "Animateur"],
 };
 
-export const GROUP_TYPE = {
-  LOCAL: 'L',
-  THEMATIC: 'B',
-  FUNCTIONAL: 'F',
-  DEPARTEMENTALE: 'D'
-};
-
 export const getGenderedMembershipType = (membershipType, gender) => {
   const label = MEMBERSHIP_TYPE_LABEL[String(membershipType)];
   if (!label) {

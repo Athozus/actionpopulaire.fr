@@ -52,6 +52,7 @@ const MessageCard = (props) => {
     user,
     message,
     groupURL,
+    isManager,
     isLoading,
     onClick,
     onComment,
@@ -297,8 +298,8 @@ const MessageCard = (props) => {
                   comment={comment}
                   onDelete={onDeleteComment ? handleDeleteComment : undefined}
                   onReport={onReportComment ? handleReportComment : undefined}
-                  group={message.group}
                   isAuthor={comment.author.id === user.id}
+                  isManager={isManager}
                 />
               ))}
             </PageFadeIn>

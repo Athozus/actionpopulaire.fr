@@ -137,7 +137,7 @@ const MessageReadonlyCard = (props) => {
                   key={comment.id}
                   comment={comment}
                   isAuthor={comment.author.id === user.id}
-                  group={group}
+                  isManager={isManager}
                 />
               ))}
             </PageFadeIn>
