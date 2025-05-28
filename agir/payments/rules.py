@@ -11,4 +11,5 @@ def is_owner_of_payment(role, obj=None):
         return role.person.id == obj.person.id
     return False
 
+
 rules.add_perm("payments.own_payment", is_owner_of_payment)
