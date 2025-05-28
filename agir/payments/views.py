@@ -17,6 +17,7 @@ from .models import Payment, Subscription
 from .payment_modes import PAYMENT_MODES
 from .serializers import PaymentSerializer
 from .types import PAYMENT_TYPES, SUBSCRIPTION_TYPES
+from ..lib.rest_framework_permissions import IsPersonPermission, GlobalOrObjectPermissions
 
 PAYMENT_ID_SESSION_KEY = "_payment_id"
 
@@ -27,7 +28,12 @@ def payment_view(
     pass
 
 
+class OwnPaymentRetrievePermissions(GlobalOrObjectPermissions):
+    perms_map = {"GET": []}
+    object_perms_map = {"GET": ["payments.own_payment"]}
+
 class PaymentViewAPIRetrieve(RetrieveAPIView):
+    permission_classes = (IsPersonPermission,OwnPaymentRetrievePermissions)
     queryset = Payment.objects.exclude(
         status__in=[Payment.STATUS_COMPLETED, Payment.STATUS_REFUND]
     )
@@ -45,6 +51,7 @@ class PaymentViewAPIRetrieve(RetrieveAPIView):
 
 @method_decorator(never_cache, name="get")
 class PaymentView(DetailView):
+    permission_classes = (IsPersonPermission,OwnPaymentRetrievePermissions)
     queryset = Payment.objects.exclude(
         status__in=[Payment.STATUS_COMPLETED, Payment.STATUS_REFUND]
     )
@@ -67,6 +74,7 @@ class PaymentView(DetailView):
 
 @method_decorator(never_cache, name="get")
 class RetryPaymentView(DetailView):
+    permission_classes = (IsPersonPermission,OwnPaymentRetrievePermissions)
     def get_queryset(self):
         return Payment.objects.exclude(
             status__in=[Payment.STATUS_COMPLETED, Payment.STATUS_REFUND]
