@@ -83,20 +83,6 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     updateContainerStyle()
 
-
-    //const fbEditor = new FormBuilder(document.getElementById('fb-editor'), {
-    //    formData: formBuilderData,
-    //        disableFields: [],
-    //        typeUserAttrs: {
-    //        text: {
-    //            placeholder: {
-    //                label: 'Placeholder',
-    //                    type: 'text'
-    //            }
-    //        }
-    //    }
-    //});
-
     //// Sauvegarder automatiquement les changements
     //const textarea = document.getElementsByName('{name}')[0];
 
@@ -176,10 +162,16 @@ function mapCrispyFieldToFormBuilderField(field) {
     };
 
     if (field.choices) {
-        fbField.values = field.choices.map(choice => ({
-            label: choice,
-            value: choice
-        }));
+        fbField.values = field.choices.map(choice => {
+            return Array.isArray(choice) ?
+                {
+                    label: choice[1],
+                    value: choice[0]
+                } : {
+                label: choice,
+                value: choice
+            };
+        });
     }
     if (field.widget_attrs) {
         if (field.widget_attrs.placeholder) fbField.placeholder = field.widget_attrs.placeholder;
@@ -193,7 +185,7 @@ function mapCrispyTypeToFormBuilder(crispyType) {
     const mapping = {
         'short_text': 'text',
         'TextField': 'textarea',
-        'email_address': 'email',
+        'email_address': 'text',
         'IntegerField': 'number',
         'choice': 'select',
         'radio_choice': 'checkbox-group',
@@ -201,7 +193,7 @@ function mapCrispyTypeToFormBuilder(crispyType) {
         'date': 'date',
         'FileField': 'file',
         'BooleanField': 'checkbox',
-        'phone_number': 'phoneNumber'
+        'phone_number': 'text'
     };
     return mapping[crispyType] || 'text';
 }
