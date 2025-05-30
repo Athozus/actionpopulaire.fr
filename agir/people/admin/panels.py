@@ -35,6 +35,7 @@ from agir.lib.admin.panels import CenterOnFranceMixin, DisplayContactPhoneMixin
 from agir.lib.admin.utils import display_link
 from agir.lib.utils import generate_token_params, front_url
 from agir.notifications.models import Subscription
+from agir.payments.actions.payments import description_for_payment
 from agir.people.actions.stats import get_statistics_for_queryset
 from agir.people.admin import filters
 from agir.people.admin.actions import (
@@ -56,6 +57,7 @@ from agir.people.admin.views import (
     MergePersonsView,
     PersonFormSandboxView,
 )
+from agir.people.forms.form_builder_widget import FormBuilderWidget
 from agir.people.models import (
     Person,
     PersonTag,
@@ -679,7 +681,18 @@ class PersonFormAdmin(FormSubmissionViewsMixin, admin.ModelAdmin):
                 )
             },
         ),
-        (_("Champs"), {"fields": ("tags", "main_question", "custom_fields", "config")}),
+        (
+            _("Champs"),
+            {
+                "fields": (
+                    "tags",
+                    "main_question",
+                    "form_builder",
+                    "custom_fields",
+                    "config",
+                )
+            },
+        ),
         (
             _("Textes"),
             {

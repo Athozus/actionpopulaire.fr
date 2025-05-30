@@ -1,0 +1,23 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+<script src="https://formbuilder.online/assets/js/form-builder.min.js"></script>
+
+<style>
+  .form-wrap.form-builder .frmb li.form-field .field-label {
+    display: inline;
+  }
+  li[type]:not([type='title']) {
+    margin-left: 15px !important;
+  }
+</style>
+
+<div id="formbuilder-container">
+    <div class="formbuilder-header">
+        <h2>Constructeur de formulaire</h2>
+        <p class="help-text">Glissez et déposez les éléments pour créer votre formulaire. Les modifications sont sauvegardées automatiquement.</p>
+    </div>
+
+  <div style="display:none;" id="custom_fields">{{ custom_fields }}</div>
+  <div id="fb-editor"></div>
+
+</div>

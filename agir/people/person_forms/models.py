@@ -208,6 +208,66 @@ class PersonForm(TimeStampedModel):
         ),
     )
 
+    def get_crispy_config(self):
+        """Convertit la config FormBuilder en config Crispy Forms"""
+        if not self.custom_fields:
+            return {}
+
+        crispy_config = {"fields": [], "layout": []}
+
+        for field in self.custom_fields.get("fields", []):
+            crispy_field = self._convert_field_to_crispy(field)
+            if crispy_field:
+                crispy_config["fields"].append(crispy_field)
+
+        return crispy_config
+
+    def _convert_field_to_crispy(self, field):
+        """Convertit un champ FormBuilder en champ Crispy"""
+        field_type = field.get("type", "")
+        field_name = field.get("name", "")
+
+        crispy_field = {
+            "name": field_name,
+            "label": field.get("label", ""),
+            "required": field.get("required", False),
+            "help_text": field.get("description", ""),
+        }
+
+        # Mapping des types de champs
+        type_mapping = {
+            "text": "CharField",
+            "textarea": "TextField",
+            "email": "EmailField",
+            "number": "IntegerField",
+            "select": "ChoiceField",
+            "radio-group": "ChoiceField",
+            "checkbox-group": "MultipleChoiceField",
+            "date": "DateField",
+            "file": "FileField",
+        }
+
+        crispy_field["type"] = type_mapping.get(field_type, "CharField")
+
+        # Gestion des options pour les champs de choix
+        if field_type in ["select", "radio-group", "checkbox-group"]:
+            choices = []
+            for option in field.get("values", []):
+                if isinstance(option, dict):
+                    choices.append((option.get("value", ""), option.get("label", "")))
+                else:
+                    choices.append((option, option))
+            crispy_field["choices"] = choices
+
+        # Propriétés spécifiques
+        if field.get("placeholder"):
+            crispy_field["widget_attrs"] = {"placeholder": field["placeholder"]}
+
+        if field.get("maxlength"):
+            crispy_field["max_length"] = field["maxlength"]
+
+        return crispy_field
+
     @property
     def submit_label(self):
         return self.config.get("submit_label", "Envoyer")

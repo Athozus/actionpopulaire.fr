@@ -15,6 +15,7 @@ from agir.lib.google_sheet import (
     parse_sheet_link,
     check_sheet_permissions,
 )
+from agir.people.forms.form_builder_widget import FormBuilderWidget
 from agir.people.models import Person, PersonEmail
 from agir.people.person_forms.actions import (
     validate_custom_fields,
@@ -152,6 +153,20 @@ class PersonFormSandboxForm(forms.ModelForm):
 
 
 class PersonFormForm(forms.ModelForm):
+    form_builder = forms.CharField(required=False, widget=FormBuilderWidget())
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if self.instance:
+            # Passe des infos dans les attributs du widget
+            self.fields["form_builder"].widget.attrs.update(
+                {
+                    "pouet": "lol",
+                    "custom_fields": self.instance.custom_fields,
+                }
+            )
+
     class Meta:
         fields = "__all__"
         widgets = {
