@@ -98,7 +98,13 @@ const initAdminJsonWidget = () => {
     editor.expandAll && editor.expandAll();
     loaded.push(e.dataset.fieldname);
 
-    window.AgirAdminJsonWidgetEditor = editor;
+    const fieldName = e.dataset.fieldname;
+
+    if (fieldName.includes("custom_fields")) {
+      window.AgirAdminJsonWidgetEditor = editor;
+    } else if (fieldName.includes("config")) {
+      window.AgirAdminJsonConfigEditor = editor
+    }
   });
 
   window.AgirAdminJsonWidget = 1;

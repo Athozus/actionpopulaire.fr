@@ -1,0 +1,171 @@
+[
+  {
+    "type": "title",
+    "required": false,
+    "label": "Votre inscription à l'Assemblée nationale",
+    "name": "title-1748855640298-0",
+    "access": false
+  },
+  {
+    "type": "introHtml",
+    "required": false,
+    "label": "<p>Pour obtenir votre entrée le jour du colloque, nous devons obligatoirement vous enregistrer à l'avance auprès des services de l'Assemblée nationale. Par ailleurs, vous devrez vous présenter le jour du colloque avec une pièce d'identité dont les informations correspondent en tout point à celles utilisées pour l'inscription. Les seules pièces d'identité acceptées par l'Assemblée nationale sont les carte nationale d'identité, passeport, permis de conduire sécurisé (édité à partir de septembre 2013) et carte de séjour.</p>",
+    "name": "introHtml-1748855640300-0",
+    "access": false
+  },
+  {
+    "type": "text",
+    "required": true,
+    "label": "Prénom tel qu'indiqué sur votre pièce d'identité",
+    "description": "Pour garantir votre entrée à l'Assemblée nationale, merci d'indiquer le prénom indiqué sur la pièce d'identité que vous utiliserez le jour du colloque.",
+    "name": "text-1748855640301-0",
+    "access": false,
+    "subtype": "text"
+  },
+  {
+    "type": "text",
+    "required": false,
+    "label": "Prénom d'usage, s'il diffère du prénom figurant sur la pièce d'identité",
+    "description": "Indiquez ici si votre prénom diffère de celui indiqué sur votre pièce d'identité pour nous permettre d'éditer correctement l'ensemble des documents vous concernant.",
+    "name": "text-1748855640302-0",
+    "access": false,
+    "subtype": "text"
+  },
+  {
+    "type": "text",
+    "required": true,
+    "label": "Nom de famille",
+    "name": "text-1748855640303-0",
+    "access": false,
+    "subtype": "text"
+  },
+  {
+    "type": "checkbox-group",
+    "required": true,
+    "label": "Sexe tel qu'indiqué sur votre pièce d'identité.",
+    "description": "Pour garantir votre entrée à l'Assemblée nationale, merci d'indiquer la mention de sexe indiquée sur la pièce d'identité que vous utiliserez le jour du colloque.",
+    "toggle": false,
+    "inline": false,
+    "name": "checkbox-group-1748855640304-0",
+    "access": false,
+    "other": false,
+    "values": [
+      {
+        "label": "Féminin",
+        "value": "Féminin",
+        "selected": false
+      },
+      {
+        "label": "Masculin",
+        "value": "Masculin",
+        "selected": false
+      }
+    ]
+  },
+  {
+    "type": "date",
+    "required": true,
+    "label": "Date de naissance",
+    "name": "date-1748855640310-0",
+    "access": false,
+    "subtype": "date"
+  },
+  {
+    "type": "text",
+    "required": true,
+    "label": "Lieu de naissance",
+    "name": "text-17488556403120",
+    "access": false,
+    "subtype": "text"
+  },
+  {
+    "type": "text",
+    "required": false,
+    "label": "Association représentée (laissez vide si non pertinent)",
+    "name": "text-1748855640313-0",
+    "access": false,
+    "subtype": "text"
+  },
+  {
+    "type": "title",
+    "required": false,
+    "label": "Informations complémentaires",
+    "name": "title-1748855640314-0",
+    "access": false
+  },
+  {
+    "type": "email",
+    "required": true,
+    "label": "Adresse email",
+    "description": "Votre adresse email sera utilisée pour vous envoyer l'ensemble des informations nécessaires avant le jour du colloque.",
+    "name": "email-1748855640315-0",
+    "access": false
+  },
+  {
+    "type": "phoneNumber",
+    "required": true,
+    "label": "Numéro de téléphone",
+    "description": "Votre numéro de téléphone nous permettra de vous contacter si nécessaire le jour du colloque.",
+    "name": "phoneNumber-1748855640315-1",
+    "access": false
+  },
+  {
+    "type": "select",
+    "required": true,
+    "label": "Vos créneaux de présence",
+    "description": "Indiquez-nous à quels créneaux vous souhaitez être présent·e le jour du colloque.",
+    "name": "select-1748855640316-0",
+    "access": false,
+    "multiple": false,
+    "values": [
+      {
+        "label": "Seulement le matin",
+        "value": "Seulement le matin",
+        "selected": false
+      },
+      {
+        "label": "Seulement l'après-midi",
+        "value": "Seulement l'après-midi",
+        "selected": false
+      },
+      {
+        "label": "Toute la journée",
+        "value": "Toute la journée",
+        "selected": false
+      }
+    ]
+  },
+  {
+    "type": "checkbox-group",
+    "required": false,
+    "label": "Avez-vous un handicap qui nécessite une adaptation spécifique ?",
+    "description": "Nous prendrons contact avec vous pour faire le point sur vos besoins.",
+    "toggle": false,
+    "inline": false,
+    "name": "checkbox-group-1748855640321-0",
+    "access": false,
+    "other": false,
+    "values": [
+      {
+        "label": "Handicap visuel",
+        "value": "visuel",
+        "selected": false
+      },
+      {
+        "label": "Handicap auditif",
+        "value": "auditif",
+        "selected": false
+      },
+      {
+        "label": "Mobilité réduite",
+        "value": "pmr",
+        "selected": false
+      },
+      {
+        "label": "Autre handicap",
+        "value": "autre",
+        "selected": false
+      }
+    ]
+  }
+]

@@ -1,0 +1,113 @@
+[
+  {
+    "title": "Votre inscription à l'Assemblée nationale",
+    "fields": [
+      {
+        "id": "prenom",
+        "type": "short_text",
+        "label": "Prénom tel qu'indiqué sur votre pièce d'identité",
+        "required": true,
+        "help_text": "Pour garantir votre entrée à l'Assemblée nationale, merci d'indiquer le prénom indiqué sur la pièce d'identité que vous utiliserez le jour du colloque."
+      },
+      {
+        "id": "prenom_usage",
+        "type": "short_text",
+        "label": "Prénom d'usage, s'il diffère du prénom figurant sur la pièce d'identité",
+        "required": false,
+        "help_text": "Indiquez ici si votre prénom diffère de celui indiqué sur votre pièce d'identité pour nous permettre d'éditer correctement l'ensemble des documents vous concernant."
+      },
+      {
+        "id": "nom",
+        "type": "short_text",
+        "label": "Nom de famille",
+        "required": true
+      },
+      {
+        "id": "sexe_etat_civil",
+        "type": "radio_choice",
+        "label": "Sexe tel qu'indiqué sur votre pièce d'identité.",
+        "choices": [
+          "Féminin",
+          "Masculin"
+        ],
+        "required": true,
+        "help_text": "Pour garantir votre entrée à l'Assemblée nationale, merci d'indiquer la mention de sexe indiquée sur la pièce d'identité que vous utiliserez le jour du colloque."
+      },
+      {
+        "id": "date_naissance",
+        "type": "date",
+        "label": "Date de naissance",
+        "required": true
+      },
+      {
+        "id": "lieu_naissance",
+        "type": "short_text",
+        "label": "Lieu de naissance",
+        "required": true
+      },
+      {
+        "id": "association",
+        "type": "short_text",
+        "label": "Association représentée (laissez vide si non pertinent)",
+        "required": false
+      }
+    ],
+    "intro_html": "<p>Pour obtenir votre entrée le jour du colloque, nous devons obligatoirement vous enregistrer à l'avance auprès des services de l'Assemblée nationale. Par ailleurs, vous devrez vous présenter le jour du colloque avec une pièce d'identité dont les informations correspondent en tout point à celles utilisées pour l'inscription. Les seules pièces d'identité acceptées par l'Assemblée nationale sont les carte nationale d'identité, passeport, permis de conduire sécurisé (édité à partir de septembre 2013) et carte de séjour.</p>"
+  },
+  {
+    "title": "Informations complémentaires",
+    "fields": [
+      {
+        "id": "email",
+        "type": "email_address",
+        "label": "Adresse email",
+        "required": true,
+        "help_text": "Votre adresse email sera utilisée pour vous envoyer l'ensemble des informations nécessaires avant le jour du colloque."
+      },
+      {
+        "id": "telephone",
+        "type": "phone_number",
+        "label": "Numéro de téléphone",
+        "required": true,
+        "help_text": "Votre numéro de téléphone nous permettra de vous contacter si nécessaire le jour du colloque."
+      },
+      {
+        "id": "presence",
+        "type": "choice",
+        "label": "Vos créneaux de présence",
+        "choices": [
+          "Seulement le matin",
+          "Seulement l'après-midi",
+          "Toute la journée"
+        ],
+        "required": true,
+        "help_text": "Indiquez-nous à quels créneaux vous souhaitez être présent·e le jour du colloque."
+      },
+      {
+        "id": "handicap",
+        "type": "multiple_choice",
+        "label": "Avez-vous un handicap qui nécessite une adaptation spécifique ?",
+        "choices": [
+          [
+            "visuel",
+            "Handicap visuel"
+          ],
+          [
+            "auditif",
+            "Handicap auditif"
+          ],
+          [
+            "pmr",
+            "Mobilité réduite"
+          ],
+          [
+            "autre",
+            "Autre handicap"
+          ]
+        ],
+        "required": false,
+        "help_text": "Nous prendrons contact avec vous pour faire le point sur vos besoins."
+      }
+    ]
+  }
+]

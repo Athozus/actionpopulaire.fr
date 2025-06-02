@@ -8,29 +8,35 @@ const CUSTOM_FORM_BUILDER_FIELDS = [
     },
     {
         label: "Numéro de Téléphone",
-        attrs: {
-            type: "phoneNumber"
-        },
+        type: "text",
+        subtype: "tel",
         icon: "📞"
     },
     {
         label: "Email",
-        attrs: {
-            type: "email"
-        },
+        type: "text",
+        subtype: "email",
         icon: "@"
+    },
+    {
+        label: "Introduction",
+        attrs: {
+            type: "introHtml"
+        },
     }
+
 ]
 
 const DEFAULT_TEMPLATE = (fieldData) => ({
-    field: '<span id="' + fieldData.name + '"',
+    field: '<span id="' + fieldData.name + '">',
     onRender: () => fieldData.name
 })
 
 const CUSTOM_FORM_BUILDER_TEMPLATES = {
     title: DEFAULT_TEMPLATE,
     phoneNumber: DEFAULT_TEMPLATE,
-    email: DEFAULT_TEMPLATE
+    email: DEFAULT_TEMPLATE,
+    introHtml: DEFAULT_TEMPLATE
 }
 
 function titleToField(title) {
@@ -41,12 +47,25 @@ function titleToField(title) {
         "access": false
     }
 }
+
+function introToField(intro) {
+    return {
+        "type": "introHtml",
+        "subtype": "p",
+        "label": intro,
+        "access": false
+    }
+}
+
 function crispyFormToFormBuilder(crispyForm) {
     return crispyForm.reduce((acc, current) => {
 
         const section = []
         if (current.title) {
             section.push(titleToField(current.title))
+        }
+        if (current.intro_html) {
+            section.push(introToField(current.intro_html))
         }
         current.fields?.forEach((field) => {
             section.push(mapCrispyFieldToFormBuilderField(field))
@@ -68,18 +87,17 @@ function updateContainerStyle() {
 document.addEventListener('DOMContentLoaded', function() {
     const existingConfig= JSON.parse(document.getElementById("custom_fields").innerText)
     let formBuilderData = [];
-    console.log(existingConfig)
 
     // Convertir la config Crispy existante en format FormBuilder si nécessaire
     if (Array.isArray(existingConfig) && existingConfig.length) {
         formBuilderData = crispyFormToFormBuilder(existingConfig)
     }
-    console.log('formBuilder data', formBuilderData)
 
     const fb = $('#fb-editor').formBuilder({
         formData: formBuilderData,
         fields: CUSTOM_FORM_BUILDER_FIELDS,
-        templates: CUSTOM_FORM_BUILDER_TEMPLATES
+        templates: CUSTOM_FORM_BUILDER_TEMPLATES,
+        onSave: save
     })
     updateContainerStyle()
 
@@ -102,55 +120,47 @@ document.addEventListener('DOMContentLoaded', function() {
     //});
 });
 
-function convertFormBuilderToCrispy(formBuilderData) {
-    const crispyConfig = {
-        fields: [],
-            form_class: 'DynamicForm'
-    };
-
-    formBuilderData.forEach(function(field) {
-        const crispyField = {
-            name: field.name || 'field_' + Math.random().toString(36).substr(2, 9),
-                label: field.label || '',
-                type: mapFormBuilderTypeToCrispy(field.type),
-                required: field.required || false,
-                help_text: field.description || ''
-        };
-
-        // Gestion des options pour les champs de choix
-        if (field.values && field.values.length > 0) {
-            crispyField.choices = field.values.map(function(option) {
-                return [option.value || option.label, option.label];
-            });
+function save(event, formData) {
+    const finalFormData = []
+    const jsonForm = JSON.parse(formData)
+    for (let element of jsonForm) {
+        const lastSection = finalFormData[finalFormData.length - 1]
+        if (element.type === "title") {
+            finalFormData.push({
+                "title": element.label,
+                "fields": []
+            })
+        } else if (element.type === "introHtml") {
+            lastSection["intro_html"] = element.label
+        } else {
+            lastSection.fields?.push(mapFormBuildFieldToCrispy(element))
         }
+    }
 
-        // Propriétés du widget
-        if (field.placeholder || field.maxlength) {
-            crispyField.widget_attrs = {};
-            if (field.placeholder) crispyField.widget_attrs.placeholder = field.placeholder;
-            if (field.maxlength) crispyField.widget_attrs.maxlength = field.maxlength;
-        }
-
-        crispyConfig.fields.push(crispyField);
-    });
-
-    return crispyConfig;
+    if (window.AgirAdminJsonWidgetEditor) {
+        window.AgirAdminJsonWidgetEditor.update(finalFormData)
+    }
 }
 
-function mapFormBuilderTypeToCrispy(fbType) {
-    const mapping = {
-        'text': 'CharField',
-            'textarea': 'TextField',
-            'email': 'EmailField',
-            'number': 'IntegerField',
-            'select': 'ChoiceField',
-            'radio-group': 'ChoiceField',
-            'checkbox-group': 'MultipleChoiceField',
-            'date': 'DateField',
-            'file': 'FileField',
-            'checkbox': 'BooleanField'
-    };
-    return mapping[fbType] || 'CharField';
+function mapFormBuildFieldToCrispy(field) {
+    const crispyField = {
+        type: mapFormBuilderTypeToCrispy(field.type),
+        label: field.label,
+        help_text: field.description,
+        required: field.required,
+        id: field.name
+    }
+
+    if (field.values) {
+        crispyField.choices = field.values.map((value) => {
+            if (field.type === "radio-group" || field.type === "select") {
+                return value.label
+            }
+            return [value.value, value.label]
+        })
+    }
+
+    return crispyField
 }
 
 function mapCrispyFieldToFormBuilderField(field) {
@@ -158,7 +168,8 @@ function mapCrispyFieldToFormBuilderField(field) {
         type: mapCrispyTypeToFormBuilder(field.type),
         label: field.label,
         required: field.required || false,
-        description: field.help_text || ''
+        description: field.help_text || '',
+        name: field.id
     };
 
     if (field.choices) {
@@ -181,19 +192,31 @@ function mapCrispyFieldToFormBuilderField(field) {
     return fbField;
 }
 
+const MAPPING_TYPE_TO_FORM_BUILDER= {
+    'short_text': 'text',
+    'TextField': 'textarea',
+    'email_address': 'email',
+    'integer': 'number',
+    'choice': 'select',
+    'radio_choice': 'radio-group',
+    'multiple_choice': 'checkbox-group',
+    'date': 'date',
+    'file': 'file',
+    'boolean': 'checkbox',
+    'phone_number': 'phoneNumber'
+};
+
 function mapCrispyTypeToFormBuilder(crispyType) {
-    const mapping = {
-        'short_text': 'text',
-        'TextField': 'textarea',
-        'email_address': 'text',
-        'IntegerField': 'number',
-        'choice': 'select',
-        'radio_choice': 'checkbox-group',
-        'multiple_choice': 'checkbox-group',
-        'date': 'date',
-        'FileField': 'file',
-        'BooleanField': 'checkbox',
-        'phone_number': 'text'
-    };
-    return mapping[crispyType] || 'text';
+    return MAPPING_TYPE_TO_FORM_BUILDER[crispyType] || 'text';
+}
+
+
+function mapFormBuilderTypeToCrispy(fbType) {
+    const reversedType = Object.keys(MAPPING_TYPE_TO_FORM_BUILDER).reduce((acc, current) => {
+        return {
+            ...acc,
+            [MAPPING_TYPE_TO_FORM_BUILDER[current]]: current
+        }
+    }, {})
+    return reversedType[fbType] || 'short_text';
 }
