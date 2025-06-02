@@ -114,6 +114,7 @@ const OTHER_ENTRIES = [
   "front/legacyPages",
   "front/richEditor",
   "groups/groupSelector",
+  "lib/formBuilderWidget",
   "lib/adminJsonWidget",
   "lib/communeField",
   "lib/creationForms",

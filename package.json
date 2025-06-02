@@ -48,6 +48,7 @@
     "es6-symbol": "^3.1.4",
     "feather-icons": "^4.29.2",
     "fontfaceonload": "^1.0.2",
+    "formBuilder": "^3.19.15",
     "history": "^5.3.0",
     "js-cookie": "^3.0.5",
     "jsoneditor": "^10.1.0",
