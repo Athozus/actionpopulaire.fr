@@ -3,7 +3,7 @@ import CIRCONSCRIPTIONS from './circonscription.json'
 export const CUSTOM_FORM_BUILDER_FIELDS = [
     {
         label: "Titre",
-        type: "text",
+        type: "",
         attrs: {
             type: "title"
         },
