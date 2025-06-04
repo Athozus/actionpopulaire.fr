@@ -1,8 +1,11 @@
 import {CUSTOM_FORM_BUILDER_FIELDS, mapPersonIdToLabel, TYPE_USER_ATTRS} from "./fields";
 import {CUSTOM_FORM_BUILDER_TEMPLATES} from "./templates";
 
-import "./groupControl"
 import {i18n} from "@agir/lib/formBuilderWidget/formBuilderI18N";
+import {
+    mapCrispyFieldToFormBuilderField,
+    mapFormBuildFieldToCrispy
+} from "@agir/lib/formBuilderWidget/mapperFormBuilder";
 
 const DEFAULT_ROWS_TO_HIDE = ["step", "other", "inline", "className", "access", "placeholder", "value", "subtype"]
 
@@ -113,144 +116,3 @@ function save(event, formData) {
     }
 }
 
-function mapFormBuildFieldToCrispy(field) {
-    const crispyField = {
-        type: mapFormBuilderTypeToCrispy(field),
-    }
-    mapFormBuilderParametersToCrispy(field, crispyField)
-
-    if (field.type.includes("group_")) {
-        const builderField = CUSTOM_FORM_BUILDER_FIELDS.find((f) => f.type === field.type);
-        crispyField.choices = builderField.attrs.groupScope ?? "member"
-        crispyField.group_type = builderField.attrs.groupType ?? "L"
-    } else if (field.values) {
-        crispyField.choices = field.values.map((value) => {
-            if (field.type === "radio-group") {
-                return value.label
-            }
-            return [value.value, value.label]
-        })
-    } else if (field.type === "person") {
-        crispyField.id = field.field;
-        crispyField.person_field = true
-    } else if (field.type === "commune") {
-        crispyField.types = field.field
-    }
-
-    return crispyField
-}
-
-function mapCrispyFieldToFormBuilderField(field) {
-    const fbField = {
-        type: mapCrispyTypeToFormBuilder(field),
-    };
-    mapCrispyFieldParametersToFormBuilder(field, fbField)
-
-    if (field.type === "group") {
-        const fbDefaultField = CUSTOM_FORM_BUILDER_FIELDS.find((f) =>
-            f.attrs?.groupType === field.group_type && f.attrs?.groupScope === field.choices && f.type.startsWith("group")) ?? CUSTOM_FORM_BUILDER_FIELDS.find((f) => f.type === "group")
-
-        if (fbDefaultField) {
-            fbField.attrs = fbDefaultField.attrs
-            fbField.type = fbDefaultField.type
-        }
-    } else if (fbField.type === "person") {
-        fbField.field = field.id
-        if (field.label === undefined) {
-            fbField.label = mapPersonIdToLabel(field.id)
-            fbField.required = true
-        }
-    } else if (fbField.type === "commune") {
-        fbField.field = field.types
-    }
-
-    if (field.choices && Array.isArray(field.choices)) {
-        fbField.values = field.choices.map(choice => {
-            return Array.isArray(choice) ?
-                {
-                    label: choice[1],
-                    value: choice[0]
-                } : {
-                    label: choice,
-                    value: choice
-                };
-        });
-    }
-
-    return fbField;
-}
-
-const MAPPING_COMMON_PARAMS_TO_FORM_BUILDER = {
-    "label": "label",
-    "required": "required",
-    "help_text": "description",
-    "max_length": "maxlength",
-    "id": "name",
-    "min_value": "min",
-    "max_value": "max"
-}
-
-const MAPPING_COMMON_PARAMS_TO_CRISPY = Object.keys(MAPPING_COMMON_PARAMS_TO_FORM_BUILDER).reduce((acc, current) => {
-    return {
-        ...acc,
-        [MAPPING_COMMON_PARAMS_TO_FORM_BUILDER[current]]: current
-    }
-}, {})
-
-function mapCrispyFieldParametersToFormBuilder(crispyField, formField) {
-    return mapParameterToField(crispyField, formField, MAPPING_COMMON_PARAMS_TO_FORM_BUILDER)
-}
-
-function mapFormBuilderParametersToCrispy(formField, crispyField) {
-    return mapParameterToField(formField, crispyField, MAPPING_COMMON_PARAMS_TO_CRISPY)
-}
-
-function mapParameterToField(origin, field, parameters) {
-    for (let parameter in parameters) {
-        if (origin[parameter] !== undefined) {
-            field[parameters[parameter]] = origin[parameter]
-        }
-    }
-    return field
-}
-
-const MAPPING_TYPE_TO_FORM_BUILDER = {
-    'short_text': 'text',
-    'long_text': 'textarea',
-    'email_address': 'email',
-    'integer': 'number',
-    'choice': 'select',
-    'radio_choice': 'radio-group',
-    'multiple_choice': 'checkbox-group',
-    "autocomplete_choice": "autocomplete",
-    'date': 'date',
-    'file': 'file',
-    'boolean': 'boolean',
-    'phone_number': 'phoneNumber',
-    'group': 'group',
-    'person': 'person',
-    "commune": "commune",
-};
-
-const MAPPING_TYPE_TO_CRISPY = Object.keys(MAPPING_TYPE_TO_FORM_BUILDER).reduce((acc, current) => {
-    return {
-        ...acc,
-        [MAPPING_TYPE_TO_FORM_BUILDER[current]]: current
-    }
-}, {})
-
-function mapCrispyTypeToFormBuilder(field) {
-    if (field.person_field) {
-        return "person"
-    }
-    return MAPPING_TYPE_TO_FORM_BUILDER[field.type] || 'text';
-}
-
-
-function mapFormBuilderTypeToCrispy({type: fbType}) {
-    if (fbType.includes("group_")) {
-        return "group"
-    }
-
-    return MAPPING_TYPE_TO_CRISPY[fbType] || 'short_text';
-}
