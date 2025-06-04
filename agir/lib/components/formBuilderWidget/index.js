@@ -2,6 +2,7 @@ import {CUSTOM_FORM_BUILDER_FIELDS, mapPersonIdToLabel, TYPE_USER_ATTRS} from ".
 import {CUSTOM_FORM_BUILDER_TEMPLATES} from "./templates";
 
 import "./groupControl"
+import {i18n} from "@agir/lib/formBuilderWidget/formBuilderI18N";
 
 const DEFAULT_ROWS_TO_HIDE = ["step", "other", "inline", "className", "name", "access", "placeholder", "value", "subtype"]
 
@@ -60,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const fb = $('#fb-editor').formBuilder({
+        i18n: i18n,
         formData: formBuilderData,
         fields: CUSTOM_FORM_BUILDER_FIELDS,
         templates: CUSTOM_FORM_BUILDER_TEMPLATES,
@@ -83,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
         onSave: save
     })
     updateContainerStyle()
+    window.AgirAdminJsonWidgetEditor?.collapseAll()
 });
 
 function save(event, formData) {
