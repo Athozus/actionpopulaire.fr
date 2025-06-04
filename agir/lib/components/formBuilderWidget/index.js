@@ -213,6 +213,7 @@ const MAPPING_TYPE_TO_FORM_BUILDER = {
     'choice': 'select',
     'radio_choice': 'radio-group',
     'multiple_choice': 'checkbox-group',
+    "autocomplete_choice": "autocomplete",
     'date': 'date',
     'file': 'file',
     'boolean': 'checkbox',
