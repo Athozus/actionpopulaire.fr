@@ -4,7 +4,7 @@ import {CUSTOM_FORM_BUILDER_TEMPLATES} from "./templates";
 import "./groupControl"
 import {i18n} from "@agir/lib/formBuilderWidget/formBuilderI18N";
 
-const DEFAULT_ROWS_TO_HIDE = ["step", "other", "inline", "className", "name", "access", "placeholder", "value", "subtype"]
+const DEFAULT_ROWS_TO_HIDE = ["step", "other", "inline", "className", "access", "placeholder", "value", "subtype"]
 
 function titleToField(title) {
     return {
@@ -225,7 +225,7 @@ const MAPPING_TYPE_TO_FORM_BUILDER = {
     "autocomplete_choice": "autocomplete",
     'date': 'date',
     'file': 'file',
-    'boolean': 'checkbox',
+    'boolean': 'boolean',
     'phone_number': 'phoneNumber',
     'group': 'group',
     'person': 'person',

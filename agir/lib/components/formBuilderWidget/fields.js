@@ -108,6 +108,11 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
         label: "Commune",
         type: "commune",
         icon: "🏙️"
+    },
+    {
+        label: "Case à cocher",
+        type: "boolean",
+        icon: "☑️"
     }
 ]
 
@@ -120,6 +125,7 @@ export const TYPE_USER_ATTRS = {
                 'last_name': 'Nom',
                 'email': 'Email',
                 'contact_phone': 'Numéro de téléphone',
+                'gender': 'Genre'
             },
             style: 'border: 1px solid red'
         },
@@ -136,7 +142,7 @@ export const TYPE_USER_ATTRS = {
                 "SRM": "secteur électoral"
             }
         }
-    }
+    },
 }
 
 export function mapPersonIdToLabel(id) {

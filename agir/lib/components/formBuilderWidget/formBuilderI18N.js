@@ -43,7 +43,7 @@ export const i18n = {
             maxlength: 'Longueur max',
             minOptionMessage: 'Ce champ nécessite au moins 2 options',
             multipleFiles: 'Fichiers multiples',
-            name: 'Nom',
+            name: 'Nom / ID',
             no: 'Non',
             noFieldsToClear: 'Aucun champ à supprimer',
             number: 'Nombre',

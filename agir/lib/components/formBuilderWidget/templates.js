@@ -15,6 +15,16 @@ const USER_TEMPLATE = (fieldData) => ({
     }
 })
 
+const BOOLEAN_TEMPLATE = (fieldData) => ({
+    field: '<span id="' + fieldData.name + '">',
+    onRender: () => {
+        const element = document.getElementById(fieldData.name)
+        if (element) {
+            element.innerText = "(Case à cocher)"
+        }
+    }
+})
+
 export const CUSTOM_FORM_BUILDER_TEMPLATES = {
     title: DEFAULT_TEMPLATE,
     phoneNumber: DEFAULT_TEMPLATE,
@@ -28,6 +38,7 @@ export const CUSTOM_FORM_BUILDER_TEMPLATES = {
     group_member_fonctionnel: DEFAULT_TEMPLATE,
     group_member_thematique: DEFAULT_TEMPLATE,
     person: USER_TEMPLATE,
-    commune: DEFAULT_TEMPLATE
+    commune: DEFAULT_TEMPLATE,
+    boolean: BOOLEAN_TEMPLATE
 }
 
