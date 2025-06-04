@@ -27,6 +27,7 @@ export const CUSTOM_FORM_BUILDER_TEMPLATES = {
     group_member_departemental: DEFAULT_TEMPLATE,
     group_member_fonctionnel: DEFAULT_TEMPLATE,
     group_member_thematique: DEFAULT_TEMPLATE,
-    person: USER_TEMPLATE
+    person: USER_TEMPLATE,
+    commune: DEFAULT_TEMPLATE
 }
 

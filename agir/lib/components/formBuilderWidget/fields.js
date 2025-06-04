@@ -103,13 +103,18 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
         type: "person",
         required: true,
         icon: "👤"
+    },
+    {
+        label: "Commune",
+        type: "commune",
+        icon: "🏙️"
     }
 ]
 
 export const TYPE_USER_ATTRS = {
     person: {
         field: {
-            label: 'Champ prérempli', // i18n support by passing and array eg. ['optionCount', {count: 3}]
+            label: 'Champ prérempli',
             options: {
                 'first_name': 'Prénom',
                 'last_name': 'Nom',
@@ -117,6 +122,19 @@ export const TYPE_USER_ATTRS = {
                 'contact_phone': 'Numéro de téléphone',
             },
             style: 'border: 1px solid red'
+        },
+    },
+    commune: {
+        field: {
+            label: "Type",
+            multiple: true,
+            options: {
+                "COM": "commune",
+                "ARM": "arrondissement municipal",
+                "COMA": "commune associée",
+                "COMD": "commune déléguée",
+                "SRM": "secteur électoral"
+            }
         }
     }
 }

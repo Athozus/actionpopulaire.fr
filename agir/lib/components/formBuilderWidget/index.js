@@ -128,6 +128,8 @@ function mapFormBuildFieldToCrispy(field) {
     } else if (field.type === "person") {
         crispyField.id = field.field;
         crispyField.person_field = true
+    } else if (field.type === "commune") {
+        crispyField.types = field.field
     }
 
     return crispyField
@@ -153,6 +155,8 @@ function mapCrispyFieldToFormBuilderField(field) {
             fbField.label = mapPersonIdToLabel(field.id)
             fbField.required = true
         }
+    } else if (fbField.type === "commune") {
+        fbField.field = field.types
     }
 
     if (field.choices && Array.isArray(field.choices)) {
@@ -220,6 +224,7 @@ const MAPPING_TYPE_TO_FORM_BUILDER = {
     'phone_number': 'phoneNumber',
     'group': 'group',
     'person': 'person',
+    "commune": "commune",
 };
 
 const MAPPING_TYPE_TO_CRISPY = Object.keys(MAPPING_TYPE_TO_FORM_BUILDER).reduce((acc, current) => {
