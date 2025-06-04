@@ -1,4 +1,4 @@
-import {CUSTOM_FORM_BUILDER_FIELDS} from "./fields";
+import {CUSTOM_FORM_BUILDER_FIELDS, mapPersonIdToLabel, TYPE_USER_ATTRS} from "./fields";
 import {CUSTOM_FORM_BUILDER_TEMPLATES} from "./templates";
 
 import "./groupControl"
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const existingConfig = JSON.parse(document.getElementById("custom_fields").innerText)
     let formBuilderData = [];
 
-    // Convertir la config Crispy existante en format FormBuilder si nécessaire
+    // Convertir la config Crispy existante en format FormBuilder
     if (Array.isArray(existingConfig) && existingConfig.length) {
         formBuilderData = crispyFormToFormBuilder(existingConfig)
     }
@@ -61,6 +61,22 @@ document.addEventListener('DOMContentLoaded', function () {
         formData: formBuilderData,
         fields: CUSTOM_FORM_BUILDER_FIELDS,
         templates: CUSTOM_FORM_BUILDER_TEMPLATES,
+        typeUserAttrs: TYPE_USER_ATTRS,
+        onOpenFieldEdit: function(editPanel) {
+            const fieldType = editPanel.offsetParent.type
+            //on cache les champs qui ne seront pas mappé vers le système Form Crispy
+            let rowsToDelete = ["className", "name", "access", "placeholder", "value", "subtype"]
+            if (fieldType === 'person') {
+                rowsToDelete = ["placeholder", "description", "className", "name", "access", "value"]
+            }
+            rowsToDelete.forEach((row) => {
+                const wrap = editPanel.querySelector(`.form-group.${row}-wrap`)
+                if (wrap) {
+                    wrap.style.display = "none";
+                }
+            })
+
+        },
         onSave: save
     })
     updateContainerStyle()
@@ -93,12 +109,9 @@ function save(event, formData) {
 
 function mapFormBuildFieldToCrispy(field) {
     const crispyField = {
-        type: mapFormBuilderTypeToCrispy(field.type),
-        label: field.label,
-        help_text: field.description,
-        required: field.required,
-        id: field.name
+        type: mapFormBuilderTypeToCrispy(field),
     }
+    mapFormBuilderParametersToCrispy(field, crispyField)
 
     if (field.type.includes("group_")) {
         const builderField = CUSTOM_FORM_BUILDER_FIELDS.find((f) => f.type === field.type);
@@ -111,6 +124,9 @@ function mapFormBuildFieldToCrispy(field) {
             }
             return [value.value, value.label]
         })
+    } else if (field.type === "person") {
+        crispyField.id = field.field;
+        crispyField.person_field = true
     }
 
     return crispyField
@@ -118,12 +134,9 @@ function mapFormBuildFieldToCrispy(field) {
 
 function mapCrispyFieldToFormBuilderField(field) {
     const fbField = {
-        type: mapCrispyTypeToFormBuilder(field.type),
-        label: field.label,
-        required: field.required || false,
-        description: field.help_text || '',
-        name: field.id
+        type: mapCrispyTypeToFormBuilder(field),
     };
+    mapCrispyFieldParametersToFormBuilder(field, fbField)
 
     if (field.type === "group") {
         const fbDefaultField = CUSTOM_FORM_BUILDER_FIELDS.find((f) =>
@@ -132,6 +145,12 @@ function mapCrispyFieldToFormBuilderField(field) {
         if (fbDefaultField) {
             fbField.attrs = fbDefaultField.attrs
             fbField.type = fbDefaultField.type
+        }
+    } else if (fbField.type === "person") {
+        fbField.field = field.id
+        if (field.label === undefined) {
+            fbField.label = mapPersonIdToLabel(field.id)
+            fbField.required = true
         }
     }
 
@@ -148,12 +167,41 @@ function mapCrispyFieldToFormBuilderField(field) {
         });
     }
 
-    if (field.widget_attrs) {
-        if (field.widget_attrs.placeholder) fbField.placeholder = field.widget_attrs.placeholder;
-        if (field.widget_attrs.maxlength) fbField.maxlength = field.widget_attrs.maxlength;
-    }
-
     return fbField;
+}
+
+const MAPPING_COMMON_PARAMS_TO_FORM_BUILDER = {
+    "label": "label",
+    "required": "required",
+    "help_text": "description",
+    "max_length": "maxlength",
+    "id": "name",
+    "min_value": "min",
+    "max_value": "max"
+}
+
+const MAPPING_COMMON_PARAMS_TO_CRISPY = Object.keys(MAPPING_COMMON_PARAMS_TO_FORM_BUILDER).reduce((acc, current) => {
+    return {
+        ...acc,
+        [MAPPING_COMMON_PARAMS_TO_FORM_BUILDER[current]]: current
+    }
+}, {})
+
+function mapCrispyFieldParametersToFormBuilder(crispyField, formField) {
+    return mapParameterToField(crispyField, formField, MAPPING_COMMON_PARAMS_TO_FORM_BUILDER)
+}
+
+function mapFormBuilderParametersToCrispy(formField, crispyField) {
+    return mapParameterToField(formField, crispyField, MAPPING_COMMON_PARAMS_TO_CRISPY)
+}
+
+function mapParameterToField(origin, field, parameters) {
+    for (let parameter in parameters) {
+        if (origin[parameter] !== undefined) {
+            field[parameters[parameter]] = origin[parameter]
+        }
+    }
+    return field
 }
 
 const MAPPING_TYPE_TO_FORM_BUILDER = {
@@ -169,6 +217,7 @@ const MAPPING_TYPE_TO_FORM_BUILDER = {
     'boolean': 'checkbox',
     'phone_number': 'phoneNumber',
     'group': 'group',
+    'person': 'person',
 };
 
 const MAPPING_TYPE_TO_CRISPY = Object.keys(MAPPING_TYPE_TO_FORM_BUILDER).reduce((acc, current) => {
@@ -178,14 +227,18 @@ const MAPPING_TYPE_TO_CRISPY = Object.keys(MAPPING_TYPE_TO_FORM_BUILDER).reduce(
     }
 }, {})
 
-function mapCrispyTypeToFormBuilder(crispyType) {
-    return MAPPING_TYPE_TO_FORM_BUILDER[crispyType] || 'text';
+function mapCrispyTypeToFormBuilder(field) {
+    if (field.person_field) {
+        return "person"
+    }
+    return MAPPING_TYPE_TO_FORM_BUILDER[field.type] || 'text';
 }
 
 
-function mapFormBuilderTypeToCrispy(fbType) {
+function mapFormBuilderTypeToCrispy({type: fbType}) {
     if (fbType.includes("group_")) {
         return "group"
     }
+
     return MAPPING_TYPE_TO_CRISPY[fbType] || 'short_text';
 }

@@ -97,5 +97,30 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
         multiple: false,
         values: CIRCONSCRIPTIONS,
         icon: "🗾"
+    },
+    {
+        label: "Champ Personne",
+        type: "person",
+        required: true,
+        icon: "👤"
     }
 ]
+
+export const TYPE_USER_ATTRS = {
+    person: {
+        field: {
+            label: 'Champ prérempli', // i18n support by passing and array eg. ['optionCount', {count: 3}]
+            options: {
+                'first_name': 'Prénom',
+                'last_name': 'Nom',
+                'email': 'Email',
+                'contact_phone': 'Numéro de téléphone',
+            },
+            style: 'border: 1px solid red'
+        }
+    }
+}
+
+export function mapPersonIdToLabel(id) {
+    return TYPE_USER_ATTRS.person.field.options[id]
+}
