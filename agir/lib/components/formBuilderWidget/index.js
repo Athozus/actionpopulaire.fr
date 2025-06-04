@@ -48,8 +48,8 @@ function updateContainerStyle() {
     fbEditor.style.border = "3px dotted #eeeeee"
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const existingConfig= JSON.parse(document.getElementById("custom_fields").innerText)
+document.addEventListener('DOMContentLoaded', function () {
+    const existingConfig = JSON.parse(document.getElementById("custom_fields").innerText)
     let formBuilderData = [];
 
     // Convertir la config Crispy existante en format FormBuilder si nécessaire
@@ -100,9 +100,8 @@ function mapFormBuildFieldToCrispy(field) {
         id: field.name
     }
 
-    if (field.type === "group") {
-        // also check if there is a group type
-        const builderField = CUSTOM_FORM_BUILDER_FIELDS.find((f) => f.label === field.label);
+    if (field.type.includes("group_")) {
+        const builderField = CUSTOM_FORM_BUILDER_FIELDS.find((f) => f.type === field.type);
         crispyField.choices = builderField.attrs.groupScope ?? "member"
         crispyField.group_type = builderField.attrs.groupType ?? "L"
     } else if (field.values) {
@@ -126,22 +125,27 @@ function mapCrispyFieldToFormBuilderField(field) {
         name: field.id
     };
 
-    if (field.choices) {
-        if (typeof field.choices === "string" && field.type === "group") {
-            //TODO add group type from fields list
-            //field.group_type =
-        } else {
-            fbField.values = field.choices.map(choice => {
-                return Array.isArray(choice) ?
-                    {
-                        label: choice[1],
-                        value: choice[0]
-                    } : {
-                        label: choice,
-                        value: choice
-                    };
-            });
+    if (field.type === "group") {
+        const fbDefaultField = CUSTOM_FORM_BUILDER_FIELDS.find((f) =>
+            f.attrs?.groupType === field.group_type && f.attrs?.groupScope === field.choices)
+        if (fbDefaultField) {
+            fbField.attrs = fbDefaultField.attrs
+            fbField.subtype = fbDefaultField.subtype
+            fbField.type = fbDefaultField.type
         }
+    }
+
+    if (field.choices && Array.isArray(field.choices)) {
+        fbField.values = field.choices.map(choice => {
+            return Array.isArray(choice) ?
+                {
+                    label: choice[1],
+                    value: choice[0]
+                } : {
+                    label: choice,
+                    value: choice
+                };
+        });
     }
 
     if (field.widget_attrs) {
@@ -152,7 +156,7 @@ function mapCrispyFieldToFormBuilderField(field) {
     return fbField;
 }
 
-const MAPPING_TYPE_TO_FORM_BUILDER= {
+const MAPPING_TYPE_TO_FORM_BUILDER = {
     'short_text': 'text',
     'long_text': 'textarea',
     'email_address': 'email',

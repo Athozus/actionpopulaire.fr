@@ -26,19 +26,17 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
     },
     {
         label: "Mes groupes - En tant que membre",
+        type: "group_local_member",
         attrs: {
-            type: "group",
-            subType: "group_local_member",
-            groupScope: "group_member",
+            groupScope: "member",
             groupType: "L"
         },
         icon: "👥"
     },
     {
         label: "Mes groupes - En tant qu'animatrices",
+        type: "group_local_animatrice",
         attrs: {
-            type: "group",
-            subType: "group_local_animatrice",
             groupScope: "animatrice",
             groupType: "L"
         },
@@ -46,9 +44,8 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
     },
     {
         label: "Mes groupes - En tant que gestionnaires",
+        type: "group_local_gestionnaire",
         attrs: {
-            type: "group",
-            subType: "group_local_gestionnaire",
             groupType: "L",
             groupScope: "gestionnaire",
         },
@@ -56,9 +53,8 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
     },
     {
         label: "Mes boucles départementales",
+        type: "group_member_departemental",
         attrs: {
-            type: "group",
-            subType: "group_member_departemental",
             groupScope: "member",
             groupType: "D"
         },
@@ -66,9 +62,8 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
     },
     {
         label: "Mes groupes fonctionnels",
+        type: "group_member_fonctionnel",
         attrs: {
-            type: "group",
-            subType: "group_member_fonctionnel",
             groupType: "F",
             groupScope: "member"
         },
@@ -76,9 +71,8 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
     },
     {
         label: "Mes Groupes thématiques",
+        type: "group_member_thematique",
         attrs: {
-            type: "group",
-            subType: "group_member_thematique",
             groupType: "B",
             groupScope: "member"
         },

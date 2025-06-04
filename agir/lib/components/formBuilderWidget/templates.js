@@ -9,5 +9,11 @@ export const CUSTOM_FORM_BUILDER_TEMPLATES = {
     email: DEFAULT_TEMPLATE,
     introHtml: DEFAULT_TEMPLATE,
     group: DEFAULT_TEMPLATE,
+    group_local_member: DEFAULT_TEMPLATE,
+    group_local_animatrice: DEFAULT_TEMPLATE,
+    group_local_gestionnaire: DEFAULT_TEMPLATE,
+    group_member_departemental: DEFAULT_TEMPLATE,
+    group_member_fonctionnel: DEFAULT_TEMPLATE,
+    group_member_thematique: DEFAULT_TEMPLATE
 }
 
