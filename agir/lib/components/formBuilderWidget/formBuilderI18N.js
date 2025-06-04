@@ -8,7 +8,7 @@ export const i18n = {
             autocomplete: 'Compléter automatiquement',
             button: 'Bouton',
             cannotBeEmpty: 'Ce champ ne peut pas être vide',
-            checkboxGroup: 'Cases à cocher',
+            checkboxGroup: 'Multiple cases à cocher',
             className: 'Classe CSS',
             clearAllMessage: 'Voulez-vous vraiment supprimer tous les champs ?',
             clear: 'Tout supprimer',

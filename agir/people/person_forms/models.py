@@ -175,7 +175,15 @@ class PersonForm(TimeStampedModel):
         blank=True,
     )
 
-    custom_fields = JSONField(_("Champs"), blank=False, default=default_custom_forms)
+    custom_fields = JSONField(
+        _("Champs"),
+        blank=False,
+        default=default_custom_forms,
+        help_text=_(
+            "⚠️ Toute modification sur l'éditeur dynamique au dessus, prendra la main sur les modifications de ce champ,"
+            "pensez à sauvegarder avant de toucher à ce champ."
+        ),
+    )
 
     config = JSONField(_("Configuration"), blank=True, default=dict)
 

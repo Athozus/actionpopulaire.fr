@@ -1,4 +1,4 @@
-import {CUSTOM_FORM_BUILDER_FIELDS, mapPersonIdToLabel, TYPE_USER_ATTRS} from "./fields";
+import {CUSTOM_FORM_BUILDER_FIELDS, TYPE_USER_ATTRS} from "./fields";
 import {CUSTOM_FORM_BUILDER_TEMPLATES} from "./templates";
 
 import {i18n} from "@agir/lib/formBuilderWidget/formBuilderI18N";
@@ -8,6 +8,9 @@ import {
 } from "@agir/lib/formBuilderWidget/mapperFormBuilder";
 
 const DEFAULT_ROWS_TO_HIDE = ["step", "other", "inline", "className", "access", "placeholder", "value", "subtype"]
+
+let formBuilder = null
+let prevFormData = ""
 
 function titleToField(title) {
     return {
@@ -54,7 +57,7 @@ function updateContainerStyle() {
     fbEditor.style.border = "3px dotted #eeeeee"
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     const existingConfig = JSON.parse(document.getElementById("custom_fields").innerText)
     let formBuilderData = [];
 
@@ -63,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
         formBuilderData = crispyFormToFormBuilder(existingConfig)
     }
 
-    const fb = $('#fb-editor').formBuilder({
+    formBuilder = $('#fb-editor').formBuilder({
         i18n: i18n,
         formData: formBuilderData,
         fields: CUSTOM_FORM_BUILDER_FIELDS,
@@ -85,13 +88,27 @@ document.addEventListener('DOMContentLoaded', function () {
             })
 
         },
-        onSave: save
     })
     updateContainerStyle()
+
     window.AgirAdminJsonWidgetEditor?.collapseAll()
+    // timeout nécessaire pour avoir le formbuilder prêt
+    setTimeout(() => {
+        prevFormData = formBuilder?.formData ?? ""
+        setInterval(sync, 600)
+    }, 2000)
 });
 
-function save(event, formData) {
+
+async function sync() {
+    const formData = formBuilder?.formData ?? ""
+    if (prevFormData !== formData) {
+        prevFormData = formData
+        updateJsonEditorContent(formData)
+    }
+}
+
+function updateJsonEditorContent(formData) {
     const finalFormData = []
     const jsonForm = JSON.parse(formData)
     for (let element of jsonForm) {
@@ -111,8 +128,5 @@ function save(event, formData) {
     if (window.AgirAdminJsonWidgetEditor) {
         window.AgirAdminJsonWidgetEditor.update(finalFormData)
         document.getElementById(`id_custom_fields`).value = JSON.stringify(finalFormData);
-
-        document.getElementsByName("_continue")?.[0]?.click()
     }
 }
-
