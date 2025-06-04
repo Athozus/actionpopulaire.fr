@@ -127,10 +127,10 @@ function mapCrispyFieldToFormBuilderField(field) {
 
     if (field.type === "group") {
         const fbDefaultField = CUSTOM_FORM_BUILDER_FIELDS.find((f) =>
-            f.attrs?.groupType === field.group_type && f.attrs?.groupScope === field.choices)
+            f.attrs?.groupType === field.group_type && f.attrs?.groupScope === field.choices && f.type.startsWith("group")) ?? CUSTOM_FORM_BUILDER_FIELDS.find((f) => f.type === "group")
+
         if (fbDefaultField) {
             fbField.attrs = fbDefaultField.attrs
-            fbField.subtype = fbDefaultField.subtype
             fbField.type = fbDefaultField.type
         }
     }

@@ -1,6 +1,7 @@
 export const CUSTOM_FORM_BUILDER_FIELDS = [
     {
         label: "Titre",
+        type: "text",
         attrs: {
             type: "title"
         },
@@ -20,6 +21,7 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
     },
     {
         label: "Introduction",
+        type: "text",
         attrs: {
             type: "introHtml"
         },
@@ -77,5 +79,13 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
             groupScope: "member"
         },
         icon: "🚩"
+    },
+    {
+        label: "Groupe d'action",
+        type: "group",
+        attrs: {
+            groupScope: "member"
+        },
+        icon: ""
     }
 ]
