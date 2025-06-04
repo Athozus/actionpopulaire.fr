@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
         fields: CUSTOM_FORM_BUILDER_FIELDS,
         templates: CUSTOM_FORM_BUILDER_TEMPLATES,
         typeUserAttrs: TYPE_USER_ATTRS,
+        disableFields: ["button", "hidden"],
         onOpenFieldEdit: function(editPanel) {
             const fieldType = editPanel.offsetParent.type
             //on cache les champs qui ne seront pas mappé vers le système Form Crispy
