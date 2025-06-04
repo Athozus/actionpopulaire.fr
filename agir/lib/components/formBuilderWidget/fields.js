@@ -1,3 +1,5 @@
+import CIRCONSCRIPTIONS from './circonscription.json'
+
 export const CUSTOM_FORM_BUILDER_FIELDS = [
     {
         label: "Titre",
@@ -87,5 +89,13 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
             groupScope: "member"
         },
         icon: ""
+    },
+    {
+        label: "Circonscription",
+        type: "select",
+        name: "circonscriptions",
+        multiple: false,
+        values: CIRCONSCRIPTIONS,
+        icon: "🗾"
     }
 ]

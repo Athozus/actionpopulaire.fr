@@ -106,7 +106,7 @@ function mapFormBuildFieldToCrispy(field) {
         crispyField.group_type = builderField.attrs.groupType ?? "L"
     } else if (field.values) {
         crispyField.choices = field.values.map((value) => {
-            if (field.type === "radio-group" || field.type === "select") {
+            if (field.type === "radio-group") {
                 return value.label
             }
             return [value.value, value.label]
