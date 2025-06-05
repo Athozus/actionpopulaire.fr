@@ -1,4 +1,4 @@
-import {CUSTOM_FORM_BUILDER_FIELDS, mapPersonIdToLabel} from "@agir/lib/formBuilderWidget/fields";
+import {CUSTOM_FORM_BUILDER_FIELDS, mapPersonIdToLabel, TYPE_USER_ATTRS} from "@agir/lib/formBuilderWidget/fields";
 
 export function mapFormBuildFieldToCrispy(field) {
     const crispyField = {
@@ -17,12 +17,8 @@ export function mapFormBuildFieldToCrispy(field) {
             }
             return [value.value, value.label]
         })
-    } else if (field.type === "person") {
-        crispyField.id = field.field;
-        crispyField.person_field = true
-    } else if (field.type === "commune") {
-        crispyField.types = field.field
     }
+    TYPE_USER_ATTRS[field.type]?.toCrispy?.(field, crispyField);
 
     return crispyField
 }
@@ -32,6 +28,7 @@ export function mapCrispyFieldToFormBuilderField(field) {
         type: mapCrispyTypeToFormBuilder(field),
     };
     mapCrispyFieldParametersToFormBuilder(field, fbField)
+    TYPE_USER_ATTRS[field.type]?.toFormBuilder?.(field, fbField);
 
     if (field.type === "group") {
         const fbDefaultField = CUSTOM_FORM_BUILDER_FIELDS.find((f) =>
@@ -41,14 +38,6 @@ export function mapCrispyFieldToFormBuilderField(field) {
             fbField.attrs = fbDefaultField.attrs
             fbField.type = fbDefaultField.type
         }
-    } else if (fbField.type === "person") {
-        fbField.field = field.id
-        if (field.label === undefined) {
-            fbField.label = mapPersonIdToLabel(field.id)
-            fbField.required = true
-        }
-    } else if (fbField.type === "commune") {
-        fbField.field = field.types
     }
 
     if (field.choices && Array.isArray(field.choices)) {
@@ -74,7 +63,9 @@ const MAPPING_COMMON_PARAMS_TO_FORM_BUILDER = {
     "max_length": "maxlength",
     "id": "name",
     "min_value": "min",
-    "max_value": "max"
+    "max_value": "max",
+    "types": "types",
+    "allowed_extensions": "allowed_extensions"
 }
 
 const MAPPING_COMMON_PARAMS_TO_CRISPY = Object.keys(MAPPING_COMMON_PARAMS_TO_FORM_BUILDER).reduce((acc, current) => {

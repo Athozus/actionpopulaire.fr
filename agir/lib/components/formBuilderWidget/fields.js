@@ -141,9 +141,20 @@ export const TYPE_USER_ATTRS = {
             },
             style: 'border: 1px solid red'
         },
+        toCrispy: (fbField, crispyField) => {
+            crispyField.id = fbField.field;
+            crispyField.person_field = true
+        },
+        toFormBuilder: (crispyField, fbField) => {
+            fbField.field = crispyField.id
+            if (crispyField.label === undefined) {
+                fbField.label = mapPersonIdToLabel(crispyField.id)
+                fbField.required = true
+            }
+        }
     },
     commune: {
-        field: {
+        types: {
             label: "Type",
             multiple: true,
             options: {
@@ -153,8 +164,23 @@ export const TYPE_USER_ATTRS = {
                 "COMD": "commune déléguée",
                 "SRM": "secteur électoral"
             }
-        }
+        },
     },
+    file: {
+        allowed_extensions: {
+            label: "Extension(s) possible(s)",
+            multiple: true,
+            options: {
+                "jpg": "Image jpg",
+                "jpeg": "Image jpeg",
+                "png": "Image png",
+                "pdf": "Fichier PDF",
+                "docx": "Fichier Docx",
+                "doc": "Fichier Doc",
+                "odt": "Fichier ODT"
+            }
+        }
+    }
 }
 
 export function mapPersonIdToLabel(id) {
