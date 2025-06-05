@@ -126,7 +126,9 @@ export const TYPE_USER_ATTRS = {
                 'email': 'Email',
                 'contact_phone': 'Numéro de téléphone',
                 'gender': 'Genre',
-                'date_of_birth': "Date de naissance"
+                'date_of_birth': "Date de naissance",
+                'location_city': "Ville",
+                'location_zip': "Code postal"
             },
             style: 'border: 1px solid red'
         },
