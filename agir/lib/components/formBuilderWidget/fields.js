@@ -125,7 +125,8 @@ export const TYPE_USER_ATTRS = {
                 'last_name': 'Nom',
                 'email': 'Email',
                 'contact_phone': 'Numéro de téléphone',
-                'gender': 'Genre'
+                'gender': 'Genre',
+                'date_of_birth': "Date de naissance"
             },
             style: 'border: 1px solid red'
         },
