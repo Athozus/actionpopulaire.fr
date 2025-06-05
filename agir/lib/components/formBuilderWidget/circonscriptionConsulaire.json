@@ -1,0 +1,522 @@
+[
+  {
+    "label": "Canada — 2e circonscription - Toronto",
+    "value": "Canada — 2e circonscription"
+  },
+  {
+    "label": "États-Unis d'Amérique — 9e circonscription - New York",
+    "value": "États-Unis d'Amérique — 9e circonscription"
+  },
+  {
+    "label": "Bolivie - La Paz",
+    "value": "Bolivie"
+  },
+  {
+    "label": "Brésil — 1re circonscription - BrasiliaRecifeParamaribo",
+    "value": "Brésil — 1re circonscription"
+  },
+  {
+    "label": "Brésil — 2e circonscription - Rio de Janeiro",
+    "value": "Brésil — 2e circonscription"
+  },
+  {
+    "label": "Brésil — 3e circonscription - São Paulo",
+    "value": "Brésil — 3e circonscription"
+  },
+  {
+    "label": "Chili - Santiago",
+    "value": "Chili"
+  },
+  {
+    "label": "Colombie - Bogotá",
+    "value": "Colombie"
+  },
+  {
+    "label": "Costa Rica, Honduras, Nicaragua - San JoséTegucigalpaManagua",
+    "value": "Costa Rica, Honduras, Nicaragua"
+  },
+  {
+    "label": "Equateur - Quito",
+    "value": "Equateur"
+  },
+  {
+    "label": "Guatemala, Salvador - GuatemalaSan Salvador",
+    "value": "Guatemala, Salvador"
+  },
+  {
+    "label": "Haïti - Port-au-Prince",
+    "value": "Haïti"
+  },
+  {
+    "label": "Mexique - Mexico",
+    "value": "Mexique"
+  },
+  {
+    "label": "Panamá, Cuba, Jamaïque - PanamáLa HavaneKingston",
+    "value": "Panamá, Cuba, Jamaïque"
+  },
+  {
+    "label": "République dominicaine - Saint-Domingue",
+    "value": "République dominicaine"
+  },
+  {
+    "label": "Uruguay - Montevideo",
+    "value": "Uruguay"
+  },
+  {
+    "label": "Venezuela, Sainte-Lucie, Trinité-et-Tobago - CaracasCastriesPort d'Espagne",
+    "value": "Venezuela, Sainte-Lucie, Trinité-et-Tobago"
+  },
+  {
+    "label": "Danemark - Copenhague",
+    "value": "Danemark"
+  },
+  {
+    "label": "Finlande, Lituanie, Lettonie, Estonie - HelsinkiVilniusRigaTallinn",
+    "value": "Finlande, Lituanie, Lettonie, Estonie"
+  },
+  {
+    "label": "Irlande - Dublin",
+    "value": "Irlande"
+  },
+  {
+    "label": "Norvège, Islande - OsloReykjavik",
+    "value": "Norvège, Islande"
+  },
+  {
+    "label": "Royaume-Uni — 1re circonscription - EdimbourgGlasgow",
+    "value": "Royaume-Uni — 1re circonscription"
+  },
+  {
+    "label": "Royaume-Uni — 2e circonscription - Londres",
+    "value": "Royaume-Uni — 2e circonscription"
+  },
+  {
+    "label": "Suède - Stockholm",
+    "value": "Suède"
+  },
+  {
+    "label": "Belgique - Bruxelles",
+    "value": "Belgique"
+  },
+  {
+    "label": "Luxembourg - Luxembourg",
+    "value": "Luxembourg"
+  },
+  {
+    "label": "Roumanie, Moldavie - BucarestChisinau",
+    "value": "Roumanie, Moldavie"
+  },
+  {
+    "label": "Russie, Biélorussie - MoscouSaint-PétersbourgEkaterinbourgMinsk",
+    "value": "Russie, Biélorussie"
+  },
+  {
+    "label": "Ukraine - Kiev",
+    "value": "Ukraine"
+  },
+  {
+    "label": "Chypre - Nicosie",
+    "value": "Chypre"
+  },
+  {
+    "label": "Grèce - AthènesThessalonique",
+    "value": "Grèce"
+  },
+  {
+    "label": "Italie — 1re circonscription (avec Malte et Etat de la Cité du Vatican) - RomeNaplesLa ValetteCité du Vatican",
+    "value": "Italie — 1re circonscription (avec Malte et Etat de la Cité du Vatican)"
+  },
+  {
+    "label": "Italie — 2e circonscription - MilanTurinGênes",
+    "value": "Italie — 2e circonscription"
+  },
+  {
+    "label": "Monaco - Monaco",
+    "value": "Monaco"
+  },
+  {
+    "label": "Turquie - IstanbulAnkara",
+    "value": "Turquie"
+  },
+  {
+    "label": "Andorre - Andorre-la-Vieille",
+    "value": "Andorre"
+  },
+  {
+    "label": "Espagne — 1re circonscription - Barcelone",
+    "value": "Espagne — 1re circonscription"
+  },
+  {
+    "label": "Espagne — 2e circonscription - MadridSévilleBilbao",
+    "value": "Espagne — 2e circonscription"
+  },
+  {
+    "label": "Portugal - LisbonnePorto",
+    "value": "Portugal"
+  },
+  {
+    "label": "Algérie — 1re circonscription - Oran",
+    "value": "Algérie — 1re circonscription"
+  },
+  {
+    "label": "Algérie — 2e circonscription - Annaba",
+    "value": "Algérie — 2e circonscription"
+  },
+  {
+    "label": "Algérie — 3e circonscription - Alger",
+    "value": "Algérie — 3e circonscription"
+  },
+  {
+    "label": "Egypte - Le CaireAlexandrie",
+    "value": "Egypte"
+  },
+  {
+    "label": "Maroc — 1re circonscription - Tanger",
+    "value": "Maroc — 1re circonscription"
+  },
+  {
+    "label": "Canada — 3e circonscription - Québec",
+    "value": "Canada — 3e circonscription"
+  },
+  {
+    "label": "Canada — 4e circonscription - MontréalMonctonHalifax",
+    "value": "Canada — 4e circonscription"
+  },
+  {
+    "label": "États-Unis d'Amérique — 1re circonscription - Atlanta",
+    "value": "États-Unis d'Amérique — 1re circonscription"
+  },
+  {
+    "label": "États-Unis d'Amérique — 2e circonscription - Boston",
+    "value": "États-Unis d'Amérique — 2e circonscription"
+  },
+  {
+    "label": "États-Unis d'Amérique — 3e circonscription - HoustonLa Nouvelle-Orléans",
+    "value": "États-Unis d'Amérique — 3e circonscription"
+  },
+  {
+    "label": "États-Unis d'Amérique — 4e circonscription - Chicago",
+    "value": "États-Unis d'Amérique — 4e circonscription"
+  },
+  {
+    "label": "États-Unis d'Amérique — 5e circonscription - Miami",
+    "value": "États-Unis d'Amérique — 5e circonscription"
+  },
+  {
+    "label": "États-Unis d'Amérique — 6e circonscription - Washington",
+    "value": "États-Unis d'Amérique — 6e circonscription"
+  },
+  {
+    "label": "États-Unis d'Amérique — 7e circonscription - Los Angeles",
+    "value": "États-Unis d'Amérique — 7e circonscription"
+  },
+  {
+    "label": "États-Unis d'Amérique — 8e circonscription - San Francisco",
+    "value": "États-Unis d'Amérique — 8e circonscription"
+  },
+  {
+    "label": "Argentine - Buenos Aires",
+    "value": "Argentine"
+  },
+  {
+    "label": "Paraguay - Assomption",
+    "value": "Paraguay"
+  },
+  {
+    "label": "Pérou - Lima",
+    "value": "Pérou"
+  },
+  {
+    "label": "Maroc — 2e circonscription - Fès",
+    "value": "Maroc — 2e circonscription"
+  },
+  {
+    "label": "Maroc — 3e circonscription - Agadir",
+    "value": "Maroc — 3e circonscription"
+  },
+  {
+    "label": "Maroc — 4e circonscription - Marrakech",
+    "value": "Maroc — 4e circonscription"
+  },
+  {
+    "label": "Tunisie, Libye - TunisTripoli",
+    "value": "Tunisie, Libye"
+  },
+  {
+    "label": "Burkina Faso - Ouagadougou",
+    "value": "Burkina Faso"
+  },
+  {
+    "label": "Côte d'Ivoire - Abidjan",
+    "value": "Côte d'Ivoire"
+  },
+  {
+    "label": "Guinée - Conakry",
+    "value": "Guinée"
+  },
+  {
+    "label": "Mali - Bamako",
+    "value": "Mali"
+  },
+  {
+    "label": "Mauritanie - Nouakchott",
+    "value": "Mauritanie"
+  },
+  {
+    "label": "Niger - Niamey",
+    "value": "Niger"
+  },
+  {
+    "label": "Sénégal, Guinée-Bissau, Cap-Vert - DakarBissauPraia",
+    "value": "Sénégal, Guinée-Bissau, Cap-Vert"
+  },
+  {
+    "label": "Togo, Ghana - LoméAccra",
+    "value": "Togo, Ghana"
+  },
+  {
+    "label": "Afrique du Sud, Mozambique, Namibie, Botswana - JohannesburgLe CapMaputoWindhoekGaborone",
+    "value": "Afrique du Sud, Mozambique, Namibie, Botswana"
+  },
+  {
+    "label": "Angola - Luanda",
+    "value": "Angola"
+  },
+  {
+    "label": "Cameroun, Guinée équatoriale - DoualaYaoundéMalabo",
+    "value": "Cameroun, Guinée équatoriale"
+  },
+  {
+    "label": "Comores - Moroni",
+    "value": "Comores"
+  },
+  {
+    "label": "Maroc — 5e circonscription - Rabat",
+    "value": "Maroc — 5e circonscription"
+  },
+  {
+    "label": "Maroc — 6e circonscription - Casablanca",
+    "value": "Maroc — 6e circonscription"
+  },
+  {
+    "label": "Bénin - Cotonou",
+    "value": "Bénin"
+  },
+  {
+    "label": "Arabie saoudite — 1re circonscription (avec Yémen) - DjeddahSanaa",
+    "value": "Arabie saoudite — 1re circonscription (avec Yémen)"
+  },
+  {
+    "label": "Arabie saoudite — 2e circonscription (avec Koweït) - RiyadKoweït",
+    "value": "Arabie saoudite — 2e circonscription (avec Koweït)"
+  },
+  {
+    "label": "Emirats arabes unis, Oman - DubaïAbu DhabiMascate",
+    "value": "Emirats arabes unis, Oman"
+  },
+  {
+    "label": "Iran, Pakistan, Afghanistan, Azerbaïdjan, Turkménistan, Kazakhstan, Tadjikistan, Ouzbékistan, Kirghizstan - TéhéranIslamabadKarachiKaboulBakouAchgabatAstanaAlmatyDouchanbeTachkent",
+    "value": "Iran, Pakistan, Afghanistan, Azerbaïdjan, Turkménistan, Kazakhstan, Tadjikistan, Ouzbékistan, Kirghizstan"
+  },
+  {
+    "label": "Jordanie, Irak - AmmanBagdadErbil",
+    "value": "Jordanie, Irak"
+  },
+  {
+    "label": "Liban, Syrie - BeyrouthDamas",
+    "value": "Liban, Syrie"
+  },
+  {
+    "label": "Qatar, Bahreïn - DohaManama",
+    "value": "Qatar, Bahreïn"
+  },
+  {
+    "label": "Israël et Territoires palestiniens — 1re circonscription - Jérusalem",
+    "value": "Israël et Territoires palestiniens — 1re circonscription"
+  },
+  {
+    "label": "Israël et Territoires palestiniens — 2e circonscription - Tel-AvivHaïfa",
+    "value": "Israël et Territoires palestiniens — 2e circonscription"
+  },
+  {
+    "label": "Australie, Fidji, Papouasie-Nouvelle-Guinée - SydneyCanberraSuvaPort Moresby",
+    "value": "Australie, Fidji, Papouasie-Nouvelle-Guinée"
+  },
+  {
+    "label": "Cambodge - Phnom Penh",
+    "value": "Cambodge"
+  },
+  {
+    "label": "Chine — 1re circonscription - CantonWuhanChengdu",
+    "value": "Chine — 1re circonscription"
+  },
+  {
+    "label": "Chine — 2e circonscription (avec Mongolie et Corée du Nord) - PékinShenyangOulan-BatorPyongyang",
+    "value": "Chine — 2e circonscription (avec Mongolie et Corée du Nord)"
+  },
+  {
+    "label": "Chine — 3e circonscription - Hong-KongMacao",
+    "value": "Chine — 3e circonscription"
+  },
+  {
+    "label": "Chine — 4e circonscription - Shanghai",
+    "value": "Chine — 4e circonscription"
+  },
+  {
+    "label": "Corée du Sud, Taïwan - SéoulTaipei",
+    "value": "Corée du Sud, Taïwan"
+  },
+  {
+    "label": "Inde — 1re circonscription (avec Bangladesh, Népal, Sri Lanka) - New DelhiBangaloreBombayCalcuttaDaccaKatmandouColombo",
+    "value": "Inde — 1re circonscription (avec Bangladesh, Népal, Sri Lanka)"
+  },
+  {
+    "label": "Inde — 2e circonscription - PondichéryChennai",
+    "value": "Inde — 2e circonscription"
+  },
+  {
+    "label": "Pays-Bas - Amsterdam",
+    "value": "Pays-Bas"
+  },
+  {
+    "label": "Allemagne — 1re circonscription - BerlinHambourg",
+    "value": "Allemagne — 1re circonscription"
+  },
+  {
+    "label": "Allemagne — 2e circonscription - FrancfortDüsseldorfSarrebruck",
+    "value": "Allemagne — 2e circonscription"
+  },
+  {
+    "label": "Allemagne — 3e circonscription - MunichStuttgart",
+    "value": "Allemagne — 3e circonscription"
+  },
+  {
+    "label": "Autriche, Slovaquie, Slovénie - VienneBratislavaLjubljana",
+    "value": "Autriche, Slovaquie, Slovénie"
+  },
+  {
+    "label": "Suisse — 1re circonscription - Zurich",
+    "value": "Suisse — 1re circonscription"
+  },
+  {
+    "label": "Suisse — 2e circonscription - Genève",
+    "value": "Suisse — 2e circonscription"
+  },
+  {
+    "label": "Arménie, Géorgie - ErevanTbilissi",
+    "value": "Arménie, Géorgie"
+  },
+  {
+    "label": "Bulgarie, Bosnie-Herzégovine, Macédoine du Nord, Albanie, Kosovo, Monténégro - SofiaSarajevoSkopjeTiranaPristinaPodgorica",
+    "value": "Bulgarie, Bosnie-Herzégovine, Macédoine du Nord, Albanie, Kosovo, Monténégro"
+  },
+  {
+    "label": "Croatie - Zagreb",
+    "value": "Croatie"
+  },
+  {
+    "label": "Hongrie - Budapest",
+    "value": "Hongrie"
+  },
+  {
+    "label": "Pologne - VarsovieCracovie",
+    "value": "Pologne"
+  },
+  {
+    "label": "République tchèque - Prague",
+    "value": "République tchèque"
+  },
+  {
+    "label": "Serbie - Belgrade",
+    "value": "Serbie"
+  },
+  {
+    "label": "Congo - Pointe-NoireBrazzaville",
+    "value": "Congo"
+  },
+  {
+    "label": "Djibouti - Djibouti",
+    "value": "Djibouti"
+  },
+  {
+    "label": "Kenya, Ouganda, Rwanda, Burundi, Tanzanie, Zambie, Zimbabwe - NairobiKampalaKigaliBujumburaDar es SalamLusakaHarare",
+    "value": "Kenya, Ouganda, Rwanda, Burundi, Tanzanie, Zambie, Zimbabwe"
+  },
+  {
+    "label": "République centrafricaine - Bangui",
+    "value": "République centrafricaine"
+  },
+  {
+    "label": "République démocratique du Congo - Kinshasa",
+    "value": "République démocratique du Congo"
+  },
+  {
+    "label": "Tchad - N'Djamena",
+    "value": "Tchad"
+  },
+  {
+    "label": "Indonésie - Jakarta",
+    "value": "Indonésie"
+  },
+  {
+    "label": "Japon - TokyoKyoto",
+    "value": "Japon"
+  },
+  {
+    "label": "Canada — 1re circonscription - VancouverCalgary",
+    "value": "Canada — 1re circonscription"
+  },
+  {
+    "label": "Ethiopie, Soudan, Soudan du Sud - Addis-AbebaKhartoumDjouba",
+    "value": "Ethiopie, Soudan, Soudan du Sud"
+  },
+  {
+    "label": "Gabon - LibrevillePort-Gentil",
+    "value": "Gabon"
+  },
+  {
+    "label": "Madagascar - TananariveDiégo-SuarezMajungaTamatave",
+    "value": "Madagascar"
+  },
+  {
+    "label": "Maurice, Seychelles - Port LouisVictoria",
+    "value": "Maurice, Seychelles"
+  },
+  {
+    "label": "Nigeria - LagosAbuja",
+    "value": "Nigeria"
+  },
+  {
+    "label": "Laos - Vientiane",
+    "value": "Laos"
+  },
+  {
+    "label": "Malaisie, Brunei - Kuala LumpurBandar Seri Begawan",
+    "value": "Malaisie, Brunei"
+  },
+  {
+    "label": "Nouvelle-Zélande - Wellington",
+    "value": "Nouvelle-Zélande"
+  },
+  {
+    "label": "Philippines - Manille",
+    "value": "Philippines"
+  },
+  {
+    "label": "Singapour - Singapour",
+    "value": "Singapour"
+  },
+  {
+    "label": "Thaïlande, Birmanie - BangkokRangoun",
+    "value": "Thaïlande, Birmanie"
+  },
+  {
+    "label": "Vanuatu - Port-Vila",
+    "value": "Vanuatu"
+  },
+  {
+    "label": "Vietnam - Hô Chi Minh-VilleHanoi",
+    "value": "Vietnam"
+  }
+]

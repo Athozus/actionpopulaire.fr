@@ -1,4 +1,5 @@
 import CIRCONSCRIPTIONS from './circonscription.json'
+import CIRCONSCRIPTIONS_CONSULAIRES from './circonscriptionConsulaire.json'
 
 export const CUSTOM_FORM_BUILDER_FIELDS = [
     {
@@ -91,12 +92,20 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
         icon: ""
     },
     {
-        label: "Circonscription",
+        label: "Circonscriptions",
         type: "select",
         name: "circonscriptions",
         multiple: false,
         values: CIRCONSCRIPTIONS,
         icon: "🗾"
+    },
+    {
+        label: "Circonscriptions consulaires",
+        type: "select",
+        name: "circonscriptions_consulaires",
+        multiple: false,
+        values: CIRCONSCRIPTIONS_CONSULAIRES,
+        icon: "🌐"
     },
     {
         label: "Champ Personne",
