@@ -6,11 +6,7 @@ export function mapFormBuildFieldToCrispy(field) {
     }
     mapFormBuilderParametersToCrispy(field, crispyField)
 
-    if (field.type.includes("group_")) {
-        const builderField = CUSTOM_FORM_BUILDER_FIELDS.find((f) => f.type === field.type);
-        crispyField.choices = builderField.attrs.groupScope ?? "member"
-        crispyField.group_type = builderField.attrs.groupType ?? "L"
-    } else if (field.values) {
+    if (field.values) {
         crispyField.choices = field.values.map((value) => {
             if (field.type === "radio-group") {
                 return value.label
@@ -29,16 +25,6 @@ export function mapCrispyFieldToFormBuilderField(field) {
     };
     mapCrispyFieldParametersToFormBuilder(field, fbField)
     TYPE_USER_ATTRS[fbField.type]?.toFormBuilder?.(field, fbField);
-
-    if (field.type === "group") {
-        const fbDefaultField = CUSTOM_FORM_BUILDER_FIELDS.find((f) =>
-            f.attrs?.groupType === field.group_type && f.attrs?.groupScope === field.choices && f.type.startsWith("group")) ?? CUSTOM_FORM_BUILDER_FIELDS.find((f) => f.type === "group")
-
-        if (fbDefaultField) {
-            fbField.attrs = fbDefaultField.attrs
-            fbField.type = fbDefaultField.type
-        }
-    }
 
     if (field.choices && Array.isArray(field.choices)) {
         fbField.values = field.choices.map(choice => {
@@ -65,7 +51,8 @@ const MAPPING_COMMON_PARAMS_TO_FORM_BUILDER = {
     "min_value": "min",
     "max_value": "max",
     "types": "types",
-    "allowed_extensions": "allowed_extensions"
+    "allowed_extensions": "allowed_extensions",
+    "group_type": "group_type"
 }
 
 const MAPPING_COMMON_PARAMS_TO_CRISPY = Object.keys(MAPPING_COMMON_PARAMS_TO_FORM_BUILDER).reduce((acc, current) => {
@@ -126,9 +113,5 @@ export function mapCrispyTypeToFormBuilder(field) {
 
 
 export function mapFormBuilderTypeToCrispy({type: fbType}) {
-    if (fbType.includes("group_")) {
-        return "group"
-    }
-
     return MAPPING_TYPE_TO_CRISPY[fbType] || 'short_text';
 }

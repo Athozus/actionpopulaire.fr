@@ -30,66 +30,50 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
         },
     },
     {
-        label: "Mes groupes - En tant que membre",
-        type: "group_local_member",
-        attrs: {
-            groupScope: "member",
-            groupType: "L"
-        },
+        label: "Groupes locals - En tant que membre",
+        subtype: "group_member",
+        type: "group",
         icon: "👥"
     },
     {
-        label: "Mes groupes - En tant qu'animatrices",
-        type: "group_local_animatrice",
-        attrs: {
-            groupScope: "animatrice",
-            groupType: "L"
-        },
+        label: "Groupes locals - En tant qu'animatrices",
+        type: "group",
+        subtype: "group_animatrice",
+        choices: "animatrice",
+        group_type: "L",
         icon: "👥"
     },
     {
-        label: "Mes groupes - En tant que gestionnaires",
-        type: "group_local_gestionnaire",
-        attrs: {
-            groupType: "L",
-            groupScope: "gestionnaire",
-        },
+        label: "Groupes - En tant que gestionnaires",
+        type: "group",
+        subtype: "group_gestionnaire",
+        group_type: "L",
+        choices: "gestionnaire",
         icon: "👥"
     },
     {
         label: "Mes boucles départementales",
-        type: "group_member_departemental",
-        attrs: {
-            groupScope: "member",
-            groupType: "D"
-        },
+        type: "group",
+        subtype: "group_departemental",
+        choices: "member",
+        group_type: "D",
         icon: "🗺️"
     },
     {
         label: "Mes groupes fonctionnels",
-        type: "group_member_fonctionnel",
-        attrs: {
-            groupType: "F",
-            groupScope: "member"
-        },
+        type: "group",
+        subtype: "group_fonctionnel",
+        group_type: "F",
+        choices: "member",
         icon: "📃"
     },
     {
         label: "Mes Groupes thématiques",
-        type: "group_member_thematique",
-        attrs: {
-            groupType: "B",
-            groupScope: "member"
-        },
-        icon: "🚩"
-    },
-    {
-        label: "Groupe d'action",
         type: "group",
-        attrs: {
-            groupScope: "member"
-        },
-        icon: ""
+        group_type: "B",
+        choices: "member",
+        subtype: "group_thematique",
+        icon: "🚩"
     },
     {
         label: "Circonscriptions",
@@ -178,6 +162,25 @@ export const TYPE_USER_ATTRS = {
                 "docx": "Fichier Docx",
                 "doc": "Fichier Doc",
                 "odt": "Fichier ODT"
+            }
+        }
+    },
+    group: {
+        group_type: {
+            label: "Type de groupe",
+            options: {
+                "L": "Groupe local",
+                "F": "Groupe fonctionnel",
+                "B": "Groupe thématique",
+                "D": "Boucle départementale"
+            }
+        },
+        choices: {
+            label: "La personne dans le groupe est (à minima)",
+            options: {
+                "membre": "Membre",
+                "animatrice": "Animatrice",
+                "gestionnaire": "Gestionnaire"
             }
         }
     }
