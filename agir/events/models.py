@@ -703,6 +703,11 @@ class Event(
                 fields=["start_time", "end_time", "id"], name="events_datetime_id_index"
             ),
             models.Index(fields=["visibility"], name="events_visibility_index"),
+            models.Index(
+                fields=['visibility'],
+                name='events_visibility_not_a_index',
+                condition=~Q(visibility='A'),
+            ),
         )
 
     def __str__(self):
