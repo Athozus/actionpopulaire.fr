@@ -137,7 +137,7 @@ export const TYPE_USER_ATTRS = {
                 'gender': 'Genre',
                 'date_of_birth': "Date de naissance",
                 'location_city': "Ville",
-                'location_zip': "Code postal"
+                'location_zip': "Code postal",
             },
             style: 'border: 1px solid red'
         },

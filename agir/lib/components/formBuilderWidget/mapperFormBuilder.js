@@ -18,7 +18,7 @@ export function mapFormBuildFieldToCrispy(field) {
             return [value.value, value.label]
         })
     }
-    TYPE_USER_ATTRS[field.type]?.toCrispy?.(field, crispyField);
+    TYPE_USER_ATTRS[crispyField.type]?.toCrispy?.(field, crispyField);
 
     return crispyField
 }
@@ -28,7 +28,7 @@ export function mapCrispyFieldToFormBuilderField(field) {
         type: mapCrispyTypeToFormBuilder(field),
     };
     mapCrispyFieldParametersToFormBuilder(field, fbField)
-    TYPE_USER_ATTRS[field.type]?.toFormBuilder?.(field, fbField);
+    TYPE_USER_ATTRS[fbField.type]?.toFormBuilder?.(field, fbField);
 
     if (field.type === "group") {
         const fbDefaultField = CUSTOM_FORM_BUILDER_FIELDS.find((f) =>
