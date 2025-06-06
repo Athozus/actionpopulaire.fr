@@ -18,10 +18,10 @@ const COMMENTS_PAGE_SIZE = 15;
 const REFRESH_INTERVAL = 10 * 60 * 1000;
 
 export const useUnreadMessageCount = () => {
-  const [isReady] = useTimeout(3000);
+  const [isReady, setIsReady] = useState(false)
   const { data: session } = useSWRImmutable("/api/session/");
   const { data } = useSWR(
-    isReady() && session?.user && "/api/user/messages/unread_count/",
+    isReady && "/api/user/messages/unread_count/",
     {
       refreshInterval: REFRESH_INTERVAL,
       dedupingInterval: REFRESH_INTERVAL,
@@ -30,6 +30,12 @@ export const useUnreadMessageCount = () => {
       revalidateIfStale: false,
     },
   );
+
+  useEffect(() => {
+    if (session?.user) {
+      setIsReady(true)
+    }
+  }, [session]);
 
   return data?.unreadMessageCount && !isNaN(parseInt(data.unreadMessageCount))
     ? parseInt(data.unreadMessageCount)
