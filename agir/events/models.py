@@ -704,9 +704,9 @@ class Event(
             ),
             models.Index(fields=["visibility"], name="events_visibility_index"),
             models.Index(
-                fields=['visibility'],
-                name='events_visibility_not_a_index',
-                condition=~Q(visibility='A'),
+                fields=["visibility"],
+                name="events_visibility_not_a_index",
+                condition=~Q(visibility="A"),
             ),
         )
 
@@ -1112,9 +1112,9 @@ class Event(
             schema["eventStatus"] = "https://schema.org/EventCancelled"
 
         if self.online_url:
-            schema["eventAttendanceMode"] = (
-                "https://schema.org/MixedEventAttendanceMode"
-            )
+            schema[
+                "eventAttendanceMode"
+            ] = "https://schema.org/MixedEventAttendanceMode"
             schema["location"] = [
                 schema["location"],
                 {"@type": "VirtualLocation", "url": self.online_url},
