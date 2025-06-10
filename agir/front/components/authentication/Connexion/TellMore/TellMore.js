@@ -240,7 +240,6 @@ const TellMore = ({ dismiss }) => {
                   label={
                     <>
                       Prénom{" "}
-                      <span style={{ fontWeight: 400 }}>(facultatif)</span>
                     </>
                   }
                   name="firstName"
@@ -257,7 +256,7 @@ const TellMore = ({ dismiss }) => {
                 <TextField
                   label={
                     <>
-                      Nom <span style={{ fontWeight: 400 }}>(facultatif)</span>
+                      Nom
                     </>
                   }
                   id="lastName"
