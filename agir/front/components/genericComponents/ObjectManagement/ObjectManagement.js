@@ -212,15 +212,15 @@ export const ObjectManagement = (props) => {
 
   const hasRoute = useRouteMatch(menuLink);
 
-  const { push } = useHistory();
+  const history = useHistory();
 
   const goToMenu = useCallback(() => {
-    menuLink && push(menuLink);
-  }, [menuLink, push]);
+    menuLink && history.push(menuLink);
+  }, [menuLink, history]);
 
   const closePanel = useCallback(() => {
-    basePath && push(basePath);
-  }, [basePath, push]);
+    basePath && history.goBack()
+  }, [basePath, history]);
 
   if (!!hasRoute && redirectTo) {
     return <Redirect to={redirectTo} />;
