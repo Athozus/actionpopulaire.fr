@@ -563,12 +563,18 @@ class EventAdvancedSerializer(EventSerializer):
 
 class EventListSerializer(EventSerializer):
     def get_groups(self, obj):
-        if hasattr(obj, "_pf_organizer_groups"):
+        if hasattr(obj, "_pf_organizer_configs"):
             return [
-                {"id": group.id, "name": group.name}
-                for group in obj._pf_organizer_groups
+                {"id": oc.as_group.id, "name": oc.as_group.name}
+                for oc in obj._pf_organizer_configs
+                if oc.as_group is not None
             ]
-        return obj.organizers_groups.distinct().values("id", "name")
+        return []
+
+    def get_attending_groups(self, obj):
+        if hasattr(obj, "_pf_groups_attendees"):
+            return [{"id": g.id, "name": g.name} for g in obj._pf_groups_attendees]
+        return []
 
 
 class EventPropertyOptionsSerializer(FlexibleFieldsMixin, serializers.Serializer):

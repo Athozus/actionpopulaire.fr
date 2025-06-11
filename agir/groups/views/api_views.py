@@ -23,6 +23,7 @@ from django.db.models import (
     Exists,
     OuterRef,
     Subquery,
+    Prefetch,
 )
 from django.db.models.functions import Greatest, Concat
 from django.utils import timezone
@@ -48,7 +49,8 @@ from unidecode import unidecode
 
 from agir.donations.allocations import get_supportgroup_balance
 from agir.donations.models import SpendingRequest
-from agir.events.models import Event, RSVP, EventSubtype
+from agir.event_requests.models import EventSpeaker
+from agir.events.models import Event, RSVP, EventSubtype, OrganizerConfig
 from agir.events.serializers import EventListSerializer, DisplayEventSubtypeSerializer
 from agir.groups.actions.notifications import (
     new_message_notifications,
@@ -361,15 +363,46 @@ class GroupEventListAPIView(ListAPIView):
         )
 
     def get_queryset(self):
-        return (
-            self.get_event_queryset()
-            .with_serializer_prefetch(self.person)
-            .listed()
-            .distinct(re.sub(r"^-", "", self.order_by), "pk")
-            .order_by(self.order_by, "pk")
+        user = self.request.user
+        person = getattr(user, "person", None)
+
+        qs = self.get_event_queryset().order_by(self.order_by)
+
+        qs = qs.select_related(
+            "subtype",
+            "volunteer_application_form",
+        ).prefetch_related(
+            Prefetch(
+                "organizer_configs",
+                queryset=OrganizerConfig.objects.select_related("as_group"),
+                to_attr="_pf_organizer_configs",
+            ),
+            Prefetch(
+                "organizers_groups",
+                queryset=SupportGroup.objects.only("id", "name"),
+                to_attr="_pf_organizer_groups",
+            ),
+            Prefetch(
+                "groups_attendees",
+                queryset=SupportGroup.objects.only("id", "name"),
+                to_attr="_pf_group_attendees",
+            ),
+            Prefetch(
+                "event_speakers",
+                queryset=EventSpeaker.objects.select_related("person"),
+            ),
         )
+        return qs
 
     def get_serializer(self, *args, **kwargs):
+        if "data" not in kwargs and isinstance(args[0], list):
+            for event in args[0]:
+                if hasattr(event, "_pf_organizer_configs"):
+                    event._pf_organizer_groups = [
+                        oc.as_group
+                        for oc in event._pf_organizer_configs
+                        if oc.as_group is not None
+                    ]
         return super().get_serializer(
             *args,
             fields=EventListSerializer.EVENT_CARD_FIELDS,
@@ -379,7 +412,9 @@ class GroupEventListAPIView(ListAPIView):
 
 class GroupEventsAPIView(GroupEventListAPIView):
     def get_event_queryset(self):
-        return self.supportgroup.organized_events.all()
+        return Event.objects.filter(
+            pk__in=self.supportgroup.organized_events.values_list("pk", flat=True)
+        )
 
 
 class GroupEventsJoinedAPIView(GroupEventListAPIView):
@@ -397,7 +432,32 @@ class GroupPastEventsAPIView(GroupEventListAPIView):
     order_by = "-start_time"
 
     def get_event_queryset(self):
-        return super().get_event_queryset().past()
+        now = timezone.now()
+
+        qs1_ids = (
+            super()
+            .queryset.filter(
+                organizers_groups=self.supportgroup,
+                end_time__lt=now,
+                visibility="P",
+                do_not_list=False,
+            )
+            .values_list("pk", flat=True)
+        )
+        qs2_ids = (
+            super()
+            .queryset.filter(
+                groups_attendees=self.supportgroup,
+                end_time__lt=now,
+                visibility="P",
+                do_not_list=False,
+            )
+            .values_list("pk", flat=True)
+        )
+
+        event_ids = set(qs1_ids) | set(qs2_ids)
+
+        return Event.objects.filter(pk__in=event_ids)
 
 
 class GroupPastEventReportsAPIView(GroupEventListAPIView):
