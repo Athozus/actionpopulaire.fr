@@ -434,30 +434,16 @@ class GroupPastEventsAPIView(GroupEventListAPIView):
     def get_event_queryset(self):
         now = timezone.now()
 
-        qs1_ids = (
+        return (
             super()
-            .queryset.filter(
-                organizers_groups=self.supportgroup,
+            .get_event_queryset()
+            .filter(
                 end_time__lt=now,
                 visibility="P",
                 do_not_list=False,
             )
-            .values_list("pk", flat=True)
+            .distinct()
         )
-        qs2_ids = (
-            super()
-            .queryset.filter(
-                groups_attendees=self.supportgroup,
-                end_time__lt=now,
-                visibility="P",
-                do_not_list=False,
-            )
-            .values_list("pk", flat=True)
-        )
-
-        event_ids = set(qs1_ids) | set(qs2_ids)
-
-        return Event.objects.filter(pk__in=event_ids)
 
 
 class GroupPastEventReportsAPIView(GroupEventListAPIView):
