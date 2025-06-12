@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.generic import DetailView
+from django.db.models import Q
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.generics import (
@@ -24,6 +25,7 @@ from agir.activity.serializers import (
     CustomAnnouncementSerializer,
 )
 from agir.api import settings
+from agir.events.models import Event
 from agir.lib.pagination import APIPageNumberPagination
 from agir.lib.rest_framework_permissions import (
     GlobalOrObjectPermissions,
@@ -197,9 +199,24 @@ class ActivityStatusUpdateAllReadView(RetrieveAPIView):
 @permission_classes((IsActionPopulaireClientPermission,))
 def get_unread_activity_count(request):
     unread_activity_count = 0
-    if request.user.is_authenticated and request.user.person is not None:
+
+    if (
+        request.user.is_authenticated
+        and hasattr(request.user, "person")
+        and request.user.person
+    ):
         unread_activity_count = (
-            get_activities(request.user.person)
+            Activity.objects.displayed()
+            .filter(recipient=request.user.person)
+            .exclude(supportgroup__isnull=False, supportgroup__published=False)
+            .exclude(~Q(event__visibility=Event.VISIBILITY_PUBLIC), event__isnull=False)
+            .filter(
+                ~Q(type=Activity.TYPE_ANNOUNCEMENT)
+                | Q(
+                    type=Activity.TYPE_ANNOUNCEMENT,
+                    announcement__custom_display__exact="",
+                )
+            )
             .filter(status=Activity.STATUS_UNDISPLAYED)
             .count()
         )
