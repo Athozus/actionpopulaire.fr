@@ -92,7 +92,9 @@ def get_announcements_cached(person_id=None, custom_display=None):
                 recipient_id=person.id,
                 announcement_id=announcement_pk,
             )
-            for announcement_pk in announcements.filter(activity_id__isnull=True).values_list("pk", flat=True)
+            for announcement_pk in announcements.filter(
+                activity_id__isnull=True
+            ).values_list("pk", flat=True)
         ]
         Activity.objects.bulk_create(activities, ignore_conflicts=True)
     else:
@@ -102,9 +104,11 @@ def get_announcements_cached(person_id=None, custom_display=None):
 
     return announcements
 
+
 def get_announcements(person=None, custom_display=None):
     person_id = person.id if person else None
     return get_announcements_cached(person_id=person_id, custom_display=custom_display)
+
 
 def get_non_custom_announcements(person=None):
     return get_announcements(person, custom_display="")

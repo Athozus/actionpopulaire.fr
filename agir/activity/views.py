@@ -80,7 +80,7 @@ class AnnouncementsAPIView(ListAPIView):
         user = self.request.user
         mark_as_displayed = self.request.GET.get("mark_as_displayed", "0") == "1"
 
-        if user.is_authenticated and getattr(user, 'person', None):
+        if user.is_authenticated and getattr(user, "person", None):
             person = user.person
 
             announcements = get_non_custom_announcements(person)
@@ -88,21 +88,25 @@ class AnnouncementsAPIView(ListAPIView):
             activities_qs = Activity.objects.filter(
                 recipient=person,
                 announcement__in=announcements,
-                status=Activity.STATUS_UNDISPLAYED
+                status=Activity.STATUS_UNDISPLAYED,
             )
 
             announcements = announcements.prefetch_related(
-                Prefetch('activity_set', queryset=activities_qs, to_attr='person_activities')
+                Prefetch(
+                    "activity_set", queryset=activities_qs, to_attr="person_activities"
+                )
             )
 
             if mark_as_displayed:
                 activity_ids = []
                 for ann in announcements:
-                    if hasattr(ann, 'person_activities'):
+                    if hasattr(ann, "person_activities"):
                         for act in ann.person_activities:
                             activity_ids.append(act.pk)
                 if activity_ids:
-                    Activity.objects.filter(pk__in=activity_ids).update(status=Activity.STATUS_DISPLAYED)
+                    Activity.objects.filter(pk__in=activity_ids).update(
+                        status=Activity.STATUS_DISPLAYED
+                    )
 
             return announcements
 
