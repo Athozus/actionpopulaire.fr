@@ -123,6 +123,7 @@ class Activity(TimeStampedModel):
     )
 
     TYPE_CHOICES = (
+        (TYPE_GROUP_COORGANIZATION_INFO, "Groupe a rejoint l'organisation"),
         (TYPE_REQUEST_MEMBERSHIP_REMOVE_VALIDATION, "Requête de suppression de membre"),
         (TYPE_WAITING_PAYMENT, "Paiement en attente"),
         (TYPE_NEW_EVENT_PARTICIPATION_MYGROUPS, "Le groupe participe à un événement"),

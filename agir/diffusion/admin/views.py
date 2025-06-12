@@ -28,8 +28,6 @@ logger = logging.getLogger(__name__)
 
 
 def segment_sms_people_size(request, pk, segment_id):
-    diffusion = get_object_or_404(SMSDiffusion, id=pk)
-
     segment = Segment.objects.get(pk=segment_id)
     if segment is None:
         return "-"

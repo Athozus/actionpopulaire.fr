@@ -153,6 +153,17 @@ const GROUP_NOTIFICATIONS = [
     activityTypes: ["new-event-participation-mygroups"],
   },
   {
+    id: "group_event_coorganization-info",
+    type: "Groupes",
+    icon: "users",
+    subtype: "Événements",
+    label: "Gestion des co-organisations des événements",
+    hasEmail: true,
+    hasPush: true,
+    isActive: (group) => group.isManager,
+    activityTypes: ["group-coorganization-info", "group-coorganization-accepted", "group-coorganization-invite"]
+  },
+  {
     id: "group_event_notifications",
     type: "Groupes",
     icon: "users",
@@ -161,7 +172,7 @@ const GROUP_NOTIFICATIONS = [
     hasEmail: true,
     hasPush: true,
     isActive: true,
-    activityTypes: ["new-event-mygroups" /*"group-coorganization-info"*/],
+    activityTypes: ["new-event-mygroups"],
   },
   {
     id: "group_event_report_notifications",
