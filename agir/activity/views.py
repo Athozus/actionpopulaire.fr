@@ -93,7 +93,7 @@ class AnnouncementsAPIView(ListAPIView):
 
             announcements = announcements.prefetch_related(
                 Prefetch(
-                    "activity_set", queryset=activities_qs, to_attr="person_activities"
+                    "activities", queryset=activities_qs, to_attr="person_activities"
                 )
             )
 
