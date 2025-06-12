@@ -9,6 +9,7 @@ from django.utils import timezone
 
 from data_france.models import Commune
 from faker import Faker
+from unidecode import unidecode
 
 from agir.lib.models import LocationMixin
 from agir.events.models import Calendar, Event, OrganizerConfig, RSVP, EventSubtype
@@ -83,7 +84,9 @@ def create_person(
     first_name = fake.first_name() if first_name is None else first_name
     last_name = fake.first_name() if last_name is None else last_name
     if email is None:
-        email = f"{first_name}.{last_name}{fake.unique.pyint()}@lafranceinsoumise.fr"
+        email = unidecode(
+            f"{first_name}.{last_name}{fake.unique.pyint()}@lafranceinsoumise.fr"
+        )
     gender = (
         random.choice(
             [

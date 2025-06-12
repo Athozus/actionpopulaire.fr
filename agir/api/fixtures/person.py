@@ -1,5 +1,4 @@
 from datetime import datetime, timezone
-
 from dateutil.relativedelta import relativedelta
 
 from agir.lib.tests.mixins import (
