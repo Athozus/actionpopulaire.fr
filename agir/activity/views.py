@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.generic import DetailView
-from django.db.models import Q
+from django.db.models import Q, Prefetch
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.generics import (
@@ -77,16 +77,35 @@ class AnnouncementsAPIView(ListAPIView):
     serializer_class = AnnouncementSerializer
 
     def get_queryset(self):
-        if self.request.user.is_authenticated and self.request.user.person is not None:
-            announcements = get_non_custom_announcements(self.request.user.person)
-            # Automatically mark related activities if mark_as_displayed query param equals "1"
-            if self.request.GET.get("mark_as_displayed", "0") == "1":
-                Activity.objects.filter(
-                    pk__in=[a.activity_id for a in announcements if a.activity_id],
-                    status=Activity.STATUS_UNDISPLAYED,
-                ).update(status=Activity.STATUS_DISPLAYED)
+        user = self.request.user
+        mark_as_displayed = self.request.GET.get("mark_as_displayed", "0") == "1"
+
+        if user.is_authenticated and getattr(user, 'person', None):
+            person = user.person
+
+            announcements = get_non_custom_announcements(person)
+
+            activities_qs = Activity.objects.filter(
+                recipient=person,
+                announcement__in=announcements,
+                status=Activity.STATUS_UNDISPLAYED
+            )
+
+            announcements = announcements.prefetch_related(
+                Prefetch('activity_set', queryset=activities_qs, to_attr='person_activities')
+            )
+
+            if mark_as_displayed:
+                activity_ids = []
+                for ann in announcements:
+                    if hasattr(ann, 'person_activities'):
+                        for act in ann.person_activities:
+                            activity_ids.append(act.pk)
+                if activity_ids:
+                    Activity.objects.filter(pk__in=activity_ids).update(status=Activity.STATUS_DISPLAYED)
 
             return announcements
+
         return get_non_custom_announcements()
 
 

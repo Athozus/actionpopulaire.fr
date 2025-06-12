@@ -1,3 +1,4 @@
+from functools import lru_cache
 from django.db.models import (
     Prefetch,
     Q,
@@ -14,6 +15,7 @@ from agir.activity.models import Activity
 from .models import Announcement
 from ..events.models import Event
 from ..mailing.models import Segment
+from ..people.models import Person
 
 
 def get_activities(person):
@@ -46,17 +48,18 @@ def get_activities(person):
     return activities
 
 
-def get_announcements(person=None, custom_display=None):
+@lru_cache(maxsize=128)
+def get_announcements_cached(person_id=None, custom_display=None):
     today = timezone.now()
     cond = Q(start_date__lt=today) & (Q(end_date__isnull=True) | Q(end_date__gt=today))
 
     if custom_display is not None:
-        cond = Q(custom_display__exact=custom_display) & cond
-
+        cond = Q(custom_display=custom_display) & cond
     announcements = Announcement.objects.filter(cond)
 
-    if person:
-        # Avoid checking if the person belongs to a segment multiple times for the same segment
+    if person_id:
+        person = Person.objects.get(pk=person_id)
+
         segment_ids = [
             segment.id
             for segment in (
@@ -73,7 +76,6 @@ def get_announcements(person=None, custom_display=None):
             if segment.is_included(person)
         ]
 
-        # Automatically create an activity for the person if none exists for the announcement
         announcements = announcements.filter(
             Q(segment_id__isnull=True) | Q(segment_id__in=segment_ids)
         ).annotate(
@@ -90,21 +92,19 @@ def get_announcements(person=None, custom_display=None):
                 recipient_id=person.id,
                 announcement_id=announcement_pk,
             )
-            for announcement_pk in announcements.filter(
-                activity_id__isnull=True
-            ).values_list("pk", flat=True)
+            for announcement_pk in announcements.filter(activity_id__isnull=True).values_list("pk", flat=True)
         ]
-
         Activity.objects.bulk_create(activities, ignore_conflicts=True)
     else:
         announcements = announcements.filter(segment__isnull=True)
 
-    # Les annonces sont affichés dans l'ordre :
-    # - avec les plus grandes priorités d'abord
-    # - à priorité égale, les plus récentes d'abord
-    # - à priorité et date de début égales, celles qui disparaitront les premières d'abord
-    return announcements.order_by("-priority", "-start_date", "end_date")
+    announcements = announcements.order_by("-priority", "-start_date", "end_date")
 
+    return announcements
+
+def get_announcements(person=None, custom_display=None):
+    person_id = person.id if person else None
+    return get_announcements_cached(person_id=person_id, custom_display=custom_display)
 
 def get_non_custom_announcements(person=None):
     return get_announcements(person, custom_display="")
