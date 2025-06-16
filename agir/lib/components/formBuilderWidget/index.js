@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     formBuilder = $('#fb-editor').formBuilder({
         i18n: i18n,
+        scrollToFieldOnAdd: false,
         formData: formBuilderData,
         fields: CUSTOM_FORM_BUILDER_FIELDS,
         templates: CUSTOM_FORM_BUILDER_TEMPLATES,
