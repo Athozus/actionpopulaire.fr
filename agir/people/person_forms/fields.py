@@ -195,11 +195,6 @@ class PersonChoiceField(forms.CharField):
     }
 
     def __init__(self, *args, allow_self=False, allow_inactive=False, **kwargs):
-        kwargs.setdefault(
-            "help_text",
-            "Entrez l'adresse email d'une personne inscrite sur la plateforme.",
-        )
-
         super().__init__(*args, **kwargs)
         self.allow_self = allow_self
         self.allow_inactive = allow_inactive
