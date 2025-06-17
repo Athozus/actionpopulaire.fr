@@ -19,7 +19,7 @@
 ```bash
 git clone https://github.com/lafranceinsoumise/actionpopulaire.fr
 cd actionpopulaire.fr
-touch .env
+cp .env.dev .env
 lando start
 lando manage migrate 
 lando manage update_data_france
