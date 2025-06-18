@@ -204,6 +204,28 @@ class PersonChoiceField(forms.CharField):
         self.allow_self = allow_self
         self.allow_inactive = allow_inactive
 
+    def to_python(self, value):
+        if value in self.empty_values:
+            return None
+
+        try:
+            value = Person.objects.get_by_natural_key(value.strip())
+        except Person.DoesNotExist:
+            raise ValidationError(
+                self.error_messages["invalid_choice"], code="invalid_choice"
+            )
+
+        if (
+            not self.allow_inactive
+            and value.role is not None
+            and not value.role.is_active
+        ):
+            raise ValidationError(
+                self.error_messages["invalid_choice"], code="invalid_choice"
+            )
+
+        return value.pk
+
 
 class CommuneField(GenericCommuneField):
     def to_python(self, value):
