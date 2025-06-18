@@ -17,6 +17,12 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
         icon: "📞"
     },
     {
+        label: "Champ Personne",
+        type: "person",
+        required: true,
+        icon: "👤"
+    },
+    {
         label: "Email",
         type: "text",
         subtype: "email",
@@ -76,6 +82,10 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
         icon: "🚩"
     },
     {
+        label: "Departements Assemblée des Français de l’Étranger",
+        type: "departements_circonscriptions_afe",
+    },
+    {
         label: "Circonscriptions",
         type: "select",
         name: "circonscriptions",
@@ -92,12 +102,6 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
         icon: "🌐"
     },
     {
-        label: "Champ Personne",
-        type: "person",
-        required: true,
-        icon: "👤"
-    },
-    {
         label: "Commune",
         type: "commune",
         icon: "🏙️"
@@ -110,6 +114,13 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
 ]
 
 export const TYPE_USER_ATTRS = {
+    departements_circonscriptions_afe: {
+        toCrispy: (fbField, crispyField) => {
+            crispyField.choices = "departements_circonscriptions_afe"
+            crispyField.type = "choice"
+            crispyField.id = "departement"
+        },
+    },
     person: {
         field: {
             label: 'Champ prérempli',

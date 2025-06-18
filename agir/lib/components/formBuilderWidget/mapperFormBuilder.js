@@ -95,6 +95,7 @@ const MAPPING_TYPE_TO_FORM_BUILDER = {
     'group': 'group',
     'person': 'person',
     "commune": "commune",
+    "departements_circonscriptions_afe": "departements_circonscriptions_afe"
 };
 
 const MAPPING_TYPE_TO_CRISPY = Object.keys(MAPPING_TYPE_TO_FORM_BUILDER).reduce((acc, current) => {
@@ -107,6 +108,8 @@ const MAPPING_TYPE_TO_CRISPY = Object.keys(MAPPING_TYPE_TO_FORM_BUILDER).reduce(
 export function mapCrispyTypeToFormBuilder(field) {
     if (field.person_field) {
         return "person"
+    } else if (field.id === "departement") {
+        return "departements_circonscriptions_afe"
     }
     return MAPPING_TYPE_TO_FORM_BUILDER[field.type] || 'text';
 }
