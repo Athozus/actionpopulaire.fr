@@ -128,18 +128,6 @@ const CreateSpendingRequestForm = (props) => {
     }));
   }, []);
 
-  const handleChangeCampaign = useCallback((e) => {
-    const { name, checked } = e.target;
-    setErrors((state) => ({
-      ...state,
-      [name]: undefined,
-    }));
-    setData((state) => ({
-      ...state,
-      [name]: checked,
-    }));
-  }, []);
-
   const handleChangeTiming = useCallback((value) => {
     setErrors((state) => ({
       ...state,
@@ -312,17 +300,6 @@ const CreateSpendingRequestForm = (props) => {
         <Hide $under as={StyledLabel}>
           Détails (obligatoire)
         </Hide>
-        <CheckboxField
-          toggle
-          autoFocus
-          disabled={isLoading}
-          id="campaign"
-          name="campaign"
-          value={data.campaign}
-          onChange={handleChangeCampaign}
-          label="Il s’agit d’une dépense effectuée dans le cadre de la campagne pour les élections européennes 2024"
-        />
-        <hr />
         <RadioField
           disabled={isLoading}
           id="timing"
