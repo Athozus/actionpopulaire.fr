@@ -128,6 +128,9 @@ export const TYPE_USER_ATTRS = {
         toCrispy: (fbField, crispyField) => {
             crispyField.id = fbField.field;
             crispyField.person_field = true
+            if (crispyField.type) {
+                delete crispyField.type
+            }
         },
         toFormBuilder: (crispyField, fbField) => {
             fbField.field = crispyField.id
