@@ -10,6 +10,7 @@ import Spacer from "@agir/front/genericComponents/Spacer";
 
 import { displayPrice } from "@agir/lib/utils/display";
 import { useIsDesktop } from "@agir/front/genericComponents/grid";
+import CurrencyField from "@agir/front/formComponents/CurrencyField";
 
 const StyledGroupAmount = styled.div`
   display: flex;
@@ -53,17 +54,12 @@ const AmountField = (props) => {
 
   return (
     <>
-      <NumberField
-        currency
-        large
-        disabled={disabled}
-        id="amount"
-        name="amount"
-        value={value}
-        onChange={onChange}
-        error={error}
-        label="Montant TTC (obligatoire)"
-        placeholder={displayPrice(availableAmount, true)}
+      <CurrencyField
+          large
+          onChange={onChange}
+          amount={value ? (value / 100) : ""}
+          placeholder={displayPrice(availableAmount, true)}
+          label="Montant TTC (obligatoire)"
       />
       <Spacer size="1rem" />
       <StyledGroupAmount>

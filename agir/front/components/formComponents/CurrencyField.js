@@ -2,16 +2,29 @@ import React, {useEffect, useRef, useState} from "react";
 import TextField from "@agir/front/formComponents/TextField";
 
 
-export default function CurrencyField({ amount, onChange, readOnly = false, error = "" }) {
+export default function CurrencyField({ amount, onChange, readOnly = false, error = "", ...rest }) {
     const [currentValue, setCurrentValue] = useState(amount)
     const amountRef = useRef()
 
     function _onChange(e) {
-        let value = e.target.value?.trim().replace(/[^0-9,.]/g, "").replace(",", ".")
-        value = isNaN(value) || value === "" ? 0 : value
+        let value = e.target.value?.trim().replace(/[^0-9,.]/g, "").replace(".", ",")
+
+        if (value === "") {
+            setCurrentValue(value)
+            return
+        }
         setCurrentValue(value)
         amountRef.current = value
-        onChange(Math.floor( parseFloat(value) * 100))
+        if (value.includes(",")) {
+            const lengthAfterComma = value.split(",")[1].length
+            if (lengthAfterComma === 1) {
+                onChange(parseInt(value.replace(",", "")) * 10)
+            } else if (lengthAfterComma === 2) {
+                onChange(parseInt(value.replace(",", "")))
+            }
+        } else {
+            onChange(parseInt(value) * 100)
+        }
     }
 
     useEffect(() => {
@@ -26,6 +39,7 @@ export default function CurrencyField({ amount, onChange, readOnly = false, erro
         onChange={_onChange}
         error={error}
         iconRight
-        value={currentValue}
+        value={currentValue.toString().replace(".", ",")}
+        {...rest}
     />
 }

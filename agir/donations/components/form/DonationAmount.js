@@ -64,7 +64,8 @@ export default function DonationAmount() {
     }
 
     function amountAfterImpot() {
-        return Math.floor(amount * 100 * 0.34) / 10000
+        const result = Math.floor(amount * 100 * 0.34) / 10000
+        return result.toFixed(2).toString().replace(".", ",")
     }
 
     const AmountButton = useMemo(() => {
