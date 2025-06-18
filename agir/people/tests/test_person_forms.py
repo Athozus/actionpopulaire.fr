@@ -594,6 +594,97 @@ class SubmissionFormatTestCase(TestCase):
         )
 
 
+class FieldsTestCase(TestCase):
+    def setUp(self) -> None:
+        self.person = Person.objects.create_insoumise(
+            "test@example.com", create_role=True
+        )
+        self.other_person = Person.objects.create_insoumise("test2@example.com")
+
+    # utilise un token bucket
+    @using_separate_redis_server
+    def test_person_choice_field_allow_self(self):
+        person_form = PersonForm.objects.create(
+            title="Formulaire",
+            slug="formulaire",
+            description="description",
+            confirmation_note="note de fin",
+            custom_fields=[
+                {
+                    "title": "titre",
+                    "fields": [
+                        {
+                            "id": "person",
+                            "type": "person",
+                            "label": "Personne",
+                            "allow_self": False,
+                            "required": True,
+                        }
+                    ],
+                }
+            ],
+        )
+
+        form_class = get_people_form_class(person_form)
+        form = form_class(data={"person": "test@example.com"}, instance=self.person)
+        self.assertFalse(form.is_valid())
+        form.has_error("person", code="selected_self")
+
+        person_form.custom_fields[0]["fields"][0]["allow_self"] = True
+
+        form_class = get_people_form_class(person_form)
+        form = form_class(data={"person": "test@example.com"}, instance=self.person)
+        self.assertTrue(form.is_valid())
+
+    # utilise un token bucket
+    @using_separate_redis_server
+    def test_person_choice_field(self):
+        self.client.force_login(self.person.role)
+
+        self.complex_form = PersonForm.objects.create(
+            title="Formulaire person choice",
+            slug="formulaire-person-choice",
+            description="Ma description onsef",
+            confirmation_note="Ma note de fin",
+            custom_fields=[
+                {
+                    "title": "Détails",
+                    "fields": [
+                        {
+                            "id": "person_choice",
+                            "type": "person",
+                            "label": "Un autre inscrit",
+                        }
+                    ],
+                }
+            ],
+        )
+
+        res = self.client.post(
+            reverse("view_person_form", args=["formulaire-person-choice"]),
+            data={"person_choice": "test2@example.com"},
+        )
+        self.assertRedirects(res, "/formulaires/formulaire-person-choice/confirmation/")
+        submission = PersonFormSubmission.objects.last()
+        self.assertEqual(submission.data["person_choice"], str(self.other_person.pk))
+
+        for i in range(0, 20):
+            self.client.post(
+                reverse("view_person_form", args=["formulaire-person-choice"]),
+                data={"person_choice": "notexistperson@corp.com"},
+            )
+        res = self.client.post(
+            reverse("view_person_form", args=["formulaire-person-choice"]),
+            data={"person_choice": "test2@example.com"},
+        )
+        self.assertFormError(
+            res,
+            "form",
+            "person_choice",
+            "Vous avez fait trop d'erreurs. Par sécurité, vous devez attendre avant d'essayer d'autres adresses emails.",
+        )
+
+
 class CampaignTemplateTestCase(SetUpPersonFormsMixin, TestCase):
     def setUp(self):
         super().setUp()
