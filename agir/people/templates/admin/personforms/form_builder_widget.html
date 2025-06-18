@@ -3,8 +3,27 @@
 <script src="https://formbuilder.online/assets/js/form-builder.min.js"></script>
 
 <style>
+  .form-wrap.form-builder .frmb li.form-field {
+    background-color: var(--darkened-bg);
+  }
   .form-wrap.form-builder .frmb li.form-field .field-label {
     display: inline;
+    color: var(--body-quiet-color);
+  }
+  .form-wrap.form-builder .frmb-control li {
+    background-color: var(--darkened-bg);
+  }
+  .form-wrap.form-builder .frmb-control li:hover {
+    background-color: var(--button-hover-bg);
+  }
+  .form-wrap.form-builder .frmb .form-elements {
+    background-color: var(--body-bg);
+    border-color: var(--border-color);
+  }
+  .form-wrap.form-builder .frmb .form-elements [contenteditable].form-control, input, select {
+    background-color: var(--darkened-bg)!important;
+  }
+  .form-wrap.form-builder .frmb .form-elements input {
   }
   li[type]:not([type='title']) {
     margin-left: 15px !important;
