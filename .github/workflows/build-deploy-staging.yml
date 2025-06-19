@@ -91,6 +91,7 @@ jobs:
 
     - name: Run Ansible Playbook
       run: |
+        set -e
         cd playbooks
         ansible-playbook agir.yml \
           --tags deploy \
