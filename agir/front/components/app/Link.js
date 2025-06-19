@@ -78,7 +78,7 @@ const Link = (() => {
     const {isAndroid, isIOS} = useMobileApp();
     if (download) {
       if (isAndroid) {
-        newHref = newHref.replace("https", "intent") + "#Intent;scheme=https;end"
+        newHref = newHref + "#Intent;scheme=https;end"
       } else if (isIOS) {
         newHref = "x-safari-" + newHref
       }
