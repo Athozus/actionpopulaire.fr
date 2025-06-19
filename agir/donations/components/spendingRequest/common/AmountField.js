@@ -60,6 +60,8 @@ const AmountField = (props) => {
           amount={value ? (value / 100) : ""}
           placeholder={displayPrice(availableAmount, true)}
           label="Montant TTC (obligatoire)"
+          name="amount"
+          id="amount"
       />
       <Spacer size="1rem" />
       <StyledGroupAmount>
