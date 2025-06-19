@@ -3,7 +3,7 @@ name: Deploy to staging
 on:
   push:
     branches:
-      - BenjaminL/cd-workflow
+      - staging
   workflow_run:
     workflows: ["Tests", "Build front bundles"]
     types:
