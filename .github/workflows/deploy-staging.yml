@@ -34,5 +34,5 @@ jobs:
     - name: deploy
       run: |
         cd playbooks
-        ansible-playbook playbooks/agir.yml --tags deploy --limit agir-preprod
+        ansible-playbook agir.yml --tags deploy --limit agir-preprod
           
