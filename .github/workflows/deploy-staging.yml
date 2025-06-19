@@ -20,6 +20,7 @@ jobs:
       with:
         owner: 'lafranceinsoumise'
         repository: 'playbooks'
+        branch: 'master'
         access-token: ${{ secrets.GH_ACCESS_TOKEN }}
 
     - name: Setup Ansible
