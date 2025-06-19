@@ -29,7 +29,7 @@ jobs:
       uses: alex-oleshkevich/setup-ansible@v1.0.1
       with:
         # The version of Ansible to install.
-        version: 2.18.5 
+        version: 11.7.0
 
     - name: deploy
       run: |
