@@ -215,7 +215,7 @@ export const ObjectManagement = (props) => {
   const history = useHistory();
 
   const goToMenu = useCallback(() => {
-    menuLink && history.push(menuLink);
+    menuLink && history.goBack()
   }, [menuLink, history]);
 
   const closePanel = useCallback(() => {
