@@ -2,9 +2,19 @@ name: Deploy to staging
 
 on:
   workflow_run:
-    workflows: ["Tests", "Build front bundles", ]
+    workflows: ["Tests", "Build front bundles"]
     types:
       - completed
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environnement"
+        required: true
+        default: "preprod"
+        type: choice
+        options:
+          - preprod
+          - prod
 
 jobs:
   deploy-staging:
