@@ -20,17 +20,9 @@ jobs:
 
       - name: Build staging bundles
         run: npm run build
-        if: ${{ github.ref != 'refs/heads/production'}}
         env:
           WEBPUSH_PUBLIC_KEY: "${{ secrets.WEBPUSH_PUBLIC_KEY }}"
           SENTRY_ENV: "staging"
-
-      - name: Build production bundles
-        run: npm run build
-        if: ${{ github.ref == 'refs/heads/production'}}
-        env:
-          WEBPUSH_PUBLIC_KEY: "${{ secrets.WEBPUSH_PUBLIC_KEY }}"
-          SENTRY_ENV: "production"
 
       - name: Print build asset tree
         run: tree -L 3 assets/
@@ -41,12 +33,7 @@ jobs:
           path: assets/
 
       - name: Tell the team
-        run: curl -s "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage?chat_id=${{ secrets.TELEGRAM_CHAT_ID }}\&text=Build%20production%20terminé"
-        if: ${{ github.ref == 'refs/heads/production'}}
-
-      - name: Tell the team
         run: curl -s "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage?chat_id=${{ secrets.TELEGRAM_CHAT_ID }}\&text=Build%20${{ github.ref_name }}%20terminé"
-        if: ${{ github.ref != 'refs/heads/production'}}
 
   sentry:
     name: Create release
