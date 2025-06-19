@@ -18,7 +18,7 @@ jobs:
     - name: Clone
       uses: GuillaumeFalourd/clone-github-repo-action@v2.3
       with:
-        owner: 'Ben-Ji-L'
+        owner: 'lafranceinsoumise'
         repository: 'playbooks'
         access-token: ${{ secrets.GH_ACCESS_TOKEN }}
 
