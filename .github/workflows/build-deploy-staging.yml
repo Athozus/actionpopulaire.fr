@@ -86,12 +86,11 @@ jobs:
 
     - name: Setup Vault password
       run: |
-        echo "${{ secrets.ANSIBLE_VAULT_PASSWORD }}" > ~/.vault_pass.txt
-        chmod 600 ~/.vault_pass.txt
+        echo "${{ secrets.ANSIBLE_VAULT_PASSWORD }}" > playbooks/.vault-pass
+        chmod 600 playbooks/.vault-pass
 
     - name: Run Ansible Playbook
       run: |
-        set -e
         cd playbooks
         ansible-playbook agir.yml \
           --tags deploy \
