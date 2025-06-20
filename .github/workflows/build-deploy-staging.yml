@@ -95,5 +95,5 @@ jobs:
         ansible-playbook agir.yml \
           --tags deploy \
           --limit agir-preprod \
-          --vault-password-file ~/.vault_pass.txt \
+          --vault-password-file .vault_pass \
           --private-key ~/.ssh/id_rsa
