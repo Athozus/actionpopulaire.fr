@@ -86,8 +86,8 @@ jobs:
 
     - name: Setup Vault password
       run: |
-        echo "${{ secrets.ANSIBLE_VAULT_PASSWORD }}" > playbooks/.vault_pass
-        chmod 600 playbooks/.vault_pass
+        echo "${{ secrets.ANSIBLE_VAULT_PASSWORD }}" > playbooks/.vault-pass
+        chmod 600 playbooks/.vault-pass
 
     - name: Run Ansible Playbook
       run: |
@@ -95,5 +95,5 @@ jobs:
         ansible-playbook agir.yml \
           --tags deploy \
           --limit agir-preprod \
-          --vault-password-file .vault_pass \
+          --vault-password-file .vault-pass \
           --private-key ~/.ssh/id_rsa
