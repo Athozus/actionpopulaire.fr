@@ -6,8 +6,7 @@ on: [push, workflow_dispatch]
 
 jobs:
   webpack:
-    if: github.ref_name != 'staging'
-    name: Webpack
+  name: Webpack
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
