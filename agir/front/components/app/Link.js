@@ -72,17 +72,8 @@ RouteLink.propTypes = {
 
 const Link = (() => {
   const LinkComponent = (props, ref) => {
-    const { route, href, to, download } = props;
+    const { route, href, to } = props;
     let newHref = href;
-
-    const {isAndroid, isIOS} = useMobileApp();
-    if (download) {
-      if (isAndroid) {
-        newHref = newHref + "#Intent;scheme=https;end"
-      } else if (isIOS) {
-        newHref = "x-safari-" + newHref
-      }
-    }
 
     if (route) {
       return <RouteLink forwardedRef={ref} {...props} href={newHref} />;
