@@ -89,6 +89,12 @@ jobs:
         echo "${{ secrets.ANSIBLE_VAULT_PASSWORD }}" > playbooks/.vault-pass
         chmod 600 playbooks/.vault-pass
 
+    - name: Download a Build Artifact
+      uses: actions/download-artifact@v4.3.0
+      with:
+        name: assets
+        path: /tmp/agir-assets.zip
+    
     - name: Run Ansible Playbook
       run: |
         cd playbooks
