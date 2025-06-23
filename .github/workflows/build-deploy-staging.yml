@@ -96,9 +96,12 @@ jobs:
         name: assets.zip
         path: ./
 
-    - name: debut asset artifact
+    - name: Zip assets
+      run: zip -r ./assets ./agir-assets.zip
+
+    - name: debug asset artifact
       run: |
-        ls -al ./assets
+        ls -al ./
     
     - name: Run Ansible Playbook
       run: |
