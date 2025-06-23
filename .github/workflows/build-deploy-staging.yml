@@ -29,7 +29,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: assets.zip
+          name: assets
           path: ./
           overwrite: true
 
@@ -93,11 +93,11 @@ jobs:
     - name: Download a Build Artifact
       uses: actions/download-artifact@v4.3.0
       with:
-        name: assets.zip
+        name: assets
         path: ./
 
     - name: Zip assets
-      run: zip -r ./assets ./agir-assets.zip
+      run: zip -r ./agir-assets.zip ./assets/*
 
     - name: debug asset artifact
       run: |
