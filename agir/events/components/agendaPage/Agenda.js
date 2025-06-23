@@ -1,5 +1,5 @@
 import { DateTime, Interval } from "luxon";
-import React, { useCallback, useMemo } from "react";
+import React, {useCallback, useMemo, useState} from "react";
 import styled from "styled-components";
 import useSWR from "swr";
 
@@ -27,6 +27,7 @@ import {
 } from "@agir/front/globalContext/reducers";
 import logger from "@agir/lib/utils/logger";
 import { getAgendaEndpoint } from "./api.js";
+import NotificationRationaleModal from "@agir/events/agendaPage/NotificationRationaleModal";
 
 const log = logger(__filename);
 
@@ -121,6 +122,7 @@ const Agenda = () => {
 
   return (
     <StyledAgenda>
+      <NotificationRationaleModal />
       <header>
         <Hide $over>
           <ActionButtons />
