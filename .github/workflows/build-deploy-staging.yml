@@ -29,8 +29,8 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: assets
-          path: ./
+          name: assets.zip
+          path: ./agir-assets.zip
           overwrite: true
 
       - name: Tell the team
@@ -93,7 +93,7 @@ jobs:
     - name: Download a Build Artifact
       uses: actions/download-artifact@v4.3.0
       with:
-        name: assets
+        name: assets.zip
         path: ./
 
     - name: debut asset artifact
