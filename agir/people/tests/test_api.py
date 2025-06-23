@@ -36,7 +36,7 @@ class PersonProfileTestCase(APITestCase):
 
     def test_authenticated_user_can_update_her_profile(self):
         self.client.force_login(self.person.role)
-        new_data = {"displayName": "PP"}
+        new_data = {"displayName": "PP", "dateOfBirth": "1951-08-19"}
         res = self.client.put("/api/user/profile/", data=new_data)
         self.assertEqual(res.status_code, 200)
         self.assertEqual(res.data["displayName"], "PP")

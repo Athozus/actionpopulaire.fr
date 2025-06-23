@@ -1,20 +1,16 @@
 import datetime
-import logging
 import re
 from unittest import mock
 from unittest.mock import patch
 
 from django.core import mail
 from django.test import TestCase, override_settings
-from django.utils import timezone
 from django.utils.http import base36_to_int, int_to_base36, urlencode
 from phonenumber_field.phonenumber import to_python as to_phone_number
 from rest_framework import status
 from rest_framework.reverse import reverse
-from rest_framework.test import APITestCase
 
 from agir.api.redis import using_separate_redis_server
-from agir.events.models import Event, EventSubtype
 from agir.people.actions.validation_codes import _initialize_buckets
 from agir.people.models import Person, PersonValidationSMS, generate_code
 from agir.people.tasks import (

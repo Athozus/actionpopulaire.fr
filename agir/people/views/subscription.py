@@ -58,6 +58,11 @@ class UnsubscribeView(SimpleOpengraphMixin, FormView):
         )
 
 
+import logging
+
+logger = logging.getLogger(__name__)
+
+
 class ConfirmSubscriptionView(View):
     """Vue prenant en charge l'URL de confirmation d'inscription
 

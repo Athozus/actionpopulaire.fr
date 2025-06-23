@@ -16,6 +16,8 @@ import Spacer from "@agir/front/genericComponents/Spacer";
 
 import { updateProfile, getProfile } from "@agir/front/authentication/api";
 import generateLogger from "@agir/lib/utils/logger";
+import DateTimeField from "@agir/front/formComponents/DateTimeField";
+import {DateTime} from "luxon";
 
 const logger = generateLogger(__filename);
 
@@ -181,6 +183,7 @@ const TellMore = ({ dismiss }) => {
       e.preventDefault();
       setIsLoading(true);
       setError(null);
+
       const data = await updateProfile(formData);
       setIsLoading(false);
       if (data.error) {
@@ -269,6 +272,20 @@ const TellMore = ({ dismiss }) => {
                 <Spacer size="1rem" />
               </>
             )}
+            <DateTimeField
+                required
+                type="date"
+                id="dateOfBirth"
+                name="dateOfBirth"
+                value={formData.dateOfBirth}
+                onChange={(birthDate) => handleInputChange({target: {
+                    name: "dateOfBirth",
+                    value: DateTime.fromISO(birthDate).toISODate()
+                }})}
+                error={error && error.dateOfBirth}
+                label="Date de naissance"
+                placeholder="19/08/1951"
+            />
             <InputGroup>
               <div>
                 <TextField

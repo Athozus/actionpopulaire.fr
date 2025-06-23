@@ -47,7 +47,9 @@ const StyledInput = styled(Datetime)`
   }
 `;
 const StyledIcon = styled.span``;
-const StyledError = styled.span``;
+const StyledError = styled.span`
+  margin-bottom: 10px;
+`;
 
 const StyledField = styled.div`
   display: grid;

@@ -103,6 +103,7 @@ class PersonProfileAPIView(RetrieveUpdateAPIView):
                 "actionRadius",
                 "hasLocation",
                 "created",
+                "dateOfBirth",
             ],
             **kwargs,
         )

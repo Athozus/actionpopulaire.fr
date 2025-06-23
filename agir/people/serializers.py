@@ -1,5 +1,6 @@
-from datetime import date
+from datetime import date, datetime
 
+from dateutil.relativedelta import relativedelta
 from django.http import Http404
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -25,6 +26,7 @@ from .actions.subscription import (
 from .models import Person, PersonTag
 from .tags import media_tags
 from .tasks import send_confirmation_email
+from ..api.settings import MIN_AGE_PER_COUNTRY
 from ..groups.models import SupportGroup
 from ..lib.tasks import geocode_person
 from ..lib.token_bucket import TokenBucket
@@ -364,9 +366,21 @@ class PersonSerializer(FlexibleFieldsMixin, serializers.ModelSerializer):
     )
     hasLocation = serializers.BooleanField(source="has_location", read_only=True)
     created = serializers.CharField(read_only=True)
-    date_of_birth = serializers.DateField()
+    dateOfBirth = serializers.DateField(
+        source="date_of_birth",
+        input_formats=["%Y-%m-%d"],
+    )
 
     def update(self, instance, validated_data):
+        if validated_data.get("date_of_birth"):
+            difference = relativedelta(
+                datetime.now(), validated_data.get("date_of_birth")
+            )
+            if difference.years < MIN_AGE_PER_COUNTRY["FR"]:
+                raise serializers.ValidationError({"dateOfBirth": "Âge incorrect"})
+        else:
+            raise serializers.ValidationError({"dateOfBirth": "Âge manquant"})
+
         instance = super().update(instance, validated_data)
         if any(field in validated_data for field in instance.GEOCODING_FIELDS):
             geocode_person.delay(instance.pk)
@@ -395,7 +409,7 @@ class PersonSerializer(FlexibleFieldsMixin, serializers.ModelSerializer):
             "actionRadius",
             "hasLocation",
             "created",
-            "date_of_birth",
+            "dateOfBirth",
         )
 
 
