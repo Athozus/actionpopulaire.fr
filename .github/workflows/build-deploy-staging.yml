@@ -30,7 +30,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: assets
-          path: ./
           overwrite: true
 
       - name: Tell the team
@@ -95,6 +94,10 @@ jobs:
       with:
         name: assets
         path: ./
+
+    - name: debut asset artifact
+      run: |
+        ls -al ./assets
     
     - name: Run Ansible Playbook
       run: |
