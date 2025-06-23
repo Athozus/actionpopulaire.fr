@@ -94,7 +94,7 @@ jobs:
       uses: actions/download-artifact@v4.3.0
       with:
         name: assets
-        path: /tmp/assets/agir-assets.zip
+        path: /tmp/assets/
     
     - name: Run Ansible Playbook
       run: |
