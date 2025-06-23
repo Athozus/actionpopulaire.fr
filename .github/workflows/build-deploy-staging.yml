@@ -97,7 +97,9 @@ jobs:
         path: ./
 
     - name: Zip assets
-      run: zip -r ./agir-assets.zip ./assets/*
+      run: |
+        cd assets
+        zip -r ../agir-assets.zip .
 
     - name: debug asset artifact
       run: |
