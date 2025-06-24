@@ -112,16 +112,11 @@ jobs:
           name: assets
           path: ./
 
-      - name: Zip assets
-        run: |
-          cd assets
-          zip -r ../agir-assets.zip .
-
       - name: Run Ansible Playbook
         run: |
           cd playbooks
           ansible-playbook agir.yml \
-            --tags deploy \
+            --tags deploy,ci \
             --skip-tags manual \
             --limit agir-preprod \
             --vault-password-file .vault-pass \
@@ -170,7 +165,7 @@ jobs:
         run: |
           cd playbooks
           ansible-playbook agir.yml \
-            --tags deploy \
+            --tags deploy,ci \
             --skip-tags manual \
             --limit agir-prod \
             --vault-password-file .vault-pass \
