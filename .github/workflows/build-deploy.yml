@@ -6,15 +6,16 @@ on:
       - staging
 
   workflow_dispatch:
-
+    inputs:
+      env:
+        description: "Environnement"
+        required: true
+        type: choice
+        options:
+          - staging
+          - production
+          
 jobs:
-  check-branch:
-    if: github.event_name == 'workflow_dispatch' && github.ref_name != 'production'
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "::error::❌ Ce workflow manuel ne peut être lancé que sur la branche 'production'."
-        # GitHub considère une étape qui affiche "::error::" + `exit 1` comme un échec
-      - run: exit 1
   webpack:
     name: Webpack
     runs-on: ubuntu-latest
