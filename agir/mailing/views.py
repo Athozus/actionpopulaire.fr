@@ -1,3 +1,5 @@
+import math
+
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
@@ -28,7 +30,7 @@ def people_sms_count_view(request, pk):
         "admin/subscribers_sms_count.html",
         {
             "people_size": size,
-            "price_estimation": size * UNIT_PRICE_SMS,
+            "price_estimation": math.ceil(size * UNIT_PRICE_SMS),
             "segment": segment,
             "add_smsdiffusion_url": lien,
         },
