@@ -37,10 +37,15 @@ jobs:
       - name: Print build asset tree
         run: tree -L 3 assets/
 
+      - name: Zip assets
+        run: |
+          cd assets
+          zip -r ../agir-assets.zip .
+
       - uses: actions/upload-artifact@v4
         with:
           name: assets
-          path: ./
+          path: agir-assets.zip
           overwrite: true
 
       - name: Tell the team
@@ -160,11 +165,6 @@ jobs:
         with:
           name: assets
           path: ./
-
-      - name: Zip assets
-        run: |
-          cd assets
-          zip -r ../agir-assets.zip .
 
       - name: Run Ansible Playbook
         run: |
