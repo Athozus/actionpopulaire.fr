@@ -1,0 +1,177 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - staging
+
+  workflow_dispatch:
+
+jobs:
+  check-branch:
+    if: github.event_name == 'workflow_dispatch' && github.ref_name != 'production'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "::error::❌ Ce workflow manuel ne peut être lancé que sur la branche 'production'."
+        # GitHub considère une étape qui affiche "::error::" + `exit 1` comme un échec
+      - run: exit 1
+  webpack:
+    name: Webpack
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "21"
+          cache: "npm"
+
+      - name: Install node dependencies
+        run: npm ci
+
+      - name: Build assets
+        run: npm run build
+        env:
+          WEBPUSH_PUBLIC_KEY: "${{ secrets.WEBPUSH_PUBLIC_KEY }}"
+          SENTRY_ENV: ${{ github.ref_name }}
+
+      - name: Print build asset tree
+        run: tree -L 3 assets/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: assets
+          path: ./
+          overwrite: true
+
+      - name: Tell the team
+        run: curl -s "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage?chat_id=${{ secrets.TELEGRAM_CHAT_ID }}&text=Build%20${{ github.ref_name || inputs.environment }}%20terminé"
+
+  sentry:
+    name: Create Sentry release
+    needs: webpack
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Create Sentry release
+        uses: getsentry/action-release@v1
+        env:
+          SENTRY_URL: ${{ secrets.SENTRY_URL }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_LOG_LEVEL: debug
+        with:
+          ignore_missing: true
+          finalize: false
+          environment: ${{ github.ref_name }}
+          projects: ${{ secrets.SENTRY_PROJECT_BACK }} ${{ secrets.SENTRY_PROJECT_FRONT }}
+
+  deploy-staging:
+    if: github.ref_name == 'staging'
+    environment: preprod
+    name: Deploy to staging
+    needs: sentry
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Clone
+        uses: GuillaumeFalourd/clone-github-repo-action@v2.3
+        with:
+          owner: 'lafranceinsoumise'
+          repository: 'playbooks'
+          branch: 'master'
+          access-token: ${{ secrets.GH_ACCESS_TOKEN }}
+
+      - name: Setup Ansible
+        uses: alex-oleshkevich/setup-ansible@v1.0.1
+        with:
+          version: 11.7.0
+
+      - name: Setup SSH key
+        run: |
+          cd playbooks
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.HOST_IP }} >> ~/.ssh/known_hosts
+
+      - name: Setup Vault password
+        run: |
+          echo "${{ secrets.ANSIBLE_VAULT_PASSWORD }}" > playbooks/.vault-pass
+          chmod 600 playbooks/.vault-pass
+
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v4.3.0
+        with:
+          name: assets
+          path: ./
+
+      - name: Zip assets
+        run: |
+          cd assets
+          zip -r ../agir-assets.zip .
+
+      - name: Run Ansible Playbook
+        run: |
+          cd playbooks
+          ansible-playbook agir.yml \
+            --tags deploy \
+            --skip-tags manual \
+            --limit agir-preprod \
+            --vault-password-file .vault-pass \
+            --private-key ~/.ssh/id_rsa
+
+  deploy-production:
+    if: github.ref_name == 'production'
+    environment: prod
+    name: Deploy to production
+    needs: sentry
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Clone
+        uses: GuillaumeFalourd/clone-github-repo-action@v2.3
+        with:
+          owner: 'lafranceinsoumise'
+          repository: 'playbooks'
+          branch: 'master'
+          access-token: ${{ secrets.GH_ACCESS_TOKEN }}
+
+      - name: Setup Ansible
+        uses: alex-oleshkevich/setup-ansible@v1.0.1
+        with:
+          version: 11.7.0
+
+      - name: Setup SSH key
+        run: |
+          cd playbooks
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.HOST_IP }} >> ~/.ssh/known_hosts
+
+      - name: Setup Vault password
+        run: |
+          echo "${{ secrets.ANSIBLE_VAULT_PASSWORD }}" > playbooks/.vault-pass
+          chmod 600 playbooks/.vault-pass
+
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v4.3.0
+        with:
+          name: assets
+          path: ./
+
+      - name: Zip assets
+        run: |
+          cd assets
+          zip -r ../agir-assets.zip .
+
+      - name: Run Ansible Playbook
+        run: |
+          cd playbooks
+          ansible-playbook agir.yml \
+            --tags deploy \
+            --skip-tags manual \
+            --limit agir-prod \
+            --vault-password-file .vault-pass \
+            --private-key ~/.ssh/id_rsa
