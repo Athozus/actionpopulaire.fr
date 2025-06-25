@@ -1,6 +1,5 @@
 from functools import lru_cache
 from django.db.models import (
-    Prefetch,
     Q,
     Subquery,
     OuterRef,

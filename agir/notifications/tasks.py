@@ -8,6 +8,7 @@ from firebase_admin import messaging
 
 @gcm_push_task(post_save=True)
 def send_fcm_activity(activity_pk, fcm_device_pk):
+
     activity = Activity.objects.get(pk=activity_pk)
     fcm_device = GCMDevice.objects.get(pk=fcm_device_pk)
     serializer = ACTIVITY_NOTIFICATION_SERIALIZERS.get(activity.type, None)

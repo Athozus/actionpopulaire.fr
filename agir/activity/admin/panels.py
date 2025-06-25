@@ -2,10 +2,12 @@ import json
 
 from django.contrib import admin, messages
 from django.http import HttpResponseRedirect
+from django.utils import timezone
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
 from agir.activity.models import Activity, Announcement, PushAnnouncement
+from agir.activity.pushannouncement_results import PushAnnouncementResults
 from agir.lib.admin.utils import display_json_details
 from agir.lib.search import PrefixSearchQuery
 
@@ -170,6 +172,8 @@ class PushAnnouncementAdmin(admin.ModelAdmin):
                 "fields": (
                     "sending_date",
                     "recipient_count",
+                    "notifications_succeeded_amount",
+                    "notifications_failed_amount",
                     "clicked_count",
                     "sending_data",
                 )
@@ -186,6 +190,8 @@ class PushAnnouncementAdmin(admin.ModelAdmin):
         "clicked_count",
         "test_action_buttons",
         "action_buttons",
+        "notifications_succeeded_amount",
+        "notifications_failed_amount",
     ]
     autocomplete_fields = ("segment", "test_segment")
 
@@ -221,7 +227,7 @@ class PushAnnouncementAdmin(admin.ModelAdmin):
 
         return obj.displayed_count()
 
-    @admin.display(description="Nombre de clics")
+    @admin.display(description="Nombre de clics sur les activités")
     def clicked_count(self, obj):
         if obj._state.adding:
             return "-"
@@ -234,6 +240,14 @@ class PushAnnouncementAdmin(admin.ModelAdmin):
             return "-"
 
         return display_json_details(obj.sending_meta, "Données de l'envoi")
+
+    @admin.display(description="Nombre de notifications envoyées avec succès")
+    def notifications_succeeded_amount(self, obj: PushAnnouncement):
+        return PushAnnouncementResults(obj.pk).get_success_amount()
+
+    @admin.display(description="Nombre de notifications échouée")
+    def notifications_failed_amount(self, obj: PushAnnouncement):
+        return PushAnnouncementResults(obj.pk).get_failures_amount()
 
     @admin.display(description="Actions")
     def test_action_buttons(self, obj):
@@ -278,19 +292,14 @@ class PushAnnouncementAdmin(admin.ModelAdmin):
 
     def response_change(self, request, obj):
         if "_send" in request.POST:
-            try:
-                obj.send()
-                result = json.dumps(obj.sending_meta, sort_keys=True, indent=2)
-                self.message_user(
-                    request,
-                    mark_safe(f"Résultat de l'envoi de : <pre>{result}</pre>"),
-                )
-            except Exception as e:
-                self.message_user(
-                    request,
-                    str(e),
-                    level=messages.WARNING,
-                )
+            obj.send()
+            obj.sending_date = timezone.now()
+            obj.save()
+            self.message_user(
+                request,
+                mark_safe(f"Envoi en cours !"),
+            )
+
             return HttpResponseRedirect(".")
 
         if "_test" in request.POST:

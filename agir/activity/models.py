@@ -1,16 +1,15 @@
-import json
-
 import dynamic_filenames
 from django.conf import settings
 from django.core import validators
 from django.core.validators import FileExtensionValidator
-from django.db import models, transaction
+from django.db import models
 from django.utils import timezone
 from django.utils.functional import cached_property
 from push_notifications.models import GCMDevice
 from firebase_admin import messaging
 from stdimage import StdImageField
 from stdimage.validators import MinSizeValidator
+
 
 from agir.lib.models import TimeStampedModel, DescriptionField, BaseAPIResource
 from agir.lib.utils import front_url, is_absolute_url
@@ -644,35 +643,11 @@ class PushAnnouncement(BaseAPIResource):
         if not self.can_send():
             raise Exception("Cette annonce a déjà été envoyée")
 
-        recipient_count = self.recipient_count()
+        from agir.activity.tasks import (
+            prepare_push_notification_from_segment,
+        )
 
-        if recipient_count == 0:
-            raise Exception(
-                "Aucun destinataire n'a été trouvé pour le segment spécifié"
-            )
-
-        sending_result = self.push()
-
-        with transaction.atomic():
-            # Create activities
-            Activity.objects.bulk_create(
-                [
-                    Activity(
-                        type=Activity.TYPE_PUSH_ANNOUNCEMENT,
-                        recipient_id=recipient_id,
-                        push_announcement_id=self.id,
-                        status=Activity.STATUS_UNDISPLAYED,
-                        push_status=Activity.STATUS_DISPLAYED,
-                    )
-                    for recipient_id in self.recipient_ids
-                ],
-                ignore_conflicts=True,
-            )
-
-            # Update sending data
-            self.sending_date = timezone.now()
-            self.sending_meta = sending_result
-            self.save()
+        prepare_push_notification_from_segment.delay(self.pk)
 
     def test(self):
         if not self.test_segment:
