@@ -18,7 +18,7 @@ function appendStopShortcodeButton() {
     const button = document.createElement("a")
     button.style = `display: flex;
         justify-content: center;
-        width: 160px;
+        width: 200px;
         align-items: center;
         height:30px;
         cursor:pointer;
