@@ -1,12 +1,10 @@
 import dataclasses
 import json
 import time
-from dataclasses import dataclass
 from enum import Enum
 from typing import TypedDict
 import requests
 from django.conf import settings
-from urllib3 import Retry, PoolManager
 
 from agir.api.settings import SFR_DEFAULT_SENDER
 from agir.diffusion.models import SMSDiffusion
@@ -133,7 +131,7 @@ class DmcWSDiffusion(SfrServiceAuth):
                     "customizableMessage": json.dumps(
                         [
                             {
-                                "messageFrom": SFR_DEFAULT_SENDER,
+                                "messageFrom": sms_diffusion.sender,
                                 "text": sms_diffusion.message,
                                 "multimediaType": 3,
                                 "customizableId": SMS_CUSTOMIZE_ID,

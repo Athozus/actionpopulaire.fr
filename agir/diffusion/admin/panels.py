@@ -50,6 +50,7 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
             {
                 "fields": (
                     "title",
+                    "sender",
                     "message",
                 )
             },

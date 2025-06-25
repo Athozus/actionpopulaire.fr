@@ -4,12 +4,18 @@ from agir.lib.models import TimeStampedModel
 from django.contrib.gis.db import models
 from django.utils import timezone
 
+from django.utils.translation import gettext_lazy as _
+
 
 def get_default_end_date():
     return timedelta(hours=2) + timezone.now()
 
 
 class SMSDiffusion(TimeStampedModel):
+    class SenderChoice(models.TextChoices):
+        LFI = "LFI", "LFI"
+        ILB = "ILB", "ILB"
+
     start_date = models.DateTimeField(
         "Date d'envoie",
         help_text="Date à laquelle les messages vont commencer à être envoyé.",
@@ -64,6 +70,9 @@ class SMSDiffusion(TimeStampedModel):
         related_name="smsdiffusion_person",
         blank=True,
         null=True,
+    )
+    sender = models.CharField(
+        _("Envoyer en tant que"), choices=SenderChoice.choices, default=SenderChoice.LFI
     )
 
     def __str__(self):
