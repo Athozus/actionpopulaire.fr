@@ -13,6 +13,7 @@ from django.utils import timezone
 from django.utils.html import escape
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
+from django.core.paginator import Paginator
 from glom import glom, T
 
 from agir.groups.admin import actions
@@ -401,7 +402,19 @@ def allocation_amount_view(request, pk):
 
 def group_members_partial_view(request, pk):
     supportgroup = get_object_or_404(SupportGroup, pk=pk)
-    memberships = supportgroup.memberships.select_related("person").all()
+    memberships = (
+        supportgroup.memberships.select_related("person")
+        .prefetch_related("person__emails")
+        .all()
+    )
+
+    page_number = request.GET.get("page", 1)
+    paginator = Paginator(memberships, 5)
+
+    try:
+        page = paginator.page(page_number)
+    except:
+        raise Http404("Page invalide")
 
     inline = MembershipInline(Membership, admin.site)
 
@@ -413,7 +426,7 @@ def group_members_partial_view(request, pk):
             "description": m.description,
             "is_finance_manager_value": inline.is_finance_manager_value(m),
         }
-        for m in memberships
+        for m in page.object_list
     ]
 
     return render(
@@ -422,5 +435,6 @@ def group_members_partial_view(request, pk):
         {
             "rows": rows,
             "instance": supportgroup,
+            "page": page,
         },
     )
