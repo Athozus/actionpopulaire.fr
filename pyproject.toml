@@ -98,6 +98,7 @@ django-htmx = "^1.21.0"
 fpdf2 = "^2.8.2"
 pypdf = "^5.4.0"
 psycopg = {extras = ["binary"], version = "^3.2.6"}
+firebase-admin = "^6.9.0"
 
 [tool.poetry.group.dev.dependencies]
 ipython = "*"
