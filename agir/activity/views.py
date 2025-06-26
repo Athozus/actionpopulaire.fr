@@ -1,4 +1,5 @@
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.generic import DetailView
 from django.db.models import Q, Prefetch
@@ -18,6 +19,7 @@ from agir.activity.actions import (
     get_custom_announcements,
 )
 from agir.activity.models import Activity, Announcement, PushAnnouncement
+from agir.activity.pushannouncement_results import PushAnnouncementResults
 from agir.activity.serializers import (
     ActivitySerializer,
     ActivityStatusUpdateRequest,
@@ -279,3 +281,42 @@ def follow_activity_link(request, pk):
         next = front_url("list_activities")
 
     return HttpResponseRedirect(next)
+
+
+def push_announcement_view_notification_succeeded(request, pk):
+    results = PushAnnouncementResults(pk)
+    return render(
+        request,
+        "admin/pushannouncement/amount.html",
+        {"amount": results.get_success_amount()},
+    )
+
+
+def push_announcement_view_notification_failures(request, pk):
+    results = PushAnnouncementResults(pk)
+    return render(
+        request,
+        "admin/pushannouncement/amount.html",
+        {"amount": results.get_failures_amount()},
+    )
+
+
+def push_announcement_view_notification_recipient(request, pk):
+    amount = 0
+    try:
+        announcement = PushAnnouncement.objects.get(pk=pk)
+        if announcement.can_send():
+            amount = announcement.recipient_count()
+        else:
+            amount = announcement.displayed_count()
+    except:
+        pass
+
+    return render(request, "admin/pushannouncement/amount.html", {"amount": amount})
+
+
+def push_announcement_activity_clicked(request, pk):
+    announcement = PushAnnouncement.objects.get(pk=pk)
+    amount = announcement.clicked_count()
+
+    return render(request, "admin/pushannouncement/amount.html", {"amount": amount})

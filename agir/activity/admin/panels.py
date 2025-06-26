@@ -1,5 +1,5 @@
 import json
-
+from django.urls import path
 from django.contrib import admin, messages
 from django.http import HttpResponseRedirect
 from django.utils import timezone
@@ -8,6 +8,12 @@ from django.utils.safestring import mark_safe
 
 from agir.activity.models import Activity, Announcement, PushAnnouncement
 from agir.activity.pushannouncement_results import PushAnnouncementResults
+from agir.activity.views import (
+    push_announcement_view_notification_succeeded,
+    push_announcement_view_notification_failures,
+    push_announcement_view_notification_recipient,
+    push_announcement_activity_clicked,
+)
 from agir.lib.admin.utils import display_json_details
 from agir.lib.search import PrefixSearchQuery
 
@@ -126,6 +132,24 @@ class AnnouncementAdmin(admin.ModelAdmin):
     clics.short_description = "Nombre de clics uniques"
 
 
+def display_amount_component(
+    obj: PushAnnouncement, counter: str, trigger: str = "load"
+):
+    if not obj:
+        return "-"
+
+    return mark_safe(
+        f"""
+         <span id="{obj.id}" 
+                  hx-get="/admin/activity/pushannouncement/{obj.pk}/{counter}/" 
+                  hx-trigger="{ trigger }"
+                  hx-swap="innerHTML">
+                  Chargement..
+            </span>
+        """
+    )
+
+
 @admin.register(PushAnnouncement)
 class PushAnnouncementAdmin(admin.ModelAdmin):
     save_as = True
@@ -195,6 +219,38 @@ class PushAnnouncementAdmin(admin.ModelAdmin):
     ]
     autocomplete_fields = ("segment", "test_segment")
 
+    def get_urls(self):
+        return [
+            path(
+                "<uuid:pk>/succeeded/",
+                push_announcement_view_notification_succeeded,
+                name="{}_{}_pushannouncement_succeeded".format(
+                    self.opts.app_label, self.opts.model_name
+                ),
+            ),
+            path(
+                "<uuid:pk>/failures/",
+                push_announcement_view_notification_failures,
+                name="{}_{}_pushannouncement_failures".format(
+                    self.opts.app_label, self.opts.model_name
+                ),
+            ),
+            path(
+                "<uuid:pk>/recipient/",
+                push_announcement_view_notification_recipient,
+                name="{}_{}_pushannouncement_recipient".format(
+                    self.opts.app_label, self.opts.model_name
+                ),
+            ),
+            path(
+                "<uuid:pk>/clicked/",
+                push_announcement_activity_clicked,
+                name="{}_{}_pushannouncement_clicked".format(
+                    self.opts.app_label, self.opts.model_name
+                ),
+            ),
+        ] + super().get_urls()
+
     @admin.display(description="Données")
     def notification_data(self, obj):
         if obj._state.adding:
@@ -219,20 +275,11 @@ class PushAnnouncementAdmin(admin.ModelAdmin):
 
     @admin.display(description="Nombre de destinataires")
     def recipient_count(self, obj):
-        if obj._state.adding:
-            return "-"
-
-        if obj.can_send():
-            return obj.recipient_count()
-
-        return obj.displayed_count()
+        return display_amount_component(obj, "recipient")
 
     @admin.display(description="Nombre de clics sur les activités")
     def clicked_count(self, obj):
-        if obj._state.adding:
-            return "-"
-
-        return obj.clicked_count()
+        return display_amount_component(obj, "clicked")
 
     @admin.display(description="Données")
     def sending_data(self, obj):
@@ -243,11 +290,11 @@ class PushAnnouncementAdmin(admin.ModelAdmin):
 
     @admin.display(description="Nombre de notifications envoyées avec succès")
     def notifications_succeeded_amount(self, obj: PushAnnouncement):
-        return PushAnnouncementResults(obj.pk).get_success_amount()
+        return display_amount_component(obj, "succeeded", "load, every 2s")
 
     @admin.display(description="Nombre de notifications échouée")
     def notifications_failed_amount(self, obj: PushAnnouncement):
-        return PushAnnouncementResults(obj.pk).get_failures_amount()
+        return display_amount_component(obj, "failures", "load, every 2s")
 
     @admin.display(description="Actions")
     def test_action_buttons(self, obj):
