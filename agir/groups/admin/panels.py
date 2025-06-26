@@ -30,7 +30,13 @@ from . import inlines
 from . import views
 from .fields_views import group_criteria_view, warning_date_view, group_referents_view
 from .forms import SupportGroupAdminForm
-from .views import allocation_amount_view, group_members_partial_view
+from .views import (
+    allocation_amount_view,
+    group_members_partial_view,
+    delete_membership_htmx,
+    update_membership_description,
+    update_membership_type,
+)
 from .. import models
 from ..actions.promo_codes import get_promo_codes
 from ..models import Membership
@@ -565,6 +571,21 @@ class SupportGroupAdmin(VersionAdmin, CenterOnFranceMixin, OSMGeoAdmin):
                 name="{}_{}_group_members_partial".format(
                     self.opts.app_label, self.opts.model_name
                 ),
+            ),
+            path(
+                "<uuid:group_id>/members/<int:membership_id>/delete/",
+                delete_membership_htmx,
+                name="group_membership_delete",
+            ),
+            path(
+                "<uuid:group_id>/members/<int:membership_id>/update-description/",
+                update_membership_description,
+                name="group_membership_update_description",
+            ),
+            path(
+                "<uuid:group_id>/members/<int:membership_id>/update-type/",
+                update_membership_type,
+                name="group_membership_update_type",
             ),
         ] + super().get_urls()
 

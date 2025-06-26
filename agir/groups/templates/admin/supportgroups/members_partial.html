@@ -8,6 +8,7 @@
         <th>Type</th>
         <th>Description</th>
         <th>Gestionnaire financier</th>
+        <th>Supprimer ?</th>
       </tr>
     </thead>
     <tbody>
@@ -15,14 +16,52 @@
         <tr>
           <td>{{ row.person_link|safe }}</td>
           <td>{{ row.gender }}</td>
-          <td>{{ row.membership_type }}</td>
-          <td>{{ row.description }}</td>
+          <td>
+            <form hx-post="/admin/groups/supportgroup/{{ instance.pk }}/members/{{ row.id }}/update-type/"
+                  hx-trigger="change"
+                  hx-target="this"
+                  hx-swap="none">
+              {% csrf_token %}
+              <select name="membership_type">
+                {% for value, label in membership_type_choices.items %}
+                  <option value="{{ value }}" {% if value == row.membership_type %}selected{% endif %}>
+                    {{ label }}
+                  </option>
+                {% endfor %}
+              </select>
+            </form>
+          </td>
+          <td>
+            <form
+              hx-post="/admin/groups/supportgroup/{{ instance.pk }}/members/{{ row.id }}/update-description/"
+              hx-trigger="change delay:300ms"
+              hx-params="description"
+              hx-swap="none"
+            >
+              {% csrf_token %}
+              <input
+                type="text"
+                name="description"
+                value="{{ row.description }}"
+                style="width: 100%;"
+              >
+            </form>
+          </td>
           <td style="text-align: center; padding-right: 6em;">
             {% if row.is_finance_manager_value %}
               ✅
             {% else %}
               ❌
             {% endif %}
+          </td>
+          <td style="text-align: center;">
+            <input
+              type="checkbox"
+              hx-post="/admin/groups/supportgroup/{{ instance.pk }}/members/{{ row.id }}/delete/"
+              hx-trigger="change"
+              hx-target="closest tr"
+              hx-swap="outerHTML"
+            >
           </td>
         </tr>
       {% empty %}

@@ -1,6 +1,7 @@
 import logging
 import re
 from io import BytesIO
+from collections import OrderedDict
 
 import pandas as pd
 from django.contrib import admin, messages
@@ -14,6 +15,10 @@ from django.utils.html import escape
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from django.core.paginator import Paginator
+from django.views.decorators.http import require_POST
+from django.http import HttpResponseBadRequest
+from django.contrib.admin.sites import site
+from django.contrib.admin.options import csrf_protect_m
 from glom import glom, T
 
 from agir.groups.admin import actions
@@ -409,7 +414,7 @@ def group_members_partial_view(request, pk):
     )
 
     page_number = request.GET.get("page", 1)
-    paginator = Paginator(memberships, 20)
+    paginator = Paginator(memberships, 10)
 
     try:
         page = paginator.page(page_number)
@@ -420,10 +425,12 @@ def group_members_partial_view(request, pk):
 
     rows = [
         {
+            "id": m.id,
             "person_link": inline.person_link(m),
             "gender": inline.gender(m),
-            "membership_type": m.get_membership_type_display(),
-            "description": m.description,
+            "membership_type": m.membership_type,
+            "membership_type_label": m.get_membership_type_display(),
+            "description": m.description or "",
             "is_finance_manager_value": inline.is_finance_manager_value(m),
         }
         for m in page.object_list
@@ -435,6 +442,69 @@ def group_members_partial_view(request, pk):
         {
             "rows": rows,
             "instance": supportgroup,
+            "membership_type_choices": OrderedDict(
+                Membership._meta.get_field("membership_type").choices
+            ),
             "page": page,
         },
     )
+
+
+@require_POST
+@csrf_protect_m
+def delete_membership_htmx(request, group_id, membership_id):
+    model_admin = site._registry.get(SupportGroup)
+    if model_admin is None:
+        raise PermissionDenied("Admin class not registered for SupportGroup")
+
+    group = get_object_or_404(SupportGroup, pk=group_id)
+    if not model_admin.has_delete_permission(request, obj=group):
+        raise PermissionDenied
+
+    membership = get_object_or_404(Membership, pk=membership_id, supportgroup=group)
+    membership.delete()
+    return HttpResponse("")
+
+
+@require_POST
+@csrf_protect_m
+def update_membership_description(request, group_id, membership_id):
+    model_admin = site._registry.get(SupportGroup)
+    if model_admin is None:
+        raise PermissionDenied("Admin class not registered for SupportGroup")
+
+    group = get_object_or_404(SupportGroup, pk=group_id)
+
+    if not model_admin.has_change_permission(request, obj=group):
+        raise PermissionDenied
+
+    membership = get_object_or_404(Membership, pk=membership_id, supportgroup=group)
+
+    new_description = request.POST.get("description", "").strip()
+    membership.description = new_description
+    membership.save()
+    return HttpResponse("")
+
+
+@require_POST
+@csrf_protect_m
+def update_membership_type(request, group_id, membership_id):
+    model_admin = site._registry.get(SupportGroup)
+    if model_admin is None:
+        raise PermissionDenied("Admin class not registered for SupportGroup")
+
+    group = get_object_or_404(SupportGroup, pk=group_id)
+    if not model_admin.has_change_permission(request, obj=group):
+        raise PermissionDenied
+
+    membership = get_object_or_404(Membership, pk=membership_id, supportgroup=group)
+
+    new_type = request.POST.get("membership_type")
+    valid_choices = [choice[0] for choice in Membership.MEMBERSHIP_TYPE_CHOICES]
+
+    if new_type not in valid_choices:
+        return HttpResponseBadRequest("Type de statut invalide.")
+
+    membership.membership_type = new_type
+    membership.save()
+    return HttpResponse("")

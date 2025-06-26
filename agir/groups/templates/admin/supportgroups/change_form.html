@@ -1,13 +1,26 @@
 {% extends "admin/change_form.html" %}
 
+{% block extrahead %}
+  {{ block.super }}
+  <script>
+    document.body.addEventListener('htmx:configRequest', function (event) {
+      const token = document.querySelector('[name=csrfmiddlewaretoken]');
+      if (token) {
+        event.detail.headers['X-CSRFToken'] = token.value;
+      }
+    });
+  </script>
+{% endblock %}
+
+
 {% load i18n admin_urls %}
 {% block object-tools-items %}
   {{ block.super }}
   <li>
-      {% url opts|admin_urlname:'old_history' original.pk|admin_urlquote as history_url %}
-      <a href="{% add_preserved_filters history_url %}" class="historylink">
-        Ancien historique
-      </a>
+    {% url opts|admin_urlname:'old_history' original.pk|admin_urlquote as history_url %}
+    <a href="{% add_preserved_filters history_url %}" class="historylink">
+      Ancien historique
+    </a>
   </li>
 {% endblock %}
 
@@ -21,4 +34,3 @@
     Chargement des membres...
   </div>
 {% endblock %}
-
