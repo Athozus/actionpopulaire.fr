@@ -17,6 +17,7 @@ from glom import glom, T
 
 from agir.groups.admin import actions
 from .forms import AddMemberForm
+from .inlines import MembershipInline
 from ..actions.automatic_memberships import maj_boucles, update_memberships_from_segment
 from ..actions.export import pdf_group_attendance_list
 from ..models import SupportGroup, Membership, MembershipRemoveRequest
@@ -394,5 +395,32 @@ def allocation_amount_view(request, pk):
             "allocation": display_price(allocation) if allocation != 0 else "-",
             "increase_link": increase_link,
             "decrease_link": decrease_link,
+        },
+    )
+
+
+def group_members_partial_view(request, pk):
+    supportgroup = get_object_or_404(SupportGroup, pk=pk)
+    memberships = supportgroup.memberships.select_related("person").all()
+
+    inline = MembershipInline(Membership, admin.site)
+
+    rows = [
+        {
+            "person_link": inline.person_link(m),
+            "gender": inline.gender(m),
+            "membership_type": m.get_membership_type_display(),
+            "description": m.description,
+            "is_finance_manager_value": inline.is_finance_manager_value(m),
+        }
+        for m in memberships
+    ]
+
+    return render(
+        request,
+        "admin/supportgroups/members_partial.html",
+        {
+            "rows": rows,
+            "instance": supportgroup,
         },
     )

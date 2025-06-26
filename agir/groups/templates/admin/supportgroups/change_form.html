@@ -10,3 +10,15 @@
       </a>
   </li>
 {% endblock %}
+
+{% block after_related_objects %}
+  <div
+    id="members-list"
+    hx-get="/admin/groups/supportgroup/{{ original.pk }}/members-list/"
+    hx-trigger="load"
+    hx-swap="innerHTML"
+  >
+    Chargement des membres...
+  </div>
+{% endblock %}
+

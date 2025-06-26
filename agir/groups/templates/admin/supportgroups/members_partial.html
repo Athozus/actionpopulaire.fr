@@ -1,0 +1,33 @@
+<fieldset class="module aligned wide">
+  <h2>Membres</h2>
+  <table class="table" style="width: 100%; border-collapse: separate; border-spacing: 0 1em;">
+    <thead>
+      <tr>
+        <th>Personne</th>
+        <th>Genre</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Gestionnaire financier</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in rows %}
+        <tr>
+          <td>{{ row.person_link|safe }}</td>
+          <td>{{ row.gender }}</td>
+          <td>{{ row.membership_type }}</td>
+          <td>{{ row.description }}</td>
+          <td style="text-align: center; padding-right: 6em;">
+            {% if row.is_finance_manager_value %}
+              ✅
+            {% else %}
+              ❌
+            {% endif %}
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="5">Aucun membre</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</fieldset>

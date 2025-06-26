@@ -30,7 +30,7 @@ from . import inlines
 from . import views
 from .fields_views import group_criteria_view, warning_date_view, group_referents_view
 from .forms import SupportGroupAdminForm
-from .views import allocation_amount_view
+from .views import allocation_amount_view, group_members_partial_view
 from .. import models
 from ..actions.promo_codes import get_promo_codes
 from ..models import Membership
@@ -130,7 +130,7 @@ class SupportGroupAdmin(VersionAdmin, CenterOnFranceMixin, OSMGeoAdmin):
             {"permission": "people.export_people", "fields": ("export_buttons",)},
         ),
     )
-    inlines = (inlines.MembershipInline, inlines.ExternalLinkInline)
+    inlines = [inlines.ExternalLinkInline]
     readonly_fields = (
         "id",
         "link",
@@ -556,6 +556,13 @@ class SupportGroupAdmin(VersionAdmin, CenterOnFranceMixin, OSMGeoAdmin):
                 "<uuid:pk>/allocation/amount/",
                 allocation_amount_view,
                 name="{}_{}_allocation_amount".format(
+                    self.opts.app_label, self.opts.model_name
+                ),
+            ),
+            path(
+                "<uuid:pk>/members-list/",
+                group_members_partial_view,
+                name="{}_{}_group_members_partial".format(
                     self.opts.app_label, self.opts.model_name
                 ),
             ),
