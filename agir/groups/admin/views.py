@@ -409,7 +409,7 @@ def group_members_partial_view(request, pk):
     )
 
     page_number = request.GET.get("page", 1)
-    paginator = Paginator(memberships, 5)
+    paginator = Paginator(memberships, 20)
 
     try:
         page = paginator.page(page_number)
