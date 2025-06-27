@@ -584,7 +584,7 @@ class SupportGroupAdmin(VersionAdmin, CenterOnFranceMixin, OSMGeoAdmin):
             ),
             path(
                 "<uuid:group_id>/members/<int:membership_id>/update-type/",
-                update_membership_type,
+                self.admin_site.admin_view(update_membership_type),
                 name="group_membership_update_type",
             ),
         ] + super().get_urls()

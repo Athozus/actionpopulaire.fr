@@ -1,3 +1,6 @@
+{% load static %}
+
+<script src="{% static 'admin/js/htmx.min.js' %}" defer></script>
 <fieldset class="module aligned wide">
   <h2>Membres</h2>
   <table class="table" style="width: 100%; border-collapse: separate; border-spacing: 0 1em;">
@@ -35,7 +38,6 @@
             <form
               hx-post="/admin/groups/supportgroup/{{ instance.pk }}/members/{{ row.id }}/update-description/"
               hx-trigger="change delay:300ms"
-              hx-params="description"
               hx-swap="none"
             >
               {% csrf_token %}
@@ -60,7 +62,7 @@
               hx-post="/admin/groups/supportgroup/{{ instance.pk }}/members/{{ row.id }}/delete/"
               hx-trigger="change"
               hx-target="closest tr"
-              hx-swap="outerHTML"
+              hx-swap="outerHTML swap:300ms"
             >
           </td>
         </tr>

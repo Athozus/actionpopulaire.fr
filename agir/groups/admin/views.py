@@ -16,9 +16,10 @@ from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_POST
-from django.http import HttpResponseBadRequest
+from django.http import HttpResponseBadRequest, HttpResponseServerError
 from django.contrib.admin.sites import site
 from django.contrib.admin.options import csrf_protect_m
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from glom import glom, T
 
 from agir.groups.admin import actions
@@ -414,7 +415,7 @@ def group_members_partial_view(request, pk):
     )
 
     page_number = request.GET.get("page", 1)
-    paginator = Paginator(memberships, 10)
+    paginator = Paginator(memberships, 20)
 
     try:
         page = paginator.page(page_number)
@@ -451,11 +452,11 @@ def group_members_partial_view(request, pk):
 
 
 @require_POST
-@csrf_protect_m
+@csrf_protect
 def delete_membership_htmx(request, group_id, membership_id):
     model_admin = site._registry.get(SupportGroup)
     if model_admin is None:
-        raise PermissionDenied("Admin class not registered for SupportGroup")
+        raise PermissionDenied
 
     group = get_object_or_404(SupportGroup, pk=group_id)
     if not model_admin.has_delete_permission(request, obj=group):
@@ -467,14 +468,13 @@ def delete_membership_htmx(request, group_id, membership_id):
 
 
 @require_POST
-@csrf_protect_m
+@csrf_protect
 def update_membership_description(request, group_id, membership_id):
     model_admin = site._registry.get(SupportGroup)
     if model_admin is None:
-        raise PermissionDenied("Admin class not registered for SupportGroup")
+        raise PermissionDenied
 
     group = get_object_or_404(SupportGroup, pk=group_id)
-
     if not model_admin.has_change_permission(request, obj=group):
         raise PermissionDenied
 
@@ -487,11 +487,11 @@ def update_membership_description(request, group_id, membership_id):
 
 
 @require_POST
-@csrf_protect_m
+@csrf_protect
 def update_membership_type(request, group_id, membership_id):
     model_admin = site._registry.get(SupportGroup)
     if model_admin is None:
-        raise PermissionDenied("Admin class not registered for SupportGroup")
+        raise PermissionDenied
 
     group = get_object_or_404(SupportGroup, pk=group_id)
     if not model_admin.has_change_permission(request, obj=group):
@@ -499,11 +499,11 @@ def update_membership_type(request, group_id, membership_id):
 
     membership = get_object_or_404(Membership, pk=membership_id, supportgroup=group)
 
-    new_type = request.POST.get("membership_type")
+    new_type = int(request.POST.get("membership_type"))
     valid_choices = [choice[0] for choice in Membership.MEMBERSHIP_TYPE_CHOICES]
 
     if new_type not in valid_choices:
-        return HttpResponseBadRequest("Type de statut invalide.")
+        return HttpResponseBadRequest("Type de statut invalide")
 
     membership.membership_type = new_type
     membership.save()
