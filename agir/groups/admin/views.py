@@ -408,11 +408,20 @@ def allocation_amount_view(request, pk):
 
 def group_members_partial_view(request, pk):
     supportgroup = get_object_or_404(SupportGroup, pk=pk)
+    q = request.GET.get("q", "").strip()
+
     memberships = (
         supportgroup.memberships.select_related("person")
         .prefetch_related("person__emails")
         .all()
     )
+
+    if q:
+        memberships = memberships.filter(
+            Q(person__first_name__icontains=q)
+            | Q(person__last_name__icontains=q)
+            | Q(meta__description__icontains=q)
+        )
 
     page_number = request.GET.get("page", 1)
     paginator = Paginator(memberships, 20)
@@ -447,6 +456,7 @@ def group_members_partial_view(request, pk):
                 Membership._meta.get_field("membership_type").choices
             ),
             "page": page,
+            "search_query": q,
         },
     )
 

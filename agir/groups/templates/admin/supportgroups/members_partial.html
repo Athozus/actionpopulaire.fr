@@ -1,8 +1,23 @@
 {% load static %}
+{% load admin_extras %}
 
 <script src="{% static 'admin/js/htmx.min.js' %}" defer></script>
 <fieldset class="module aligned wide">
   <h2>Membres</h2>
+  <div style="margin-bottom: 1em;">
+    <input
+      type="search"
+      name="q"
+      placeholder="Rechercher un membre..."
+      hx-get="/admin/groups/supportgroup/{{ instance.pk }}/members-list/"
+      hx-trigger="keyup changed delay:300ms"
+      hx-target="#members-list"
+      hx-push-url="true"
+      class="vTextField"
+      style="width: 100%; max-width: 400px;"
+    >
+  </div>
+  <div id="members-list">
   <table class="table" style="width: 100%; border-collapse: separate; border-spacing: 0 1em;">
     <thead>
       <tr>
@@ -17,7 +32,7 @@
     <tbody>
       {% for row in rows %}
         <tr>
-          <td>{{ row.person_link|safe }}</td>
+          <td>{{ row.person_link|highlight:search_query|safe }}</td>
           <td>{{ row.gender }}</td>
           <td>
             <form hx-post="/admin/groups/supportgroup/{{ instance.pk }}/members/{{ row.id }}/update-type/"
@@ -44,7 +59,7 @@
               <input
                 type="text"
                 name="description"
-                value="{{ row.description }}"
+                value="{{ row.description|highlight:search_query }}"
                 style="width: 100%;"
               >
             </form>
@@ -96,6 +111,7 @@
       >Suivant &raquo;</a>
     {% endif %}
   </div>
+    </div>
   {% endif %}
 </fieldset>
 
