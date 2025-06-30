@@ -177,7 +177,7 @@ class PaymentAdmin(PaymentManagementAdminMixin, AddRelatedLinkMixin, admin.Model
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
-        return qs.prefetch_related("person__emails")
+        return qs.prefetch_related("person", "person__emails")
 
 
 @admin.register(models.Subscription)
