@@ -428,7 +428,7 @@ class EventAdmin(FormSubmissionViewsMixin, CenterOnFranceMixin, OSMGeoAdmin):
         return (
             super()
             .get_queryset(request)
-            .prefetch_related("calendars")
+            .prefetch_related("calendars", "organizers")
             .select_related("subtype")
         )
 
