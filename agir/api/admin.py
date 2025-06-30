@@ -21,6 +21,10 @@ class PushDeviceAdmin(DeviceAdmin):
     list_display = ("__str__", "device_id", "get_person", "active", "date_created")
     search_fields = ("user__person__search",)
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.prefetch_related("user__person__emails")
+
     def get_person(self, device):
         return device.user.person
 
