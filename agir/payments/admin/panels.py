@@ -175,6 +175,10 @@ class PaymentAdmin(PaymentManagementAdminMixin, AddRelatedLinkMixin, admin.Model
     def has_add_permission(self, request):
         return False
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.prefetch_related("person__emails")
+
 
 @admin.register(models.Subscription)
 class SubscriptionAdmin(PersonLinkMixin, admin.ModelAdmin):
