@@ -113,46 +113,4 @@
       {% endfor %}
     </tbody>
   </table>
-
-  {% if page.has_other_pages %}
-  <div class="paginator" style="margin-top: 1em; display: flex; align-items: center; justify-content: center; gap: 1em;">
-    {% if page.has_previous %}
-      <a
-        href="/admin/groups/supportgroup/{{ instance.pk }}/members-list/?page={{ page.previous_page_number }}"
-        hx-get="/admin/groups/supportgroup/{{ instance.pk }}/members-list/?page={{ page.previous_page_number }}"
-        hx-target="#members-list"
-        hx-swap="innerHTML"
-        class="button"
-      >&laquo; Précédent</a>
-    {% endif %}
-
-    <span>Page {{ page.number }} sur {{ page.paginator.num_pages }}</span>
-
-    {% if page.has_next %}
-      <a
-        href="/admin/groups/supportgroup/{{ instance.pk }}/members-list/?page={{ page.next_page_number }}"
-        hx-get="/admin/groups/supportgroup/{{ instance.pk }}/members-list/?page={{ page.next_page_number }}"
-        hx-target="#members-list"
-        hx-swap="innerHTML"
-        class="button"
-      >Suivant &raquo;</a>
-    {% endif %}
-  </div>
-    </div>
-  {% endif %}
 </fieldset>
-
-<style>
-  .paginator a.button {
-    padding: 4px 10px;
-    background: #0098b6;
-    border: 1px solid #ccc;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 0.9em;
-  }
-
-  .paginator a.button:hover {
-    background: #878787;
-  }
-</style>

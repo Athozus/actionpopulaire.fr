@@ -423,14 +423,6 @@ def group_members_partial_view(request, pk):
             | Q(meta__description__icontains=q)
         )
 
-    page_number = request.GET.get("page", 1)
-    paginator = Paginator(memberships, 10)
-
-    try:
-        page = paginator.page(page_number)
-    except:
-        raise Http404("Page invalide")
-
     inline = MembershipInline(Membership, admin.site)
 
     rows = [
@@ -443,7 +435,7 @@ def group_members_partial_view(request, pk):
             "description": m.description or "",
             "is_finance_manager_value": inline.is_finance_manager_value(m),
         }
-        for m in page.object_list
+        for m in memberships
     ]
 
     return render(
@@ -455,7 +447,6 @@ def group_members_partial_view(request, pk):
             "membership_type_choices": OrderedDict(
                 Membership._meta.get_field("membership_type").choices
             ),
-            "page": page,
             "search_query": q,
         },
     )
