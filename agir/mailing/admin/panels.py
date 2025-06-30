@@ -387,5 +387,11 @@ class NuntiusPushCampaignAdmin(PushCampaignAdmin):
         )
 
 
-admin.site.register(CampaignSentEvent, CampaignSentEventAdmin)
+@admin.register(CampaignSentEvent)
+class NuntiusCampaignSentEventAdmin(CampaignSentEventAdmin):
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.prefetch_related("subscriber__emails", "campaign")
+
+
 admin.site.register(PushCampaignSentEvent, PushCampaignSentEventAdmin)
