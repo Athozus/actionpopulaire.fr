@@ -312,5 +312,9 @@ class SMSDiffusionAdmin(admin.ModelAdmin):
 
         return super().response_change(request, obj)
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.prefetch_related("creator__emails", "test_segment", "segment")
+
     class Media:
         js = ("admin/js/diffusion.js",)
