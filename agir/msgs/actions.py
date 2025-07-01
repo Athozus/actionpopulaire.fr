@@ -28,66 +28,55 @@ RECENT_COMMENT_LIMIT = 4
 Cela correspond aux deux sous-requêtes WITH.
 """
 UNREAD_COUNT_REQUEST = f"""
-WITH messages AS (
-    SELECT COUNT(*) AS total FROM msgs_supportgroupmessage message
-      JOIN people_person message_author ON message_author.id = message.author_id
-      JOIN authentication_role message_author_role ON message_author_role.id = message_author.role_id
-      JOIN groups_membership membership
-        ON membership.supportgroup_id = message.supportgroup_id AND membership.person_id = %(person_id)s
-      LEFT JOIN msgs_supportgroupmessagerecipient recipient
-        ON recipient.message_id = message.id AND recipient.recipient_id = %(person_id)s
-    -- exclude deleted messages
-    WHERE NOT message.deleted
-    -- exclude messages of inactive users
-    AND message_author_role.is_active
-    -- ensure user has the required membership_type in the group
-    AND membership.membership_type >= message.required_membership_type
-    -- exclude own messages
-    AND message.author_id != %(person_id)s
-    -- include only messages created after joining the group
-    AND message.created > membership.created
-    -- include only messages not read (no need to control for muting, since a muted message has been seen anyway)
-    AND recipient.id IS NULL
-),
-comments AS (
-    SELECT COUNT(*) AS total FROM msgs_supportgroupmessagecomment comment
-      JOIN msgs_supportgroupmessage message ON message.id = comment.message_id
-      JOIN people_person message_author ON message_author.id = message.author_id
-      JOIN authentication_role message_author_role ON message_author_role.id = message_author.role_id
-      JOIN people_person comment_author ON comment_author.id = comment.author_id
-      JOIN authentication_role comment_author_role ON comment_author_role.id = comment_author.role_id
-      -- left join, because person can see messages she sent to other groups
-      LEFT JOIN groups_membership membership
-        ON membership.supportgroup_id = message.supportgroup_id AND membership.person_id = %(person_id)s
-      LEFT JOIN msgs_supportgroupmessagerecipient recipient
-        ON recipient.message_id = message.id AND recipient.recipient_id = %(person_id)s
-    -- exclude comments on deleted messages and deleted comments
-    WHERE NOT message.deleted
-    AND NOT comment.deleted
-    -- exclude own comments
-    AND comment.author_id != %(person_id)s
-    -- exclude messages and comments of inactive users
-    AND message_author_role.is_active
-    AND comment_author_role.is_active
-    -- only on messages the person can see: either they have the required membership_type, or they are the message's
-    -- author
-    AND (
-      membership.membership_type >= message.required_membership_type
-      OR (
-        membership.membership_type IS NULL
-        AND message.author_id = %(person_id)s
+SELECT
+  COALESCE((
+    SELECT COUNT(*) FROM msgs_supportgroupmessage AS message
+    JOIN people_person AS message_author ON message_author.id = message.author_id
+    JOIN authentication_role AS message_author_role ON message_author_role.id = message_author.role_id
+    JOIN groups_membership AS membership
+      ON membership.supportgroup_id = message.supportgroup_id AND membership.person_id = %(person_id)s
+    LEFT JOIN msgs_supportgroupmessagerecipient AS recipient
+      ON recipient.message_id = message.id AND recipient.recipient_id = %(person_id)s
+    WHERE
+      NOT message.deleted
+      AND message_author_role.is_active
+      AND membership.membership_type >= message.required_membership_type
+      AND message.author_id != %(person_id)s
+      AND message.created > membership.created
+      AND recipient.id IS NULL
+  ), 0)
+  +
+  COALESCE((
+    SELECT COUNT(*) FROM msgs_supportgroupmessagecomment AS comment
+    JOIN msgs_supportgroupmessage AS message ON message.id = comment.message_id
+    JOIN people_person AS message_author ON message_author.id = message.author_id
+    JOIN authentication_role AS message_author_role ON message_author_role.id = message_author.role_id
+    JOIN people_person AS comment_author ON comment_author.id = comment.author_id
+    JOIN authentication_role AS comment_author_role ON comment_author_role.id = comment_author.role_id
+    LEFT JOIN groups_membership AS membership
+      ON membership.supportgroup_id = message.supportgroup_id AND membership.person_id = %(person_id)s
+    LEFT JOIN msgs_supportgroupmessagerecipient AS recipient
+      ON recipient.message_id = message.id AND recipient.recipient_id = %(person_id)s
+    WHERE
+      NOT message.deleted
+      AND NOT comment.deleted
+      AND comment.author_id != %(person_id)s
+      AND message_author_role.is_active
+      AND comment_author_role.is_active
+      AND (
+        membership.membership_type >= message.required_membership_type
+        OR (
+          membership.membership_type IS NULL
+          AND message.author_id = %(person_id)s
+        )
       )
-    )
-    -- exclude muted messages (coalescing because recipient is null if the message has never been seen)
-    AND NOT COALESCE(recipient.muted, FALSE)
-    -- include only messages created after both the person joined the group AND the last time the person saw the message
-    -- note that while recipient.modified might be null (if the message has never been seen). PostgreSQL's GREATEST
-    -- ignore NULL values.
-    -- message.created is added as a default value for cases where both recipient and membership are NULL
-    AND comment.created > GREATEST(recipient.modified, membership.created, message.created)
-)
-SELECT messages.total + comments.total AS total
-FROM messages JOIN comments ON true;
+      AND NOT COALESCE(recipient.muted, FALSE)
+      AND comment.created > GREATEST(
+        COALESCE(recipient.modified, 'epoch'),
+        COALESCE(membership.created, 'epoch'),
+        message.created
+      )
+  ), 0) AS total;
 """
 
 USER_MESSAGES_BASE_REQUEST = """
