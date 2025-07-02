@@ -6,6 +6,7 @@ import HelpCenterCard from "@agir/front/genericComponents/HelpCenterCard";
 import HeaderPanel from "@agir/front/genericComponents/ObjectManagement/HeaderPanel";
 import Spacer from "@agir/front/genericComponents/Spacer";
 import { StyledTitle } from "@agir/front/genericComponents/ObjectManagement/styledComponents";
+import nonReactRoutes from "@agir/front/globalContext/nonReactRoutes.config";
 
 import { useGroup } from "@agir/groups/groupPage/hooks/group.js";
 
@@ -50,7 +51,7 @@ const GroupHelpPage = (props) => {
         title="Attestation d'assurance de la France insoumise"
         text="Document utile en cas de réservation d'une salle pour les événements publics"
         icon="file-text"
-        route="attestationAssurance"
+        href={nonReactRoutes.attestationAssurance}
         downloadLabel="Télécharger l'attestation"
       />
       <Spacer size="1rem" />
