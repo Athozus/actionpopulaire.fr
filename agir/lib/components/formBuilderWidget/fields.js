@@ -30,10 +30,7 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
     },
     {
         label: "Introduction",
-        type: "text",
-        attrs: {
-            type: "introHtml"
-        },
+        type: "introHtml",
     },
     {
         label: "Groupes locals - En tant que membre",
