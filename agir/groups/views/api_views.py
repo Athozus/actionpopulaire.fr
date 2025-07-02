@@ -20,11 +20,9 @@ from django.db.models import (
     Avg,
     ExpressionWrapper,
     DurationField,
-    Exists,
-    OuterRef,
-    Subquery,
 )
 from django.db.models.functions import Greatest, Concat
+from django.http import HttpResponseRedirect
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
@@ -61,7 +59,6 @@ from agir.groups.models import (
     SupportGroupSubtype,
     Membership,
     SupportGroupExternalLink,
-    SupportGroupTag,
 )
 from agir.groups.proxys import ThematicGroup
 from agir.groups.serializers import (
@@ -76,13 +73,17 @@ from agir.groups.serializers import (
     ThematicGroupSerializer,
 )
 from agir.groups.utils.supportgroup import is_active_group_filter
-from agir.lib.http import HttpResponseUnauthorized
 from agir.lib.pagination import (
     APIPageNumberPagination,
 )
 from agir.msgs.actions import update_recipient_message
-from agir.msgs.serializers import SupportGroupMessageParticipantSerializer
+from agir.msgs.serializers import (
+    SupportGroupMessageParticipantSerializer,
+    BaseMessageSerializer,
+)
 from agir.people.models import Person
+import boto3
+from django.conf import settings
 
 __all__ = [
     "LegacyGroupSearchAPIView",
@@ -120,6 +121,8 @@ __all__ = [
     "RetrieveUpdateDestroySupportGroupExternalLinkAPIView",
     "GroupUpdateOwnMembershipAPIView",
     "GroupStatisticsAPIView",
+    "MessageCommentAttachmentAPIView",
+    "GroupMessageAttachmentAPIView",
 ]
 
 from agir.lib.rest_framework_permissions import (
@@ -132,6 +135,7 @@ from agir.msgs.models import (
     SupportGroupMessage,
     SupportGroupMessageComment,
     SupportGroupMessageRecipient,
+    AbstractMessage,
 )
 
 from agir.msgs.serializers import (
@@ -680,6 +684,38 @@ class GroupMessageCommentsAPIView(ListCreateAPIView):
             )
             new_comment_notifications(comment)
             update_recipient_message(self.message, self.request.user.person)
+
+
+class AttachmentAPIView(RetrieveAPIView):
+    permission_classes = (
+        IsPersonPermission,
+        GroupMessageCommentsPermissions,
+    )
+
+    def get(self, request, *args, **kwargs):
+        if settings.DEBUG:
+            return HttpResponseRedirect(self.get_object().attachment.file.url)
+
+        s3_client = boto3.client("s3", endpoint_url=settings.AWS_S3_ENDPOINT_URL)
+        url = s3_client.generate_presigned_url(
+            "get_object",
+            Params={
+                "Bucket": settings.AWS_STORAGE_BUCKET_NAME,
+                "Key": self.get_object().attachment.file.name,
+            },
+            ExpiresIn=300,
+        )
+        return HttpResponseRedirect(url)
+
+
+class GroupMessageAttachmentAPIView(AttachmentAPIView):
+    queryset = SupportGroupMessage.objects.with_serializer_prefetch().active()
+    serializer_class = SupportGroupMessageSerializer
+
+
+class MessageCommentAttachmentAPIView(AttachmentAPIView):
+    queryset = SupportGroupMessageComment.objects.with_serializer_prefetch().active()
+    serializer_class = MessageCommentSerializer
 
 
 class GroupSingleCommentAPIView(UpdateAPIView, DestroyAPIView):

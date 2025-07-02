@@ -166,7 +166,7 @@ class GroupMessagesTestAPICase(APITestCase):
                     "subject": "A message",
                     "text": "",
                     "linkedEvent": str(self.event.pk),
-                    "attachment": {
+                    "attachmentCreate": {
                         "name": "doc.xyz",
                         "file": SimpleUploadedFile(
                             "doc.xyz",
@@ -178,7 +178,7 @@ class GroupMessagesTestAPICase(APITestCase):
             ),
         )
         self.assertEqual(res.status_code, 422)
-        self.assertIn("attachment", res.data)
+        self.assertIn("attachmentCreate", res.data)
 
     def test_manager_can_post_message_without_text_with_an_attachment(self):
         self.client.force_login(self.manager.role)
@@ -190,7 +190,7 @@ class GroupMessagesTestAPICase(APITestCase):
                     "subject": "A message",
                     "text": "",
                     "linkedEvent": str(self.event.pk),
-                    "attachment": {
+                    "attachmentCreate": {
                         "name": "doc.pdf",
                         "file": SimpleUploadedFile(
                             "doc.pdf",
@@ -536,7 +536,7 @@ class GroupMessageCommentAPITestCase(APITestCase):
             ),
         )
         self.assertEqual(res.status_code, 422)
-        self.assertIn("attachment", res.data)
+        self.assertIn("details", res.data)
 
     def test_member_can_post_comment_without_text_with_an_attachment(self):
         self.client.force_login(self.member.role)
@@ -547,7 +547,7 @@ class GroupMessageCommentAPITestCase(APITestCase):
                 {
                     "subject": "A message",
                     "text": "",
-                    "attachment": {
+                    "attachmentCreate": {
                         "name": "doc.pdf",
                         "file": SimpleUploadedFile(
                             "doc.pdf",

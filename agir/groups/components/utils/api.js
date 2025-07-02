@@ -99,7 +99,7 @@ export const formatMessage = (message) => {
     data.attachment = undefined;
   }
 
-  return data.attachment ? objectToFormData(data) : data;
+  return data.attachment ? objectToFormData({...data, attachmentCreate: data.attachment, attachment: null}) : data;
 };
 
 export const createMessage = async (groupPk, message) => {

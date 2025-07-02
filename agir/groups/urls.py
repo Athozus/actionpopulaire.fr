@@ -157,6 +157,16 @@ api_urlpatterns = [
         name="api_group_message_comment_list",
     ),
     path(
+        "messages/comment/<uuid:pk>/attachment",
+        views.MessageCommentAttachmentAPIView.as_view(),
+        name="api_message_comment_attachement",
+    ),
+    path(
+        "groupmessages/<uuid:pk>/attachment",
+        views.GroupMessageAttachmentAPIView.as_view(),
+        name="api_message_support_group_attachement",
+    ),
+    path(
         "messages/comments/<uuid:pk>/",
         views.GroupSingleCommentAPIView.as_view(),
         name="api_group_message_comment_detail",

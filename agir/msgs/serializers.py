@@ -1,8 +1,10 @@
 from django.contrib.contenttypes.models import ContentType
 from django.core import validators
+from django.core.exceptions import ValidationError
 from django.db import transaction
 from django.db.models import Exists, OuterRef
 from rest_framework import serializers
+from rest_framework.fields import SerializerMethodField
 
 from agir.events.models import Event
 from agir.events.serializers import EventListSerializer
@@ -20,6 +22,7 @@ from agir.msgs.models import (
 )
 from agir.people.models import Person
 from agir.people.serializers import PersonSerializer
+from rest_framework.reverse import reverse
 
 
 class MessageAttachmentSerializer(serializers.ModelSerializer):
@@ -42,6 +45,11 @@ class MessageAttachmentSerializer(serializers.ModelSerializer):
         read_only_fields = ("id", "created", "modified")
 
 
+import logging
+
+logger = logging.getLogger(__name__)
+
+
 class BaseMessageSerializer(FlexibleFieldsMixin, serializers.ModelSerializer):
     id = serializers.UUIDField(read_only=True)
     created = serializers.DateTimeField(read_only=True)
@@ -53,9 +61,27 @@ class BaseMessageSerializer(FlexibleFieldsMixin, serializers.ModelSerializer):
         allow_blank=True,
         allow_null=False,
     )
-    attachment = MessageAttachmentSerializer(
-        label="Pièce-jointe", allow_null=True, required=False
+    # attachment used to create
+    attachmentCreate = MessageAttachmentSerializer(
+        label="Pièce-jointe", allow_null=True, required=False, write_only=True
     )
+
+    attachment = SerializerMethodField()
+
+    def get_attachment(self, obj):
+        file_url = ""
+        if isinstance(obj, SupportGroupMessageComment):
+            file_url = reverse("api_message_comment_attachement", args=(obj.id,))
+        elif isinstance(obj, SupportGroupMessage):
+            file_url = reverse("api_message_support_group_attachement", args=(obj.id,))
+        else:
+            raise ValidationError("Message not supported")
+
+        if obj.attachment:
+            return {
+                **MessageAttachmentSerializer(obj.attachment).data,
+                "file": file_url,
+            }
 
     def get_author(self, obj):
         if obj.author is not None:
@@ -76,7 +102,7 @@ class BaseMessageSerializer(FlexibleFieldsMixin, serializers.ModelSerializer):
 
     def create(self, validated_data):
         with transaction.atomic():
-            attachment = validated_data.pop("attachment", None)
+            attachment = validated_data.pop("attachmentCreate", None)
             message = super().create(validated_data)
 
             if attachment:
@@ -88,7 +114,7 @@ class BaseMessageSerializer(FlexibleFieldsMixin, serializers.ModelSerializer):
 
     def update(self, message, validated_data):
         with transaction.atomic():
-            attachment = validated_data.pop("attachment", False)
+            attachment = validated_data.pop("attachmentCreate", False)
             message = super().update(message, validated_data)
 
             if attachment:
@@ -107,7 +133,7 @@ class BaseMessageSerializer(FlexibleFieldsMixin, serializers.ModelSerializer):
 class MessageCommentSerializer(BaseMessageSerializer):
     class Meta:
         model = SupportGroupMessageComment
-        fields = ("id", "author", "text", "attachment", "created")
+        fields = ("id", "author", "text", "attachment", "attachmentCreate", "created")
 
 
 class LinkedEventField(serializers.RelatedField):
@@ -148,6 +174,7 @@ class SupportGroupMessageSerializer(BaseMessageSerializer):
         "group",
         "linkedEvent",
         "attachment",
+        "attachmentCreate",
         "recentComments",
         "commentCount",
         "requiredMembershipType",
@@ -163,6 +190,7 @@ class SupportGroupMessageSerializer(BaseMessageSerializer):
         "group",
         "linkedEvent",
         "attachment",
+        "attachmentCreate",
         "lastUpdate",
         "requiredMembershipType",
         "isLocked",
@@ -252,6 +280,7 @@ class SupportGroupMessageSerializer(BaseMessageSerializer):
             "subject",
             "text",
             "attachment",
+            "attachmentCreate",
             "group",
             "linkedEvent",
             "recentComments",

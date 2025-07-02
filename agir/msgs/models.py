@@ -12,7 +12,7 @@ from django.utils.translation import gettext_lazy as _
 from agir.groups.models import Membership
 from agir.lib.documents import hash_file
 from agir.lib.models import TimeStampedModel, BaseAPIResource
-from agir.lib.storage import OverwriteStorage
+from agir.lib.storage import OverwriteStorage, PrivateMediaStorage
 from agir.lib.validators import FileSizeValidator
 
 
@@ -69,7 +69,7 @@ class MessageAttachment(BaseAPIResource):
     file = models.FileField(
         _("Fichier"),
         upload_to=message_attachment_upload_to,
-        storage=OverwriteStorage(),
+        storage=PrivateMediaStorage(),
         validators=[
             FileSizeValidator(MAX_SIZE),
             validators.FileExtensionValidator(ALLOWED_EXTENSIONS),
