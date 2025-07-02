@@ -33,7 +33,7 @@ jobs:
         run: npm run build
         env:
           WEBPUSH_PUBLIC_KEY: "${{ secrets.WEBPUSH_PUBLIC_KEY }}"
-          SENTRY_ENV: ${{ github.ref_name }}
+          SENTRY_ENV: ${{ github.ref_name == 'production' && 'production' || 'staging' }}
 
       - name: Print build asset tree
         run: tree -L 3 assets/
@@ -71,11 +71,11 @@ jobs:
         with:
           ignore_missing: true
           finalize: false
-          environment: ${{ github.ref_name }}
+          environment: ${{ github.ref_name == 'production' && 'production' || 'staging' }}
           projects: ${{ secrets.SENTRY_PROJECT_BACK }} ${{ secrets.SENTRY_PROJECT_FRONT }}
 
   deploy-staging:
-    if: github.ref_name == 'staging'
+    if: github.ref_name != 'production'
     environment: preprod
     name: Deploy to staging
     needs: sentry
