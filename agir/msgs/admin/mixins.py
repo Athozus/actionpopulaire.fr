@@ -1,8 +1,10 @@
+import boto3
 from django.contrib import admin
 from django.contrib.contenttypes.models import ContentType
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
+from agir.api import settings
 from agir.lib.admin.utils import display_link, admin_url
 
 
@@ -81,18 +83,31 @@ class MessageAdminMixin:
         if not obj.attachment:
             return "-"
 
+        url = obj.attachment.file.url
+
+        if not settings.DEBUG:
+            s3_client = boto3.client("s3", endpoint_url=settings.AWS_S3_ENDPOINT_URL)
+            url = s3_client.generate_presigned_url(
+                "get_object",
+                Params={
+                    "Bucket": settings.AWS_STORAGE_BUCKET_NAME,
+                    "Key": obj.attachment.file.name,
+                },
+                ExpiresIn=300,
+            )
+
         if obj.attachment.name.lower().endswith((".png", ".jpg", ".jpeg", ".gif")):
             return format_html(
                 "<figure style='margin:0;padding:0;'><img title='{name}' width='400' height='400' "
                 "style='clear:right; display: block; width:auto; height: auto; max-width: 400px; max-height: 400px;' "
                 "src='{url}' /><figcaption><a href='{url}' target='_blank'>{name}</a></figcaption></figure>",
-                url=obj.attachment.file.url,
+                url=url,
                 name=obj.attachment.name,
             )
 
         return format_html(
             '<a href={url} target="_blank" download={name}>{name}</a>',
-            url=obj.attachment.file.url,
+            url=url,
             name=obj.attachment.name,
         )
 
