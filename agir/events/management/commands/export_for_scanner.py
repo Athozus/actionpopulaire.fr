@@ -17,8 +17,13 @@ class Command(BaseCommand):
         parser.add_argument("event", type=event_argument)
         parser.add_argument("category_field", type=str)
         parser.add_argument("contribution_field", type=str)
+        parser.add_argument(
+            "metas", nargs="*", type=str, help="Extra metadata fields to include"
+        )
 
-    def handle(self, event, category_field, contribution_field, **kwargs):
+    def handle(self, event, category_field, contribution_field, metas=None, **kwargs):
+        metas = metas or []
+
         writer = csv.writer(sys.stdout)
         writer.writerow(
             [
@@ -33,6 +38,7 @@ class Command(BaseCommand):
                 "status",
                 "entry",
             ]
+            + metas
         )
 
         rsvps = event.rsvps.filter(form_submission__isnull=False).select_related(
@@ -44,7 +50,6 @@ class Command(BaseCommand):
             rsvp__event_id=event.id,
         ).select_related("rsvp__person", "submission", "payment")
 
-        # Pour éviter
         emails = PersonEmail.objects.raw(
             """
             WITH emails AS (
@@ -65,56 +70,55 @@ class Command(BaseCommand):
         emails = {e.person_id: e.address for e in emails}
 
         for rsvp in rsvps:
+            data = rsvp.form_submission.data
             writer.writerow(
                 [
-                    "R" + str(rsvp.pk),
+                    f"R{rsvp.pk}",
                     "O" if rsvp.status == RSVP.Status.CANCELLED else "",
-                    f"{rsvp.form_submission.data.get('first_name')} {rsvp.form_submission.data.get('last_name')}",
+                    f"{data.get('first_name')} {data.get('last_name')}",
                     str(rsvp.person_id),
                     emails.get(rsvp.person_id, None) or rsvp.person.email,
                     rsvp.person.gender or "",
-                    rsvp.form_submission.data.get(category_field, ""),
+                    data.get(category_field, ""),
                     display_price(
-                        rsvp.payment.price
-                        + rsvp.form_submission.data.get(contribution_field, "") * 100
+                        rsvp.payment.price + data.get(contribution_field, 0) * 100
                         if rsvp.payment
                         else (
                             0
-                            if rsvp.form_submission.data.get(contribution_field, "")
-                            or rsvp.form_submission.data.get(contribution_field) < 0
+                            if data.get(contribution_field, 0)
+                            or data.get(contribution_field, 0) < 0
                             else 0
                         )
                     ),
                     "completed" if rsvp.status == RSVP.Status.CONFIRMED else "on-hold",
-                    (
-                        rsvp.created.isoformat()
-                        if rsvp.form_submission.data.get("admin", False)
-                        else None
-                    ),
+                    rsvp.created.isoformat() if data.get("admin", False) else None,
                 ]
+                + [data.get(meta, "") for meta in metas]
             )
+
         for guest in guests:
+            data = guest.submission.data
             writer.writerow(
                 [
-                    "G" + str(guest.rsvp_id) + "g" + str(guest.pk),
+                    f"G{guest.rsvp_id}g{guest.pk}",
                     "O" if guest.status == RSVP.Status.CANCELLED else "",
-                    f"{guest.submission.data['first_name']} {guest.submission.data['last_name']}",
+                    f"{data.get('first_name')} {data.get('last_name')}",
                     str(guest.rsvp.person_id),
                     emails.get(guest.rsvp.person_id, None) or guest.rsvp.person.email,
-                    guest.submission.data.get("gender", ""),
-                    guest.submission.data.get(category_field, ""),
+                    data.get("gender", ""),
+                    data.get(category_field, ""),
                     display_price(
-                        guest.payment.price
-                        + guest.submission.data.get(contribution_field, "") * 100
+                        guest.payment.price + data.get(contribution_field, 0) * 100
                         if guest.payment
                         else (
                             0
-                            if guest.submission.data.get(contribution_field, "")
-                            or guest.submission.data.get(contribution_field) < 0
+                            if data.get(contribution_field, 0)
+                            or data.get(contribution_field, 0) < 0
                             else 0
                         )
                     ),
                     "completed" if guest.status == RSVP.Status.CONFIRMED else "on-hold",
                     None,
                 ]
+                + [data.get(meta, "") for meta in metas]
             )
