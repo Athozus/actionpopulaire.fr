@@ -44,7 +44,7 @@ test("test don 10€ cb anonyme", async ({ page }) => {
 });
 
 test("test don mensuel anonyme", async ({ page }) => {
-  await page.goto("https://actionpopulaire.fr/dons/");
+  await page.goto("https://agir-preprod.franceinsoumise.org/dons/");
   await page.getByRole("button", { name: "Don mensuel" }).click();
   await page.getByRole("button", { name: "10 €" }).click();
   await page.getByRole("button", { name: "Monsieur" }).click();
@@ -90,12 +90,14 @@ test("test don mensuel anonyme", async ({ page }) => {
     .getByRole("button", { name: "DONNER À LA FRANCE INSOUMISE" })
     .click();
   await page.waitForURL(
-    "https://actionpopulaire.fr/dons-mensuels/confirmer/attente/",
+    "https://agir-preprod.franceinsoumise.org/dons-mensuels/confirmer/attente/",
   );
 });
 
-test("test si l'ordre du cheque est bien affiché lors qu'on est pas connecté", async ({ page }) => {
-  await page.goto("https://actionpopulaire.fr/dons/");
+test("test si l'ordre du cheque est bien affiché lors qu'on est pas connecté", async ({
+  page,
+}) => {
+  await page.goto("https://agir-preprod.franceinsoumise.org/dons/");
 
   await page.getByRole("button", { name: "10 €" }).click();
   await page.getByRole("button", { name: "Monsieur" }).click();
@@ -130,6 +132,7 @@ test("test si l'ordre du cheque est bien affiché lors qu'on est pas connecté",
   await page
     .getByRole("button", { name: "DONNER À LA FRANCE INSOUMISE" })
     .click();
-  await expect(page.locator("tspan")).toContainText("AFLFI");
+  await expect(page.getByText("AFLFI")).toBeVisible();
+  await expect(page.getByText("Montant : 10 €")).toBeVisible();
+  await expect(page.getByText("91305 MASSY CEDEX")).toBeVisible();
 });
-
