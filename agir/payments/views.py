@@ -6,6 +6,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.views.generic import DetailView
 from rest_framework.generics import RetrieveAPIView
+from rest_framework.permissions import AllowAny
 
 from agir.authentication.view_mixins import HardLoginRequiredMixin
 from agir.payments.actions.subscriptions import terminate_subscription
@@ -37,7 +38,7 @@ class OwnPaymentRetrievePermissions(GlobalOrObjectPermissions):
 
 
 class PaymentViewAPIRetrieve(RetrieveAPIView):
-    permission_classes = (IsPersonPermission, OwnPaymentRetrievePermissions)
+    permission_classes = (AllowAny,)
     queryset = Payment.objects.exclude(
         status__in=[Payment.STATUS_COMPLETED, Payment.STATUS_REFUND]
     )
