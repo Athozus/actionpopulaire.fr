@@ -11,15 +11,12 @@ _payment_classes = [import_string(name) for name in settings.PAYMENT_MODES]
 
 class PaymentSerializer(serializers.Serializer):
     person = (serializers.PrimaryKeyRelatedField(queryset=Person.objects.all()),)
-    email = serializers.CharField()
-    first_name = serializers.CharField()
     created = serializers.DateTimeField(read_only=True)
     type = serializers.CharField()
     mode = serializers.CharField()
     status = serializers.IntegerField()
     price = serializers.IntegerField()
     details = serializers.SerializerMethodField()
-    meta = serializers.JSONField()
 
     def get_details(self, obj):
         current_mode = next(filter(lambda m: m.id == obj.mode, _payment_classes), None)
