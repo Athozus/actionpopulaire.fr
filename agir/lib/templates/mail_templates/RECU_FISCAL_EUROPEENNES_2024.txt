@@ -1,7 +1,7 @@
 Recus fiscaux 2024
 ------------------------------------------------------------------------------------
 
-Cher·e [DISPLAY_NAME]
+Cher·e {{ DISPLAY_NAME }}
 
 Au cours de la campagne pour les élections européennes 2024, vous avez aidé financièrement la campagne de notre liste portée par Manon Aubry. Nous vous en remercions chaleureusement. Vous avez contribué à élire 9 députés européens !
 

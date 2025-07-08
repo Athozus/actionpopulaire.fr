@@ -1,7 +1,7 @@
 Recus fiscaux 2024
 ------------------------------------------------------------------------------------
 
-Cher·e [DISPLAY_NAME]
+Cher·e {{ DISPLAY_NAME }}
 
 Au cours de l’année 2024, vous avez aidé financièrement La France Insoumise et nous vous en remercions chaleureusement. Vous avez contribué à notre victoire.
 
