@@ -36,3 +36,6 @@ gce.json
 
 # Storybook build dir
 storybook-static/
+
+# playwright
+playwright-report/
