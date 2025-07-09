@@ -1,4 +1,8 @@
-from agir.pos.payment_mode import AbstractMoneyPaymentMode, AbstractTPEPaymentMode
+from agir.pos.payment_mode import (
+    AbstractMoneyPaymentMode,
+    AbstractTPEPaymentMode,
+    AbstractPOSPaymentMode,
+)
 
 
 class MoneyPaymentMode(AbstractMoneyPaymentMode):
@@ -11,3 +15,16 @@ class TPEPaymentMode(AbstractTPEPaymentMode):
     id = "tpe"
     url_fragment = "tpe"
     label = "Paiement sur place par carte bleue"
+
+
+class SolidaireMode(AbstractPOSPaymentMode):
+    can_retry = False
+    can_cancel = True
+
+    id = "solidaire"
+    label = "Place solidaire (0€)"
+    title = "Place solidaire (0€)"
+
+    message_on_payment = (
+        "Pensez à valider le paiement pour valider la place solidaire !"
+    )

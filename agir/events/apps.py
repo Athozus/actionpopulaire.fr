@@ -3,7 +3,7 @@ from django.apps import AppConfig
 from ..payments.types import register_payment_type, PaymentType
 
 
-DEFAULT_ADMIN_MODES = ["system_pay", "check_events", "money", "tpe"]
+DEFAULT_ADMIN_MODES = ["system_pay", "check_events", "money", "tpe", "solidaire"]
 
 
 def admin_payment_modes(payment):

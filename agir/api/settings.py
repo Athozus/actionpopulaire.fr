@@ -925,6 +925,7 @@ PAYMENT_MODES = [
     "agir.presidentielle2022.AFCP2022SystemPayPaymentMode",
     "agir.pos.MoneyPaymentMode",
     "agir.pos.TPEPaymentMode",
+    "agir.pos.SolidaireMode",
     "agir.payments.imported.ImportedPaymentMode",
     "agir.events.PayLaterPaymentMode",
     "agir.ilb.ILBSystemPayPaymentMode",

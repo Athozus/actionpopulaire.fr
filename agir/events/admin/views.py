@@ -298,7 +298,7 @@ class AddParticipantView(SingleObjectMixin, FormView):
             )
             return HttpResponseRedirect(self.request.path)
 
-        return form.redirect_to_payment()
+        return form.redirect_to_payment(self.request)
 
 
 def generate_mailing_campaign(model_admin, request, pk):

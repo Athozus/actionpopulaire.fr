@@ -1,5 +1,6 @@
 from django import forms
 from django.conf import settings
+from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.db import transaction
 from django.forms import BooleanField
@@ -377,7 +378,7 @@ class NewParticipantForm(BasePersonForm):
     def free_rsvp(self):
         rsvp_to_free_event(self.event, self.instance, self.submission)
 
-    def redirect_to_payment(self):
+    def redirect_to_payment(self, request):
         payment = rsvp_to_paid_event_and_create_payment(
             self.event,
             self.instance,
@@ -386,6 +387,10 @@ class NewParticipantForm(BasePersonForm):
         )
 
         if self.cleaned_data["payment_mode"].can_admin:
+            mode = self.cleaned_data["payment_mode"]
+            if mode.message_on_payment is not None:
+                messages.add_message(request, messages.INFO, mode.message_on_payment)
+
             return HttpResponseRedirect(
                 reverse("admin:payments_payment_change", args=(payment.id,))
             )

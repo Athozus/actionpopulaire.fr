@@ -6,6 +6,7 @@ class AbstractPaymentMode:
     can_refund = False
     can_admin = False
     support_subscription = False
+    message_on_payment = None
 
     @property
     def id(self):
