@@ -7,21 +7,16 @@ test("test don 10€ cb anonyme", async ({ page }) => {
   await page.getByRole("button", { name: "Monsieur" }).click();
   await page.getByRole("textbox", { name: "Prénom*" }).fill("Test");
   await page.getByRole("textbox", { name: "Nom*", exact: true }).fill("test");
-  await page.getByRole("textbox", { name: "/08/1951" }).fill("19/08/1951");
-  await page
-    .getByRole("combobox", { name: "Adresse* Votre adresse n'" })
-    .fill("25 passage dubail");
-  await page.getByText("25, Passage Dubail, Quartier").click();
-  await page.getByRole("textbox", { name: "Commune*" }).fill("Paris");
-  await page
-    .locator(
-      ".sc-dtImxT.gZwKgz > .css-b62m3t-container > .select__control > .select__value-container > .select__input-container",
-    )
-    .click();
-  await page
-    .getByRole("combobox", { name: "120 results available.Use Up" })
-    .fill("75");
-  await page.getByRole("option", { name: "— Paris" }).click();
+  await page.getByRole('textbox', { name: '/08/1951' }).fill('19/08/1951');
+  await page.getByRole('textbox', { name: '/08/1951' }).press('Tab');
+  await page.getByRole('combobox', { name: 'option France, selected.' }).press('Tab');
+  await page.getByRole('combobox', { name: 'Adresse* Votre adresse n\'' }).fill('25 passage dubail');
+  await page.getByText('25, Passage Dubail, Quartier').click();
+  await page.getByRole('textbox', { name: 'Commune*' }).click();
+  await page.getByRole('textbox', { name: 'Commune*' }).fill('Paris');
+  await page.locator('.sc-dtImxT.gZwKgz > .css-b62m3t-container > .select__control > .select__value-container > .select__input-container').click();
+  await page.getByRole('combobox', { name: '120 results available.Use Up' }).fill('75');
+  await page.getByRole('option', { name: '— Paris' }).click();
   await page
     .getByRole("textbox", { name: "Numéro de téléphone* Nous" })
     .fill("06 00 00 00 00");
@@ -52,23 +47,16 @@ test("test don mensuel anonyme", async ({ page }) => {
   await page.getByRole("textbox", { name: "Prénom*" }).fill("test");
   await page.getByRole("textbox", { name: "Nom*", exact: true }).click();
   await page.getByRole("textbox", { name: "Nom*", exact: true }).fill("test");
-  await page.getByRole("textbox", { name: "/08/1951" }).click();
-  await page.getByRole("textbox", { name: "/08/1951" }).fill("19/08/1951");
-  await page
-    .getByRole("combobox", { name: "Adresse* Votre adresse n'" })
-    .fill("25 passage dubail");
-  await page.getByText("25, Passage Dubail, Quartier").click();
-  await page.getByRole("textbox", { name: "Commune*" }).click();
-  await page.getByRole("textbox", { name: "Commune*" }).fill("paris");
-  await page
-    .locator(
-      ".sc-dtImxT.gZwKgz > .css-b62m3t-container > .select__control > .select__value-container > .select__input-container",
-    )
-    .click();
-  await page
-    .getByRole("combobox", { name: "120 results available.Use Up" })
-    .fill("75");
-  await page.getByRole("option", { name: "— Paris" }).click();
+  await page.getByRole('textbox', { name: '/08/1951' }).fill('19/08/1951');
+  await page.getByRole('textbox', { name: '/08/1951' }).press('Tab');
+  await page.getByRole('combobox', { name: 'option France, selected.' }).press('Tab');
+  await page.getByRole('combobox', { name: 'Adresse* Votre adresse n\'' }).fill('25 passage dubail');
+  await page.getByText('25, Passage Dubail, Quartier').click();
+  await page.getByRole('textbox', { name: 'Commune*' }).click();
+  await page.getByRole('textbox', { name: 'Commune*' }).fill('Paris');
+  await page.locator('.sc-dtImxT.gZwKgz > .css-b62m3t-container > .select__control > .select__value-container > .select__input-container').click();
+  await page.getByRole('combobox', { name: '120 results available.Use Up' }).fill('75');
+  await page.getByRole('option', { name: '— Paris' }).click();
   await page
     .getByRole("textbox", { name: "Numéro de téléphone* Nous" })
     .click();
@@ -103,21 +91,16 @@ test("test si l'ordre du cheque est bien affiché lors qu'on est pas connecté",
   await page.getByRole("button", { name: "Monsieur" }).click();
   await page.getByRole("textbox", { name: "Prénom*" }).fill("Test");
   await page.getByRole("textbox", { name: "Nom*", exact: true }).fill("test");
-  await page.getByRole("textbox", { name: "/08/1951" }).fill("19/08/1951");
-  await page
-    .getByRole("combobox", { name: "Adresse* Votre adresse n'" })
-    .fill("25 passage dubail");
-  await page.getByText("25, Passage Dubail, Quartier").click();
-  await page.getByRole("textbox", { name: "Commune*" }).fill("Paris");
-  await page
-    .locator(
-      ".sc-dtImxT.gZwKgz > .css-b62m3t-container > .select__control > .select__value-container > .select__input-container",
-    )
-    .click();
-  await page
-    .getByRole("combobox", { name: "120 results available.Use Up" })
-    .fill("75");
-  await page.getByRole("option", { name: "— Paris" }).click();
+  await page.getByRole('textbox', { name: '/08/1951' }).fill('19/08/1951');
+  await page.getByRole('textbox', { name: '/08/1951' }).press('Tab');
+  await page.getByRole('combobox', { name: 'option France, selected.' }).press('Tab');
+  await page.getByRole('combobox', { name: 'Adresse* Votre adresse n\'' }).fill('25 passage dubail');
+  await page.getByText('25, Passage Dubail, Quartier').click();
+  await page.getByRole('textbox', { name: 'Commune*' }).click();
+  await page.getByRole('textbox', { name: 'Commune*' }).fill('Paris');
+  await page.locator('.sc-dtImxT.gZwKgz > .css-b62m3t-container > .select__control > .select__value-container > .select__input-container').click();
+  await page.getByRole('combobox', { name: '120 results available.Use Up' }).fill('75');
+  await page.getByRole('option', { name: '— Paris' }).click();
   await page
     .getByRole("textbox", { name: "Numéro de téléphone* Nous" })
     .fill("06 00 00 00 00");
