@@ -378,7 +378,7 @@ class PersonSerializer(FlexibleFieldsMixin, serializers.ModelSerializer):
             )
             if difference.years < MIN_AGE_PER_COUNTRY["FR"]:
                 raise serializers.ValidationError({"dateOfBirth": "Âge incorrect"})
-        else:
+        elif instance.date_of_birth is None:
             raise serializers.ValidationError({"dateOfBirth": "Âge manquant"})
 
         instance = super().update(instance, validated_data)
