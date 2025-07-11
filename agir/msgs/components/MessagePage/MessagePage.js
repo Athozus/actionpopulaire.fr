@@ -32,7 +32,7 @@ const StyledPage = styled.div`
   margin: 0 auto;
   width: 100%;
   max-width: 1320px;
-  height: calc(100vh - 72px);
+  height: calc(100vh - var(--bottom-bar-height) - env(safe-area-inset-bottom, 0));
 
   @media (max-width: ${(props) => props.theme.collapse}px) {
     padding: 0;

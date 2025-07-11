@@ -17,7 +17,13 @@ const STYLESHEETMANAGER_DEFAULT_PROPS = {
 };
 
 const GlobalStyle = createGlobalStyle`
+  :root {
+    --safe-area-max-inset-bottom: env(safe-area-max-inset-bottom, 40px);
+    --bottom-bar-height: 72px;
+  }
+
   body {
+    padding-bottom: calc(var(--bottom-bar-height) + var(--safe-area-max-inset-bottom));
     background-color: ${(props) => props.theme.background0};
     color: ${(props) => props.theme.textColor};
   }

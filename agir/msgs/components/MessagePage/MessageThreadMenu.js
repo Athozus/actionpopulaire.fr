@@ -24,7 +24,7 @@ const StyledNewMessageButton = styled.div`
     background-color: ${(props) => props.theme.background0};
     padding: 1rem;
     position: fixed;
-    bottom: 72px;
+    bottom: calc(var(--bottom-bar-height) + env(safe-area-inset-bottom, 0));
     left: 0;
     right: 0;
     box-shadow: ${(props) => props.theme.cardShadow};

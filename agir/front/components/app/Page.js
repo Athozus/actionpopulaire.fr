@@ -30,9 +30,6 @@ const StyledPage = styled.div`
   isolation: isolate;
   padding-top: ${({ $hasTopBar }) => ($hasTopBar ? "72px" : "0")};
 
-  @media (max-width: ${(props) => props.theme.collapse}px) {
-    padding-top: ${({ $hasTopBar }) => ($hasTopBar ? "56px" : "0")};
-  }
 `;
 
 const Page = (props) => {

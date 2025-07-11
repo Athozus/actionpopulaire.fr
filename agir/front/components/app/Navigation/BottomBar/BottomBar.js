@@ -57,11 +57,11 @@ const MenuLink = styled(Link)`
 const StyledBottomBar = styled.nav`
   background-color: ${(props) => props.theme.background0};
   position: fixed;
-  bottom: 0;
+  bottom: env(safe-area-inset-bottom, 0);
   left: 0;
   right: 0;
   box-shadow: inset 0 1px 0 ${(props) => props.theme.text50};
-  height: 72px;
+  height: var(--bottom-bar-height);
   padding: 0 0.5rem;
   z-index: ${(props) => props.theme.zindexBottomBar};
   isolation: isolate;
