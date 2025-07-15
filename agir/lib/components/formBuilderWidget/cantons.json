@@ -1,0 +1,8218 @@
+[
+  {
+    "label": "Ambérieu-en-Bugey (101)",
+    "value": "101"
+  },
+  {
+    "label": "Attignat (102)",
+    "value": "102"
+  },
+  {
+    "label": "Bellegarde-sur-Valserine (103)",
+    "value": "103"
+  },
+  {
+    "label": "Belley (104)",
+    "value": "104"
+  },
+  {
+    "label": "Bourg-en-Bresse-1 (105)",
+    "value": "105"
+  },
+  {
+    "label": "Bourg-en-Bresse-2 (106)",
+    "value": "106"
+  },
+  {
+    "label": "Ceyzériat (107)",
+    "value": "107"
+  },
+  {
+    "label": "Châtillon-sur-Chalaronne (108)",
+    "value": "108"
+  },
+  {
+    "label": "Gex (109)",
+    "value": "109"
+  },
+  {
+    "label": "Hauteville-Lompnes (110)",
+    "value": "110"
+  },
+  {
+    "label": "Lagnieu (111)",
+    "value": "111"
+  },
+  {
+    "label": "Meximieux (112)",
+    "value": "112"
+  },
+  {
+    "label": "Miribel (113)",
+    "value": "113"
+  },
+  {
+    "label": "Nantua (114)",
+    "value": "114"
+  },
+  {
+    "label": "Oyonnax (115)",
+    "value": "115"
+  },
+  {
+    "label": "Pont-d'Ain (116)",
+    "value": "116"
+  },
+  {
+    "label": "Replonges (117)",
+    "value": "117"
+  },
+  {
+    "label": "Saint-Étienne-du-Bois (118)",
+    "value": "118"
+  },
+  {
+    "label": "Saint-Genis-Pouilly (119)",
+    "value": "119"
+  },
+  {
+    "label": "Thoiry (120)",
+    "value": "120"
+  },
+  {
+    "label": "Trévoux (121)",
+    "value": "121"
+  },
+  {
+    "label": "Villars-les-Dombes (122)",
+    "value": "122"
+  },
+  {
+    "label": "Vonnas (123)",
+    "value": "123"
+  },
+  {
+    "label": "Bohain-en-Vermandois (201)",
+    "value": "201"
+  },
+  {
+    "label": "Château-Thierry (202)",
+    "value": "202"
+  },
+  {
+    "label": "Chauny (203)",
+    "value": "203"
+  },
+  {
+    "label": "Essômes-sur-Marne (204)",
+    "value": "204"
+  },
+  {
+    "label": "Fère-en-Tardenois (205)",
+    "value": "205"
+  },
+  {
+    "label": "Guignicourt (206)",
+    "value": "206"
+  },
+  {
+    "label": "Guise (207)",
+    "value": "207"
+  },
+  {
+    "label": "Hirson (208)",
+    "value": "208"
+  },
+  {
+    "label": "Laon-1 (209)",
+    "value": "209"
+  },
+  {
+    "label": "Laon-2 (210)",
+    "value": "210"
+  },
+  {
+    "label": "Marle (211)",
+    "value": "211"
+  },
+  {
+    "label": "Ribemont (212)",
+    "value": "212"
+  },
+  {
+    "label": "Saint-Quentin-1 (213)",
+    "value": "213"
+  },
+  {
+    "label": "Saint-Quentin-2 (214)",
+    "value": "214"
+  },
+  {
+    "label": "Saint-Quentin-3 (215)",
+    "value": "215"
+  },
+  {
+    "label": "Soissons-1 (216)",
+    "value": "216"
+  },
+  {
+    "label": "Soissons-2 (217)",
+    "value": "217"
+  },
+  {
+    "label": "Tergnier (218)",
+    "value": "218"
+  },
+  {
+    "label": "Vervins (219)",
+    "value": "219"
+  },
+  {
+    "label": "Vic-sur-Aisne (220)",
+    "value": "220"
+  },
+  {
+    "label": "Villers-Cotterêts (221)",
+    "value": "221"
+  },
+  {
+    "label": "Bellerive-sur-Allier (301)",
+    "value": "301"
+  },
+  {
+    "label": "Bourbon-l'Archambault (302)",
+    "value": "302"
+  },
+  {
+    "label": "Commentry (303)",
+    "value": "303"
+  },
+  {
+    "label": "Cusset (304)",
+    "value": "304"
+  },
+  {
+    "label": "Dompierre-sur-Besbre (305)",
+    "value": "305"
+  },
+  {
+    "label": "Gannat (306)",
+    "value": "306"
+  },
+  {
+    "label": "Huriel (307)",
+    "value": "307"
+  },
+  {
+    "label": "Lapalisse (308)",
+    "value": "308"
+  },
+  {
+    "label": "Montluçon-1 (309)",
+    "value": "309"
+  },
+  {
+    "label": "Montluçon-2 (310)",
+    "value": "310"
+  },
+  {
+    "label": "Montluçon-3 (311)",
+    "value": "311"
+  },
+  {
+    "label": "Montluçon-4 (312)",
+    "value": "312"
+  },
+  {
+    "label": "Moulins-1 (313)",
+    "value": "313"
+  },
+  {
+    "label": "Moulins-2 (314)",
+    "value": "314"
+  },
+  {
+    "label": "Saint-Pourçain-sur-Sioule (315)",
+    "value": "315"
+  },
+  {
+    "label": "Souvigny (316)",
+    "value": "316"
+  },
+  {
+    "label": "Vichy-1 (317)",
+    "value": "317"
+  },
+  {
+    "label": "Vichy-2 (318)",
+    "value": "318"
+  },
+  {
+    "label": "Yzeure (319)",
+    "value": "319"
+  },
+  {
+    "label": "Barcelonnette (401)",
+    "value": "401"
+  },
+  {
+    "label": "Castellane (402)",
+    "value": "402"
+  },
+  {
+    "label": "Château-Arnoux-Saint-Auban (403)",
+    "value": "403"
+  },
+  {
+    "label": "Digne-les-Bains-1 (404)",
+    "value": "404"
+  },
+  {
+    "label": "Digne-les-Bains-2 (405)",
+    "value": "405"
+  },
+  {
+    "label": "Forcalquier (406)",
+    "value": "406"
+  },
+  {
+    "label": "Manosque-1 (407)",
+    "value": "407"
+  },
+  {
+    "label": "Manosque-2 (408)",
+    "value": "408"
+  },
+  {
+    "label": "Manosque-3 (409)",
+    "value": "409"
+  },
+  {
+    "label": "Oraison (410)",
+    "value": "410"
+  },
+  {
+    "label": "Reillanne (411)",
+    "value": "411"
+  },
+  {
+    "label": "Riez (412)",
+    "value": "412"
+  },
+  {
+    "label": "Seyne (413)",
+    "value": "413"
+  },
+  {
+    "label": "Sisteron (414)",
+    "value": "414"
+  },
+  {
+    "label": "Valensole (415)",
+    "value": "415"
+  },
+  {
+    "label": "Argentière-la-Bessée (501)",
+    "value": "501"
+  },
+  {
+    "label": "Briançon-1 (502)",
+    "value": "502"
+  },
+  {
+    "label": "Briançon-2 (503)",
+    "value": "503"
+  },
+  {
+    "label": "Chorges (504)",
+    "value": "504"
+  },
+  {
+    "label": "Embrun (505)",
+    "value": "505"
+  },
+  {
+    "label": "Gap-1 (506)",
+    "value": "506"
+  },
+  {
+    "label": "Gap-2 (507)",
+    "value": "507"
+  },
+  {
+    "label": "Gap-3 (508)",
+    "value": "508"
+  },
+  {
+    "label": "Gap-4 (509)",
+    "value": "509"
+  },
+  {
+    "label": "Guillestre (510)",
+    "value": "510"
+  },
+  {
+    "label": "Laragne-Montéglin (511)",
+    "value": "511"
+  },
+  {
+    "label": "Saint-Bonnet-en-Champsaur (512)",
+    "value": "512"
+  },
+  {
+    "label": "Serres (513)",
+    "value": "513"
+  },
+  {
+    "label": "Tallard (514)",
+    "value": "514"
+  },
+  {
+    "label": "Veynes (515)",
+    "value": "515"
+  },
+  {
+    "label": "Antibes-1 (601)",
+    "value": "601"
+  },
+  {
+    "label": "Antibes-2 (602)",
+    "value": "602"
+  },
+  {
+    "label": "Antibes-3 (603)",
+    "value": "603"
+  },
+  {
+    "label": "Beausoleil (604)",
+    "value": "604"
+  },
+  {
+    "label": "Cagnes-sur-Mer-1 (605)",
+    "value": "605"
+  },
+  {
+    "label": "Cagnes-sur-Mer-2 (606)",
+    "value": "606"
+  },
+  {
+    "label": "Cannes-1 (607)",
+    "value": "607"
+  },
+  {
+    "label": "Cannes-2 (608)",
+    "value": "608"
+  },
+  {
+    "label": "Cannet (609)",
+    "value": "609"
+  },
+  {
+    "label": "Contes (610)",
+    "value": "610"
+  },
+  {
+    "label": "Grasse-1 (611)",
+    "value": "611"
+  },
+  {
+    "label": "Grasse-2 (612)",
+    "value": "612"
+  },
+  {
+    "label": "Mandelieu-la-Napoule (613)",
+    "value": "613"
+  },
+  {
+    "label": "Menton (614)",
+    "value": "614"
+  },
+  {
+    "label": "Nice-1 (615)",
+    "value": "615"
+  },
+  {
+    "label": "Nice-2 (616)",
+    "value": "616"
+  },
+  {
+    "label": "Nice-3 (617)",
+    "value": "617"
+  },
+  {
+    "label": "Nice-4 (618)",
+    "value": "618"
+  },
+  {
+    "label": "Nice-5 (619)",
+    "value": "619"
+  },
+  {
+    "label": "Nice-6 (620)",
+    "value": "620"
+  },
+  {
+    "label": "Nice-7 (621)",
+    "value": "621"
+  },
+  {
+    "label": "Nice-8 (622)",
+    "value": "622"
+  },
+  {
+    "label": "Nice-9 (623)",
+    "value": "623"
+  },
+  {
+    "label": "Tourrette-Levens (624)",
+    "value": "624"
+  },
+  {
+    "label": "Valbonne (625)",
+    "value": "625"
+  },
+  {
+    "label": "Vence (626)",
+    "value": "626"
+  },
+  {
+    "label": "Villeneuve-Loubet (627)",
+    "value": "627"
+  },
+  {
+    "label": "Annonay-1 (701)",
+    "value": "701"
+  },
+  {
+    "label": "Annonay-2 (702)",
+    "value": "702"
+  },
+  {
+    "label": "Aubenas-1 (703)",
+    "value": "703"
+  },
+  {
+    "label": "Aubenas-2 (704)",
+    "value": "704"
+  },
+  {
+    "label": "Bourg-Saint-Andéol (705)",
+    "value": "705"
+  },
+  {
+    "label": "Haut-Eyrieux (706)",
+    "value": "706"
+  },
+  {
+    "label": "Guilherand-Granges (707)",
+    "value": "707"
+  },
+  {
+    "label": "Haut-Vivarais (708)",
+    "value": "708"
+  },
+  {
+    "label": "Pouzin (709)",
+    "value": "709"
+  },
+  {
+    "label": "Privas (710)",
+    "value": "710"
+  },
+  {
+    "label": "Sarras (711)",
+    "value": "711"
+  },
+  {
+    "label": "Berg-Helvie (712)",
+    "value": "712"
+  },
+  {
+    "label": "Haute-Ardèche (713)",
+    "value": "713"
+  },
+  {
+    "label": "Tournon-sur-Rhône (714)",
+    "value": "714"
+  },
+  {
+    "label": "Vallon-Pont-d'Arc (715)",
+    "value": "715"
+  },
+  {
+    "label": "Cévennes Ardéchoises (716)",
+    "value": "716"
+  },
+  {
+    "label": "Rhône-Eyrieux (717)",
+    "value": "717"
+  },
+  {
+    "label": "Attigny (801)",
+    "value": "801"
+  },
+  {
+    "label": "Bogny-sur-Meuse (802)",
+    "value": "802"
+  },
+  {
+    "label": "Carignan (803)",
+    "value": "803"
+  },
+  {
+    "label": "Charleville-Mézières-1 (804)",
+    "value": "804"
+  },
+  {
+    "label": "Charleville-Mézières-2 (805)",
+    "value": "805"
+  },
+  {
+    "label": "Charleville-Mézières-3 (806)",
+    "value": "806"
+  },
+  {
+    "label": "Charleville-Mézières-4 (807)",
+    "value": "807"
+  },
+  {
+    "label": "Château-Porcien (808)",
+    "value": "808"
+  },
+  {
+    "label": "Givet (809)",
+    "value": "809"
+  },
+  {
+    "label": "Nouvion-sur-Meuse (810)",
+    "value": "810"
+  },
+  {
+    "label": "Rethel (811)",
+    "value": "811"
+  },
+  {
+    "label": "Revin (812)",
+    "value": "812"
+  },
+  {
+    "label": "Rocroi (813)",
+    "value": "813"
+  },
+  {
+    "label": "Sedan-1 (814)",
+    "value": "814"
+  },
+  {
+    "label": "Sedan-2 (815)",
+    "value": "815"
+  },
+  {
+    "label": "Sedan-3 (816)",
+    "value": "816"
+  },
+  {
+    "label": "Signy-l'Abbaye (817)",
+    "value": "817"
+  },
+  {
+    "label": "Villers-Semeuse (818)",
+    "value": "818"
+  },
+  {
+    "label": "Vouziers (819)",
+    "value": "819"
+  },
+  {
+    "label": "Haute-Ariège (901)",
+    "value": "901"
+  },
+  {
+    "label": "Arize-Lèze (902)",
+    "value": "902"
+  },
+  {
+    "label": "Couserans Est (903)",
+    "value": "903"
+  },
+  {
+    "label": "Couserans Ouest (904)",
+    "value": "904"
+  },
+  {
+    "label": "Foix (905)",
+    "value": "905"
+  },
+  {
+    "label": "Mirepoix (906)",
+    "value": "906"
+  },
+  {
+    "label": "Pamiers-1 (907)",
+    "value": "907"
+  },
+  {
+    "label": "Pamiers-2 (908)",
+    "value": "908"
+  },
+  {
+    "label": "Pays d'Olmes (909)",
+    "value": "909"
+  },
+  {
+    "label": "Portes d'Ariège (910)",
+    "value": "910"
+  },
+  {
+    "label": "Portes du Couserans (911)",
+    "value": "911"
+  },
+  {
+    "label": "Sabarthès (912)",
+    "value": "912"
+  },
+  {
+    "label": "Val d'Ariège (913)",
+    "value": "913"
+  },
+  {
+    "label": "Aix-en-Othe (1001)",
+    "value": "1001"
+  },
+  {
+    "label": "Arcis-sur-Aube (1002)",
+    "value": "1002"
+  },
+  {
+    "label": "Bar-sur-Aube (1003)",
+    "value": "1003"
+  },
+  {
+    "label": "Bar-sur-Seine (1004)",
+    "value": "1004"
+  },
+  {
+    "label": "Brienne-le-Château (1005)",
+    "value": "1005"
+  },
+  {
+    "label": "Creney-près-Troyes (1006)",
+    "value": "1006"
+  },
+  {
+    "label": "Nogent-sur-Seine (1007)",
+    "value": "1007"
+  },
+  {
+    "label": "Riceys (1008)",
+    "value": "1008"
+  },
+  {
+    "label": "Romilly-sur-Seine (1009)",
+    "value": "1009"
+  },
+  {
+    "label": "Saint-André-les-Vergers (1010)",
+    "value": "1010"
+  },
+  {
+    "label": "Saint-Lyé (1011)",
+    "value": "1011"
+  },
+  {
+    "label": "Troyes-1 (1012)",
+    "value": "1012"
+  },
+  {
+    "label": "Troyes-2 (1013)",
+    "value": "1013"
+  },
+  {
+    "label": "Troyes-3 (1014)",
+    "value": "1014"
+  },
+  {
+    "label": "Troyes-4 (1015)",
+    "value": "1015"
+  },
+  {
+    "label": "Troyes-5 (1016)",
+    "value": "1016"
+  },
+  {
+    "label": "Vendeuvre-sur-Barse (1017)",
+    "value": "1017"
+  },
+  {
+    "label": "Piège au Razès (1101)",
+    "value": "1101"
+  },
+  {
+    "label": "Carcassonne-1 (1102)",
+    "value": "1102"
+  },
+  {
+    "label": "Carcassonne-2 (1103)",
+    "value": "1103"
+  },
+  {
+    "label": "Carcassonne-3 (1104)",
+    "value": "1104"
+  },
+  {
+    "label": "Bassin chaurien (1105)",
+    "value": "1105"
+  },
+  {
+    "label": "Basses Plaines de l'Aude (1106)",
+    "value": "1106"
+  },
+  {
+    "label": "Corbières (1107)",
+    "value": "1107"
+  },
+  {
+    "label": "Lézignanais (1108)",
+    "value": "1108"
+  },
+  {
+    "label": "Région Limouxine (1109)",
+    "value": "1109"
+  },
+  {
+    "label": "Malepère à la Montagne Noire (1110)",
+    "value": "1110"
+  },
+  {
+    "label": "Narbonne-1 (1111)",
+    "value": "1111"
+  },
+  {
+    "label": "Narbonne-2 (1112)",
+    "value": "1112"
+  },
+  {
+    "label": "Narbonne-3 (1113)",
+    "value": "1113"
+  },
+  {
+    "label": "Haute-Vallée de l'Aude (1114)",
+    "value": "1114"
+  },
+  {
+    "label": "Haut-Minervois (1115)",
+    "value": "1115"
+  },
+  {
+    "label": "Sud-Minervois (1116)",
+    "value": "1116"
+  },
+  {
+    "label": "Corbières Méditerranée (1117)",
+    "value": "1117"
+  },
+  {
+    "label": "Montagne d'Alaric (1118)",
+    "value": "1118"
+  },
+  {
+    "label": "Vallée de l'Orbiel (1119)",
+    "value": "1119"
+  },
+  {
+    "label": "Aubrac et Carladez (1201)",
+    "value": "1201"
+  },
+  {
+    "label": "Aveyron et Tarn (1202)",
+    "value": "1202"
+  },
+  {
+    "label": "Causse-Comtal (1203)",
+    "value": "1203"
+  },
+  {
+    "label": "Causses-Rougiers (1204)",
+    "value": "1204"
+  },
+  {
+    "label": "Ceor-Ségala (1205)",
+    "value": "1205"
+  },
+  {
+    "label": "Enne et Alzou (1206)",
+    "value": "1206"
+  },
+  {
+    "label": "Lot et Dourdou (1207)",
+    "value": "1207"
+  },
+  {
+    "label": "Lot et Montbazinois (1208)",
+    "value": "1208"
+  },
+  {
+    "label": "Lot et Palanges (1209)",
+    "value": "1209"
+  },
+  {
+    "label": "Lot et Truyère (1210)",
+    "value": "1210"
+  },
+  {
+    "label": "Millau-1 (1211)",
+    "value": "1211"
+  },
+  {
+    "label": "Millau-2 (1212)",
+    "value": "1212"
+  },
+  {
+    "label": "Monts du Réquistanais (1213)",
+    "value": "1213"
+  },
+  {
+    "label": "Nord-Lévezou (1214)",
+    "value": "1214"
+  },
+  {
+    "label": "Raspes et Lévezou (1215)",
+    "value": "1215"
+  },
+  {
+    "label": "Rodez-1 (1216)",
+    "value": "1216"
+  },
+  {
+    "label": "Rodez-2 (1217)",
+    "value": "1217"
+  },
+  {
+    "label": "Rodez-Onet (1218)",
+    "value": "1218"
+  },
+  {
+    "label": "Saint-Affrique (1219)",
+    "value": "1219"
+  },
+  {
+    "label": "Tarn et Causses (1220)",
+    "value": "1220"
+  },
+  {
+    "label": "Vallon (1221)",
+    "value": "1221"
+  },
+  {
+    "label": "Villefranche-de-Rouergue (1222)",
+    "value": "1222"
+  },
+  {
+    "label": "Villeneuvois et Villefranchois (1223)",
+    "value": "1223"
+  },
+  {
+    "label": "Aix-en-Provence-1 (1301)",
+    "value": "1301"
+  },
+  {
+    "label": "Aix-en-Provence-2 (1302)",
+    "value": "1302"
+  },
+  {
+    "label": "Allauch (1303)",
+    "value": "1303"
+  },
+  {
+    "label": "Arles (1304)",
+    "value": "1304"
+  },
+  {
+    "label": "Aubagne (1305)",
+    "value": "1305"
+  },
+  {
+    "label": "Berre-l'Étang (1306)",
+    "value": "1306"
+  },
+  {
+    "label": "Châteaurenard (1307)",
+    "value": "1307"
+  },
+  {
+    "label": "Ciotat (1308)",
+    "value": "1308"
+  },
+  {
+    "label": "Gardanne (1309)",
+    "value": "1309"
+  },
+  {
+    "label": "Istres (1310)",
+    "value": "1310"
+  },
+  {
+    "label": "Marignane (1311)",
+    "value": "1311"
+  },
+  {
+    "label": "Marseille-1 (1312)",
+    "value": "1312"
+  },
+  {
+    "label": "Marseille-2 (1313)",
+    "value": "1313"
+  },
+  {
+    "label": "Marseille-3 (1314)",
+    "value": "1314"
+  },
+  {
+    "label": "Marseille-4 (1315)",
+    "value": "1315"
+  },
+  {
+    "label": "Marseille-5 (1316)",
+    "value": "1316"
+  },
+  {
+    "label": "Marseille-6 (1317)",
+    "value": "1317"
+  },
+  {
+    "label": "Marseille-7 (1318)",
+    "value": "1318"
+  },
+  {
+    "label": "Marseille-8 (1319)",
+    "value": "1319"
+  },
+  {
+    "label": "Marseille-9 (1320)",
+    "value": "1320"
+  },
+  {
+    "label": "Marseille-10 (1321)",
+    "value": "1321"
+  },
+  {
+    "label": "Marseille-11 (1322)",
+    "value": "1322"
+  },
+  {
+    "label": "Marseille-12 (1323)",
+    "value": "1323"
+  },
+  {
+    "label": "Martigues (1324)",
+    "value": "1324"
+  },
+  {
+    "label": "Pélissanne (1325)",
+    "value": "1325"
+  },
+  {
+    "label": "Salon-de-Provence-1 (1326)",
+    "value": "1326"
+  },
+  {
+    "label": "Salon-de-Provence-2 (1327)",
+    "value": "1327"
+  },
+  {
+    "label": "Trets (1328)",
+    "value": "1328"
+  },
+  {
+    "label": "Vitrolles (1329)",
+    "value": "1329"
+  },
+  {
+    "label": "Aunay-sur-Odon (1401)",
+    "value": "1401"
+  },
+  {
+    "label": "Bayeux (1402)",
+    "value": "1402"
+  },
+  {
+    "label": "Bretteville-l'Orgueilleuse (1403)",
+    "value": "1403"
+  },
+  {
+    "label": "Cabourg (1404)",
+    "value": "1404"
+  },
+  {
+    "label": "Caen-1 (1405)",
+    "value": "1405"
+  },
+  {
+    "label": "Caen-2 (1406)",
+    "value": "1406"
+  },
+  {
+    "label": "Caen-3 (1407)",
+    "value": "1407"
+  },
+  {
+    "label": "Caen-4 (1408)",
+    "value": "1408"
+  },
+  {
+    "label": "Caen-5 (1409)",
+    "value": "1409"
+  },
+  {
+    "label": "Condé-sur-Noireau (1410)",
+    "value": "1410"
+  },
+  {
+    "label": "Courseulles-sur-Mer (1411)",
+    "value": "1411"
+  },
+  {
+    "label": "Évrecy (1412)",
+    "value": "1412"
+  },
+  {
+    "label": "Falaise (1413)",
+    "value": "1413"
+  },
+  {
+    "label": "Hérouville-Saint-Clair (1414)",
+    "value": "1414"
+  },
+  {
+    "label": "Honfleur-Deauville (1415)",
+    "value": "1415"
+  },
+  {
+    "label": "Ifs (1416)",
+    "value": "1416"
+  },
+  {
+    "label": "Lisieux (1417)",
+    "value": "1417"
+  },
+  {
+    "label": "Livarot (1418)",
+    "value": "1418"
+  },
+  {
+    "label": "Mézidon-Canon (1419)",
+    "value": "1419"
+  },
+  {
+    "label": "Ouistreham (1420)",
+    "value": "1420"
+  },
+  {
+    "label": "Pont-l'Évêque (1421)",
+    "value": "1421"
+  },
+  {
+    "label": "Thury-Harcourt (1422)",
+    "value": "1422"
+  },
+  {
+    "label": "Trévières (1423)",
+    "value": "1423"
+  },
+  {
+    "label": "Troarn (1424)",
+    "value": "1424"
+  },
+  {
+    "label": "Vire (1425)",
+    "value": "1425"
+  },
+  {
+    "label": "Arpajon-sur-Cère (1501)",
+    "value": "1501"
+  },
+  {
+    "label": "Aurillac-1 (1502)",
+    "value": "1502"
+  },
+  {
+    "label": "Aurillac-2 (1503)",
+    "value": "1503"
+  },
+  {
+    "label": "Aurillac-3 (1504)",
+    "value": "1504"
+  },
+  {
+    "label": "Mauriac (1505)",
+    "value": "1505"
+  },
+  {
+    "label": "Maurs (1506)",
+    "value": "1506"
+  },
+  {
+    "label": "Murat (1507)",
+    "value": "1507"
+  },
+  {
+    "label": "Naucelles (1508)",
+    "value": "1508"
+  },
+  {
+    "label": "Neuvéglise (1509)",
+    "value": "1509"
+  },
+  {
+    "label": "Riom-ès-Montagnes (1510)",
+    "value": "1510"
+  },
+  {
+    "label": "Saint-Flour-1 (1511)",
+    "value": "1511"
+  },
+  {
+    "label": "Saint-Flour-2 (1512)",
+    "value": "1512"
+  },
+  {
+    "label": "Saint-Paul-des-Landes (1513)",
+    "value": "1513"
+  },
+  {
+    "label": "Vic-sur-Cère (1514)",
+    "value": "1514"
+  },
+  {
+    "label": "Ydes (1515)",
+    "value": "1515"
+  },
+  {
+    "label": "Angoulême-1 (1601)",
+    "value": "1601"
+  },
+  {
+    "label": "Angoulême-2 (1602)",
+    "value": "1602"
+  },
+  {
+    "label": "Angoulême-3 (1603)",
+    "value": "1603"
+  },
+  {
+    "label": "Boëme-Echelle (1604)",
+    "value": "1604"
+  },
+  {
+    "label": "Boixe-et-Manslois (1605)",
+    "value": "1605"
+  },
+  {
+    "label": "Charente-Bonnieure (1606)",
+    "value": "1606"
+  },
+  {
+    "label": "Charente-Champagne (1607)",
+    "value": "1607"
+  },
+  {
+    "label": "Charente-Nord (1608)",
+    "value": "1608"
+  },
+  {
+    "label": "Charente-Sud (1609)",
+    "value": "1609"
+  },
+  {
+    "label": "Charente-Vienne (1610)",
+    "value": "1610"
+  },
+  {
+    "label": "Cognac-1 (1611)",
+    "value": "1611"
+  },
+  {
+    "label": "Cognac-2 (1612)",
+    "value": "1612"
+  },
+  {
+    "label": "Couronne (1613)",
+    "value": "1613"
+  },
+  {
+    "label": "Gond-Pontouvre (1614)",
+    "value": "1614"
+  },
+  {
+    "label": "Jarnac (1615)",
+    "value": "1615"
+  },
+  {
+    "label": "Touvre-et-Braconne (1616)",
+    "value": "1616"
+  },
+  {
+    "label": "Tude-et-Lavalette (1617)",
+    "value": "1617"
+  },
+  {
+    "label": "Val de Nouère (1618)",
+    "value": "1618"
+  },
+  {
+    "label": "Val de Tardoire (1619)",
+    "value": "1619"
+  },
+  {
+    "label": "Aytré (1701)",
+    "value": "1701"
+  },
+  {
+    "label": "Chaniers (1702)",
+    "value": "1702"
+  },
+  {
+    "label": "Châtelaillon-Plage (1703)",
+    "value": "1703"
+  },
+  {
+    "label": "Île d'Oléron (1704)",
+    "value": "1704"
+  },
+  {
+    "label": "Île de Ré (1705)",
+    "value": "1705"
+  },
+  {
+    "label": "Jarrie (1706)",
+    "value": "1706"
+  },
+  {
+    "label": "Jonzac (1707)",
+    "value": "1707"
+  },
+  {
+    "label": "Lagord (1708)",
+    "value": "1708"
+  },
+  {
+    "label": "Marans (1709)",
+    "value": "1709"
+  },
+  {
+    "label": "Marennes (1710)",
+    "value": "1710"
+  },
+  {
+    "label": "Matha (1711)",
+    "value": "1711"
+  },
+  {
+    "label": "Pons (1712)",
+    "value": "1712"
+  },
+  {
+    "label": "Rochefort (1713)",
+    "value": "1713"
+  },
+  {
+    "label": "Rochelle-1 (1714)",
+    "value": "1714"
+  },
+  {
+    "label": "Rochelle-2 (1715)",
+    "value": "1715"
+  },
+  {
+    "label": "Rochelle-3 (1716)",
+    "value": "1716"
+  },
+  {
+    "label": "Royan (1717)",
+    "value": "1717"
+  },
+  {
+    "label": "Saint-Jean-d'Angély (1718)",
+    "value": "1718"
+  },
+  {
+    "label": "Saint-Porchaire (1719)",
+    "value": "1719"
+  },
+  {
+    "label": "Saintes (1720)",
+    "value": "1720"
+  },
+  {
+    "label": "Saintonge Estuaire (1721)",
+    "value": "1721"
+  },
+  {
+    "label": "Saujon (1722)",
+    "value": "1722"
+  },
+  {
+    "label": "Surgères (1723)",
+    "value": "1723"
+  },
+  {
+    "label": "Thénac (1724)",
+    "value": "1724"
+  },
+  {
+    "label": "Tonnay-Charente (1725)",
+    "value": "1725"
+  },
+  {
+    "label": "Tremblade (1726)",
+    "value": "1726"
+  },
+  {
+    "label": "Trois Monts (1727)",
+    "value": "1727"
+  },
+  {
+    "label": "Aubigny-sur-Nère (1801)",
+    "value": "1801"
+  },
+  {
+    "label": "Avord (1802)",
+    "value": "1802"
+  },
+  {
+    "label": "Bourges-1 (1803)",
+    "value": "1803"
+  },
+  {
+    "label": "Bourges-2 (1804)",
+    "value": "1804"
+  },
+  {
+    "label": "Bourges-3 (1805)",
+    "value": "1805"
+  },
+  {
+    "label": "Bourges-4 (1806)",
+    "value": "1806"
+  },
+  {
+    "label": "Chârost (1807)",
+    "value": "1807"
+  },
+  {
+    "label": "Châteaumeillant (1808)",
+    "value": "1808"
+  },
+  {
+    "label": "Dun-sur-Auron (1809)",
+    "value": "1809"
+  },
+  {
+    "label": "Guerche-sur-l'Aubois (1810)",
+    "value": "1810"
+  },
+  {
+    "label": "Mehun-sur-Yèvre (1811)",
+    "value": "1811"
+  },
+  {
+    "label": "Saint-Amand-Montrond (1812)",
+    "value": "1812"
+  },
+  {
+    "label": "Saint-Doulchard (1813)",
+    "value": "1813"
+  },
+  {
+    "label": "Saint-Germain-du-Puy (1814)",
+    "value": "1814"
+  },
+  {
+    "label": "Saint-Martin-d'Auxigny (1815)",
+    "value": "1815"
+  },
+  {
+    "label": "Sancerre (1816)",
+    "value": "1816"
+  },
+  {
+    "label": "Trouy (1817)",
+    "value": "1817"
+  },
+  {
+    "label": "Vierzon-1 (1818)",
+    "value": "1818"
+  },
+  {
+    "label": "Vierzon-2 (1819)",
+    "value": "1819"
+  },
+  {
+    "label": "Allassac (1901)",
+    "value": "1901"
+  },
+  {
+    "label": "Argentat (1902)",
+    "value": "1902"
+  },
+  {
+    "label": "Brive-la-Gaillarde-1 (1903)",
+    "value": "1903"
+  },
+  {
+    "label": "Brive-la-Gaillarde-2 (1904)",
+    "value": "1904"
+  },
+  {
+    "label": "Brive-la-Gaillarde-3 (1905)",
+    "value": "1905"
+  },
+  {
+    "label": "Brive-la-Gaillarde-4 (1906)",
+    "value": "1906"
+  },
+  {
+    "label": "Égletons (1907)",
+    "value": "1907"
+  },
+  {
+    "label": "Haute-Dordogne (1908)",
+    "value": "1908"
+  },
+  {
+    "label": "Malemort-sur-Corrèze (1909)",
+    "value": "1909"
+  },
+  {
+    "label": "Midi Corrézien (1910)",
+    "value": "1910"
+  },
+  {
+    "label": "Naves (1911)",
+    "value": "1911"
+  },
+  {
+    "label": "Plateau de Millevaches (1912)",
+    "value": "1912"
+  },
+  {
+    "label": "Saint-Pantaléon-de-Larche (1913)",
+    "value": "1913"
+  },
+  {
+    "label": "Sainte-Fortunade (1914)",
+    "value": "1914"
+  },
+  {
+    "label": "Seilhac-Monédières (1915)",
+    "value": "1915"
+  },
+  {
+    "label": "Tulle (1916)",
+    "value": "1916"
+  },
+  {
+    "label": "Ussel (1917)",
+    "value": "1917"
+  },
+  {
+    "label": "Uzerche (1918)",
+    "value": "1918"
+  },
+  {
+    "label": "Yssandonnais (1919)",
+    "value": "1919"
+  },
+  {
+    "label": "Arnay-le-Duc (2101)",
+    "value": "2101"
+  },
+  {
+    "label": "Auxonne (2102)",
+    "value": "2102"
+  },
+  {
+    "label": "Beaune (2103)",
+    "value": "2103"
+  },
+  {
+    "label": "Brazey-en-Plaine (2104)",
+    "value": "2104"
+  },
+  {
+    "label": "Châtillon-sur-Seine (2105)",
+    "value": "2105"
+  },
+  {
+    "label": "Chenôve (2106)",
+    "value": "2106"
+  },
+  {
+    "label": "Chevigny-Saint-Sauveur (2107)",
+    "value": "2107"
+  },
+  {
+    "label": "Dijon-1 (2108)",
+    "value": "2108"
+  },
+  {
+    "label": "Dijon-2 (2109)",
+    "value": "2109"
+  },
+  {
+    "label": "Dijon-3 (2110)",
+    "value": "2110"
+  },
+  {
+    "label": "Dijon-4 (2111)",
+    "value": "2111"
+  },
+  {
+    "label": "Dijon-5 (2112)",
+    "value": "2112"
+  },
+  {
+    "label": "Dijon-6 (2113)",
+    "value": "2113"
+  },
+  {
+    "label": "Fontaine-lès-Dijon (2114)",
+    "value": "2114"
+  },
+  {
+    "label": "Genlis (2115)",
+    "value": "2115"
+  },
+  {
+    "label": "Is-sur-Tille (2116)",
+    "value": "2116"
+  },
+  {
+    "label": "Ladoix-Serrigny (2117)",
+    "value": "2117"
+  },
+  {
+    "label": "Longvic (2118)",
+    "value": "2118"
+  },
+  {
+    "label": "Montbard (2119)",
+    "value": "2119"
+  },
+  {
+    "label": "Nuits-Saint-Georges (2120)",
+    "value": "2120"
+  },
+  {
+    "label": "Saint-Apollinaire (2121)",
+    "value": "2121"
+  },
+  {
+    "label": "Semur-en-Auxois (2122)",
+    "value": "2122"
+  },
+  {
+    "label": "Talant (2123)",
+    "value": "2123"
+  },
+  {
+    "label": "Bégard (2201)",
+    "value": "2201"
+  },
+  {
+    "label": "Broons (2202)",
+    "value": "2202"
+  },
+  {
+    "label": "Callac (2203)",
+    "value": "2203"
+  },
+  {
+    "label": "Dinan (2204)",
+    "value": "2204"
+  },
+  {
+    "label": "Guingamp (2205)",
+    "value": "2205"
+  },
+  {
+    "label": "Lamballe (2206)",
+    "value": "2206"
+  },
+  {
+    "label": "Lannion (2207)",
+    "value": "2207"
+  },
+  {
+    "label": "Lanvallay (2208)",
+    "value": "2208"
+  },
+  {
+    "label": "Loudéac (2209)",
+    "value": "2209"
+  },
+  {
+    "label": "Mûr-de-Bretagne (2210)",
+    "value": "2210"
+  },
+  {
+    "label": "Paimpol (2211)",
+    "value": "2211"
+  },
+  {
+    "label": "Perros-Guirec (2212)",
+    "value": "2212"
+  },
+  {
+    "label": "Plaintel (2213)",
+    "value": "2213"
+  },
+  {
+    "label": "Plancoët (2214)",
+    "value": "2214"
+  },
+  {
+    "label": "Plélo (2215)",
+    "value": "2215"
+  },
+  {
+    "label": "Plénée-Jugon (2216)",
+    "value": "2216"
+  },
+  {
+    "label": "Pléneuf-Val-André (2217)",
+    "value": "2217"
+  },
+  {
+    "label": "Plérin (2218)",
+    "value": "2218"
+  },
+  {
+    "label": "Pleslin-Trigavou (2219)",
+    "value": "2219"
+  },
+  {
+    "label": "Plestin-les-Grèves (2220)",
+    "value": "2220"
+  },
+  {
+    "label": "Ploufragan (2221)",
+    "value": "2221"
+  },
+  {
+    "label": "Plouha (2222)",
+    "value": "2222"
+  },
+  {
+    "label": "Rostrenen (2223)",
+    "value": "2223"
+  },
+  {
+    "label": "Saint-Brieuc-1 (2224)",
+    "value": "2224"
+  },
+  {
+    "label": "Saint-Brieuc-2 (2225)",
+    "value": "2225"
+  },
+  {
+    "label": "Trégueux (2226)",
+    "value": "2226"
+  },
+  {
+    "label": "Tréguier (2227)",
+    "value": "2227"
+  },
+  {
+    "label": "Ahun (2301)",
+    "value": "2301"
+  },
+  {
+    "label": "Aubusson (2302)",
+    "value": "2302"
+  },
+  {
+    "label": "Auzances (2303)",
+    "value": "2303"
+  },
+  {
+    "label": "Bonnat (2304)",
+    "value": "2304"
+  },
+  {
+    "label": "Bourganeuf (2305)",
+    "value": "2305"
+  },
+  {
+    "label": "Boussac (2306)",
+    "value": "2306"
+  },
+  {
+    "label": "Dun-le-Palestel (2307)",
+    "value": "2307"
+  },
+  {
+    "label": "Évaux-les-Bains (2308)",
+    "value": "2308"
+  },
+  {
+    "label": "Felletin (2309)",
+    "value": "2309"
+  },
+  {
+    "label": "Gouzon (2310)",
+    "value": "2310"
+  },
+  {
+    "label": "Grand-Bourg (2311)",
+    "value": "2311"
+  },
+  {
+    "label": "Guéret-1 (2312)",
+    "value": "2312"
+  },
+  {
+    "label": "Guéret-2 (2313)",
+    "value": "2313"
+  },
+  {
+    "label": "Saint-Vaury (2314)",
+    "value": "2314"
+  },
+  {
+    "label": "Souterraine (2315)",
+    "value": "2315"
+  },
+  {
+    "label": "Bergerac-1 (2401)",
+    "value": "2401"
+  },
+  {
+    "label": "Bergerac-2 (2402)",
+    "value": "2402"
+  },
+  {
+    "label": "Brantôme (2403)",
+    "value": "2403"
+  },
+  {
+    "label": "Coulounieix-Chamiers (2404)",
+    "value": "2404"
+  },
+  {
+    "label": "Haut-Périgord Noir (2405)",
+    "value": "2405"
+  },
+  {
+    "label": "Isle-Loue-Auvézère (2406)",
+    "value": "2406"
+  },
+  {
+    "label": "Isle-Manoire (2407)",
+    "value": "2407"
+  },
+  {
+    "label": "Lalinde (2408)",
+    "value": "2408"
+  },
+  {
+    "label": "Montpon-Ménestérol (2409)",
+    "value": "2409"
+  },
+  {
+    "label": "Pays de la Force (2410)",
+    "value": "2410"
+  },
+  {
+    "label": "Pays de Montaigne et Gurson (2411)",
+    "value": "2411"
+  },
+  {
+    "label": "Périgord Central (2412)",
+    "value": "2412"
+  },
+  {
+    "label": "Périgord Vert Nontronnais (2413)",
+    "value": "2413"
+  },
+  {
+    "label": "Périgueux-1 (2414)",
+    "value": "2414"
+  },
+  {
+    "label": "Périgueux-2 (2415)",
+    "value": "2415"
+  },
+  {
+    "label": "Ribérac (2416)",
+    "value": "2416"
+  },
+  {
+    "label": "Saint-Astier (2417)",
+    "value": "2417"
+  },
+  {
+    "label": "Sarlat-la-Canéda (2418)",
+    "value": "2418"
+  },
+  {
+    "label": "Sud-Bergeracois (2419)",
+    "value": "2419"
+  },
+  {
+    "label": "Terrasson-Lavilledieu (2420)",
+    "value": "2420"
+  },
+  {
+    "label": "Thiviers (2421)",
+    "value": "2421"
+  },
+  {
+    "label": "Trélissac (2422)",
+    "value": "2422"
+  },
+  {
+    "label": "Vallée Dordogne (2423)",
+    "value": "2423"
+  },
+  {
+    "label": "Vallée de l'Isle (2424)",
+    "value": "2424"
+  },
+  {
+    "label": "Vallée de l'Homme (2425)",
+    "value": "2425"
+  },
+  {
+    "label": "Audincourt (2501)",
+    "value": "2501"
+  },
+  {
+    "label": "Baume-les-Dames (2502)",
+    "value": "2502"
+  },
+  {
+    "label": "Bavans (2503)",
+    "value": "2503"
+  },
+  {
+    "label": "Besançon-1 (2504)",
+    "value": "2504"
+  },
+  {
+    "label": "Besançon-2 (2505)",
+    "value": "2505"
+  },
+  {
+    "label": "Besançon-3 (2506)",
+    "value": "2506"
+  },
+  {
+    "label": "Besançon-4 (2507)",
+    "value": "2507"
+  },
+  {
+    "label": "Besançon-5 (2508)",
+    "value": "2508"
+  },
+  {
+    "label": "Besançon-6 (2509)",
+    "value": "2509"
+  },
+  {
+    "label": "Bethoncourt (2510)",
+    "value": "2510"
+  },
+  {
+    "label": "Frasne (2511)",
+    "value": "2511"
+  },
+  {
+    "label": "Maîche (2512)",
+    "value": "2512"
+  },
+  {
+    "label": "Montbéliard (2513)",
+    "value": "2513"
+  },
+  {
+    "label": "Morteau (2514)",
+    "value": "2514"
+  },
+  {
+    "label": "Ornans (2515)",
+    "value": "2515"
+  },
+  {
+    "label": "Pontarlier (2516)",
+    "value": "2516"
+  },
+  {
+    "label": "Saint-Vit (2517)",
+    "value": "2517"
+  },
+  {
+    "label": "Valdahon (2518)",
+    "value": "2518"
+  },
+  {
+    "label": "Valentigney (2519)",
+    "value": "2519"
+  },
+  {
+    "label": "Bourg-de-Péage (2601)",
+    "value": "2601"
+  },
+  {
+    "label": "Crest (2602)",
+    "value": "2602"
+  },
+  {
+    "label": "Dieulefit (2603)",
+    "value": "2603"
+  },
+  {
+    "label": "Diois (2604)",
+    "value": "2604"
+  },
+  {
+    "label": "Drôme des collines (2605)",
+    "value": "2605"
+  },
+  {
+    "label": "Grignan (2606)",
+    "value": "2606"
+  },
+  {
+    "label": "Loriol-sur-Drôme (2607)",
+    "value": "2607"
+  },
+  {
+    "label": "Montélimar-1 (2608)",
+    "value": "2608"
+  },
+  {
+    "label": "Montélimar-2 (2609)",
+    "value": "2609"
+  },
+  {
+    "label": "Nyons et Baronnies (2610)",
+    "value": "2610"
+  },
+  {
+    "label": "Romans-sur-Isère (2611)",
+    "value": "2611"
+  },
+  {
+    "label": "Saint-Vallier (2612)",
+    "value": "2612"
+  },
+  {
+    "label": "Tain-l'Hermitage (2613)",
+    "value": "2613"
+  },
+  {
+    "label": "Tricastin (2614)",
+    "value": "2614"
+  },
+  {
+    "label": "Valence-1 (2615)",
+    "value": "2615"
+  },
+  {
+    "label": "Valence-2 (2616)",
+    "value": "2616"
+  },
+  {
+    "label": "Valence-3 (2617)",
+    "value": "2617"
+  },
+  {
+    "label": "Valence-4 (2618)",
+    "value": "2618"
+  },
+  {
+    "label": "Vercors-Monts du Matin (2619)",
+    "value": "2619"
+  },
+  {
+    "label": "Andelys (2701)",
+    "value": "2701"
+  },
+  {
+    "label": "Bernay (2702)",
+    "value": "2702"
+  },
+  {
+    "label": "Beuzeville (2703)",
+    "value": "2703"
+  },
+  {
+    "label": "Bourg-Achard (2704)",
+    "value": "2704"
+  },
+  {
+    "label": "Bourgtheroulde-Infreville (2705)",
+    "value": "2705"
+  },
+  {
+    "label": "Breteuil (2706)",
+    "value": "2706"
+  },
+  {
+    "label": "Brionne (2707)",
+    "value": "2707"
+  },
+  {
+    "label": "Conches-en-Ouche (2708)",
+    "value": "2708"
+  },
+  {
+    "label": "Évreux-1 (2709)",
+    "value": "2709"
+  },
+  {
+    "label": "Évreux-2 (2710)",
+    "value": "2710"
+  },
+  {
+    "label": "Évreux-3 (2711)",
+    "value": "2711"
+  },
+  {
+    "label": "Gaillon (2712)",
+    "value": "2712"
+  },
+  {
+    "label": "Gisors (2713)",
+    "value": "2713"
+  },
+  {
+    "label": "Louviers (2714)",
+    "value": "2714"
+  },
+  {
+    "label": "Neubourg (2715)",
+    "value": "2715"
+  },
+  {
+    "label": "Pacy-sur-Eure (2716)",
+    "value": "2716"
+  },
+  {
+    "label": "Pont-Audemer (2717)",
+    "value": "2717"
+  },
+  {
+    "label": "Pont-de-l'Arche (2718)",
+    "value": "2718"
+  },
+  {
+    "label": "Romilly-sur-Andelle (2719)",
+    "value": "2719"
+  },
+  {
+    "label": "Saint-André-de-l'Eure (2720)",
+    "value": "2720"
+  },
+  {
+    "label": "Val-de-Reuil (2721)",
+    "value": "2721"
+  },
+  {
+    "label": "Verneuil-sur-Avre (2722)",
+    "value": "2722"
+  },
+  {
+    "label": "Vernon (2723)",
+    "value": "2723"
+  },
+  {
+    "label": "Anet (2801)",
+    "value": "2801"
+  },
+  {
+    "label": "Auneau (2802)",
+    "value": "2802"
+  },
+  {
+    "label": "Brou (2803)",
+    "value": "2803"
+  },
+  {
+    "label": "Chartres-1 (2804)",
+    "value": "2804"
+  },
+  {
+    "label": "Chartres-2 (2805)",
+    "value": "2805"
+  },
+  {
+    "label": "Chartres-3 (2806)",
+    "value": "2806"
+  },
+  {
+    "label": "Châteaudun (2807)",
+    "value": "2807"
+  },
+  {
+    "label": "Dreux-1 (2808)",
+    "value": "2808"
+  },
+  {
+    "label": "Dreux-2 (2809)",
+    "value": "2809"
+  },
+  {
+    "label": "Épernon (2810)",
+    "value": "2810"
+  },
+  {
+    "label": "Illiers-Combray (2811)",
+    "value": "2811"
+  },
+  {
+    "label": "Lucé (2812)",
+    "value": "2812"
+  },
+  {
+    "label": "Nogent-le-Rotrou (2813)",
+    "value": "2813"
+  },
+  {
+    "label": "Saint-Lubin-des-Joncherets (2814)",
+    "value": "2814"
+  },
+  {
+    "label": "Voves (2815)",
+    "value": "2815"
+  },
+  {
+    "label": "Brest-1 (2901)",
+    "value": "2901"
+  },
+  {
+    "label": "Brest-2 (2902)",
+    "value": "2902"
+  },
+  {
+    "label": "Brest-3 (2903)",
+    "value": "2903"
+  },
+  {
+    "label": "Brest-4 (2904)",
+    "value": "2904"
+  },
+  {
+    "label": "Brest-5 (2905)",
+    "value": "2905"
+  },
+  {
+    "label": "Briec (2906)",
+    "value": "2906"
+  },
+  {
+    "label": "Carhaix-Plouguer (2907)",
+    "value": "2907"
+  },
+  {
+    "label": "Concarneau (2908)",
+    "value": "2908"
+  },
+  {
+    "label": "Crozon (2909)",
+    "value": "2909"
+  },
+  {
+    "label": "Douarnenez (2910)",
+    "value": "2910"
+  },
+  {
+    "label": "Fouesnant (2911)",
+    "value": "2911"
+  },
+  {
+    "label": "Guipavas (2912)",
+    "value": "2912"
+  },
+  {
+    "label": "Landerneau (2913)",
+    "value": "2913"
+  },
+  {
+    "label": "Landivisiau (2914)",
+    "value": "2914"
+  },
+  {
+    "label": "Lesneven (2915)",
+    "value": "2915"
+  },
+  {
+    "label": "Moëlan-sur-Mer (2916)",
+    "value": "2916"
+  },
+  {
+    "label": "Morlaix (2917)",
+    "value": "2917"
+  },
+  {
+    "label": "Plabennec (2918)",
+    "value": "2918"
+  },
+  {
+    "label": "Plonéour-Lanvern (2919)",
+    "value": "2919"
+  },
+  {
+    "label": "Plouigneau (2920)",
+    "value": "2920"
+  },
+  {
+    "label": "Pont-de-Buis-lès-Quimerch (2921)",
+    "value": "2921"
+  },
+  {
+    "label": "Pont-l'Abbé (2922)",
+    "value": "2922"
+  },
+  {
+    "label": "Quimper-1 (2923)",
+    "value": "2923"
+  },
+  {
+    "label": "Quimper-2 (2924)",
+    "value": "2924"
+  },
+  {
+    "label": "Quimperlé (2925)",
+    "value": "2925"
+  },
+  {
+    "label": "Saint-Pol-de-Léon (2926)",
+    "value": "2926"
+  },
+  {
+    "label": "Saint-Renan (2927)",
+    "value": "2927"
+  },
+  {
+    "label": "Ajaccio-1 (2A01)",
+    "value": "2A01"
+  },
+  {
+    "label": "Ajaccio-2 (2A02)",
+    "value": "2A02"
+  },
+  {
+    "label": "Ajaccio-3 (2A03)",
+    "value": "2A03"
+  },
+  {
+    "label": "Ajaccio-4 (2A04)",
+    "value": "2A04"
+  },
+  {
+    "label": "Ajaccio-5 (2A05)",
+    "value": "2A05"
+  },
+  {
+    "label": "Bavella (2A06)",
+    "value": "2A06"
+  },
+  {
+    "label": "Grand Sud (2A07)",
+    "value": "2A07"
+  },
+  {
+    "label": "Gravona-Prunelli (2A08)",
+    "value": "2A08"
+  },
+  {
+    "label": "Sartenais-Valinco (2A09)",
+    "value": "2A09"
+  },
+  {
+    "label": "Sevi-Sorru-Cinarca (2A10)",
+    "value": "2A10"
+  },
+  {
+    "label": "Taravo-Ornano (2A11)",
+    "value": "2A11"
+  },
+  {
+    "label": "Bastia-1 (2B01)",
+    "value": "2B01"
+  },
+  {
+    "label": "Bastia-2 (2B02)",
+    "value": "2B02"
+  },
+  {
+    "label": "Bastia-3 (2B03)",
+    "value": "2B03"
+  },
+  {
+    "label": "Bastia-4 (2B04)",
+    "value": "2B04"
+  },
+  {
+    "label": "Biguglia-Nebbio (2B05)",
+    "value": "2B05"
+  },
+  {
+    "label": "Borgo (2B06)",
+    "value": "2B06"
+  },
+  {
+    "label": "Calvi (2B07)",
+    "value": "2B07"
+  },
+  {
+    "label": "Cap Corse (2B08)",
+    "value": "2B08"
+  },
+  {
+    "label": "Casinca-Fumalto (2B09)",
+    "value": "2B09"
+  },
+  {
+    "label": "Castagniccia (2B10)",
+    "value": "2B10"
+  },
+  {
+    "label": "Corte (2B11)",
+    "value": "2B11"
+  },
+  {
+    "label": "Fiumorbo-Castello (2B12)",
+    "value": "2B12"
+  },
+  {
+    "label": "Ghisonaccia (2B13)",
+    "value": "2B13"
+  },
+  {
+    "label": "Golo-Morosaglia (2B14)",
+    "value": "2B14"
+  },
+  {
+    "label": "île-Rousse (2B15)",
+    "value": "2B15"
+  },
+  {
+    "label": "Aigues-Mortes (3001)",
+    "value": "3001"
+  },
+  {
+    "label": "Alès-1 (3002)",
+    "value": "3002"
+  },
+  {
+    "label": "Alès-2 (3003)",
+    "value": "3003"
+  },
+  {
+    "label": "Alès-3 (3004)",
+    "value": "3004"
+  },
+  {
+    "label": "Bagnols-sur-Cèze (3005)",
+    "value": "3005"
+  },
+  {
+    "label": "Beaucaire (3006)",
+    "value": "3006"
+  },
+  {
+    "label": "Calvisson (3007)",
+    "value": "3007"
+  },
+  {
+    "label": "Grand-Combe (3008)",
+    "value": "3008"
+  },
+  {
+    "label": "Marguerittes (3009)",
+    "value": "3009"
+  },
+  {
+    "label": "Nîmes-1 (3010)",
+    "value": "3010"
+  },
+  {
+    "label": "Nîmes-2 (3011)",
+    "value": "3011"
+  },
+  {
+    "label": "Nîmes-3 (3012)",
+    "value": "3012"
+  },
+  {
+    "label": "Nîmes-4 (3013)",
+    "value": "3013"
+  },
+  {
+    "label": "Pont-Saint-Esprit (3014)",
+    "value": "3014"
+  },
+  {
+    "label": "Quissac (3015)",
+    "value": "3015"
+  },
+  {
+    "label": "Redessan (3016)",
+    "value": "3016"
+  },
+  {
+    "label": "Roquemaure (3017)",
+    "value": "3017"
+  },
+  {
+    "label": "Rousson (3018)",
+    "value": "3018"
+  },
+  {
+    "label": "Saint-Gilles (3019)",
+    "value": "3019"
+  },
+  {
+    "label": "Uzès (3020)",
+    "value": "3020"
+  },
+  {
+    "label": "Vauvert (3021)",
+    "value": "3021"
+  },
+  {
+    "label": "Vigan (3022)",
+    "value": "3022"
+  },
+  {
+    "label": "Villeneuve-lès-Avignon (3023)",
+    "value": "3023"
+  },
+  {
+    "label": "Auterive (3101)",
+    "value": "3101"
+  },
+  {
+    "label": "Bagnères-de-Luchon (3102)",
+    "value": "3102"
+  },
+  {
+    "label": "Blagnac (3103)",
+    "value": "3103"
+  },
+  {
+    "label": "Castanet-Tolosan (3104)",
+    "value": "3104"
+  },
+  {
+    "label": "Castelginest (3105)",
+    "value": "3105"
+  },
+  {
+    "label": "Cazères (3106)",
+    "value": "3106"
+  },
+  {
+    "label": "Escalquens (3107)",
+    "value": "3107"
+  },
+  {
+    "label": "Léguevin (3108)",
+    "value": "3108"
+  },
+  {
+    "label": "Muret (3109)",
+    "value": "3109"
+  },
+  {
+    "label": "Pechbonnieu (3110)",
+    "value": "3110"
+  },
+  {
+    "label": "Plaisance-du-Touch (3111)",
+    "value": "3111"
+  },
+  {
+    "label": "Portet-sur-Garonne (3112)",
+    "value": "3112"
+  },
+  {
+    "label": "Revel (3113)",
+    "value": "3113"
+  },
+  {
+    "label": "Saint-Gaudens (3114)",
+    "value": "3114"
+  },
+  {
+    "label": "Toulouse-1 (3115)",
+    "value": "3115"
+  },
+  {
+    "label": "Toulouse-2 (3116)",
+    "value": "3116"
+  },
+  {
+    "label": "Toulouse-3 (3117)",
+    "value": "3117"
+  },
+  {
+    "label": "Toulouse-4 (3118)",
+    "value": "3118"
+  },
+  {
+    "label": "Toulouse-5 (3119)",
+    "value": "3119"
+  },
+  {
+    "label": "Toulouse-6 (3120)",
+    "value": "3120"
+  },
+  {
+    "label": "Toulouse-7 (3121)",
+    "value": "3121"
+  },
+  {
+    "label": "Toulouse-8 (3122)",
+    "value": "3122"
+  },
+  {
+    "label": "Toulouse-9 (3123)",
+    "value": "3123"
+  },
+  {
+    "label": "Toulouse-10 (3124)",
+    "value": "3124"
+  },
+  {
+    "label": "Toulouse-11 (3125)",
+    "value": "3125"
+  },
+  {
+    "label": "Tournefeuille (3126)",
+    "value": "3126"
+  },
+  {
+    "label": "Villemur-sur-Tarn (3127)",
+    "value": "3127"
+  },
+  {
+    "label": "Adour-Gersoise (3201)",
+    "value": "3201"
+  },
+  {
+    "label": "Armagnac-Ténarèze (3202)",
+    "value": "3202"
+  },
+  {
+    "label": "Astarac-Gimone (3203)",
+    "value": "3203"
+  },
+  {
+    "label": "Auch-1 (3204)",
+    "value": "3204"
+  },
+  {
+    "label": "Auch-2 (3205)",
+    "value": "3205"
+  },
+  {
+    "label": "Auch-3 (3206)",
+    "value": "3206"
+  },
+  {
+    "label": "Baïse-Armagnac (3207)",
+    "value": "3207"
+  },
+  {
+    "label": "Fezensac (3208)",
+    "value": "3208"
+  },
+  {
+    "label": "Fleurance-Lomagne (3209)",
+    "value": "3209"
+  },
+  {
+    "label": "Gascogne-Auscitaine (3210)",
+    "value": "3210"
+  },
+  {
+    "label": "Gimone-Arrats (3211)",
+    "value": "3211"
+  },
+  {
+    "label": "Grand-Bas-Armagnac (3212)",
+    "value": "3212"
+  },
+  {
+    "label": "Isle-Jourdain (3213)",
+    "value": "3213"
+  },
+  {
+    "label": "Lectoure-Lomagne (3214)",
+    "value": "3214"
+  },
+  {
+    "label": "Mirande-Astarac (3215)",
+    "value": "3215"
+  },
+  {
+    "label": "Pardiac-Rivière-Basse (3216)",
+    "value": "3216"
+  },
+  {
+    "label": "Val de Save (3217)",
+    "value": "3217"
+  },
+  {
+    "label": "Andernos-les-Bains (3301)",
+    "value": "3301"
+  },
+  {
+    "label": "Bordeaux-1 (3302)",
+    "value": "3302"
+  },
+  {
+    "label": "Bordeaux-2 (3303)",
+    "value": "3303"
+  },
+  {
+    "label": "Bordeaux-3 (3304)",
+    "value": "3304"
+  },
+  {
+    "label": "Bordeaux-4 (3305)",
+    "value": "3305"
+  },
+  {
+    "label": "Bordeaux-5 (3306)",
+    "value": "3306"
+  },
+  {
+    "label": "Bouscat (3307)",
+    "value": "3307"
+  },
+  {
+    "label": "Brède (3308)",
+    "value": "3308"
+  },
+  {
+    "label": "Cenon (3309)",
+    "value": "3309"
+  },
+  {
+    "label": "Coteaux de Dordogne (3310)",
+    "value": "3310"
+  },
+  {
+    "label": "Créon (3311)",
+    "value": "3311"
+  },
+  {
+    "label": "Entre-Deux-Mers (3312)",
+    "value": "3312"
+  },
+  {
+    "label": "Estuaire (3313)",
+    "value": "3313"
+  },
+  {
+    "label": "Gujan-Mestras (3314)",
+    "value": "3314"
+  },
+  {
+    "label": "Landes des Graves (3315)",
+    "value": "3315"
+  },
+  {
+    "label": "Libournais-Fronsadais (3316)",
+    "value": "3316"
+  },
+  {
+    "label": "Lormont (3317)",
+    "value": "3317"
+  },
+  {
+    "label": "Mérignac-1 (3318)",
+    "value": "3318"
+  },
+  {
+    "label": "Mérignac-2 (3319)",
+    "value": "3319"
+  },
+  {
+    "label": "Nord-Gironde (3320)",
+    "value": "3320"
+  },
+  {
+    "label": "Nord-Libournais (3321)",
+    "value": "3321"
+  },
+  {
+    "label": "Nord-Médoc (3322)",
+    "value": "3322"
+  },
+  {
+    "label": "Pessac-1 (3323)",
+    "value": "3323"
+  },
+  {
+    "label": "Pessac-2 (3324)",
+    "value": "3324"
+  },
+  {
+    "label": "Portes du Médoc (3325)",
+    "value": "3325"
+  },
+  {
+    "label": "Presqu'île (3326)",
+    "value": "3326"
+  },
+  {
+    "label": "Réolais et Les Bastides (3327)",
+    "value": "3327"
+  },
+  {
+    "label": "Saint-Médard-en-Jalles (3328)",
+    "value": "3328"
+  },
+  {
+    "label": "Sud-Gironde (3329)",
+    "value": "3329"
+  },
+  {
+    "label": "Sud-Médoc (3330)",
+    "value": "3330"
+  },
+  {
+    "label": "Talence (3331)",
+    "value": "3331"
+  },
+  {
+    "label": "Teste-de-Buch (3332)",
+    "value": "3332"
+  },
+  {
+    "label": "Villenave-d'Ornon (3333)",
+    "value": "3333"
+  },
+  {
+    "label": "Agde (3401)",
+    "value": "3401"
+  },
+  {
+    "label": "Béziers-1 (3402)",
+    "value": "3402"
+  },
+  {
+    "label": "Béziers-2 (3403)",
+    "value": "3403"
+  },
+  {
+    "label": "Béziers-3 (3404)",
+    "value": "3404"
+  },
+  {
+    "label": "Cazouls-lès-Béziers (3405)",
+    "value": "3405"
+  },
+  {
+    "label": "Clermont-l'Hérault (3406)",
+    "value": "3406"
+  },
+  {
+    "label": "Crès (3407)",
+    "value": "3407"
+  },
+  {
+    "label": "Frontignan (3408)",
+    "value": "3408"
+  },
+  {
+    "label": "Gignac (3409)",
+    "value": "3409"
+  },
+  {
+    "label": "Lattes (3410)",
+    "value": "3410"
+  },
+  {
+    "label": "Lodève (3411)",
+    "value": "3411"
+  },
+  {
+    "label": "Lunel (3412)",
+    "value": "3412"
+  },
+  {
+    "label": "Mauguio (3413)",
+    "value": "3413"
+  },
+  {
+    "label": "Mèze (3414)",
+    "value": "3414"
+  },
+  {
+    "label": "Montpellier-1 (3415)",
+    "value": "3415"
+  },
+  {
+    "label": "Montpellier-2 (3416)",
+    "value": "3416"
+  },
+  {
+    "label": "Montpellier-3 (3417)",
+    "value": "3417"
+  },
+  {
+    "label": "Montpellier-4 (3418)",
+    "value": "3418"
+  },
+  {
+    "label": "Montpellier-5 (3419)",
+    "value": "3419"
+  },
+  {
+    "label": "Montpellier - Castelnau-le-Lez (3420)",
+    "value": "3420"
+  },
+  {
+    "label": "Pézenas (3421)",
+    "value": "3421"
+  },
+  {
+    "label": "Pignan (3422)",
+    "value": "3422"
+  },
+  {
+    "label": "Saint-Gély-du-Fesc (3423)",
+    "value": "3423"
+  },
+  {
+    "label": "Saint-Pons-de-Thomières (3424)",
+    "value": "3424"
+  },
+  {
+    "label": "Sète (3425)",
+    "value": "3425"
+  },
+  {
+    "label": "Antrain (3501)",
+    "value": "3501"
+  },
+  {
+    "label": "Bain-de-Bretagne (3502)",
+    "value": "3502"
+  },
+  {
+    "label": "Betton (3503)",
+    "value": "3503"
+  },
+  {
+    "label": "Bruz (3504)",
+    "value": "3504"
+  },
+  {
+    "label": "Châteaugiron (3505)",
+    "value": "3505"
+  },
+  {
+    "label": "Combourg (3506)",
+    "value": "3506"
+  },
+  {
+    "label": "Dol-de-Bretagne (3507)",
+    "value": "3507"
+  },
+  {
+    "label": "Fougères-1 (3508)",
+    "value": "3508"
+  },
+  {
+    "label": "Fougères-2 (3509)",
+    "value": "3509"
+  },
+  {
+    "label": "Guerche-de-Bretagne (3510)",
+    "value": "3510"
+  },
+  {
+    "label": "Guichen (3511)",
+    "value": "3511"
+  },
+  {
+    "label": "Janzé (3512)",
+    "value": "3512"
+  },
+  {
+    "label": "Liffré (3513)",
+    "value": "3513"
+  },
+  {
+    "label": "Melesse (3514)",
+    "value": "3514"
+  },
+  {
+    "label": "Montauban-de-Bretagne (3515)",
+    "value": "3515"
+  },
+  {
+    "label": "Montfort-sur-Meu (3516)",
+    "value": "3516"
+  },
+  {
+    "label": "Redon (3517)",
+    "value": "3517"
+  },
+  {
+    "label": "Rennes-1 (3518)",
+    "value": "3518"
+  },
+  {
+    "label": "Rennes-2 (3519)",
+    "value": "3519"
+  },
+  {
+    "label": "Rennes-3 (3520)",
+    "value": "3520"
+  },
+  {
+    "label": "Rennes-4 (3521)",
+    "value": "3521"
+  },
+  {
+    "label": "Rennes-5 (3522)",
+    "value": "3522"
+  },
+  {
+    "label": "Rennes-6 (3523)",
+    "value": "3523"
+  },
+  {
+    "label": "Rheu (3524)",
+    "value": "3524"
+  },
+  {
+    "label": "Saint-Malo-1 (3525)",
+    "value": "3525"
+  },
+  {
+    "label": "Saint-Malo-2 (3526)",
+    "value": "3526"
+  },
+  {
+    "label": "Vitré (3527)",
+    "value": "3527"
+  },
+  {
+    "label": "Ardentes (3601)",
+    "value": "3601"
+  },
+  {
+    "label": "Argenton-sur-Creuse (3602)",
+    "value": "3602"
+  },
+  {
+    "label": "Blanc (3603)",
+    "value": "3603"
+  },
+  {
+    "label": "Buzançais (3604)",
+    "value": "3604"
+  },
+  {
+    "label": "Châteauroux-1 (3605)",
+    "value": "3605"
+  },
+  {
+    "label": "Châteauroux-2 (3606)",
+    "value": "3606"
+  },
+  {
+    "label": "Châteauroux-3 (3607)",
+    "value": "3607"
+  },
+  {
+    "label": "Châtre (3608)",
+    "value": "3608"
+  },
+  {
+    "label": "Issoudun (3609)",
+    "value": "3609"
+  },
+  {
+    "label": "Levroux (3610)",
+    "value": "3610"
+  },
+  {
+    "label": "Neuvy-Saint-Sépulchre (3611)",
+    "value": "3611"
+  },
+  {
+    "label": "Saint-Gaultier (3612)",
+    "value": "3612"
+  },
+  {
+    "label": "Valençay (3613)",
+    "value": "3613"
+  },
+  {
+    "label": "Amboise (3701)",
+    "value": "3701"
+  },
+  {
+    "label": "Ballan-Miré (3702)",
+    "value": "3702"
+  },
+  {
+    "label": "Bléré (3703)",
+    "value": "3703"
+  },
+  {
+    "label": "Château-Renault (3704)",
+    "value": "3704"
+  },
+  {
+    "label": "Chinon (3705)",
+    "value": "3705"
+  },
+  {
+    "label": "Descartes (3706)",
+    "value": "3706"
+  },
+  {
+    "label": "Joué-lès-Tours (3707)",
+    "value": "3707"
+  },
+  {
+    "label": "Langeais (3708)",
+    "value": "3708"
+  },
+  {
+    "label": "Loches (3709)",
+    "value": "3709"
+  },
+  {
+    "label": "Montlouis-sur-Loire (3710)",
+    "value": "3710"
+  },
+  {
+    "label": "Monts (3711)",
+    "value": "3711"
+  },
+  {
+    "label": "Saint-Cyr-sur-Loire (3712)",
+    "value": "3712"
+  },
+  {
+    "label": "Sainte-Maure-de-Touraine (3713)",
+    "value": "3713"
+  },
+  {
+    "label": "Saint-Pierre-des-Corps (3714)",
+    "value": "3714"
+  },
+  {
+    "label": "Tours-1 (3715)",
+    "value": "3715"
+  },
+  {
+    "label": "Tours-2 (3716)",
+    "value": "3716"
+  },
+  {
+    "label": "Tours-3 (3717)",
+    "value": "3717"
+  },
+  {
+    "label": "Tours-4 (3718)",
+    "value": "3718"
+  },
+  {
+    "label": "Vouvray (3719)",
+    "value": "3719"
+  },
+  {
+    "label": "Bièvre (3801)",
+    "value": "3801"
+  },
+  {
+    "label": "Bourgoin-Jallieu (3802)",
+    "value": "3802"
+  },
+  {
+    "label": "Chartreuse-Guiers (3803)",
+    "value": "3803"
+  },
+  {
+    "label": "Charvieu-Chavagneux (3804)",
+    "value": "3804"
+  },
+  {
+    "label": "Échirolles (3805)",
+    "value": "3805"
+  },
+  {
+    "label": "Fontaine-Seyssinet (3806)",
+    "value": "3806"
+  },
+  {
+    "label": "Fontaine-Vercors (3807)",
+    "value": "3807"
+  },
+  {
+    "label": "Grand-Lemps (3808)",
+    "value": "3808"
+  },
+  {
+    "label": "Grenoble-1 (3809)",
+    "value": "3809"
+  },
+  {
+    "label": "Grenoble-2 (3810)",
+    "value": "3810"
+  },
+  {
+    "label": "Grenoble-3 (3811)",
+    "value": "3811"
+  },
+  {
+    "label": "Grenoble-4 (3812)",
+    "value": "3812"
+  },
+  {
+    "label": "Haut-Grésivaudan (3813)",
+    "value": "3813"
+  },
+  {
+    "label": "Isle-d'Abeau (3814)",
+    "value": "3814"
+  },
+  {
+    "label": "Matheysine-Trièves (3815)",
+    "value": "3815"
+  },
+  {
+    "label": "Meylan (3816)",
+    "value": "3816"
+  },
+  {
+    "label": "Morestel (3817)",
+    "value": "3817"
+  },
+  {
+    "label": "Moyen Grésivaudan (3818)",
+    "value": "3818"
+  },
+  {
+    "label": "Oisans-Romanche (3819)",
+    "value": "3819"
+  },
+  {
+    "label": "Pont-de-Claix (3820)",
+    "value": "3820"
+  },
+  {
+    "label": "Roussillon (3821)",
+    "value": "3821"
+  },
+  {
+    "label": "Saint-Martin-d'Hères (3822)",
+    "value": "3822"
+  },
+  {
+    "label": "Sud Grésivaudan (3823)",
+    "value": "3823"
+  },
+  {
+    "label": "Tour-du-Pin (3824)",
+    "value": "3824"
+  },
+  {
+    "label": "Tullins (3825)",
+    "value": "3825"
+  },
+  {
+    "label": "Verpillière (3826)",
+    "value": "3826"
+  },
+  {
+    "label": "Vienne-1 (3827)",
+    "value": "3827"
+  },
+  {
+    "label": "Vienne-2 (3828)",
+    "value": "3828"
+  },
+  {
+    "label": "Voiron (3829)",
+    "value": "3829"
+  },
+  {
+    "label": "Arbois (3901)",
+    "value": "3901"
+  },
+  {
+    "label": "Authume (3902)",
+    "value": "3902"
+  },
+  {
+    "label": "Bletterans (3903)",
+    "value": "3903"
+  },
+  {
+    "label": "Champagnole (3904)",
+    "value": "3904"
+  },
+  {
+    "label": "Dole-1 (3905)",
+    "value": "3905"
+  },
+  {
+    "label": "Dole-2 (3906)",
+    "value": "3906"
+  },
+  {
+    "label": "Lons-le-Saunier-1 (3907)",
+    "value": "3907"
+  },
+  {
+    "label": "Lons-le-Saunier-2 (3908)",
+    "value": "3908"
+  },
+  {
+    "label": "Moirans-en-Montagne (3909)",
+    "value": "3909"
+  },
+  {
+    "label": "Mont-sous-Vaudrey (3910)",
+    "value": "3910"
+  },
+  {
+    "label": "Morez (3911)",
+    "value": "3911"
+  },
+  {
+    "label": "Poligny (3912)",
+    "value": "3912"
+  },
+  {
+    "label": "Saint-Amour (3913)",
+    "value": "3913"
+  },
+  {
+    "label": "Saint-Claude (3914)",
+    "value": "3914"
+  },
+  {
+    "label": "Saint-Laurent-en-Grandvaux (3915)",
+    "value": "3915"
+  },
+  {
+    "label": "Saint-Lupicin (3916)",
+    "value": "3916"
+  },
+  {
+    "label": "Tavaux (3917)",
+    "value": "3917"
+  },
+  {
+    "label": "Adour Armagnac (4001)",
+    "value": "4001"
+  },
+  {
+    "label": "Chalosse Tursan (4002)",
+    "value": "4002"
+  },
+  {
+    "label": "Côte d'Argent (4003)",
+    "value": "4003"
+  },
+  {
+    "label": "Coteau de Chalosse (4004)",
+    "value": "4004"
+  },
+  {
+    "label": "Dax-1 (4005)",
+    "value": "4005"
+  },
+  {
+    "label": "Dax-2 (4006)",
+    "value": "4006"
+  },
+  {
+    "label": "Grands Lacs (4007)",
+    "value": "4007"
+  },
+  {
+    "label": "Haute Lande Armagnac (4008)",
+    "value": "4008"
+  },
+  {
+    "label": "Marensin Sud (4009)",
+    "value": "4009"
+  },
+  {
+    "label": "Mont-de-Marsan-1 (4010)",
+    "value": "4010"
+  },
+  {
+    "label": "Mont-de-Marsan-2 (4011)",
+    "value": "4011"
+  },
+  {
+    "label": "Orthe et Arrigans (4012)",
+    "value": "4012"
+  },
+  {
+    "label": "Pays morcenais tarusate (4013)",
+    "value": "4013"
+  },
+  {
+    "label": "Pays Tyrossais (4014)",
+    "value": "4014"
+  },
+  {
+    "label": "Seignanx (4015)",
+    "value": "4015"
+  },
+  {
+    "label": "Beauce (4101)",
+    "value": "4101"
+  },
+  {
+    "label": "Blois-1 (4102)",
+    "value": "4102"
+  },
+  {
+    "label": "Blois-2 (4103)",
+    "value": "4103"
+  },
+  {
+    "label": "Blois-3 (4104)",
+    "value": "4104"
+  },
+  {
+    "label": "Chambord (4105)",
+    "value": "4105"
+  },
+  {
+    "label": "Montoire-sur-le-Loir (4106)",
+    "value": "4106"
+  },
+  {
+    "label": "Montrichard (4107)",
+    "value": "4107"
+  },
+  {
+    "label": "Onzain (4108)",
+    "value": "4108"
+  },
+  {
+    "label": "Perche (4109)",
+    "value": "4109"
+  },
+  {
+    "label": "Romorantin-Lanthenay (4110)",
+    "value": "4110"
+  },
+  {
+    "label": "Saint-Aignan (4111)",
+    "value": "4111"
+  },
+  {
+    "label": "Selles-sur-Cher (4112)",
+    "value": "4112"
+  },
+  {
+    "label": "Sologne (4113)",
+    "value": "4113"
+  },
+  {
+    "label": "Vendôme (4114)",
+    "value": "4114"
+  },
+  {
+    "label": "Vineuil (4115)",
+    "value": "4115"
+  },
+  {
+    "label": "Andrézieux-Bouthéon (4201)",
+    "value": "4201"
+  },
+  {
+    "label": "Boën-sur-Lignon (4202)",
+    "value": "4202"
+  },
+  {
+    "label": "Charlieu (4203)",
+    "value": "4203"
+  },
+  {
+    "label": "Coteau (4204)",
+    "value": "4204"
+  },
+  {
+    "label": "Feurs (4205)",
+    "value": "4205"
+  },
+  {
+    "label": "Firminy (4206)",
+    "value": "4206"
+  },
+  {
+    "label": "Montbrison (4207)",
+    "value": "4207"
+  },
+  {
+    "label": "Pilat (4208)",
+    "value": "4208"
+  },
+  {
+    "label": "Renaison (4209)",
+    "value": "4209"
+  },
+  {
+    "label": "Rive-de-Gier (4210)",
+    "value": "4210"
+  },
+  {
+    "label": "Roanne-1 (4211)",
+    "value": "4211"
+  },
+  {
+    "label": "Roanne-2 (4212)",
+    "value": "4212"
+  },
+  {
+    "label": "Saint-Chamond (4213)",
+    "value": "4213"
+  },
+  {
+    "label": "Saint-Etienne-1 (4214)",
+    "value": "4214"
+  },
+  {
+    "label": "Saint-Etienne-2 (4215)",
+    "value": "4215"
+  },
+  {
+    "label": "Saint-Etienne-3 (4216)",
+    "value": "4216"
+  },
+  {
+    "label": "Saint-Etienne-4 (4217)",
+    "value": "4217"
+  },
+  {
+    "label": "Saint-Etienne-5 (4218)",
+    "value": "4218"
+  },
+  {
+    "label": "Saint-Etienne-6 (4219)",
+    "value": "4219"
+  },
+  {
+    "label": "Saint-Just-Saint-Rambert (4220)",
+    "value": "4220"
+  },
+  {
+    "label": "Sorbiers (4221)",
+    "value": "4221"
+  },
+  {
+    "label": "Aurec-sur-Loire (4301)",
+    "value": "4301"
+  },
+  {
+    "label": "Bas-en-Basset (4302)",
+    "value": "4302"
+  },
+  {
+    "label": "Boutières (4303)",
+    "value": "4303"
+  },
+  {
+    "label": "Brioude (4304)",
+    "value": "4304"
+  },
+  {
+    "label": "Deux Rivières et Vallées (4305)",
+    "value": "4305"
+  },
+  {
+    "label": "Emblavez-et-Meygal (4306)",
+    "value": "4306"
+  },
+  {
+    "label": "Gorges de l'Allier-Gévaudan (4307)",
+    "value": "4307"
+  },
+  {
+    "label": "Mézenc (4308)",
+    "value": "4308"
+  },
+  {
+    "label": "Monistrol-sur-Loire (4309)",
+    "value": "4309"
+  },
+  {
+    "label": "Pays de Lafayette (4310)",
+    "value": "4310"
+  },
+  {
+    "label": "Plateau du Haut-Velay granitique (4311)",
+    "value": "4311"
+  },
+  {
+    "label": "Puy-en-Velay-1 (4312)",
+    "value": "4312"
+  },
+  {
+    "label": "Puy-en-Velay-2 (4313)",
+    "value": "4313"
+  },
+  {
+    "label": "Puy-en-Velay-3 (4314)",
+    "value": "4314"
+  },
+  {
+    "label": "Puy-en-Velay-4 (4315)",
+    "value": "4315"
+  },
+  {
+    "label": "Saint-Paulien (4316)",
+    "value": "4316"
+  },
+  {
+    "label": "Sainte-Florine (4317)",
+    "value": "4317"
+  },
+  {
+    "label": "Velay volcanique (4318)",
+    "value": "4318"
+  },
+  {
+    "label": "Yssingeaux (4319)",
+    "value": "4319"
+  },
+  {
+    "label": "Ancenis (4401)",
+    "value": "4401"
+  },
+  {
+    "label": "Baule-Escoublac (4402)",
+    "value": "4402"
+  },
+  {
+    "label": "Blain (4403)",
+    "value": "4403"
+  },
+  {
+    "label": "Carquefou (4404)",
+    "value": "4404"
+  },
+  {
+    "label": "Chapelle-sur-Erdre (4405)",
+    "value": "4405"
+  },
+  {
+    "label": "Châteaubriant (4406)",
+    "value": "4406"
+  },
+  {
+    "label": "Clisson (4407)",
+    "value": "4407"
+  },
+  {
+    "label": "Guémené-Penfao (4408)",
+    "value": "4408"
+  },
+  {
+    "label": "Guérande (4409)",
+    "value": "4409"
+  },
+  {
+    "label": "Machecoul (4410)",
+    "value": "4410"
+  },
+  {
+    "label": "Nantes-1 (4411)",
+    "value": "4411"
+  },
+  {
+    "label": "Nantes-2 (4412)",
+    "value": "4412"
+  },
+  {
+    "label": "Nantes-3 (4413)",
+    "value": "4413"
+  },
+  {
+    "label": "Nantes-4 (4414)",
+    "value": "4414"
+  },
+  {
+    "label": "Nantes-5 (4415)",
+    "value": "4415"
+  },
+  {
+    "label": "Nantes-6 (4416)",
+    "value": "4416"
+  },
+  {
+    "label": "Nantes-7 (4417)",
+    "value": "4417"
+  },
+  {
+    "label": "Nort-sur-Erdre (4418)",
+    "value": "4418"
+  },
+  {
+    "label": "Pontchâteau (4419)",
+    "value": "4419"
+  },
+  {
+    "label": "Pornic (4420)",
+    "value": "4420"
+  },
+  {
+    "label": "Rezé-1 (4421)",
+    "value": "4421"
+  },
+  {
+    "label": "Rezé-2 (4422)",
+    "value": "4422"
+  },
+  {
+    "label": "Saint-Brevin-les-Pins (4423)",
+    "value": "4423"
+  },
+  {
+    "label": "Saint-Herblain-1 (4424)",
+    "value": "4424"
+  },
+  {
+    "label": "Saint-Herblain-2 (4425)",
+    "value": "4425"
+  },
+  {
+    "label": "Saint-Nazaire-1 (4426)",
+    "value": "4426"
+  },
+  {
+    "label": "Saint-Nazaire-2 (4427)",
+    "value": "4427"
+  },
+  {
+    "label": "Saint-Philbert-de-Grand-Lieu (4428)",
+    "value": "4428"
+  },
+  {
+    "label": "Saint-Sébastien-sur-Loire (4429)",
+    "value": "4429"
+  },
+  {
+    "label": "Vallet (4430)",
+    "value": "4430"
+  },
+  {
+    "label": "Vertou (4431)",
+    "value": "4431"
+  },
+  {
+    "label": "Beaugency (4501)",
+    "value": "4501"
+  },
+  {
+    "label": "Châlette-sur-Loing (4502)",
+    "value": "4502"
+  },
+  {
+    "label": "Châteauneuf-sur-Loire (4503)",
+    "value": "4503"
+  },
+  {
+    "label": "Courtenay (4504)",
+    "value": "4504"
+  },
+  {
+    "label": "Ferté-Saint-Aubin (4505)",
+    "value": "4505"
+  },
+  {
+    "label": "Fleury-les-Aubrais (4506)",
+    "value": "4506"
+  },
+  {
+    "label": "Gien (4507)",
+    "value": "4507"
+  },
+  {
+    "label": "Lorris (4508)",
+    "value": "4508"
+  },
+  {
+    "label": "Malesherbes (4509)",
+    "value": "4509"
+  },
+  {
+    "label": "Meung-sur-Loire (4510)",
+    "value": "4510"
+  },
+  {
+    "label": "Montargis (4511)",
+    "value": "4511"
+  },
+  {
+    "label": "Olivet (4512)",
+    "value": "4512"
+  },
+  {
+    "label": "Orléans-1 (4513)",
+    "value": "4513"
+  },
+  {
+    "label": "Orléans-2 (4514)",
+    "value": "4514"
+  },
+  {
+    "label": "Orléans-3 (4515)",
+    "value": "4515"
+  },
+  {
+    "label": "Orléans-4 (4516)",
+    "value": "4516"
+  },
+  {
+    "label": "Pithiviers (4517)",
+    "value": "4517"
+  },
+  {
+    "label": "Saint-Jean-de-Braye (4518)",
+    "value": "4518"
+  },
+  {
+    "label": "Saint-Jean-de-la-Ruelle (4519)",
+    "value": "4519"
+  },
+  {
+    "label": "Saint-Jean-le-Blanc (4520)",
+    "value": "4520"
+  },
+  {
+    "label": "Sully-sur-Loire (4521)",
+    "value": "4521"
+  },
+  {
+    "label": "Cahors-1 (4601)",
+    "value": "4601"
+  },
+  {
+    "label": "Cahors-2 (4602)",
+    "value": "4602"
+  },
+  {
+    "label": "Cahors-3 (4603)",
+    "value": "4603"
+  },
+  {
+    "label": "Causse et Bouriane (4604)",
+    "value": "4604"
+  },
+  {
+    "label": "Causse et Vallées (4605)",
+    "value": "4605"
+  },
+  {
+    "label": "Cère et Ségala (4606)",
+    "value": "4606"
+  },
+  {
+    "label": "Figeac-1 (4607)",
+    "value": "4607"
+  },
+  {
+    "label": "Figeac-2 (4608)",
+    "value": "4608"
+  },
+  {
+    "label": "Gourdon (4609)",
+    "value": "4609"
+  },
+  {
+    "label": "Gramat (4610)",
+    "value": "4610"
+  },
+  {
+    "label": "Lacapelle-Marival (4611)",
+    "value": "4611"
+  },
+  {
+    "label": "Luzech (4612)",
+    "value": "4612"
+  },
+  {
+    "label": "Marches du Sud-Quercy (4613)",
+    "value": "4613"
+  },
+  {
+    "label": "Martel (4614)",
+    "value": "4614"
+  },
+  {
+    "label": "Puy-l'Evêque (4615)",
+    "value": "4615"
+  },
+  {
+    "label": "Saint-Céré (4616)",
+    "value": "4616"
+  },
+  {
+    "label": "Souillac (4617)",
+    "value": "4617"
+  },
+  {
+    "label": "Agen-1 (4701)",
+    "value": "4701"
+  },
+  {
+    "label": "Agen-2 (4702)",
+    "value": "4702"
+  },
+  {
+    "label": "Agen-3 (4703)",
+    "value": "4703"
+  },
+  {
+    "label": "Agen-4 (4704)",
+    "value": "4704"
+  },
+  {
+    "label": "Albret (4705)",
+    "value": "4705"
+  },
+  {
+    "label": "Confluent (4706)",
+    "value": "4706"
+  },
+  {
+    "label": "Coteaux de Guyenne (4707)",
+    "value": "4707"
+  },
+  {
+    "label": "Forêts de Gascogne (4708)",
+    "value": "4708"
+  },
+  {
+    "label": "Fumélois (4709)",
+    "value": "4709"
+  },
+  {
+    "label": "Haut Agenais Périgord (4710)",
+    "value": "4710"
+  },
+  {
+    "label": "Lavardac (4711)",
+    "value": "4711"
+  },
+  {
+    "label": "Livradais (4712)",
+    "value": "4712"
+  },
+  {
+    "label": "Marmande-1 (4713)",
+    "value": "4713"
+  },
+  {
+    "label": "Marmande-2 (4714)",
+    "value": "4714"
+  },
+  {
+    "label": "Ouest agenais (4715)",
+    "value": "4715"
+  },
+  {
+    "label": "Pays de Serres (4716)",
+    "value": "4716"
+  },
+  {
+    "label": "Sud-Est agenais (4717)",
+    "value": "4717"
+  },
+  {
+    "label": "Tonneins (4718)",
+    "value": "4718"
+  },
+  {
+    "label": "Val du Dropt (4719)",
+    "value": "4719"
+  },
+  {
+    "label": "Villeneuve-sur-Lot-1 (4720)",
+    "value": "4720"
+  },
+  {
+    "label": "Villeneuve-sur-Lot-2 (4721)",
+    "value": "4721"
+  },
+  {
+    "label": "Aumont-Aubrac (4801)",
+    "value": "4801"
+  },
+  {
+    "label": "Canourgue (4802)",
+    "value": "4802"
+  },
+  {
+    "label": "Chirac (4803)",
+    "value": "4803"
+  },
+  {
+    "label": "Collet-de-Dèze (4804)",
+    "value": "4804"
+  },
+  {
+    "label": "Florac (4805)",
+    "value": "4805"
+  },
+  {
+    "label": "Grandrieu (4806)",
+    "value": "4806"
+  },
+  {
+    "label": "Langogne (4807)",
+    "value": "4807"
+  },
+  {
+    "label": "Marvejols (4808)",
+    "value": "4808"
+  },
+  {
+    "label": "Mende-1 (4809)",
+    "value": "4809"
+  },
+  {
+    "label": "Mende-2 (4810)",
+    "value": "4810"
+  },
+  {
+    "label": "Saint-Alban-sur-Limagnole (4811)",
+    "value": "4811"
+  },
+  {
+    "label": "Saint-Chély-d'Apcher (4812)",
+    "value": "4812"
+  },
+  {
+    "label": "Saint-Etienne-du-Valdonnez (4813)",
+    "value": "4813"
+  },
+  {
+    "label": "Angers-1 (4901)",
+    "value": "4901"
+  },
+  {
+    "label": "Angers-2 (4902)",
+    "value": "4902"
+  },
+  {
+    "label": "Angers-3 (4903)",
+    "value": "4903"
+  },
+  {
+    "label": "Angers-4 (4904)",
+    "value": "4904"
+  },
+  {
+    "label": "Angers-5 (4905)",
+    "value": "4905"
+  },
+  {
+    "label": "Angers-6 (4906)",
+    "value": "4906"
+  },
+  {
+    "label": "Angers-7 (4907)",
+    "value": "4907"
+  },
+  {
+    "label": "Beaufort-en-Vallée (4908)",
+    "value": "4908"
+  },
+  {
+    "label": "Beaupréau (4909)",
+    "value": "4909"
+  },
+  {
+    "label": "Chalonnes-sur-Loire (4910)",
+    "value": "4910"
+  },
+  {
+    "label": "Chemillé-Melay (4911)",
+    "value": "4911"
+  },
+  {
+    "label": "Cholet-1 (4912)",
+    "value": "4912"
+  },
+  {
+    "label": "Cholet-2 (4913)",
+    "value": "4913"
+  },
+  {
+    "label": "Doué-la-Fontaine (4914)",
+    "value": "4914"
+  },
+  {
+    "label": "Longué-Jumelles (4915)",
+    "value": "4915"
+  },
+  {
+    "label": "Pommeraye (4916)",
+    "value": "4916"
+  },
+  {
+    "label": "Ponts-de-Cé (4917)",
+    "value": "4917"
+  },
+  {
+    "label": "Saint-Macaire-en-Mauges (4918)",
+    "value": "4918"
+  },
+  {
+    "label": "Saumur (4919)",
+    "value": "4919"
+  },
+  {
+    "label": "Segré (4920)",
+    "value": "4920"
+  },
+  {
+    "label": "Tiercé (4921)",
+    "value": "4921"
+  },
+  {
+    "label": "Agon-Coutainville (5001)",
+    "value": "5001"
+  },
+  {
+    "label": "Avranches (5002)",
+    "value": "5002"
+  },
+  {
+    "label": "Bréhal (5003)",
+    "value": "5003"
+  },
+  {
+    "label": "Bricquebec (5004)",
+    "value": "5004"
+  },
+  {
+    "label": "Carentan (5005)",
+    "value": "5005"
+  },
+  {
+    "label": "Cherbourg-Octeville-1 (5006)",
+    "value": "5006"
+  },
+  {
+    "label": "Cherbourg-Octeville-2 (5007)",
+    "value": "5007"
+  },
+  {
+    "label": "Cherbourg-Octeville-3 (5008)",
+    "value": "5008"
+  },
+  {
+    "label": "Condé-sur-Vire (5009)",
+    "value": "5009"
+  },
+  {
+    "label": "Coutances (5010)",
+    "value": "5010"
+  },
+  {
+    "label": "Créances (5011)",
+    "value": "5011"
+  },
+  {
+    "label": "Équeurdreville-Hainneville (5012)",
+    "value": "5012"
+  },
+  {
+    "label": "Granville (5013)",
+    "value": "5013"
+  },
+  {
+    "label": "Hague (5014)",
+    "value": "5014"
+  },
+  {
+    "label": "Isigny-le-Buat (5015)",
+    "value": "5015"
+  },
+  {
+    "label": "Mortainais (5016)",
+    "value": "5016"
+  },
+  {
+    "label": "Pieux (5017)",
+    "value": "5017"
+  },
+  {
+    "label": "Pont-Hébert (5018)",
+    "value": "5018"
+  },
+  {
+    "label": "Pontorson (5019)",
+    "value": "5019"
+  },
+  {
+    "label": "Quettreville-sur-Sienne (5020)",
+    "value": "5020"
+  },
+  {
+    "label": "Saint-Hilaire-du-Harcouët (5021)",
+    "value": "5021"
+  },
+  {
+    "label": "Saint-Lô-1 (5022)",
+    "value": "5022"
+  },
+  {
+    "label": "Saint-Lô-2 (5023)",
+    "value": "5023"
+  },
+  {
+    "label": "Tourlaville (5024)",
+    "value": "5024"
+  },
+  {
+    "label": "Valognes (5025)",
+    "value": "5025"
+  },
+  {
+    "label": "Val-de-Saire (5026)",
+    "value": "5026"
+  },
+  {
+    "label": "Villedieu-les-Poêles (5027)",
+    "value": "5027"
+  },
+  {
+    "label": "Argonne Suippe et Vesle (5101)",
+    "value": "5101"
+  },
+  {
+    "label": "Bourgogne (5102)",
+    "value": "5102"
+  },
+  {
+    "label": "Châlons-en-Champagne-1 (5103)",
+    "value": "5103"
+  },
+  {
+    "label": "Châlons-en-Champagne-2 (5104)",
+    "value": "5104"
+  },
+  {
+    "label": "Châlons-en-Champagne-3 (5105)",
+    "value": "5105"
+  },
+  {
+    "label": "Dormans-Paysages de Champagne (5106)",
+    "value": "5106"
+  },
+  {
+    "label": "Épernay-1 (5107)",
+    "value": "5107"
+  },
+  {
+    "label": "Épernay-2 (5108)",
+    "value": "5108"
+  },
+  {
+    "label": "Fismes-Montagne de Reims (5109)",
+    "value": "5109"
+  },
+  {
+    "label": "Mourmelon-Vesle et Monts de Champagne (5110)",
+    "value": "5110"
+  },
+  {
+    "label": "Reims-1 (5111)",
+    "value": "5111"
+  },
+  {
+    "label": "Reims-2 (5112)",
+    "value": "5112"
+  },
+  {
+    "label": "Reims-3 (5113)",
+    "value": "5113"
+  },
+  {
+    "label": "Reims-4 (5114)",
+    "value": "5114"
+  },
+  {
+    "label": "Reims-5 (5115)",
+    "value": "5115"
+  },
+  {
+    "label": "Reims-6 (5116)",
+    "value": "5116"
+  },
+  {
+    "label": "Reims-7 (5117)",
+    "value": "5117"
+  },
+  {
+    "label": "Reims-8 (5118)",
+    "value": "5118"
+  },
+  {
+    "label": "Reims-9 (5119)",
+    "value": "5119"
+  },
+  {
+    "label": "Sermaize-les-Bains (5120)",
+    "value": "5120"
+  },
+  {
+    "label": "Sézanne-Brie et Champagne (5121)",
+    "value": "5121"
+  },
+  {
+    "label": "Vertus-Plaine Champenoise (5122)",
+    "value": "5122"
+  },
+  {
+    "label": "Vitry-le-François-Champagne et Der (5123)",
+    "value": "5123"
+  },
+  {
+    "label": "Bologne (5201)",
+    "value": "5201"
+  },
+  {
+    "label": "Bourbonne-les-Bains (5202)",
+    "value": "5202"
+  },
+  {
+    "label": "Chalindrey (5203)",
+    "value": "5203"
+  },
+  {
+    "label": "Châteauvillain (5204)",
+    "value": "5204"
+  },
+  {
+    "label": "Chaumont-1 (5205)",
+    "value": "5205"
+  },
+  {
+    "label": "Chaumont-2 (5206)",
+    "value": "5206"
+  },
+  {
+    "label": "Chaumont-3 (5207)",
+    "value": "5207"
+  },
+  {
+    "label": "Eurville-Bienville (5208)",
+    "value": "5208"
+  },
+  {
+    "label": "Joinville (5209)",
+    "value": "5209"
+  },
+  {
+    "label": "Langres (5210)",
+    "value": "5210"
+  },
+  {
+    "label": "Nogent (5211)",
+    "value": "5211"
+  },
+  {
+    "label": "Poissons (5212)",
+    "value": "5212"
+  },
+  {
+    "label": "Saint-Dizier-1 (5213)",
+    "value": "5213"
+  },
+  {
+    "label": "Saint-Dizier-2 (5214)",
+    "value": "5214"
+  },
+  {
+    "label": "Saint-Dizier-3 (5215)",
+    "value": "5215"
+  },
+  {
+    "label": "Villegusien-le-Lac (5216)",
+    "value": "5216"
+  },
+  {
+    "label": "Wassy (5217)",
+    "value": "5217"
+  },
+  {
+    "label": "Azé (5301)",
+    "value": "5301"
+  },
+  {
+    "label": "Bonchamp-lès-Laval (5302)",
+    "value": "5302"
+  },
+  {
+    "label": "Château-Gontier (5303)",
+    "value": "5303"
+  },
+  {
+    "label": "Cossé-le-Vivien (5304)",
+    "value": "5304"
+  },
+  {
+    "label": "Ernée (5305)",
+    "value": "5305"
+  },
+  {
+    "label": "Évron (5306)",
+    "value": "5306"
+  },
+  {
+    "label": "Gorron (5307)",
+    "value": "5307"
+  },
+  {
+    "label": "Huisserie (5308)",
+    "value": "5308"
+  },
+  {
+    "label": "Lassay-les-Châteaux (5309)",
+    "value": "5309"
+  },
+  {
+    "label": "Laval-1 (5310)",
+    "value": "5310"
+  },
+  {
+    "label": "Laval-2 (5311)",
+    "value": "5311"
+  },
+  {
+    "label": "Laval-3 (5312)",
+    "value": "5312"
+  },
+  {
+    "label": "Loiron (5313)",
+    "value": "5313"
+  },
+  {
+    "label": "Mayenne (5314)",
+    "value": "5314"
+  },
+  {
+    "label": "Meslay-du-Maine (5315)",
+    "value": "5315"
+  },
+  {
+    "label": "Saint-Berthevin (5316)",
+    "value": "5316"
+  },
+  {
+    "label": "Villaines-la-Juhel (5317)",
+    "value": "5317"
+  },
+  {
+    "label": "Baccarat (5401)",
+    "value": "5401"
+  },
+  {
+    "label": "Entre Seille et Meurthe (5402)",
+    "value": "5402"
+  },
+  {
+    "label": "Grand Couronné (5403)",
+    "value": "5403"
+  },
+  {
+    "label": "Jarny (5404)",
+    "value": "5404"
+  },
+  {
+    "label": "Jarville-la-Malgrange (5405)",
+    "value": "5405"
+  },
+  {
+    "label": "Laxou (5406)",
+    "value": "5406"
+  },
+  {
+    "label": "Longwy (5407)",
+    "value": "5407"
+  },
+  {
+    "label": "Lunéville-1 (5408)",
+    "value": "5408"
+  },
+  {
+    "label": "Lunéville-2 (5409)",
+    "value": "5409"
+  },
+  {
+    "label": "Meine au Saintois (5410)",
+    "value": "5410"
+  },
+  {
+    "label": "Mont-Saint-Martin (5411)",
+    "value": "5411"
+  },
+  {
+    "label": "Nancy-1 (5412)",
+    "value": "5412"
+  },
+  {
+    "label": "Nancy-2 (5413)",
+    "value": "5413"
+  },
+  {
+    "label": "Nancy-3 (5414)",
+    "value": "5414"
+  },
+  {
+    "label": "Neuves-Maisons (5415)",
+    "value": "5415"
+  },
+  {
+    "label": "Nord-Toulois (5416)",
+    "value": "5416"
+  },
+  {
+    "label": "Pays de Briey (5417)",
+    "value": "5417"
+  },
+  {
+    "label": "Pont-à-Mousson (5418)",
+    "value": "5418"
+  },
+  {
+    "label": "Saint-Max (5419)",
+    "value": "5419"
+  },
+  {
+    "label": "Toul (5420)",
+    "value": "5420"
+  },
+  {
+    "label": "Val de Lorraine Sud (5421)",
+    "value": "5421"
+  },
+  {
+    "label": "Vandœuvre-lès-Nancy (5422)",
+    "value": "5422"
+  },
+  {
+    "label": "Villerupt (5423)",
+    "value": "5423"
+  },
+  {
+    "label": "Ancerville (5501)",
+    "value": "5501"
+  },
+  {
+    "label": "Bar-le-Duc-1 (5502)",
+    "value": "5502"
+  },
+  {
+    "label": "Bar-le-Duc-2 (5503)",
+    "value": "5503"
+  },
+  {
+    "label": "Belleville-sur-Meuse (5504)",
+    "value": "5504"
+  },
+  {
+    "label": "Bouligny (5505)",
+    "value": "5505"
+  },
+  {
+    "label": "Clermont-en-Argonne (5506)",
+    "value": "5506"
+  },
+  {
+    "label": "Commercy (5507)",
+    "value": "5507"
+  },
+  {
+    "label": "Dieue-sur-Meuse (5508)",
+    "value": "5508"
+  },
+  {
+    "label": "Étain (5509)",
+    "value": "5509"
+  },
+  {
+    "label": "Ligny-en-Barrois (5510)",
+    "value": "5510"
+  },
+  {
+    "label": "Montmédy (5511)",
+    "value": "5511"
+  },
+  {
+    "label": "Revigny-sur-Ornain (5512)",
+    "value": "5512"
+  },
+  {
+    "label": "Saint-Mihiel (5513)",
+    "value": "5513"
+  },
+  {
+    "label": "Stenay (5514)",
+    "value": "5514"
+  },
+  {
+    "label": "Vaucouleurs (5515)",
+    "value": "5515"
+  },
+  {
+    "label": "Verdun-1 (5516)",
+    "value": "5516"
+  },
+  {
+    "label": "Verdun-2 (5517)",
+    "value": "5517"
+  },
+  {
+    "label": "Auray (5601)",
+    "value": "5601"
+  },
+  {
+    "label": "Gourin (5602)",
+    "value": "5602"
+  },
+  {
+    "label": "Grand-Champ (5603)",
+    "value": "5603"
+  },
+  {
+    "label": "Guer (5604)",
+    "value": "5604"
+  },
+  {
+    "label": "Guidel (5605)",
+    "value": "5605"
+  },
+  {
+    "label": "Hennebont (5606)",
+    "value": "5606"
+  },
+  {
+    "label": "Lanester (5607)",
+    "value": "5607"
+  },
+  {
+    "label": "Lorient-1 (5608)",
+    "value": "5608"
+  },
+  {
+    "label": "Lorient-2 (5609)",
+    "value": "5609"
+  },
+  {
+    "label": "Moréac (5610)",
+    "value": "5610"
+  },
+  {
+    "label": "Muzillac (5611)",
+    "value": "5611"
+  },
+  {
+    "label": "Ploemeur (5612)",
+    "value": "5612"
+  },
+  {
+    "label": "Ploërmel (5613)",
+    "value": "5613"
+  },
+  {
+    "label": "Pluvigner (5614)",
+    "value": "5614"
+  },
+  {
+    "label": "Pontivy (5615)",
+    "value": "5615"
+  },
+  {
+    "label": "Questembert (5616)",
+    "value": "5616"
+  },
+  {
+    "label": "Quiberon (5617)",
+    "value": "5617"
+  },
+  {
+    "label": "Séné (5618)",
+    "value": "5618"
+  },
+  {
+    "label": "Vannes-1 (5619)",
+    "value": "5619"
+  },
+  {
+    "label": "Vannes-2 (5620)",
+    "value": "5620"
+  },
+  {
+    "label": "Vannes-3 (5621)",
+    "value": "5621"
+  },
+  {
+    "label": "Algrange (5701)",
+    "value": "5701"
+  },
+  {
+    "label": "Bitche (5702)",
+    "value": "5702"
+  },
+  {
+    "label": "Boulay-Moselle (5703)",
+    "value": "5703"
+  },
+  {
+    "label": "Bouzonville (5704)",
+    "value": "5704"
+  },
+  {
+    "label": "Coteaux de Moselle (5705)",
+    "value": "5705"
+  },
+  {
+    "label": "Fameck (5706)",
+    "value": "5706"
+  },
+  {
+    "label": "Faulquemont (5707)",
+    "value": "5707"
+  },
+  {
+    "label": "Forbach (5708)",
+    "value": "5708"
+  },
+  {
+    "label": "Freyming-Merlebach (5709)",
+    "value": "5709"
+  },
+  {
+    "label": "Hayange (5710)",
+    "value": "5710"
+  },
+  {
+    "label": "Metz-1 (5711)",
+    "value": "5711"
+  },
+  {
+    "label": "Metz-2 (5712)",
+    "value": "5712"
+  },
+  {
+    "label": "Metz-3 (5713)",
+    "value": "5713"
+  },
+  {
+    "label": "Metzervisse (5714)",
+    "value": "5714"
+  },
+  {
+    "label": "Montigny-lès-Metz (5715)",
+    "value": "5715"
+  },
+  {
+    "label": "Pays Messin (5716)",
+    "value": "5716"
+  },
+  {
+    "label": "Phalsbourg (5717)",
+    "value": "5717"
+  },
+  {
+    "label": "Rombas (5718)",
+    "value": "5718"
+  },
+  {
+    "label": "Saint-Avold (5719)",
+    "value": "5719"
+  },
+  {
+    "label": "Sarralbe (5720)",
+    "value": "5720"
+  },
+  {
+    "label": "Sarrebourg (5721)",
+    "value": "5721"
+  },
+  {
+    "label": "Sarreguemines (5722)",
+    "value": "5722"
+  },
+  {
+    "label": "Saulnois (5723)",
+    "value": "5723"
+  },
+  {
+    "label": "Sillon Mosellan (5724)",
+    "value": "5724"
+  },
+  {
+    "label": "Stiring-Wendel (5725)",
+    "value": "5725"
+  },
+  {
+    "label": "Thionville (5726)",
+    "value": "5726"
+  },
+  {
+    "label": "Yutz (5727)",
+    "value": "5727"
+  },
+  {
+    "label": "Charité-sur-Loire (5801)",
+    "value": "5801"
+  },
+  {
+    "label": "Château-Chinon (5802)",
+    "value": "5802"
+  },
+  {
+    "label": "Clamecy (5803)",
+    "value": "5803"
+  },
+  {
+    "label": "Corbigny (5804)",
+    "value": "5804"
+  },
+  {
+    "label": "Cosne-Cours-sur-Loire (5805)",
+    "value": "5805"
+  },
+  {
+    "label": "Decize (5806)",
+    "value": "5806"
+  },
+  {
+    "label": "Fourchambault (5807)",
+    "value": "5807"
+  },
+  {
+    "label": "Guérigny (5808)",
+    "value": "5808"
+  },
+  {
+    "label": "Imphy (5809)",
+    "value": "5809"
+  },
+  {
+    "label": "Luzy (5810)",
+    "value": "5810"
+  },
+  {
+    "label": "Nevers-1 (5811)",
+    "value": "5811"
+  },
+  {
+    "label": "Nevers-2 (5812)",
+    "value": "5812"
+  },
+  {
+    "label": "Nevers-3 (5813)",
+    "value": "5813"
+  },
+  {
+    "label": "Nevers-4 (5814)",
+    "value": "5814"
+  },
+  {
+    "label": "Pouilly-sur-Loire (5815)",
+    "value": "5815"
+  },
+  {
+    "label": "Saint-Pierre-le-Moûtier (5816)",
+    "value": "5816"
+  },
+  {
+    "label": "Varennes-Vauzelles (5817)",
+    "value": "5817"
+  },
+  {
+    "label": "Aniche (5901)",
+    "value": "5901"
+  },
+  {
+    "label": "Annœullin (5902)",
+    "value": "5902"
+  },
+  {
+    "label": "Anzin (5903)",
+    "value": "5903"
+  },
+  {
+    "label": "Armentières (5904)",
+    "value": "5904"
+  },
+  {
+    "label": "Aulnoye-Aymeries (5905)",
+    "value": "5905"
+  },
+  {
+    "label": "Aulnoy-lez-Valenciennes (5906)",
+    "value": "5906"
+  },
+  {
+    "label": "Avesnes-sur-Helpe (5907)",
+    "value": "5907"
+  },
+  {
+    "label": "Bailleul (5908)",
+    "value": "5908"
+  },
+  {
+    "label": "Cambrai (5909)",
+    "value": "5909"
+  },
+  {
+    "label": "Cateau-Cambrésis (5910)",
+    "value": "5910"
+  },
+  {
+    "label": "Caudry (5911)",
+    "value": "5911"
+  },
+  {
+    "label": "Coudekerque-Branche (5912)",
+    "value": "5912"
+  },
+  {
+    "label": "Croix (5913)",
+    "value": "5913"
+  },
+  {
+    "label": "Denain (5914)",
+    "value": "5914"
+  },
+  {
+    "label": "Douai (5915)",
+    "value": "5915"
+  },
+  {
+    "label": "Dunkerque-1 (5916)",
+    "value": "5916"
+  },
+  {
+    "label": "Dunkerque-2 (5917)",
+    "value": "5917"
+  },
+  {
+    "label": "Faches-Thumesnil (5918)",
+    "value": "5918"
+  },
+  {
+    "label": "Fourmies (5919)",
+    "value": "5919"
+  },
+  {
+    "label": "Grande-Synthe (5920)",
+    "value": "5920"
+  },
+  {
+    "label": "Hazebrouck (5921)",
+    "value": "5921"
+  },
+  {
+    "label": "Lambersart (5922)",
+    "value": "5922"
+  },
+  {
+    "label": "Lille-1 (5923)",
+    "value": "5923"
+  },
+  {
+    "label": "Lille-2 (5924)",
+    "value": "5924"
+  },
+  {
+    "label": "Lille-3 (5925)",
+    "value": "5925"
+  },
+  {
+    "label": "Lille-4 (5926)",
+    "value": "5926"
+  },
+  {
+    "label": "Lille-5 (5927)",
+    "value": "5927"
+  },
+  {
+    "label": "Lille-6 (5928)",
+    "value": "5928"
+  },
+  {
+    "label": "Marly (5929)",
+    "value": "5929"
+  },
+  {
+    "label": "Maubeuge (5930)",
+    "value": "5930"
+  },
+  {
+    "label": "Orchies (5931)",
+    "value": "5931"
+  },
+  {
+    "label": "Roubaix-1 (5932)",
+    "value": "5932"
+  },
+  {
+    "label": "Roubaix-2 (5933)",
+    "value": "5933"
+  },
+  {
+    "label": "Saint-Amand-les-Eaux (5934)",
+    "value": "5934"
+  },
+  {
+    "label": "Sin-le-Noble (5935)",
+    "value": "5935"
+  },
+  {
+    "label": "Templeuve (5936)",
+    "value": "5936"
+  },
+  {
+    "label": "Tourcoing-1 (5937)",
+    "value": "5937"
+  },
+  {
+    "label": "Tourcoing-2 (5938)",
+    "value": "5938"
+  },
+  {
+    "label": "Valenciennes (5939)",
+    "value": "5939"
+  },
+  {
+    "label": "Villeneuve-d'Ascq (5940)",
+    "value": "5940"
+  },
+  {
+    "label": "Wormhout (5941)",
+    "value": "5941"
+  },
+  {
+    "label": "Beauvais-1 (6001)",
+    "value": "6001"
+  },
+  {
+    "label": "Beauvais-2 (6002)",
+    "value": "6002"
+  },
+  {
+    "label": "Chantilly (6003)",
+    "value": "6003"
+  },
+  {
+    "label": "Chaumont-en-Vexin (6004)",
+    "value": "6004"
+  },
+  {
+    "label": "Clermont (6005)",
+    "value": "6005"
+  },
+  {
+    "label": "Compiègne-1 (6006)",
+    "value": "6006"
+  },
+  {
+    "label": "Compiègne-2 (6007)",
+    "value": "6007"
+  },
+  {
+    "label": "Creil (6008)",
+    "value": "6008"
+  },
+  {
+    "label": "Crépy-en-Valois (6009)",
+    "value": "6009"
+  },
+  {
+    "label": "Estrées-Saint-Denis (6010)",
+    "value": "6010"
+  },
+  {
+    "label": "Grandvilliers (6011)",
+    "value": "6011"
+  },
+  {
+    "label": "Méru (6012)",
+    "value": "6012"
+  },
+  {
+    "label": "Montataire (6013)",
+    "value": "6013"
+  },
+  {
+    "label": "Mouy (6014)",
+    "value": "6014"
+  },
+  {
+    "label": "Nanteuil-le-Haudouin (6015)",
+    "value": "6015"
+  },
+  {
+    "label": "Nogent-sur-Oise (6016)",
+    "value": "6016"
+  },
+  {
+    "label": "Noyon (6017)",
+    "value": "6017"
+  },
+  {
+    "label": "Pont-Sainte-Maxence (6018)",
+    "value": "6018"
+  },
+  {
+    "label": "Saint-Just-en-Chaussée (6019)",
+    "value": "6019"
+  },
+  {
+    "label": "Senlis (6020)",
+    "value": "6020"
+  },
+  {
+    "label": "Thourotte (6021)",
+    "value": "6021"
+  },
+  {
+    "label": "Aigle (6101)",
+    "value": "6101"
+  },
+  {
+    "label": "Alençon-1 (6102)",
+    "value": "6102"
+  },
+  {
+    "label": "Alençon-2 (6103)",
+    "value": "6103"
+  },
+  {
+    "label": "Argentan-1 (6104)",
+    "value": "6104"
+  },
+  {
+    "label": "Argentan-2 (6105)",
+    "value": "6105"
+  },
+  {
+    "label": "Athis-de-l'Orne (6106)",
+    "value": "6106"
+  },
+  {
+    "label": "Bagnoles-de-l'Orne (6107)",
+    "value": "6107"
+  },
+  {
+    "label": "Bretoncelles (6108)",
+    "value": "6108"
+  },
+  {
+    "label": "Ceton (6109)",
+    "value": "6109"
+  },
+  {
+    "label": "Damigny (6110)",
+    "value": "6110"
+  },
+  {
+    "label": "Domfront (6111)",
+    "value": "6111"
+  },
+  {
+    "label": "Ferté-Macé (6112)",
+    "value": "6112"
+  },
+  {
+    "label": "Flers-1 (6113)",
+    "value": "6113"
+  },
+  {
+    "label": "Flers-2 (6114)",
+    "value": "6114"
+  },
+  {
+    "label": "Magny-le-Désert (6115)",
+    "value": "6115"
+  },
+  {
+    "label": "Mortagne-au-Perche (6116)",
+    "value": "6116"
+  },
+  {
+    "label": "Radon (6117)",
+    "value": "6117"
+  },
+  {
+    "label": "Rai (6118)",
+    "value": "6118"
+  },
+  {
+    "label": "Sées (6119)",
+    "value": "6119"
+  },
+  {
+    "label": "Tourouvre (6120)",
+    "value": "6120"
+  },
+  {
+    "label": "Vimoutiers (6121)",
+    "value": "6121"
+  },
+  {
+    "label": "Aire-sur-la-Lys (6201)",
+    "value": "6201"
+  },
+  {
+    "label": "Arras-1 (6202)",
+    "value": "6202"
+  },
+  {
+    "label": "Arras-2 (6203)",
+    "value": "6203"
+  },
+  {
+    "label": "Arras-3 (6204)",
+    "value": "6204"
+  },
+  {
+    "label": "Auchel (6205)",
+    "value": "6205"
+  },
+  {
+    "label": "Auxi-le-Château (6206)",
+    "value": "6206"
+  },
+  {
+    "label": "Avesnes-le-Comte (6207)",
+    "value": "6207"
+  },
+  {
+    "label": "Avion (6208)",
+    "value": "6208"
+  },
+  {
+    "label": "Bapaume (6209)",
+    "value": "6209"
+  },
+  {
+    "label": "Berck (6210)",
+    "value": "6210"
+  },
+  {
+    "label": "Béthune (6211)",
+    "value": "6211"
+  },
+  {
+    "label": "Beuvry (6212)",
+    "value": "6212"
+  },
+  {
+    "label": "Boulogne-sur-Mer-1 (6213)",
+    "value": "6213"
+  },
+  {
+    "label": "Boulogne-sur-Mer-2 (6214)",
+    "value": "6214"
+  },
+  {
+    "label": "Brebières (6215)",
+    "value": "6215"
+  },
+  {
+    "label": "Bruay-la-Buissière (6216)",
+    "value": "6216"
+  },
+  {
+    "label": "Bully-les-Mines (6217)",
+    "value": "6217"
+  },
+  {
+    "label": "Calais-1 (6218)",
+    "value": "6218"
+  },
+  {
+    "label": "Calais-2 (6219)",
+    "value": "6219"
+  },
+  {
+    "label": "Calais-3 (6220)",
+    "value": "6220"
+  },
+  {
+    "label": "Carvin (6221)",
+    "value": "6221"
+  },
+  {
+    "label": "Desvres (6222)",
+    "value": "6222"
+  },
+  {
+    "label": "Douvrin (6223)",
+    "value": "6223"
+  },
+  {
+    "label": "Étaples (6224)",
+    "value": "6224"
+  },
+  {
+    "label": "Fruges (6225)",
+    "value": "6225"
+  },
+  {
+    "label": "Harnes (6226)",
+    "value": "6226"
+  },
+  {
+    "label": "Hénin-Beaumont-1 (6227)",
+    "value": "6227"
+  },
+  {
+    "label": "Hénin-Beaumont-2 (6228)",
+    "value": "6228"
+  },
+  {
+    "label": "Lens (6229)",
+    "value": "6229"
+  },
+  {
+    "label": "Liévin (6230)",
+    "value": "6230"
+  },
+  {
+    "label": "Lillers (6231)",
+    "value": "6231"
+  },
+  {
+    "label": "Longuenesse (6232)",
+    "value": "6232"
+  },
+  {
+    "label": "Lumbres (6233)",
+    "value": "6233"
+  },
+  {
+    "label": "Marck (6234)",
+    "value": "6234"
+  },
+  {
+    "label": "Nœux-les-Mines (6235)",
+    "value": "6235"
+  },
+  {
+    "label": "Outreau (6236)",
+    "value": "6236"
+  },
+  {
+    "label": "Saint-Omer (6237)",
+    "value": "6237"
+  },
+  {
+    "label": "Saint-Pol-sur-Ternoise (6238)",
+    "value": "6238"
+  },
+  {
+    "label": "Wingles (6239)",
+    "value": "6239"
+  },
+  {
+    "label": "Aigueperse (6301)",
+    "value": "6301"
+  },
+  {
+    "label": "Ambert (6302)",
+    "value": "6302"
+  },
+  {
+    "label": "Aubière (6303)",
+    "value": "6303"
+  },
+  {
+    "label": "Beaumont (6304)",
+    "value": "6304"
+  },
+  {
+    "label": "Billom (6305)",
+    "value": "6305"
+  },
+  {
+    "label": "Brassac-les-Mines (6306)",
+    "value": "6306"
+  },
+  {
+    "label": "Cébazat (6307)",
+    "value": "6307"
+  },
+  {
+    "label": "Chamalières (6308)",
+    "value": "6308"
+  },
+  {
+    "label": "Châtel-Guyon (6309)",
+    "value": "6309"
+  },
+  {
+    "label": "Clermont-Ferrand-1 (6310)",
+    "value": "6310"
+  },
+  {
+    "label": "Clermont-Ferrand-2 (6311)",
+    "value": "6311"
+  },
+  {
+    "label": "Clermont-Ferrand-3 (6312)",
+    "value": "6312"
+  },
+  {
+    "label": "Clermont-Ferrand-4 (6313)",
+    "value": "6313"
+  },
+  {
+    "label": "Clermont-Ferrand-5 (6314)",
+    "value": "6314"
+  },
+  {
+    "label": "Clermont-Ferrand-6 (6315)",
+    "value": "6315"
+  },
+  {
+    "label": "Cournon-d'Auvergne (6316)",
+    "value": "6316"
+  },
+  {
+    "label": "Gerzat (6317)",
+    "value": "6317"
+  },
+  {
+    "label": "Issoire (6318)",
+    "value": "6318"
+  },
+  {
+    "label": "Lezoux (6319)",
+    "value": "6319"
+  },
+  {
+    "label": "Maringues (6320)",
+    "value": "6320"
+  },
+  {
+    "label": "Martres-de-Veyre (6321)",
+    "value": "6321"
+  },
+  {
+    "label": "Monts du Livradois (6322)",
+    "value": "6322"
+  },
+  {
+    "label": "Orcines (6323)",
+    "value": "6323"
+  },
+  {
+    "label": "Pont-du-Château (6324)",
+    "value": "6324"
+  },
+  {
+    "label": "Riom (6325)",
+    "value": "6325"
+  },
+  {
+    "label": "Saint-Éloy-les-Mines (6326)",
+    "value": "6326"
+  },
+  {
+    "label": "Saint-Georges-de-Mons (6327)",
+    "value": "6327"
+  },
+  {
+    "label": "Saint-Ours (6328)",
+    "value": "6328"
+  },
+  {
+    "label": "Sancy (6329)",
+    "value": "6329"
+  },
+  {
+    "label": "Thiers (6330)",
+    "value": "6330"
+  },
+  {
+    "label": "Vic-le-Comte (6331)",
+    "value": "6331"
+  },
+  {
+    "label": "Anglet (6401)",
+    "value": "6401"
+  },
+  {
+    "label": "Artix et Pays de Soubestre (6402)",
+    "value": "6402"
+  },
+  {
+    "label": "Baïgura et Mondarrain (6403)",
+    "value": "6403"
+  },
+  {
+    "label": "Bayonne-1 (6404)",
+    "value": "6404"
+  },
+  {
+    "label": "Bayonne-2 (6405)",
+    "value": "6405"
+  },
+  {
+    "label": "Bayonne-3 (6406)",
+    "value": "6406"
+  },
+  {
+    "label": "Biarritz (6407)",
+    "value": "6407"
+  },
+  {
+    "label": "Billère et Coteaux de Jurançon (6408)",
+    "value": "6408"
+  },
+  {
+    "label": "Cœur de Béarn (6409)",
+    "value": "6409"
+  },
+  {
+    "label": "Hendaye-Côte Basque-Sud (6410)",
+    "value": "6410"
+  },
+  {
+    "label": "Lescar, Gave et Terres du Pont-Long (6411)",
+    "value": "6411"
+  },
+  {
+    "label": "Montagne Basque (6412)",
+    "value": "6412"
+  },
+  {
+    "label": "Nive-Adour (6413)",
+    "value": "6413"
+  },
+  {
+    "label": "Oloron-Sainte-Marie-1 (6414)",
+    "value": "6414"
+  },
+  {
+    "label": "Oloron-Sainte-Marie-2 (6415)",
+    "value": "6415"
+  },
+  {
+    "label": "Orthez et Terres des Gaves et du Sel (6416)",
+    "value": "6416"
+  },
+  {
+    "label": "Ouzom, Gave et Rives du Neez (6417)",
+    "value": "6417"
+  },
+  {
+    "label": "Pau-1 (6418)",
+    "value": "6418"
+  },
+  {
+    "label": "Pau-2 (6419)",
+    "value": "6419"
+  },
+  {
+    "label": "Pau-3 (6420)",
+    "value": "6420"
+  },
+  {
+    "label": "Pau-4 (6421)",
+    "value": "6421"
+  },
+  {
+    "label": "Pays de Bidache, Amikuze et Ostibarre (6422)",
+    "value": "6422"
+  },
+  {
+    "label": "Pays de Morlaàs et du Montanérès (6423)",
+    "value": "6423"
+  },
+  {
+    "label": "Saint-Jean-de-Luz (6424)",
+    "value": "6424"
+  },
+  {
+    "label": "Terres des Luys et Coteaux du Vic-Bilh (6425)",
+    "value": "6425"
+  },
+  {
+    "label": "Ustaritz-Vallées de Nive et Nivelle (6426)",
+    "value": "6426"
+  },
+  {
+    "label": "Vallées de l'Ousse et du Lagoin (6427)",
+    "value": "6427"
+  },
+  {
+    "label": "Aureilhan (6501)",
+    "value": "6501"
+  },
+  {
+    "label": "Bordères-sur-l'Echez (6502)",
+    "value": "6502"
+  },
+  {
+    "label": "Coteaux (6503)",
+    "value": "6503"
+  },
+  {
+    "label": "Haute-Bigorre (6504)",
+    "value": "6504"
+  },
+  {
+    "label": "Lourdes-1 (6505)",
+    "value": "6505"
+  },
+  {
+    "label": "Lourdes-2 (6506)",
+    "value": "6506"
+  },
+  {
+    "label": "Moyen Adour (6507)",
+    "value": "6507"
+  },
+  {
+    "label": "Neste, Aure et Louron (6508)",
+    "value": "6508"
+  },
+  {
+    "label": "Ossun (6509)",
+    "value": "6509"
+  },
+  {
+    "label": "Tarbes-1 (6510)",
+    "value": "6510"
+  },
+  {
+    "label": "Tarbes-2 (6511)",
+    "value": "6511"
+  },
+  {
+    "label": "Tarbes-3 (6512)",
+    "value": "6512"
+  },
+  {
+    "label": "Val d'Adour-Rustan-Madiranais (6513)",
+    "value": "6513"
+  },
+  {
+    "label": "Vallée de l'Arros et des Baïses (6514)",
+    "value": "6514"
+  },
+  {
+    "label": "Vallée de la Barousse (6515)",
+    "value": "6515"
+  },
+  {
+    "label": "Vallée des Gaves (6516)",
+    "value": "6516"
+  },
+  {
+    "label": "Vic-en-Bigorre (6517)",
+    "value": "6517"
+  },
+  {
+    "label": "Aspres (6601)",
+    "value": "6601"
+  },
+  {
+    "label": "Canigou (6602)",
+    "value": "6602"
+  },
+  {
+    "label": "Côte Sableuse (6603)",
+    "value": "6603"
+  },
+  {
+    "label": "Côte Salanquaise (6604)",
+    "value": "6604"
+  },
+  {
+    "label": "Côte Vermeille (6605)",
+    "value": "6605"
+  },
+  {
+    "label": "Perpignan-1 (6606)",
+    "value": "6606"
+  },
+  {
+    "label": "Perpignan-2 (6607)",
+    "value": "6607"
+  },
+  {
+    "label": "Perpignan-3 (6608)",
+    "value": "6608"
+  },
+  {
+    "label": "Perpignan-4 (6609)",
+    "value": "6609"
+  },
+  {
+    "label": "Perpignan-5 (6610)",
+    "value": "6610"
+  },
+  {
+    "label": "Perpignan-6 (6611)",
+    "value": "6611"
+  },
+  {
+    "label": "Plaine d'Illibéris (6612)",
+    "value": "6612"
+  },
+  {
+    "label": "Pyrénées catalanes (6613)",
+    "value": "6613"
+  },
+  {
+    "label": "Ribéral (6614)",
+    "value": "6614"
+  },
+  {
+    "label": "Vallée de l'Agly (6615)",
+    "value": "6615"
+  },
+  {
+    "label": "Vallée de la Têt (6616)",
+    "value": "6616"
+  },
+  {
+    "label": "Vallespir-Albères (6617)",
+    "value": "6617"
+  },
+  {
+    "label": "Bischwiller (6701)",
+    "value": "6701"
+  },
+  {
+    "label": "Bouxwiller (6702)",
+    "value": "6702"
+  },
+  {
+    "label": "Brumath (6703)",
+    "value": "6703"
+  },
+  {
+    "label": "Erstein (6704)",
+    "value": "6704"
+  },
+  {
+    "label": "Haguenau (6705)",
+    "value": "6705"
+  },
+  {
+    "label": "Hœnheim (6706)",
+    "value": "6706"
+  },
+  {
+    "label": "Illkirch-Graffenstaden (6707)",
+    "value": "6707"
+  },
+  {
+    "label": "Ingwiller (6708)",
+    "value": "6708"
+  },
+  {
+    "label": "Lingolsheim (6709)",
+    "value": "6709"
+  },
+  {
+    "label": "Molsheim (6710)",
+    "value": "6710"
+  },
+  {
+    "label": "Mutzig (6711)",
+    "value": "6711"
+  },
+  {
+    "label": "Obernai (6712)",
+    "value": "6712"
+  },
+  {
+    "label": "Reichshoffen (6713)",
+    "value": "6713"
+  },
+  {
+    "label": "Saverne (6714)",
+    "value": "6714"
+  },
+  {
+    "label": "Schiltigheim (6715)",
+    "value": "6715"
+  },
+  {
+    "label": "Sélestat (6716)",
+    "value": "6716"
+  },
+  {
+    "label": "Strasbourg-1 (6717)",
+    "value": "6717"
+  },
+  {
+    "label": "Strasbourg-2 (6718)",
+    "value": "6718"
+  },
+  {
+    "label": "Strasbourg-3 (6719)",
+    "value": "6719"
+  },
+  {
+    "label": "Strasbourg-4 (6720)",
+    "value": "6720"
+  },
+  {
+    "label": "Strasbourg-5 (6721)",
+    "value": "6721"
+  },
+  {
+    "label": "Strasbourg-6 (6722)",
+    "value": "6722"
+  },
+  {
+    "label": "Wissembourg (6723)",
+    "value": "6723"
+  },
+  {
+    "label": "Altkirch (6801)",
+    "value": "6801"
+  },
+  {
+    "label": "Brunstatt (6802)",
+    "value": "6802"
+  },
+  {
+    "label": "Cernay (6803)",
+    "value": "6803"
+  },
+  {
+    "label": "Colmar-1 (6804)",
+    "value": "6804"
+  },
+  {
+    "label": "Colmar-2 (6805)",
+    "value": "6805"
+  },
+  {
+    "label": "Ensisheim (6806)",
+    "value": "6806"
+  },
+  {
+    "label": "Guebwiller (6807)",
+    "value": "6807"
+  },
+  {
+    "label": "Kingersheim (6808)",
+    "value": "6808"
+  },
+  {
+    "label": "Masevaux (6809)",
+    "value": "6809"
+  },
+  {
+    "label": "Mulhouse-1 (6810)",
+    "value": "6810"
+  },
+  {
+    "label": "Mulhouse-2 (6811)",
+    "value": "6811"
+  },
+  {
+    "label": "Mulhouse-3 (6812)",
+    "value": "6812"
+  },
+  {
+    "label": "Rixheim (6813)",
+    "value": "6813"
+  },
+  {
+    "label": "Saint-Louis (6814)",
+    "value": "6814"
+  },
+  {
+    "label": "Sainte-Marie-aux-Mines (6815)",
+    "value": "6815"
+  },
+  {
+    "label": "Wintzenheim (6816)",
+    "value": "6816"
+  },
+  {
+    "label": "Wittenheim (6817)",
+    "value": "6817"
+  },
+  {
+    "label": "Anse (6901)",
+    "value": "6901"
+  },
+  {
+    "label": "Arbresle (6902)",
+    "value": "6902"
+  },
+  {
+    "label": "Belleville (6903)",
+    "value": "6903"
+  },
+  {
+    "label": "Bois-d'Oingt (6904)",
+    "value": "6904"
+  },
+  {
+    "label": "Brignais (6905)",
+    "value": "6905"
+  },
+  {
+    "label": "Genas (6906)",
+    "value": "6906"
+  },
+  {
+    "label": "Gleizé (6907)",
+    "value": "6907"
+  },
+  {
+    "label": "Mornant (6908)",
+    "value": "6908"
+  },
+  {
+    "label": "Saint-Symphorien-d'Ozon (6909)",
+    "value": "6909"
+  },
+  {
+    "label": "Tarare (6910)",
+    "value": "6910"
+  },
+  {
+    "label": "Thizy-les-Bourgs (6911)",
+    "value": "6911"
+  },
+  {
+    "label": "Vaugneray (6912)",
+    "value": "6912"
+  },
+  {
+    "label": "Villefranche-sur-Saône (6913)",
+    "value": "6913"
+  },
+  {
+    "label": "Dampierre-sur-Salon (7001)",
+    "value": "7001"
+  },
+  {
+    "label": "Gray (7002)",
+    "value": "7002"
+  },
+  {
+    "label": "Héricourt-1 (7003)",
+    "value": "7003"
+  },
+  {
+    "label": "Héricourt-2 (7004)",
+    "value": "7004"
+  },
+  {
+    "label": "Jussey (7005)",
+    "value": "7005"
+  },
+  {
+    "label": "Lure-1 (7006)",
+    "value": "7006"
+  },
+  {
+    "label": "Lure-2 (7007)",
+    "value": "7007"
+  },
+  {
+    "label": "Luxeuil-les-Bains (7008)",
+    "value": "7008"
+  },
+  {
+    "label": "Marnay (7009)",
+    "value": "7009"
+  },
+  {
+    "label": "Mélisey (7010)",
+    "value": "7010"
+  },
+  {
+    "label": "Port-sur-Saône (7011)",
+    "value": "7011"
+  },
+  {
+    "label": "Rioz (7012)",
+    "value": "7012"
+  },
+  {
+    "label": "Saint-Loup-sur-Semouse (7013)",
+    "value": "7013"
+  },
+  {
+    "label": "Scey-sur-Saône-et-Saint-Albin (7014)",
+    "value": "7014"
+  },
+  {
+    "label": "Vesoul-1 (7015)",
+    "value": "7015"
+  },
+  {
+    "label": "Vesoul-2 (7016)",
+    "value": "7016"
+  },
+  {
+    "label": "Villersexel (7017)",
+    "value": "7017"
+  },
+  {
+    "label": "Autun-1 (7101)",
+    "value": "7101"
+  },
+  {
+    "label": "Autun-2 (7102)",
+    "value": "7102"
+  },
+  {
+    "label": "Blanzy (7103)",
+    "value": "7103"
+  },
+  {
+    "label": "Chagny (7104)",
+    "value": "7104"
+  },
+  {
+    "label": "Chalon-sur-Saône-1 (7105)",
+    "value": "7105"
+  },
+  {
+    "label": "Chalon-sur-Saône-2 (7106)",
+    "value": "7106"
+  },
+  {
+    "label": "Chalon-sur-Saône-3 (7107)",
+    "value": "7107"
+  },
+  {
+    "label": "Chapelle-de-Guinchay (7108)",
+    "value": "7108"
+  },
+  {
+    "label": "Charolles (7109)",
+    "value": "7109"
+  },
+  {
+    "label": "Chauffailles (7110)",
+    "value": "7110"
+  },
+  {
+    "label": "Cluny (7111)",
+    "value": "7111"
+  },
+  {
+    "label": "Creusot-1 (7112)",
+    "value": "7112"
+  },
+  {
+    "label": "Creusot-2 (7113)",
+    "value": "7113"
+  },
+  {
+    "label": "Cuiseaux (7114)",
+    "value": "7114"
+  },
+  {
+    "label": "Digoin (7115)",
+    "value": "7115"
+  },
+  {
+    "label": "Gergy (7116)",
+    "value": "7116"
+  },
+  {
+    "label": "Givry (7117)",
+    "value": "7117"
+  },
+  {
+    "label": "Gueugnon (7118)",
+    "value": "7118"
+  },
+  {
+    "label": "Hurigny (7119)",
+    "value": "7119"
+  },
+  {
+    "label": "Louhans (7120)",
+    "value": "7120"
+  },
+  {
+    "label": "Mâcon-1 (7121)",
+    "value": "7121"
+  },
+  {
+    "label": "Mâcon-2 (7122)",
+    "value": "7122"
+  },
+  {
+    "label": "Montceau-les-Mines (7123)",
+    "value": "7123"
+  },
+  {
+    "label": "Ouroux-sur-Saône (7124)",
+    "value": "7124"
+  },
+  {
+    "label": "Paray-le-Monial (7125)",
+    "value": "7125"
+  },
+  {
+    "label": "Pierre-de-Bresse (7126)",
+    "value": "7126"
+  },
+  {
+    "label": "Saint-Rémy (7127)",
+    "value": "7127"
+  },
+  {
+    "label": "Saint-Vallier (7128)",
+    "value": "7128"
+  },
+  {
+    "label": "Tournus (7129)",
+    "value": "7129"
+  },
+  {
+    "label": "Bonnétable (7201)",
+    "value": "7201"
+  },
+  {
+    "label": "Changé (7202)",
+    "value": "7202"
+  },
+  {
+    "label": "Château-du-Loir (7203)",
+    "value": "7203"
+  },
+  {
+    "label": "Écommoy (7204)",
+    "value": "7204"
+  },
+  {
+    "label": "Ferté-Bernard (7205)",
+    "value": "7205"
+  },
+  {
+    "label": "Flèche (7206)",
+    "value": "7206"
+  },
+  {
+    "label": "Loué (7207)",
+    "value": "7207"
+  },
+  {
+    "label": "Lude (7208)",
+    "value": "7208"
+  },
+  {
+    "label": "Mamers (7209)",
+    "value": "7209"
+  },
+  {
+    "label": "Mans-1 (7210)",
+    "value": "7210"
+  },
+  {
+    "label": "Mans-2 (7211)",
+    "value": "7211"
+  },
+  {
+    "label": "Mans-3 (7212)",
+    "value": "7212"
+  },
+  {
+    "label": "Mans-4 (7213)",
+    "value": "7213"
+  },
+  {
+    "label": "Mans-5 (7214)",
+    "value": "7214"
+  },
+  {
+    "label": "Mans-6 (7215)",
+    "value": "7215"
+  },
+  {
+    "label": "Mans-7 (7216)",
+    "value": "7216"
+  },
+  {
+    "label": "Sablé-sur-Sarthe (7217)",
+    "value": "7217"
+  },
+  {
+    "label": "Saint-Calais (7218)",
+    "value": "7218"
+  },
+  {
+    "label": "Savigné-l'Évêque (7219)",
+    "value": "7219"
+  },
+  {
+    "label": "Sillé-le-Guillaume (7220)",
+    "value": "7220"
+  },
+  {
+    "label": "Suze-sur-Sarthe (7221)",
+    "value": "7221"
+  },
+  {
+    "label": "Aix-les-Bains-1 (7301)",
+    "value": "7301"
+  },
+  {
+    "label": "Aix-les-Bains-2 (7302)",
+    "value": "7302"
+  },
+  {
+    "label": "Albertville-1 (7303)",
+    "value": "7303"
+  },
+  {
+    "label": "Albertville-2 (7304)",
+    "value": "7304"
+  },
+  {
+    "label": "Bourg-Saint-Maurice (7305)",
+    "value": "7305"
+  },
+  {
+    "label": "Bugey savoyard (7306)",
+    "value": "7306"
+  },
+  {
+    "label": "Chambéry-1 (7307)",
+    "value": "7307"
+  },
+  {
+    "label": "Chambéry-2 (7308)",
+    "value": "7308"
+  },
+  {
+    "label": "Chambéry-3 (7309)",
+    "value": "7309"
+  },
+  {
+    "label": "Modane (7310)",
+    "value": "7310"
+  },
+  {
+    "label": "Montmélian (7311)",
+    "value": "7311"
+  },
+  {
+    "label": "Motte-Servolex (7312)",
+    "value": "7312"
+  },
+  {
+    "label": "Moûtiers (7313)",
+    "value": "7313"
+  },
+  {
+    "label": "Pont-de-Beauvoisin (7314)",
+    "value": "7314"
+  },
+  {
+    "label": "Ravoire (7315)",
+    "value": "7315"
+  },
+  {
+    "label": "Saint-Alban-Leysse (7316)",
+    "value": "7316"
+  },
+  {
+    "label": "Saint-Jean-de-Maurienne (7317)",
+    "value": "7317"
+  },
+  {
+    "label": "Saint-Pierre-d'Albigny (7318)",
+    "value": "7318"
+  },
+  {
+    "label": "Ugine (7319)",
+    "value": "7319"
+  },
+  {
+    "label": "Annecy-1 (7401)",
+    "value": "7401"
+  },
+  {
+    "label": "Annecy-2 (7402)",
+    "value": "7402"
+  },
+  {
+    "label": "Annecy-le-Vieux (7403)",
+    "value": "7403"
+  },
+  {
+    "label": "Annemasse (7404)",
+    "value": "7404"
+  },
+  {
+    "label": "Bonneville (7405)",
+    "value": "7405"
+  },
+  {
+    "label": "Cluses (7406)",
+    "value": "7406"
+  },
+  {
+    "label": "Évian-les-Bains (7407)",
+    "value": "7407"
+  },
+  {
+    "label": "Faverges (7408)",
+    "value": "7408"
+  },
+  {
+    "label": "Gaillard (7409)",
+    "value": "7409"
+  },
+  {
+    "label": "Mont-Blanc (7410)",
+    "value": "7410"
+  },
+  {
+    "label": "Roche-sur-Foron (7411)",
+    "value": "7411"
+  },
+  {
+    "label": "Rumilly (7412)",
+    "value": "7412"
+  },
+  {
+    "label": "Saint-Julien-en-Genevois (7413)",
+    "value": "7413"
+  },
+  {
+    "label": "Sallanches (7414)",
+    "value": "7414"
+  },
+  {
+    "label": "Sciez (7415)",
+    "value": "7415"
+  },
+  {
+    "label": "Seynod (7416)",
+    "value": "7416"
+  },
+  {
+    "label": "Thonon-les-Bains (7417)",
+    "value": "7417"
+  },
+  {
+    "label": "Barentin (7601)",
+    "value": "7601"
+  },
+  {
+    "label": "Bois-Guillaume (7602)",
+    "value": "7602"
+  },
+  {
+    "label": "Bolbec (7603)",
+    "value": "7603"
+  },
+  {
+    "label": "Canteleu (7604)",
+    "value": "7604"
+  },
+  {
+    "label": "Caudebec-lès-Elbeuf (7605)",
+    "value": "7605"
+  },
+  {
+    "label": "Darnétal (7606)",
+    "value": "7606"
+  },
+  {
+    "label": "Dieppe-1 (7607)",
+    "value": "7607"
+  },
+  {
+    "label": "Dieppe-2 (7608)",
+    "value": "7608"
+  },
+  {
+    "label": "Elbeuf (7609)",
+    "value": "7609"
+  },
+  {
+    "label": "Eu (7610)",
+    "value": "7610"
+  },
+  {
+    "label": "Fécamp (7611)",
+    "value": "7611"
+  },
+  {
+    "label": "Gournay-en-Bray (7612)",
+    "value": "7612"
+  },
+  {
+    "label": "Grand-Quevilly (7613)",
+    "value": "7613"
+  },
+  {
+    "label": "Havre-1 (7614)",
+    "value": "7614"
+  },
+  {
+    "label": "Havre-2 (7615)",
+    "value": "7615"
+  },
+  {
+    "label": "Havre-3 (7616)",
+    "value": "7616"
+  },
+  {
+    "label": "Havre-4 (7617)",
+    "value": "7617"
+  },
+  {
+    "label": "Havre-5 (7618)",
+    "value": "7618"
+  },
+  {
+    "label": "Havre-6 (7619)",
+    "value": "7619"
+  },
+  {
+    "label": "Luneray (7620)",
+    "value": "7620"
+  },
+  {
+    "label": "Mesnil-Esnard (7621)",
+    "value": "7621"
+  },
+  {
+    "label": "Mont-Saint-Aignan (7622)",
+    "value": "7622"
+  },
+  {
+    "label": "Neufchâtel-en-Bray (7623)",
+    "value": "7623"
+  },
+  {
+    "label": "Notre-Dame-de-Bondeville (7624)",
+    "value": "7624"
+  },
+  {
+    "label": "Notre-Dame-de-Gravenchon (7625)",
+    "value": "7625"
+  },
+  {
+    "label": "Octeville-sur-Mer (7626)",
+    "value": "7626"
+  },
+  {
+    "label": "Petit-Quevilly (7627)",
+    "value": "7627"
+  },
+  {
+    "label": "Rouen-1 (7628)",
+    "value": "7628"
+  },
+  {
+    "label": "Rouen-2 (7629)",
+    "value": "7629"
+  },
+  {
+    "label": "Rouen-3 (7630)",
+    "value": "7630"
+  },
+  {
+    "label": "Saint-Étienne-du-Rouvray (7631)",
+    "value": "7631"
+  },
+  {
+    "label": "Saint-Romain-de-Colbosc (7632)",
+    "value": "7632"
+  },
+  {
+    "label": "Saint-Valery-en-Caux (7633)",
+    "value": "7633"
+  },
+  {
+    "label": "Sotteville-lès-Rouen (7634)",
+    "value": "7634"
+  },
+  {
+    "label": "Yvetot (7635)",
+    "value": "7635"
+  },
+  {
+    "label": "Champs-sur-Marne (7701)",
+    "value": "7701"
+  },
+  {
+    "label": "Chelles (7702)",
+    "value": "7702"
+  },
+  {
+    "label": "Claye-Souilly (7703)",
+    "value": "7703"
+  },
+  {
+    "label": "Combs-la-Ville (7704)",
+    "value": "7704"
+  },
+  {
+    "label": "Coulommiers (7705)",
+    "value": "7705"
+  },
+  {
+    "label": "Ferté-sous-Jouarre (7706)",
+    "value": "7706"
+  },
+  {
+    "label": "Fontainebleau (7707)",
+    "value": "7707"
+  },
+  {
+    "label": "Fontenay-Trésigny (7708)",
+    "value": "7708"
+  },
+  {
+    "label": "Lagny-sur-Marne (7709)",
+    "value": "7709"
+  },
+  {
+    "label": "Meaux (7710)",
+    "value": "7710"
+  },
+  {
+    "label": "Melun (7711)",
+    "value": "7711"
+  },
+  {
+    "label": "Mitry-Mory (7712)",
+    "value": "7712"
+  },
+  {
+    "label": "Montereau-Fault-Yonne (7713)",
+    "value": "7713"
+  },
+  {
+    "label": "Nangis (7714)",
+    "value": "7714"
+  },
+  {
+    "label": "Nemours (7715)",
+    "value": "7715"
+  },
+  {
+    "label": "Ozoir-la-Ferrière (7716)",
+    "value": "7716"
+  },
+  {
+    "label": "Pontault-Combault (7717)",
+    "value": "7717"
+  },
+  {
+    "label": "Provins (7718)",
+    "value": "7718"
+  },
+  {
+    "label": "Saint-Fargeau-Ponthierry (7719)",
+    "value": "7719"
+  },
+  {
+    "label": "Savigny-le-Temple (7720)",
+    "value": "7720"
+  },
+  {
+    "label": "Serris (7721)",
+    "value": "7721"
+  },
+  {
+    "label": "Torcy (7722)",
+    "value": "7722"
+  },
+  {
+    "label": "Villeparisis (7723)",
+    "value": "7723"
+  },
+  {
+    "label": "Aubergenville (7801)",
+    "value": "7801"
+  },
+  {
+    "label": "Bonnières-sur-Seine (7802)",
+    "value": "7802"
+  },
+  {
+    "label": "Chatou (7803)",
+    "value": "7803"
+  },
+  {
+    "label": "Chesnay (7804)",
+    "value": "7804"
+  },
+  {
+    "label": "Conflans-Sainte-Honorine (7805)",
+    "value": "7805"
+  },
+  {
+    "label": "Houilles (7806)",
+    "value": "7806"
+  },
+  {
+    "label": "Limay (7807)",
+    "value": "7807"
+  },
+  {
+    "label": "Mantes-la-Jolie (7808)",
+    "value": "7808"
+  },
+  {
+    "label": "Maurepas (7809)",
+    "value": "7809"
+  },
+  {
+    "label": "Montigny-le-Bretonneux (7810)",
+    "value": "7810"
+  },
+  {
+    "label": "Mureaux (7811)",
+    "value": "7811"
+  },
+  {
+    "label": "Plaisir (7812)",
+    "value": "7812"
+  },
+  {
+    "label": "Poissy (7813)",
+    "value": "7813"
+  },
+  {
+    "label": "Rambouillet (7814)",
+    "value": "7814"
+  },
+  {
+    "label": "Saint-Cyr-l'École (7815)",
+    "value": "7815"
+  },
+  {
+    "label": "Saint-Germain-en-Laye (7816)",
+    "value": "7816"
+  },
+  {
+    "label": "Sartrouville (7817)",
+    "value": "7817"
+  },
+  {
+    "label": "Trappes (7818)",
+    "value": "7818"
+  },
+  {
+    "label": "Verneuil-sur-Seine (7819)",
+    "value": "7819"
+  },
+  {
+    "label": "Versailles-1 (7820)",
+    "value": "7820"
+  },
+  {
+    "label": "Versailles-2 (7821)",
+    "value": "7821"
+  },
+  {
+    "label": "Autize-Egray (7901)",
+    "value": "7901"
+  },
+  {
+    "label": "Bressuire (7902)",
+    "value": "7902"
+  },
+  {
+    "label": "Celles-sur-Belle (7903)",
+    "value": "7903"
+  },
+  {
+    "label": "Cerizay (7904)",
+    "value": "7904"
+  },
+  {
+    "label": "Frontenay-Rohan-Rohan (7905)",
+    "value": "7905"
+  },
+  {
+    "label": "Gâtine (7906)",
+    "value": "7906"
+  },
+  {
+    "label": "Mauléon (7907)",
+    "value": "7907"
+  },
+  {
+    "label": "Melle (7908)",
+    "value": "7908"
+  },
+  {
+    "label": "Mignon-et-Boutonne (7909)",
+    "value": "7909"
+  },
+  {
+    "label": "Niort-1 (7910)",
+    "value": "7910"
+  },
+  {
+    "label": "Niort-2 (7911)",
+    "value": "7911"
+  },
+  {
+    "label": "Niort-3 (7912)",
+    "value": "7912"
+  },
+  {
+    "label": "Parthenay (7913)",
+    "value": "7913"
+  },
+  {
+    "label": "Plaine Niortaise (7914)",
+    "value": "7914"
+  },
+  {
+    "label": "Saint-Maixent-l'École (7915)",
+    "value": "7915"
+  },
+  {
+    "label": "Thouars (7916)",
+    "value": "7916"
+  },
+  {
+    "label": "Val de Thouet (7917)",
+    "value": "7917"
+  },
+  {
+    "label": "Abbeville-1 (8001)",
+    "value": "8001"
+  },
+  {
+    "label": "Abbeville-2 (8002)",
+    "value": "8002"
+  },
+  {
+    "label": "Ailly-sur-Noye (8003)",
+    "value": "8003"
+  },
+  {
+    "label": "Ailly-sur-Somme (8004)",
+    "value": "8004"
+  },
+  {
+    "label": "Albert (8005)",
+    "value": "8005"
+  },
+  {
+    "label": "Amiens-1 (8006)",
+    "value": "8006"
+  },
+  {
+    "label": "Amiens-2 (8007)",
+    "value": "8007"
+  },
+  {
+    "label": "Amiens-3 (8008)",
+    "value": "8008"
+  },
+  {
+    "label": "Amiens-4 (8009)",
+    "value": "8009"
+  },
+  {
+    "label": "Amiens-5 (8010)",
+    "value": "8010"
+  },
+  {
+    "label": "Amiens-6 (8011)",
+    "value": "8011"
+  },
+  {
+    "label": "Amiens-7 (8012)",
+    "value": "8012"
+  },
+  {
+    "label": "Corbie (8013)",
+    "value": "8013"
+  },
+  {
+    "label": "Doullens (8014)",
+    "value": "8014"
+  },
+  {
+    "label": "Flixecourt (8015)",
+    "value": "8015"
+  },
+  {
+    "label": "Friville-Escarbotin (8016)",
+    "value": "8016"
+  },
+  {
+    "label": "Gamaches (8017)",
+    "value": "8017"
+  },
+  {
+    "label": "Ham (8018)",
+    "value": "8018"
+  },
+  {
+    "label": "Moreuil (8019)",
+    "value": "8019"
+  },
+  {
+    "label": "Péronne (8020)",
+    "value": "8020"
+  },
+  {
+    "label": "Poix-de-Picardie (8021)",
+    "value": "8021"
+  },
+  {
+    "label": "Roye (8022)",
+    "value": "8022"
+  },
+  {
+    "label": "Rue (8023)",
+    "value": "8023"
+  },
+  {
+    "label": "Albi-1 (8101)",
+    "value": "8101"
+  },
+  {
+    "label": "Albi-2 (8102)",
+    "value": "8102"
+  },
+  {
+    "label": "Albi-3 (8103)",
+    "value": "8103"
+  },
+  {
+    "label": "Albi-4 (8104)",
+    "value": "8104"
+  },
+  {
+    "label": "Carmaux-1 Le Ségala (8105)",
+    "value": "8105"
+  },
+  {
+    "label": "Carmaux-2 Vallée du Cérou (8106)",
+    "value": "8106"
+  },
+  {
+    "label": "Castres-1 (8107)",
+    "value": "8107"
+  },
+  {
+    "label": "Castres-2 (8108)",
+    "value": "8108"
+  },
+  {
+    "label": "Castres-3 (8109)",
+    "value": "8109"
+  },
+  {
+    "label": "Deux Rives (8110)",
+    "value": "8110"
+  },
+  {
+    "label": "Gaillac (8111)",
+    "value": "8111"
+  },
+  {
+    "label": "Graulhet (8112)",
+    "value": "8112"
+  },
+  {
+    "label": "Haut Dadou (8113)",
+    "value": "8113"
+  },
+  {
+    "label": "Hautes Terres d'Oc (8114)",
+    "value": "8114"
+  },
+  {
+    "label": "Lavaur Cocagne (8115)",
+    "value": "8115"
+  },
+  {
+    "label": "Mazamet-1 (8116)",
+    "value": "8116"
+  },
+  {
+    "label": "Mazamet-2 Vallée du Thoré (8117)",
+    "value": "8117"
+  },
+  {
+    "label": "Montagne noire (8118)",
+    "value": "8118"
+  },
+  {
+    "label": "Pastel (8119)",
+    "value": "8119"
+  },
+  {
+    "label": "Plaine de l'Agoût (8120)",
+    "value": "8120"
+  },
+  {
+    "label": "Portes du Tarn (8121)",
+    "value": "8121"
+  },
+  {
+    "label": "Saint-Juéry (8122)",
+    "value": "8122"
+  },
+  {
+    "label": "Vignobles et Bastides (8123)",
+    "value": "8123"
+  },
+  {
+    "label": "Aveyron-Lère (8201)",
+    "value": "8201"
+  },
+  {
+    "label": "Beaumont-de-Lomagne (8202)",
+    "value": "8202"
+  },
+  {
+    "label": "Castelsarrasin (8203)",
+    "value": "8203"
+  },
+  {
+    "label": "Garonne-Lomagne-Brulhois (8204)",
+    "value": "8204"
+  },
+  {
+    "label": "Moissac (8205)",
+    "value": "8205"
+  },
+  {
+    "label": "Montauban-1 (8206)",
+    "value": "8206"
+  },
+  {
+    "label": "Montauban-2 (8207)",
+    "value": "8207"
+  },
+  {
+    "label": "Montauban-3 (8208)",
+    "value": "8208"
+  },
+  {
+    "label": "Montech (8209)",
+    "value": "8209"
+  },
+  {
+    "label": "Pays de Serres Sud-Quercy (8210)",
+    "value": "8210"
+  },
+  {
+    "label": "Quercy-Aveyron (8211)",
+    "value": "8211"
+  },
+  {
+    "label": "Quercy-Rouergue (8212)",
+    "value": "8212"
+  },
+  {
+    "label": "Tarn-Tescou-Quercy vert (8213)",
+    "value": "8213"
+  },
+  {
+    "label": "Valence (8214)",
+    "value": "8214"
+  },
+  {
+    "label": "Verdun-sur-Garonne (8215)",
+    "value": "8215"
+  },
+  {
+    "label": "Brignoles (8301)",
+    "value": "8301"
+  },
+  {
+    "label": "Crau (8302)",
+    "value": "8302"
+  },
+  {
+    "label": "Draguignan (8303)",
+    "value": "8303"
+  },
+  {
+    "label": "Flayosc (8304)",
+    "value": "8304"
+  },
+  {
+    "label": "Fréjus (8305)",
+    "value": "8305"
+  },
+  {
+    "label": "Garde (8306)",
+    "value": "8306"
+  },
+  {
+    "label": "Garéoult (8307)",
+    "value": "8307"
+  },
+  {
+    "label": "Hyères (8308)",
+    "value": "8308"
+  },
+  {
+    "label": "Luc (8309)",
+    "value": "8309"
+  },
+  {
+    "label": "Ollioules (8310)",
+    "value": "8310"
+  },
+  {
+    "label": "Roquebrune-sur-Argens (8311)",
+    "value": "8311"
+  },
+  {
+    "label": "Saint-Cyr-sur-Mer (8312)",
+    "value": "8312"
+  },
+  {
+    "label": "Saint-Maximin-la-Sainte-Baume (8313)",
+    "value": "8313"
+  },
+  {
+    "label": "Saint-Raphaël (8314)",
+    "value": "8314"
+  },
+  {
+    "label": "Sainte-Maxime (8315)",
+    "value": "8315"
+  },
+  {
+    "label": "Seyne-sur-Mer-1 (8316)",
+    "value": "8316"
+  },
+  {
+    "label": "Seyne-sur-Mer-2 (8317)",
+    "value": "8317"
+  },
+  {
+    "label": "Solliès-Pont (8318)",
+    "value": "8318"
+  },
+  {
+    "label": "Toulon-1 (8319)",
+    "value": "8319"
+  },
+  {
+    "label": "Toulon-2 (8320)",
+    "value": "8320"
+  },
+  {
+    "label": "Toulon-3 (8321)",
+    "value": "8321"
+  },
+  {
+    "label": "Toulon-4 (8322)",
+    "value": "8322"
+  },
+  {
+    "label": "Vidauban (8323)",
+    "value": "8323"
+  },
+  {
+    "label": "Apt (8401)",
+    "value": "8401"
+  },
+  {
+    "label": "Avignon-1 (8402)",
+    "value": "8402"
+  },
+  {
+    "label": "Avignon-2 (8403)",
+    "value": "8403"
+  },
+  {
+    "label": "Avignon-3 (8404)",
+    "value": "8404"
+  },
+  {
+    "label": "Bollène (8405)",
+    "value": "8405"
+  },
+  {
+    "label": "Carpentras (8406)",
+    "value": "8406"
+  },
+  {
+    "label": "Cavaillon (8407)",
+    "value": "8407"
+  },
+  {
+    "label": "Cheval-Blanc (8408)",
+    "value": "8408"
+  },
+  {
+    "label": "Isle-sur-la-Sorgue (8409)",
+    "value": "8409"
+  },
+  {
+    "label": "Monteux (8410)",
+    "value": "8410"
+  },
+  {
+    "label": "Orange (8411)",
+    "value": "8411"
+  },
+  {
+    "label": "Pernes-les-Fontaines (8412)",
+    "value": "8412"
+  },
+  {
+    "label": "Pertuis (8413)",
+    "value": "8413"
+  },
+  {
+    "label": "Pontet (8414)",
+    "value": "8414"
+  },
+  {
+    "label": "Sorgues (8415)",
+    "value": "8415"
+  },
+  {
+    "label": "Vaison-la-Romaine (8416)",
+    "value": "8416"
+  },
+  {
+    "label": "Valréas (8417)",
+    "value": "8417"
+  },
+  {
+    "label": "Aizenay (8501)",
+    "value": "8501"
+  },
+  {
+    "label": "Challans (8502)",
+    "value": "8502"
+  },
+  {
+    "label": "Chantonnay (8503)",
+    "value": "8503"
+  },
+  {
+    "label": "Châtaigneraie (8504)",
+    "value": "8504"
+  },
+  {
+    "label": "Fontenay-le-Comte (8505)",
+    "value": "8505"
+  },
+  {
+    "label": "Herbiers (8506)",
+    "value": "8506"
+  },
+  {
+    "label": "île-d'Yeu (8507)",
+    "value": "8507"
+  },
+  {
+    "label": "Luçon (8508)",
+    "value": "8508"
+  },
+  {
+    "label": "Mareuil-sur-Lay-Dissais (8509)",
+    "value": "8509"
+  },
+  {
+    "label": "Montaigu (8510)",
+    "value": "8510"
+  },
+  {
+    "label": "Mortagne-sur-Sèvre (8511)",
+    "value": "8511"
+  },
+  {
+    "label": "Roche-sur-Yon-1 (8512)",
+    "value": "8512"
+  },
+  {
+    "label": "Roche-sur-Yon-2 (8513)",
+    "value": "8513"
+  },
+  {
+    "label": "Sables-d'Olonne (8514)",
+    "value": "8514"
+  },
+  {
+    "label": "Saint-Hilaire-de-Riez (8515)",
+    "value": "8515"
+  },
+  {
+    "label": "Saint-Jean-de-Monts (8516)",
+    "value": "8516"
+  },
+  {
+    "label": "Talmont-Saint-Hilaire (8517)",
+    "value": "8517"
+  },
+  {
+    "label": "Chasseneuil-du-Poitou (8601)",
+    "value": "8601"
+  },
+  {
+    "label": "Châtellerault-1 (8602)",
+    "value": "8602"
+  },
+  {
+    "label": "Châtellerault-2 (8603)",
+    "value": "8603"
+  },
+  {
+    "label": "Châtellerault-3 (8604)",
+    "value": "8604"
+  },
+  {
+    "label": "Chauvigny (8605)",
+    "value": "8605"
+  },
+  {
+    "label": "Civray (8606)",
+    "value": "8606"
+  },
+  {
+    "label": "Jaunay-Clan (8607)",
+    "value": "8607"
+  },
+  {
+    "label": "Loudun (8608)",
+    "value": "8608"
+  },
+  {
+    "label": "Lusignan (8609)",
+    "value": "8609"
+  },
+  {
+    "label": "Lussac-les-Châteaux (8610)",
+    "value": "8610"
+  },
+  {
+    "label": "Migné-Auxances (8611)",
+    "value": "8611"
+  },
+  {
+    "label": "Montmorillon (8612)",
+    "value": "8612"
+  },
+  {
+    "label": "Poitiers-1 (8613)",
+    "value": "8613"
+  },
+  {
+    "label": "Poitiers-2 (8614)",
+    "value": "8614"
+  },
+  {
+    "label": "Poitiers-3 (8615)",
+    "value": "8615"
+  },
+  {
+    "label": "Poitiers-4 (8616)",
+    "value": "8616"
+  },
+  {
+    "label": "Poitiers-5 (8617)",
+    "value": "8617"
+  },
+  {
+    "label": "Vivonne (8618)",
+    "value": "8618"
+  },
+  {
+    "label": "Vouneuil-sous-Biard (8619)",
+    "value": "8619"
+  },
+  {
+    "label": "Aixe-sur-Vienne (8701)",
+    "value": "8701"
+  },
+  {
+    "label": "Ambazac (8702)",
+    "value": "8702"
+  },
+  {
+    "label": "Bellac (8703)",
+    "value": "8703"
+  },
+  {
+    "label": "Châteauponsac (8704)",
+    "value": "8704"
+  },
+  {
+    "label": "Condat-sur-Vienne (8705)",
+    "value": "8705"
+  },
+  {
+    "label": "Couzeix (8706)",
+    "value": "8706"
+  },
+  {
+    "label": "Eymoutiers (8707)",
+    "value": "8707"
+  },
+  {
+    "label": "Limoges-1 (8708)",
+    "value": "8708"
+  },
+  {
+    "label": "Limoges-2 (8709)",
+    "value": "8709"
+  },
+  {
+    "label": "Limoges-3 (8710)",
+    "value": "8710"
+  },
+  {
+    "label": "Limoges-4 (8711)",
+    "value": "8711"
+  },
+  {
+    "label": "Limoges-5 (8712)",
+    "value": "8712"
+  },
+  {
+    "label": "Limoges-6 (8713)",
+    "value": "8713"
+  },
+  {
+    "label": "Limoges-7 (8714)",
+    "value": "8714"
+  },
+  {
+    "label": "Limoges-8 (8715)",
+    "value": "8715"
+  },
+  {
+    "label": "Limoges-9 (8716)",
+    "value": "8716"
+  },
+  {
+    "label": "Panazol (8717)",
+    "value": "8717"
+  },
+  {
+    "label": "Rochechouart (8718)",
+    "value": "8718"
+  },
+  {
+    "label": "Saint-Junien (8719)",
+    "value": "8719"
+  },
+  {
+    "label": "Saint-Léonard-de-Noblat (8720)",
+    "value": "8720"
+  },
+  {
+    "label": "Saint-Yrieix-la-Perche (8721)",
+    "value": "8721"
+  },
+  {
+    "label": "Bresse (8801)",
+    "value": "8801"
+  },
+  {
+    "label": "Bruyères (8802)",
+    "value": "8802"
+  },
+  {
+    "label": "Charmes (8803)",
+    "value": "8803"
+  },
+  {
+    "label": "Darney (8804)",
+    "value": "8804"
+  },
+  {
+    "label": "Épinal-1 (8805)",
+    "value": "8805"
+  },
+  {
+    "label": "Épinal-2 (8806)",
+    "value": "8806"
+  },
+  {
+    "label": "Gérardmer (8807)",
+    "value": "8807"
+  },
+  {
+    "label": "Golbey (8808)",
+    "value": "8808"
+  },
+  {
+    "label": "Mirecourt (8809)",
+    "value": "8809"
+  },
+  {
+    "label": "Neufchâteau (8810)",
+    "value": "8810"
+  },
+  {
+    "label": "Raon-l'Etape (8811)",
+    "value": "8811"
+  },
+  {
+    "label": "Remiremont (8812)",
+    "value": "8812"
+  },
+  {
+    "label": "Saint-Dié-des-Vosges-1 (8813)",
+    "value": "8813"
+  },
+  {
+    "label": "Saint-Dié-des-Vosges-2 (8814)",
+    "value": "8814"
+  },
+  {
+    "label": "Thillot (8815)",
+    "value": "8815"
+  },
+  {
+    "label": "Val-d'Ajol (8816)",
+    "value": "8816"
+  },
+  {
+    "label": "Vittel (8817)",
+    "value": "8817"
+  },
+  {
+    "label": "Auxerre-1 (8901)",
+    "value": "8901"
+  },
+  {
+    "label": "Auxerre-2 (8902)",
+    "value": "8902"
+  },
+  {
+    "label": "Auxerre-3 (8903)",
+    "value": "8903"
+  },
+  {
+    "label": "Auxerre-4 (8904)",
+    "value": "8904"
+  },
+  {
+    "label": "Avallon (8905)",
+    "value": "8905"
+  },
+  {
+    "label": "Brienon-sur-Armançon (8906)",
+    "value": "8906"
+  },
+  {
+    "label": "Chablis (8907)",
+    "value": "8907"
+  },
+  {
+    "label": "Charny (8908)",
+    "value": "8908"
+  },
+  {
+    "label": "Cœur de Puisaye (8909)",
+    "value": "8909"
+  },
+  {
+    "label": "Gâtinais en Bourgogne (8910)",
+    "value": "8910"
+  },
+  {
+    "label": "Joigny (8911)",
+    "value": "8911"
+  },
+  {
+    "label": "Joux-la-Ville (8912)",
+    "value": "8912"
+  },
+  {
+    "label": "Migennes (8913)",
+    "value": "8913"
+  },
+  {
+    "label": "Pont-sur-Yonne (8914)",
+    "value": "8914"
+  },
+  {
+    "label": "Saint-Florentin (8915)",
+    "value": "8915"
+  },
+  {
+    "label": "Sens-1 (8916)",
+    "value": "8916"
+  },
+  {
+    "label": "Sens-2 (8917)",
+    "value": "8917"
+  },
+  {
+    "label": "Thorigny-sur-Oreuse (8918)",
+    "value": "8918"
+  },
+  {
+    "label": "Tonnerrois (8919)",
+    "value": "8919"
+  },
+  {
+    "label": "Villeneuve-sur-Yonne (8920)",
+    "value": "8920"
+  },
+  {
+    "label": "Vincelles (8921)",
+    "value": "8921"
+  },
+  {
+    "label": "Bavilliers (9001)",
+    "value": "9001"
+  },
+  {
+    "label": "Belfort-1 (9002)",
+    "value": "9002"
+  },
+  {
+    "label": "Belfort-2 (9003)",
+    "value": "9003"
+  },
+  {
+    "label": "Belfort-3 (9004)",
+    "value": "9004"
+  },
+  {
+    "label": "Châtenois-les-Forges (9005)",
+    "value": "9005"
+  },
+  {
+    "label": "Delle (9006)",
+    "value": "9006"
+  },
+  {
+    "label": "Giromagny (9007)",
+    "value": "9007"
+  },
+  {
+    "label": "Grandvillars (9008)",
+    "value": "9008"
+  },
+  {
+    "label": "Valdoie (9009)",
+    "value": "9009"
+  },
+  {
+    "label": "Arpajon (9101)",
+    "value": "9101"
+  },
+  {
+    "label": "Athis-Mons (9102)",
+    "value": "9102"
+  },
+  {
+    "label": "Brétigny-sur-Orge (9103)",
+    "value": "9103"
+  },
+  {
+    "label": "Corbeil-Essonnes (9104)",
+    "value": "9104"
+  },
+  {
+    "label": "Dourdan (9105)",
+    "value": "9105"
+  },
+  {
+    "label": "Draveil (9106)",
+    "value": "9106"
+  },
+  {
+    "label": "Épinay-sous-Sénart (9107)",
+    "value": "9107"
+  },
+  {
+    "label": "Étampes (9108)",
+    "value": "9108"
+  },
+  {
+    "label": "Évry (9109)",
+    "value": "9109"
+  },
+  {
+    "label": "Gif-sur-Yvette (9110)",
+    "value": "9110"
+  },
+  {
+    "label": "Longjumeau (9111)",
+    "value": "9111"
+  },
+  {
+    "label": "Massy (9112)",
+    "value": "9112"
+  },
+  {
+    "label": "Mennecy (9113)",
+    "value": "9113"
+  },
+  {
+    "label": "Palaiseau (9114)",
+    "value": "9114"
+  },
+  {
+    "label": "Ris-Orangis (9115)",
+    "value": "9115"
+  },
+  {
+    "label": "Sainte-Geneviève-des-Bois (9116)",
+    "value": "9116"
+  },
+  {
+    "label": "Savigny-sur-Orge (9117)",
+    "value": "9117"
+  },
+  {
+    "label": "Ulis (9118)",
+    "value": "9118"
+  },
+  {
+    "label": "Vigneux-sur-Seine (9119)",
+    "value": "9119"
+  },
+  {
+    "label": "Viry-Châtillon (9120)",
+    "value": "9120"
+  },
+  {
+    "label": "Yerres (9121)",
+    "value": "9121"
+  },
+  {
+    "label": "Antony (9201)",
+    "value": "9201"
+  },
+  {
+    "label": "Asnières-sur-Seine (9202)",
+    "value": "9202"
+  },
+  {
+    "label": "Bagneux (9203)",
+    "value": "9203"
+  },
+  {
+    "label": "Boulogne-Billancourt-1 (9204)",
+    "value": "9204"
+  },
+  {
+    "label": "Boulogne-Billancourt-2 (9205)",
+    "value": "9205"
+  },
+  {
+    "label": "Châtenay-Malabry (9206)",
+    "value": "9206"
+  },
+  {
+    "label": "Châtillon (9207)",
+    "value": "9207"
+  },
+  {
+    "label": "Clamart (9208)",
+    "value": "9208"
+  },
+  {
+    "label": "Clichy (9209)",
+    "value": "9209"
+  },
+  {
+    "label": "Colombes-1 (9210)",
+    "value": "9210"
+  },
+  {
+    "label": "Colombes-2 (9211)",
+    "value": "9211"
+  },
+  {
+    "label": "Courbevoie-1 (9212)",
+    "value": "9212"
+  },
+  {
+    "label": "Courbevoie-2 (9213)",
+    "value": "9213"
+  },
+  {
+    "label": "Gennevilliers (9214)",
+    "value": "9214"
+  },
+  {
+    "label": "Issy-les-Moulineaux (9215)",
+    "value": "9215"
+  },
+  {
+    "label": "Levallois-Perret (9216)",
+    "value": "9216"
+  },
+  {
+    "label": "Meudon (9217)",
+    "value": "9217"
+  },
+  {
+    "label": "Montrouge (9218)",
+    "value": "9218"
+  },
+  {
+    "label": "Nanterre-1 (9219)",
+    "value": "9219"
+  },
+  {
+    "label": "Nanterre-2 (9220)",
+    "value": "9220"
+  },
+  {
+    "label": "Neuilly-sur-Seine (9221)",
+    "value": "9221"
+  },
+  {
+    "label": "Rueil-Malmaison (9222)",
+    "value": "9222"
+  },
+  {
+    "label": "Saint-Cloud (9223)",
+    "value": "9223"
+  },
+  {
+    "label": "Aubervilliers (9301)",
+    "value": "9301"
+  },
+  {
+    "label": "Aulnay-sous-Bois (9302)",
+    "value": "9302"
+  },
+  {
+    "label": "Bagnolet (9303)",
+    "value": "9303"
+  },
+  {
+    "label": "Blanc-Mesnil (9304)",
+    "value": "9304"
+  },
+  {
+    "label": "Bobigny (9305)",
+    "value": "9305"
+  },
+  {
+    "label": "Bondy (9306)",
+    "value": "9306"
+  },
+  {
+    "label": "Courneuve (9307)",
+    "value": "9307"
+  },
+  {
+    "label": "Drancy (9308)",
+    "value": "9308"
+  },
+  {
+    "label": "Épinay-sur-Seine (9309)",
+    "value": "9309"
+  },
+  {
+    "label": "Gagny (9310)",
+    "value": "9310"
+  },
+  {
+    "label": "Livry-Gargan (9311)",
+    "value": "9311"
+  },
+  {
+    "label": "Montreuil-1 (9312)",
+    "value": "9312"
+  },
+  {
+    "label": "Montreuil-2 (9313)",
+    "value": "9313"
+  },
+  {
+    "label": "Noisy-le-Grand (9314)",
+    "value": "9314"
+  },
+  {
+    "label": "Pantin (9315)",
+    "value": "9315"
+  },
+  {
+    "label": "Saint-Denis-1 (9316)",
+    "value": "9316"
+  },
+  {
+    "label": "Saint-Denis-2 (9317)",
+    "value": "9317"
+  },
+  {
+    "label": "Saint-Ouen (9318)",
+    "value": "9318"
+  },
+  {
+    "label": "Sevran (9319)",
+    "value": "9319"
+  },
+  {
+    "label": "Tremblay-en-France (9320)",
+    "value": "9320"
+  },
+  {
+    "label": "Villemomble (9321)",
+    "value": "9321"
+  },
+  {
+    "label": "Alfortville (9401)",
+    "value": "9401"
+  },
+  {
+    "label": "Cachan (9402)",
+    "value": "9402"
+  },
+  {
+    "label": "Champigny-sur-Marne-1 (9403)",
+    "value": "9403"
+  },
+  {
+    "label": "Champigny-sur-Marne-2 (9404)",
+    "value": "9404"
+  },
+  {
+    "label": "Charenton-le-Pont (9405)",
+    "value": "9405"
+  },
+  {
+    "label": "Choisy-le-Roi (9406)",
+    "value": "9406"
+  },
+  {
+    "label": "Créteil-1 (9407)",
+    "value": "9407"
+  },
+  {
+    "label": "Créteil-2 (9408)",
+    "value": "9408"
+  },
+  {
+    "label": "Fontenay-sous-Bois (9409)",
+    "value": "9409"
+  },
+  {
+    "label": "Haÿ-les-Roses (9410)",
+    "value": "9410"
+  },
+  {
+    "label": "Ivry-sur-Seine (9411)",
+    "value": "9411"
+  },
+  {
+    "label": "Kremlin-Bicêtre (9412)",
+    "value": "9412"
+  },
+  {
+    "label": "Maisons-Alfort (9413)",
+    "value": "9413"
+  },
+  {
+    "label": "Nogent-sur-Marne (9414)",
+    "value": "9414"
+  },
+  {
+    "label": "Orly (9415)",
+    "value": "9415"
+  },
+  {
+    "label": "Plateau briard (9416)",
+    "value": "9416"
+  },
+  {
+    "label": "Saint-Maur-des-Fossés-1 (9417)",
+    "value": "9417"
+  },
+  {
+    "label": "Saint-Maur-des-Fossés-2 (9418)",
+    "value": "9418"
+  },
+  {
+    "label": "Thiais (9419)",
+    "value": "9419"
+  },
+  {
+    "label": "Villejuif (9420)",
+    "value": "9420"
+  },
+  {
+    "label": "Villeneuve-Saint-Georges (9421)",
+    "value": "9421"
+  },
+  {
+    "label": "Villiers-sur-Marne (9422)",
+    "value": "9422"
+  },
+  {
+    "label": "Vincennes (9423)",
+    "value": "9423"
+  },
+  {
+    "label": "Vitry-sur-Seine-1 (9424)",
+    "value": "9424"
+  },
+  {
+    "label": "Vitry-sur-Seine-2 (9425)",
+    "value": "9425"
+  },
+  {
+    "label": "Argenteuil-1 (9501)",
+    "value": "9501"
+  },
+  {
+    "label": "Argenteuil-2 (9502)",
+    "value": "9502"
+  },
+  {
+    "label": "Argenteuil-3 (9503)",
+    "value": "9503"
+  },
+  {
+    "label": "Cergy-1 (9504)",
+    "value": "9504"
+  },
+  {
+    "label": "Cergy-2 (9505)",
+    "value": "9505"
+  },
+  {
+    "label": "Deuil-la-Barre (9506)",
+    "value": "9506"
+  },
+  {
+    "label": "Domont (9507)",
+    "value": "9507"
+  },
+  {
+    "label": "Ermont (9508)",
+    "value": "9508"
+  },
+  {
+    "label": "Fosses (9509)",
+    "value": "9509"
+  },
+  {
+    "label": "Franconville (9510)",
+    "value": "9510"
+  },
+  {
+    "label": "Garges-lès-Gonesse (9511)",
+    "value": "9511"
+  },
+  {
+    "label": "Goussainville (9512)",
+    "value": "9512"
+  },
+  {
+    "label": "Herblay (9513)",
+    "value": "9513"
+  },
+  {
+    "label": "Isle-Adam (9514)",
+    "value": "9514"
+  },
+  {
+    "label": "Montmorency (9515)",
+    "value": "9515"
+  },
+  {
+    "label": "Pontoise (9516)",
+    "value": "9516"
+  },
+  {
+    "label": "Saint-Ouen-l'Aumône (9517)",
+    "value": "9517"
+  },
+  {
+    "label": "Sarcelles (9518)",
+    "value": "9518"
+  },
+  {
+    "label": "Taverny (9519)",
+    "value": "9519"
+  },
+  {
+    "label": "Vauréal (9520)",
+    "value": "9520"
+  },
+  {
+    "label": "Villiers-le-Bel (9521)",
+    "value": "9521"
+  },
+  {
+    "label": "Abymes-1 (97101)",
+    "value": "97101"
+  },
+  {
+    "label": "Abymes-2 (97102)",
+    "value": "97102"
+  },
+  {
+    "label": "Abymes-3 (97103)",
+    "value": "97103"
+  },
+  {
+    "label": "Baie-Mahault-1 (97104)",
+    "value": "97104"
+  },
+  {
+    "label": "Baie-Mahault-2 (97105)",
+    "value": "97105"
+  },
+  {
+    "label": "Basse-Terre (97106)",
+    "value": "97106"
+  },
+  {
+    "label": "Capesterre-Belle-Eau (97107)",
+    "value": "97107"
+  },
+  {
+    "label": "Gosier (97108)",
+    "value": "97108"
+  },
+  {
+    "label": "Lamentin (97109)",
+    "value": "97109"
+  },
+  {
+    "label": "Marie-Galante (97110)",
+    "value": "97110"
+  },
+  {
+    "label": "Moule (97111)",
+    "value": "97111"
+  },
+  {
+    "label": "Morne-à-l'Eau (97112)",
+    "value": "97112"
+  },
+  {
+    "label": "Petit-Bourg (97113)",
+    "value": "97113"
+  },
+  {
+    "label": "Petit-Canal (97114)",
+    "value": "97114"
+  },
+  {
+    "label": "Pointe-à-Pitre (97115)",
+    "value": "97115"
+  },
+  {
+    "label": "Saint-François (97116)",
+    "value": "97116"
+  },
+  {
+    "label": "Sainte-Anne (97117)",
+    "value": "97117"
+  },
+  {
+    "label": "Sainte-Rose-1 (97118)",
+    "value": "97118"
+  },
+  {
+    "label": "Sainte-Rose-2 (97119)",
+    "value": "97119"
+  },
+  {
+    "label": "Trois-Rivières (97120)",
+    "value": "97120"
+  },
+  {
+    "label": "Vieux-Habitants (97121)",
+    "value": "97121"
+  },
+  {
+    "label": "Étang-Salé (97401)",
+    "value": "97401"
+  },
+  {
+    "label": "Port (97402)",
+    "value": "97402"
+  },
+  {
+    "label": "Possession (97403)",
+    "value": "97403"
+  },
+  {
+    "label": "Saint-André-1 (97404)",
+    "value": "97404"
+  },
+  {
+    "label": "Saint-André-2 (97405)",
+    "value": "97405"
+  },
+  {
+    "label": "Saint-André-3 (97406)",
+    "value": "97406"
+  },
+  {
+    "label": "Saint-Benoît-1 (97407)",
+    "value": "97407"
+  },
+  {
+    "label": "Saint-Benoît-2 (97408)",
+    "value": "97408"
+  },
+  {
+    "label": "Saint-Denis-1 (97409)",
+    "value": "97409"
+  },
+  {
+    "label": "Saint-Denis-2 (97410)",
+    "value": "97410"
+  },
+  {
+    "label": "Saint-Denis-3 (97411)",
+    "value": "97411"
+  },
+  {
+    "label": "Saint-Denis-4 (97412)",
+    "value": "97412"
+  },
+  {
+    "label": "Saint-Joseph (97413)",
+    "value": "97413"
+  },
+  {
+    "label": "Saint-Leu (97414)",
+    "value": "97414"
+  },
+  {
+    "label": "Saint-Louis-1 (97415)",
+    "value": "97415"
+  },
+  {
+    "label": "Saint-Louis-2 (97416)",
+    "value": "97416"
+  },
+  {
+    "label": "Saint-Paul-1 (97417)",
+    "value": "97417"
+  },
+  {
+    "label": "Saint-Paul-2 (97418)",
+    "value": "97418"
+  },
+  {
+    "label": "Saint-Paul-3 (97419)",
+    "value": "97419"
+  },
+  {
+    "label": "Saint-Pierre-1 (97420)",
+    "value": "97420"
+  },
+  {
+    "label": "Saint-Pierre-2 (97421)",
+    "value": "97421"
+  },
+  {
+    "label": "Saint-Pierre-3 (97422)",
+    "value": "97422"
+  },
+  {
+    "label": "Sainte-Marie (97423)",
+    "value": "97423"
+  },
+  {
+    "label": "Tampon-1 (97424)",
+    "value": "97424"
+  },
+  {
+    "label": "Tampon-2 (97425)",
+    "value": "97425"
+  },
+  {
+    "label": "Bandraboua (97601)",
+    "value": "97601"
+  },
+  {
+    "label": "Bouéni (97602)",
+    "value": "97602"
+  },
+  {
+    "label": "Dembeni (97603)",
+    "value": "97603"
+  },
+  {
+    "label": "Dzaoudzi (97604)",
+    "value": "97604"
+  },
+  {
+    "label": "Koungou (97605)",
+    "value": "97605"
+  },
+  {
+    "label": "Mamoudzou-1 (97606)",
+    "value": "97606"
+  },
+  {
+    "label": "Mamoudzou-2 (97607)",
+    "value": "97607"
+  },
+  {
+    "label": "Mamoudzou-3 (97608)",
+    "value": "97608"
+  },
+  {
+    "label": "Mtsamboro (97609)",
+    "value": "97609"
+  },
+  {
+    "label": "Ouangani (97610)",
+    "value": "97610"
+  },
+  {
+    "label": "Pamandzi (97611)",
+    "value": "97611"
+  },
+  {
+    "label": "Sada (97612)",
+    "value": "97612"
+  },
+  {
+    "label": "Tsingoni (97613)",
+    "value": "97613"
+  }
+]

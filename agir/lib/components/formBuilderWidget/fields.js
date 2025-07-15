@@ -1,5 +1,6 @@
 import CIRCONSCRIPTIONS from './circonscription.json'
 import CIRCONSCRIPTIONS_CONSULAIRES from './circonscriptionConsulaire.json'
+import CANTONS from './cantons.json'
 
 export const CUSTOM_FORM_BUILDER_FIELDS = [
     {
@@ -97,6 +98,14 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
         multiple: false,
         values: CIRCONSCRIPTIONS_CONSULAIRES,
         icon: "🌐"
+    },
+    {
+      label: "Cantons",
+      type: "select",
+      name: "cantons",
+      multiple: false,
+      values: CANTONS,
+      icon: "🏢"
     },
     {
         label: "Commune",
