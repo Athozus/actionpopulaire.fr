@@ -12,26 +12,15 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
         icon: "📄"
     },
     {
-        label: "Numéro de Téléphone",
-        type: "text",
-        subtype: "tel",
-        icon: "📞"
-    },
-    {
         label: "Champ Personne",
         type: "person",
         required: true,
         icon: "👤"
     },
     {
-        label: "Email",
-        type: "text",
-        subtype: "email",
-        icon: "@"
-    },
-    {
         label: "Introduction",
         type: "introHtml",
+        icon: "🔤"
     },
     {
         label: "GA - En tant que membre",
@@ -102,6 +91,7 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
     {
       label: "Cantons",
       type: "select",
+      subtype: "cantons",
       name: "cantons",
       multiple: false,
       values: CANTONS,

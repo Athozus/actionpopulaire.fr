@@ -6,6 +6,7 @@ import {
     mapCrispyFieldToFormBuilderField,
     mapFormBuildFieldToCrispy
 } from "@agir/lib/formBuilderWidget/mapperFormBuilder";
+import {FORM_BUILDER_ORDER} from "@agir/lib/formBuilderWidget/formBuilderControlOrder";
 
 const DEFAULT_ROWS_TO_HIDE = ["step", "other", "inline", "className", "access", "placeholder", "value", "subtype"]
 
@@ -67,6 +68,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     formBuilder = $('#fb-editor').formBuilder({
+        controlOrder: FORM_BUILDER_ORDER,
         i18n: i18n,
         scrollToFieldOnAdd: false,
         formData: formBuilderData,
