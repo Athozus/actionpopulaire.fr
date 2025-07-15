@@ -33,13 +33,13 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
         type: "introHtml",
     },
     {
-        label: "Groupes locals - En tant que membre",
+        label: "GA - En tant que membre",
         subtype: "group_member",
         type: "group",
         icon: "👥"
     },
     {
-        label: "Groupes locals - En tant qu'animatrices",
+        label: "GA - En tant qu'animatrices",
         type: "group",
         subtype: "group_animatrice",
         choices: "animatrice",
@@ -47,7 +47,7 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
         icon: "👥"
     },
     {
-        label: "Groupes - En tant que gestionnaires",
+        label: "GA- En tant que gestionnaires",
         type: "group",
         subtype: "group_gestionnaire",
         group_type: "L",
