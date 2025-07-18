@@ -1,3 +1,4 @@
+import boto3
 from django.contrib.contenttypes.models import ContentType
 from django.core import validators
 from django.core.exceptions import ValidationError
@@ -6,6 +7,7 @@ from django.db.models import Exists, OuterRef
 from rest_framework import serializers
 from rest_framework.fields import SerializerMethodField
 
+from agir.api import settings
 from agir.events.models import Event
 from agir.events.serializers import EventListSerializer
 from agir.groups.models import Membership
@@ -68,19 +70,26 @@ class BaseMessageSerializer(FlexibleFieldsMixin, serializers.ModelSerializer):
 
     attachment = SerializerMethodField()
 
-    def get_attachment(self, obj):
-        file_url = ""
-        if isinstance(obj, SupportGroupMessageComment):
-            file_url = reverse("api_message_comment_attachement", args=(obj.id,))
-        elif isinstance(obj, SupportGroupMessage):
-            file_url = reverse("api_message_support_group_attachement", args=(obj.id,))
-        else:
-            raise ValidationError("Message not supported")
+    def generate_file_url(self, obj):
+        if settings.DEBUG:
+            return obj.attachment.file.url
 
+        s3_client = boto3.client("s3", endpoint_url=settings.AWS_S3_ENDPOINT_URL)
+        url = s3_client.generate_presigned_url(
+            "get_object",
+            Params={
+                "Bucket": settings.AWS_STORAGE_BUCKET_NAME,
+                "Key": obj.attachment.file.name,
+            },
+            ExpiresIn=600,
+        )
+        return url
+
+    def get_attachment(self, obj):
         if obj.attachment:
             return {
                 **MessageAttachmentSerializer(obj.attachment).data,
-                "file": file_url,
+                "file": self.generate_file_url(obj),
             }
 
     def get_author(self, obj):
