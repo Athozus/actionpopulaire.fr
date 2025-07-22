@@ -1,4 +1,3 @@
-import datetime
 import uuid
 
 import reversion
@@ -13,7 +12,6 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _, ngettext
 from dynamic_filenames import FilePattern
 from reversion.models import Version
-from slugify import slugify
 
 from agir.donations.model_fields import BalanceField, PositiveBalanceField
 from agir.groups.models import SupportGroup
@@ -476,6 +474,16 @@ class SpendingRequest(HistoryMixin, TimeStampedModel):
         blank=False,
         null=False,
     )
+
+    class Election(models.TextChoices):
+        NONE = "NONE", "Auncune"
+        MUNICIPALES = "MUNICIPALES", "Municipales"
+        LEGISLATIVES = "LEGISLATIVES", "Législatives"
+        PRESIDENTIELLES = "PRESIDENTIELLES", "Présidentielles"
+        REGIONALES = "REGIONALES", "Régionales"
+
+    election = models.CharField(default=Election.NONE, choices=Election.choices)
+
     status = models.CharField(
         _("Statut"),
         max_length=1,

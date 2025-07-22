@@ -3,6 +3,7 @@ from django.conf import settings
 from django.core import validators
 from django.db import transaction
 from django.utils import timezone
+from gprof2dot import labels
 from rest_framework import serializers
 from rest_framework.fields import empty
 
@@ -536,6 +537,10 @@ class SpendingRequestSerializer(serializers.ModelSerializer):
         required=False,
         default=False,
     )
+    election = serializers.CharField(
+        label="Élection concernée",
+        required=False,
+    )
     status = SpendingRequestStatusSerializer(source="*", read_only=True)
     groupId = serializers.PrimaryKeyRelatedField(
         source="group",
@@ -647,6 +652,21 @@ class SpendingRequestSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         validated_data["creator"] = self.context["request"].user.person
+
+        from agir.donations.views import get_election_in_progress
+
+        if validated_data["campaign"] and not "election" in validated_data:
+            elections = get_election_in_progress()
+            if len(elections) == 1:
+                validated_data["election"] = SpendingRequest.Election(elections[0])
+        elif (
+            "election" in validated_data
+            and validated_data["election"] != SpendingRequest.Election.NONE
+        ):
+            validated_data["campaign"] = True
+        else:
+            validated_data["campaign"] = False
+
         with reversion.create_revision():
             reversion.set_user(self.context["request"].user)
             reversion.set_comment("Création de la demande")
@@ -740,6 +760,7 @@ class SpendingRequestSerializer(serializers.ModelSerializer):
             "title",
             "timing",
             "campaign",
+            "election",
             "amount",
             "status",
             "groupId",

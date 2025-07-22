@@ -30,7 +30,7 @@ from django.utils.datetime_safe import datetime
 from django.utils.timezone import make_aware
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.redis import RedisIntegration
-
+from datetime import datetime
 import pandas as pd
 
 
@@ -897,6 +897,19 @@ MONTHLY_DONATION_MATOMO_GOAL = os.environ.get("MONTHLY_DONATION_MATOMO_GOAL")
 CONTRIBUTION_DONATION_DAY = 2
 CONTRIBUTION_MONTHS_BEFORE_END_RENEWAL_START = 3
 CONTRIBUTION_MATOMO_GOAL = os.environ.get("CONTRIBUTION_MATOMO_GOAL")
+
+# Choisir parmi
+# MUNICIPALES
+# LEGISLATIVES
+# PRESIDENTIELLES
+# REGIONALES
+# Laissez le tableau vide, si il y a aucune campagne en cours
+SPENDING_REQUEST_ELECTIONS = {
+    "MUNICIPALES": {
+        "start": datetime(2025, 7, 1),
+        "end": datetime(2026, 3, 31),
+    },
+}
 
 LOAN_MAXIMUM_TOTAL = 207_119_700
 LOAN_MAXIMUM_THANK_YOU_PAGE = (

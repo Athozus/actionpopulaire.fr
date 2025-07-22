@@ -16,7 +16,7 @@ def round_date_like_reversion(d):
     return d.replace(microsecond=d.microsecond // 1000 * 1000)
 
 
-class SpendingRequestTestCase(APITestCase):
+class SpendingRequestTestCaseMixin(APITestCase):
     def setUp(self):
         self.group_finance_admin = Person.objects.create_insoumise(
             "test1@test.com", create_role=True
@@ -148,6 +148,8 @@ class SpendingRequestTestCase(APITestCase):
 
         return spending_request
 
+
+class SpendingRequestTestCase(SpendingRequestTestCaseMixin):
     def test_anonymous_cannot_create_retrieve_edit_or_delete_a_request(self):
         self.client.logout()
         res = self.create_spending_request(return_response=True)

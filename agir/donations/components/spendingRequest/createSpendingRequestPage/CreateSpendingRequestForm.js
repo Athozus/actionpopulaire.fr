@@ -25,6 +25,8 @@ import {
   getInitialData,
   validateSpendingRequest,
 } from "@agir/donations/spendingRequest/common/form.config";
+import CreateSpendingRequestCampaignForm
+  from "@agir/donations/spendingRequest/createSpendingRequestPage/CreateSpendingRequestCampaignForm";
 
 const FORM_STEP_NAMES = [
   "Détails",
@@ -236,6 +238,19 @@ const CreateSpendingRequestForm = (props) => {
     [data, handleErrors],
   );
 
+  const handleChangeCampaign = useCallback((e) => {
+    const { name, checked } = e.target;
+    setErrors((state) => ({
+      ...state,
+      [name]: undefined,
+    }));
+
+    setData((state) => ({
+      ...state,
+      [name]: checked,
+    }));
+  }, []);
+
   const handleSave = useCallback(
     async (e) => {
       e.preventDefault();
@@ -300,6 +315,12 @@ const CreateSpendingRequestForm = (props) => {
         <Hide $under as={StyledLabel}>
           Détails (obligatoire)
         </Hide>
+        <CreateSpendingRequestCampaignForm
+            handleChange={handleChange}
+            isLoading={isLoading}
+            data={data}
+            handleChangeCampaign={handleChangeCampaign}
+        />
         <RadioField
           disabled={isLoading}
           id="timing"

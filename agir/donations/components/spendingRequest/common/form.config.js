@@ -87,6 +87,7 @@ export const DOCUMENT_TYPE_OPTIONS = {
 const INITIAL_DATA = {
   title: "",
   campaign: false,
+  election: null,
   spendingDate: null,
   attachments: [],
 };

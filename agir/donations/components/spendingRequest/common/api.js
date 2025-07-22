@@ -14,6 +14,7 @@ export const ENDPOINT = {
   retrieveDocument: "/api/financement/document/:documentPk/",
   updateDocument: "/api/financement/document/:documentPk/",
   deleteDocument: "/api/financement/document/:documentPk/",
+  electionsInProgressSpendingRequest: "/api/financement/elections"
 };
 
 export const getSpendingRequestEndpoint = (key, params, searchParams) => {

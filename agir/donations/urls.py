@@ -78,6 +78,11 @@ api_urlpatterns = [
         views.SpendingRequestApplyNextStatusAPIView.as_view(),
         name="api_spending_request_apply_next_status",
     ),
+    path(
+        "financement/elections",
+        views.get_current_election_spending_request_view,
+        name="api_spending_request_elections_in_progress",
+    ),
 ]
 
 urlpatterns = [

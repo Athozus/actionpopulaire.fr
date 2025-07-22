@@ -1,5 +1,5 @@
 import json
-from datetime import timezone
+from datetime import timezone, datetime
 
 import reversion
 from django.db import transaction
@@ -7,6 +7,7 @@ from django.http import Http404
 from django.urls import reverse
 from django.utils import timezone
 from nested_multipart_parser.drf import DrfNestedParser
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.generics import (
     GenericAPIView,
     RetrieveUpdateDestroyAPIView,
@@ -17,6 +18,7 @@ from rest_framework.mixins import UpdateModelMixin
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 
+from agir.api import settings
 from agir.donations.actions import (
     existing_monthly_payment,
     is_renewable_contribution,
@@ -367,3 +369,18 @@ class SpendingRequestApplyNextStatusAPIView(RetrieveAPIView):
             self.request,
             message=message,
         )
+
+
+def get_election_in_progress():
+    elections = []
+    for election in settings.SPENDING_REQUEST_ELECTIONS:
+        current = settings.SPENDING_REQUEST_ELECTIONS[election]
+        if current["start"] < datetime.now() < current["end"]:
+            elections.append(election)
+    return elections
+
+
+@api_view(["GET"])
+@permission_classes((IsPersonPermission,))
+def get_current_election_spending_request_view(request):
+    return Response(get_election_in_progress())

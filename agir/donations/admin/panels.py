@@ -59,6 +59,7 @@ class SpendingRequestAdmin(VersionAdmin):
                     "title",
                     "timing",
                     "campaign",
+                    "election",
                     "spending_date",
                     "amount",
                     "status",
