@@ -906,7 +906,7 @@ CONTRIBUTION_MATOMO_GOAL = os.environ.get("CONTRIBUTION_MATOMO_GOAL")
 # Laissez le tableau vide, si il y a aucune campagne en cours
 SPENDING_REQUEST_ELECTIONS = {
     "MUNICIPALES": {
-        "start": datetime(2025, 7, 1),
+        "start": datetime(2025, 9, 1),
         "end": datetime(2026, 3, 31),
     },
 }
