@@ -15,6 +15,9 @@ import { displayPrice } from "@agir/lib/utils/display";
 import { simpleDate, timeAgo } from "@agir/lib/utils/time";
 import SpendingRequestHistory from "../SpendingRequestHistory";
 import { ResponsiveSpan } from "@agir/front/genericComponents/grid";
+import {
+  ELECTION_NONE
+} from "@agir/donations/spendingRequest/createSpendingRequestPage/CreateSpendingRequestCampaignForm";
 
 const FlexLine = styled.div`
   display: flex;
@@ -149,8 +152,7 @@ const SpendingRequestDetails = (props) => {
         {spendingRequest.campaign && (
           <p style={{ marginTop: "-.25rem" }}>
             <em>
-              Demande effectuée dans le cadre de la campagne pour les élections
-              européennes 2024
+              {spendingRequest.election === ELECTION_NONE.value ? "Il s'agit d'une dépense effectuée dans le cadre d'une élection passée" : `Il s’agit d’une dépense effectuée dans le cadre de la campagne pour les élections ${spendingRequest.election?.toLowerCase()}.`}
             </em>
           </p>
         )}

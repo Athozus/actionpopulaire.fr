@@ -17,6 +17,9 @@ import SpendingRequestHistory from "../SpendingRequestHistory";
 import { TIMING_OPTIONS } from "@agir/donations/spendingRequest/common/form.config";
 import { displayPrice } from "@agir/lib/utils/display";
 import { simpleDate } from "@agir/lib/utils/time";
+import {
+  ELECTION_NONE
+} from "@agir/donations/spendingRequest/createSpendingRequestPage/CreateSpendingRequestCampaignForm";
 
 const FlexLine = styled.div`
   display: flex;
@@ -147,7 +150,7 @@ const SpendingRequestDetails = (props) => {
               readOnly
               id="campaign"
               name="campaign"
-              label={`Il s’agit d’une dépense effectuée dans le cadre de la campagne pour les élections ${spendingRequest.election?.toLowerCase()}.`}
+              label={spendingRequest.election === ELECTION_NONE.value ? "Élection passée" : `Il s’agit d’une dépense effectuée dans le cadre de la campagne pour les élections ${spendingRequest.election?.toLowerCase()}.`}
               value={spendingRequest.campaign}
             />
           )}

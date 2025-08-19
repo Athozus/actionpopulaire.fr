@@ -5,7 +5,7 @@ import {startCase} from "lodash";
 import useSWR from "swr";
 import {ENDPOINT} from "@agir/donations/spendingRequest/common/api";
 
-const ELECTION_NONE = {value: "NONE", label: "Aucune"}
+export const ELECTION_NONE = {value: "NONE", label: "Aucune"}
 
 export default function CreateSpendingRequestCampaignForm({ data, isLoading, handleChangeCampaign, handleChange }) {
 
