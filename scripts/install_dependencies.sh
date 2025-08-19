@@ -4,7 +4,6 @@ apt update -y
 
 apt install -y \
   libsystemd-dev \
-  wkhtmltopdf \
   librsvg2-bin \
   wget \
-  libgdal32
+  libgdal36

@@ -5,7 +5,7 @@ import subprocess
 from functools import partial
 from django.core.files import File
 from django.template import engines
-
+from weasyprint import HTML
 import logging
 
 logger = logging.getLogger(__name__)
@@ -15,15 +15,7 @@ def html_to_pdf(html_content, dest_path=None):
     if dest_path is None:
         dest_path = "-"
 
-    process = subprocess.run(
-        ["wkhtmltopdf", "--encoding", "utf-8", "-", dest_path],
-        input=html_content.encode(),
-        capture_output=True,
-        timeout=10,
-        check=True,
-    )
-
-    return process
+    HTML(string=html_content).write_pdf(dest_path)
 
 
 def join_pdf_documents(pdfs, dest_path):
