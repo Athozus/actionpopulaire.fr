@@ -60,3 +60,5 @@ def populate_people_groups():
             published=True,
             created=datetime.now(timezone.utc) - relativedelta(months=3),
         )
+    # ajout d'une date de naissance pour superperson
+    superperson.date_of_birth = datetime(2000, 1, 1)
