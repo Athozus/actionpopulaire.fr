@@ -83,12 +83,22 @@
               hx-swap="none"
             >
               {% csrf_token %}
-              <input
-                type="text"
+              <textarea
                 name="description"
-                value="{{ row.description|highlight:search_query }}"
-                style="width: 100%;"
-              >
+                style="width: 100%;
+                       min-height: 60px;
+                       height: auto;
+                       resize: vertical;
+                       white-space: pre-wrap;
+                       overflow-x: auto;
+                       overflow-y: hidden;
+                       padding: 8px;
+                       line-height: 1.4;
+                       box-sizing: border-box;"
+                oninput="this.style.height = 'auto'; this.style.height = (this.scrollHeight + 2) + 'px';"
+                onfocus="this.style.overflowY = 'hidden'; this.style.height = (this.scrollHeight + 2) + 'px';"
+                onblur="this.style.overflowY = 'hidden';"
+            >{{ row.description|highlight:search_query }}</textarea>
             </form>
           </td>
           <td style="text-align: center; padding-right: 6em;">
