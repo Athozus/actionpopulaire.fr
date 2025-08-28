@@ -32,7 +32,7 @@ class MembershipFinanceManagerTest(APITestCase):
             membership_type=Membership.MEMBERSHIP_TYPE_MANAGER,
         )
 
-        self.assertFalse(membership.is_finance_manager)
+        self.assertTrue(membership.is_finance_manager)
 
     def test_membership_boucle_departemental_with_finance_privilege_is_finance_manager(
         self,

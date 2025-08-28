@@ -766,7 +766,7 @@ class Membership(ExportModelOperationsMixin("membership"), TimeStampedModel):
     @property
     def is_finance_manager(self):
         if self.supportgroup.type == SupportGroup.TYPE_LOCAL_GROUP:
-            return self.is_referent
+            return self.is_manager
         elif self.supportgroup.type == SupportGroup.TYPE_BOUCLE_DEPARTEMENTALE:
             return self.is_manager and self.has_finance_managing_privilege
         return False
