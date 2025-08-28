@@ -17,7 +17,8 @@ Vous êtes libres de faire des propositions via la même page.
 6. A chaque push sur une branche, une CI est déclenchée avec les tests, assurez-vous que tout fonctionne correctement, sinon il n'y aura pas de réponse à votre proposition.
 7. Attendre les retours et validations :)
 
-
+## Docs
+* [Storybook](https://composants.franceinsoumise.org/)
 
 
 
