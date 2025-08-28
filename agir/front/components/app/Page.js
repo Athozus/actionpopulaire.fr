@@ -28,8 +28,7 @@ const log = logger(__filename);
 
 const StyledPage = styled.div`
   isolation: isolate;
-  padding-top: ${({ $hasTopBar }) => ($hasTopBar ? "72px" : "0")};
-
+  padding-top: ${({ $hasTopBar }) => ($hasTopBar ? "calc(var(--safe-area-inset-top, env(safe-area-inset-top)) + 72px)" : "0")};
 `;
 
 const Page = (props) => {

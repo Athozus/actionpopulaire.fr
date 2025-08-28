@@ -57,7 +57,7 @@ const MenuLink = styled(Link)`
 const StyledBottomBar = styled.nav`
   background-color: ${(props) => props.theme.background0};
   position: fixed;
-  bottom: env(safe-area-inset-bottom, 0);
+  bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom));
   left: 0;
   right: 0;
   box-shadow: inset 0 1px 0 ${(props) => props.theme.text50};

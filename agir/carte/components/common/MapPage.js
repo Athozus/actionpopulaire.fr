@@ -20,7 +20,7 @@ const StyledActionButtons = styled.div`
 
   @media (max-width: ${(props) => props.theme.collapse}px) {
     position: fixed;
-    bottom: env(safe-area-inset-bottom, 0);
+    bottom: var(--safe-area-inset-top, env(safe-area-inset-bottom));
     left: 0;
     display: flex;
     justify-content: center;

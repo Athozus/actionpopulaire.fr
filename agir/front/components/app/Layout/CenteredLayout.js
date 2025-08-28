@@ -20,7 +20,7 @@ export const LayoutTitle = styled.h1`
 `;
 
 const MainColumn = styled(Column)`
-  padding-top: calc(var(--bottom-bar-height) + env(safe-area-inset-bottom, 0));;
+  padding-top: calc(var(--bottom-bar-height) + var(--safe-area-inset-bottom, env(safe-area-inset-bottom)));
   margin: 0 auto;
   max-width: 100%;
 

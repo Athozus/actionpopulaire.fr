@@ -12,7 +12,7 @@ import NavBar from "./NavBar";
 
 const StyledPageHead = styled.div`
   position: fixed;
-  top: env(safe-area-inset-top, 0);
+  top: var(--safe-area-inset-top, env(safe-area-inset-top));
   left: 0;
   z-index: ${(props) => props.theme.zindexTopBar};
   @media (max-width: ${(props) => props.theme.collapse}px) {

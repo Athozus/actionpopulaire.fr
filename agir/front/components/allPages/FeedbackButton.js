@@ -42,7 +42,7 @@ const Wrapper = styled(animated.div)`
   @media (max-width: ${(props) => props.theme.collapse}px) {
     width: 3rem;
     height: 3rem;
-    bottom: 5rem;
+    bottom: 6.5rem;
   }
 `;
 

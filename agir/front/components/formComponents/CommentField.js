@@ -75,7 +75,7 @@ const StyledWrapper = styled.form`
   @media (max-width: ${(props) => props.theme.collapse}px) {
     position: fixed;
     width: 100%;
-    bottom: env(safe-area-inset-bottom, 0);
+    bottom: var(--safe-area-inset-top, env(safe-area-inset-bottom));
     left: 0;
     right: 0;
     z-index: 1;
