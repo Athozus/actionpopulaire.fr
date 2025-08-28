@@ -7,7 +7,7 @@ import { RawFeatherIcon } from "@agir/front/genericComponents/FeatherIcon";
 import Button from "@agir/front/genericComponents/Button";
 import Link from "@agir/front/app/Link";
 
-const Name = styled.span``;
+const Name = styled.p``;
 const Label = styled.span``;
 const StyledGroup = styled.div`
   cursor: ${({ $isSelectGroup }) => ($isSelectGroup ? "pointer" : "default")};
@@ -75,9 +75,9 @@ const StyledGroup = styled.div`
     flex: 1 1 auto;
     font-weight: 500;
     min-width: 1px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     overflow: hidden;
+    word-break: break-word;
+    margin-bottom: 0;
 
     a {
       color: inherit;
