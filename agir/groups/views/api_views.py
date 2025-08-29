@@ -1,6 +1,7 @@
 import datetime
 import re
 from collections import defaultdict
+from enum import member
 from functools import cached_property
 
 import reversion
@@ -44,6 +45,8 @@ from rest_framework.generics import (
 from rest_framework.response import Response
 from unidecode import unidecode
 
+from agir.activity.models import Activity
+from agir.api.settings import EMAIL_SUPPORT
 from agir.donations.allocations import get_supportgroup_balance
 from agir.donations.models import SpendingRequest
 from agir.events.models import Event, RSVP, EventSubtype
@@ -51,7 +54,7 @@ from agir.events.serializers import EventListSerializer, DisplayEventSubtypeSeri
 from agir.groups.actions.notifications import (
     new_message_notifications,
     new_comment_notifications,
-    someone_joined_notification,
+    new_message_notifications_to_new_member,
 )
 from agir.groups.filters import GroupAPIFilterSet, GroupLocationAPIFilterSet
 from agir.groups.models import (
@@ -73,6 +76,10 @@ from agir.groups.serializers import (
     ThematicGroupSerializer,
 )
 from agir.groups.utils.supportgroup import is_active_group_filter
+from agir.groups.views.api_utils import (
+    get_welcome_message_to_member,
+    get_welcome_message_subject,
+)
 from agir.lib.pagination import (
     APIPageNumberPagination,
 )
@@ -135,7 +142,6 @@ from agir.msgs.models import (
     SupportGroupMessage,
     SupportGroupMessageComment,
     SupportGroupMessageRecipient,
-    AbstractMessage,
 )
 
 from agir.msgs.serializers import (
@@ -143,7 +149,7 @@ from agir.msgs.serializers import (
     MessageCommentSerializer,
 )
 
-from agir.groups.tasks import invite_to_group
+from agir.groups.tasks import invite_to_group, send_mail_new_member_message_to_referents
 
 
 class LegacyGroupSearchAPIView(ListAPIView):
@@ -735,6 +741,11 @@ class GroupSingleCommentAPIView(UpdateAPIView, DestroyAPIView):
         instance.save()
 
 
+import logging
+
+logger = logging.getLogger(__name__)
+
+
 class JoinGroupAPIView(CreateAPIView, DestroyAPIView):
     permission_classes = (IsPersonPermission,)
     queryset = SupportGroup.objects.active()
@@ -746,6 +757,29 @@ class JoinGroupAPIView(CreateAPIView, DestroyAPIView):
 
         if obj.is_full:
             raise PermissionDenied(detail={"error_code": "full_group"})
+
+    def prepare_join_message(self, membership, current_person):
+        subject = get_welcome_message_subject(current_person)
+        author = membership.person
+        existing_message = SupportGroupMessage.objects.filter(
+            supportgroup=membership.supportgroup,
+            author=author,
+            subject=subject,
+        )
+        if not existing_message:
+            with transaction.atomic():
+                message = SupportGroupMessage.objects.create(
+                    supportgroup=membership.supportgroup,
+                    author=author,
+                    required_membership_type=Membership.MEMBERSHIP_TYPE_REFERENT,
+                    text=get_welcome_message_to_member(""),
+                    subject=subject,
+                )
+                send_mail_new_member_message_to_referents.delay(message.pk)
+                new_message_notifications_to_new_member(message)
+                return message
+        else:
+            return existing_message.first()
 
     def create(self, request, *args, **kwargs):
         supportgroup = self.get_object()
@@ -766,8 +800,15 @@ class JoinGroupAPIView(CreateAPIView, DestroyAPIView):
                     person=request.user.person,
                     membership_type=self.target_membership_type,
                 )
-                someone_joined_notification(membership)
-            return Response(status=status.HTTP_201_CREATED)
+                message = self.prepare_join_message(membership, request.user.person)
+                return Response(
+                    status=status.HTTP_201_CREATED,
+                    data={
+                        "message": SupportGroupMessageSerializer(
+                            message, context={"request": request}
+                        ).data
+                    },
+                )
 
 
 class FollowGroupAPIView(JoinGroupAPIView):

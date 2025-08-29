@@ -149,7 +149,7 @@ class GroupJoinAPITestCase(APITestCase):
             Membership.objects.filter(person=self.person, supportgroup=group).exists()
         )
 
-    @patch("agir.groups.views.api_views.someone_joined_notification")
+    @patch("agir.groups.views.api_views.new_message_notifications_to_new_member")
     def test_someone_joined_notification_is_sent_upon_joining(
         self, someone_joined_notification
     ):
@@ -239,17 +239,6 @@ class GroupFollowAPITestCase(APITestCase):
         self.assertTrue(
             Membership.objects.filter(person=self.person, supportgroup=group).exists()
         )
-
-    @patch("agir.groups.views.api_views.someone_joined_notification")
-    def test_someone_joined_notification_is_sent_upon_joining(
-        self, someone_joined_notification
-    ):
-        group = SupportGroup.objects.create()
-        self.client.force_login(self.person.role)
-        someone_joined_notification.assert_not_called()
-        res = self.client.post(f"/api/groupes/{group.pk}/rejoindre/")
-        self.assertEqual(res.status_code, 201)
-        someone_joined_notification.assert_called()
 
 
 class QuitGroupAPITestCase(APITestCase):
