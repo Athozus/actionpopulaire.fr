@@ -17,9 +17,6 @@ const StyledNav = styled.div`
   height: var(--bottom-bar-height);
   box-shadow: ${(props) => props.theme.elaborateShadow};
 
-  @media (max-width: ${(props) => props.theme.collapse}px) {
-    height: 54px;
-  }
 
   & > * {
     margin: 0 auto;

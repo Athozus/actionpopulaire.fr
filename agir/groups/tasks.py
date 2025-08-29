@@ -511,25 +511,39 @@ def create_accepted_invitation_member_activity(new_membership_pk):
     )
 
 
-@emailing_task(post_save=True)
-def send_message_notification_email(message_pk):
-    message = SupportGroupMessage.objects.get(pk=message_pk)
+import logging
 
+logger = logging.getLogger(__name__)
+
+
+@emailing_task(post_save=True)
+def send_mail_new_member_message_to_referents(message_pk):
+    message = SupportGroupMessage.objects.get(pk=message_pk)
     memberships = message.supportgroup.memberships.filter(
-        membership_type__gte=message.required_membership_type
+        membership_type__gte=Membership.MEMBERSHIP_TYPE_REFERENT
     )
     recipients = Person.objects.filter(
         id__in=memberships.values_list("person_id", flat=True)
     )
-    recipients_id = [recipient.id for recipient in recipients]
 
-    recipients = Person.objects.exclude(id=message.author.id).filter(
-        id__in=recipients_id,
-        notification_subscriptions__membership__supportgroup=message.supportgroup,
-        notification_subscriptions__type=Subscription.SUBSCRIPTION_EMAIL,
-        notification_subscriptions__activity_type=Activity.TYPE_NEW_MESSAGE,
+    bindings = {
+        "MESSAGE_LINK": front_url("user_message_details", kwargs={"pk": message_pk}),
+    }
+
+    subject = clean_subject_email(
+        f"Accueillir votre nouveau membre par message, {message.author.display_name} !"
     )
 
+    send_mosaico_email(
+        code="GROUP_SOMEONE_JOINED_MESSAGE",
+        subject=subject,
+        from_email=settings.EMAIL_FROM,
+        recipients=recipients,
+        bindings=bindings,
+    )
+
+
+def send_message_to(message, recipients):
     if len(recipients) == 0:
         return
 
@@ -545,7 +559,7 @@ def send_message_notification_email(message_pk):
     bindings = {
         "MESSAGE_HTML": message.html_content,
         "DISPLAY_NAME": message.author.display_name,
-        "MESSAGE_LINK": front_url("user_message_details", kwargs={"pk": message_pk}),
+        "MESSAGE_LINK": front_url("user_message_details", kwargs={"pk": message.pk}),
         "AUTHOR_STATUS": format_html(
             '{} de <a href="{}">{}</a>',
             author_status,
@@ -568,6 +582,30 @@ def send_message_notification_email(message_pk):
         recipients=recipients,
         bindings=bindings,
     )
+
+
+@emailing_task(post_save=True)
+def send_message_new_member(message_pk):
+    message = SupportGroupMessage.objects.get(pk=message_pk)
+    send_message_to(message, [message.author])
+
+
+@emailing_task(post_save=True)
+def send_message_notification_email(message_pk):
+    message = SupportGroupMessage.objects.get(pk=message_pk)
+    memberships = message.supportgroup.memberships.filter(
+        membership_type__gte=message.required_membership_type
+    )
+    recipients = (
+        Person.objects.filter(id__in=memberships.values_list("person_id", flat=True))
+        .exclude(id=message.author.id)
+        .filter(
+            notification_subscriptions__membership__supportgroup=message.supportgroup,
+            notification_subscriptions__type=Subscription.SUBSCRIPTION_EMAIL,
+            notification_subscriptions__activity_type=Activity.TYPE_NEW_MESSAGE,
+        )
+    )
+    send_message_to(message, recipients)
 
 
 @emailing_task(post_save=True)

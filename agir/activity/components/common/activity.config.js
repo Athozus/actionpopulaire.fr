@@ -110,14 +110,15 @@ const ACTIVITY_CONFIG = {
   },
   "new-member": {
     icon: "user-plus",
-    action: ({ group }) =>
+    action: ({ group, meta }) =>
       group?.id
         ? {
-            to: routeConfig.groupSettings.getLink({
+            to: meta?.message_id ? routeConfig.messages.getLink({messagePk: meta.message_id}) :
+                routeConfig.groupSettings.getLink({
               groupPk: group.id,
               activePanel: "membres",
             }),
-            label: "Voir les membres",
+            label: meta?.message_id ? "Accueillir" : "Voir les membres",
           }
         : null,
   },
