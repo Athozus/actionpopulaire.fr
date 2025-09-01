@@ -230,7 +230,7 @@ def send_person_form_notification(submission_pk):
     submission = PersonFormSubmission.objects.get(pk=submission_pk)
     form = submission.form
 
-    if form.send_answers_to is None:
+    if not form.send_answers_to:
         return
 
     person = submission.person
@@ -252,12 +252,14 @@ def send_person_form_notification(submission_pk):
         ),
     }
 
+    recipients = [e.strip() for e in form.send_answers_to.split(",") if e.strip()]
+
     send_mosaico_email(
         code="FORM_NOTIFICATION",
         subject=_("Formulaire : " + form.title),
         from_email=settings.EMAIL_FROM,
         reply_to=[person.email],
-        recipients=[form.send_answers_to],
+        recipients=recipients,
         bindings=bindings,
     )
 

@@ -3,7 +3,8 @@ from itertools import chain
 
 import dynamic_filenames
 from django.conf import settings
-from django.core.validators import FileExtensionValidator
+from django.core.validators import FileExtensionValidator, validate_email
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models import JSONField
 from django.utils import timezone
@@ -20,6 +21,17 @@ from agir.lib.models import DescriptionField, TimeStampedModel
 __all__ = ["PersonForm", "PersonFormSubmission"]
 
 from agir.lib.utils import front_url
+
+
+def validate_emails(value):
+    if not value:
+        return
+    emails = [e.strip() for e in value.split(",") if e.strip()]
+    for email in emails:
+        try:
+            validate_email(email)
+        except ValidationError:
+            raise ValidationError(_(f"{email} n'est pas une adresse email valide."))
 
 
 class PersonFormQueryset(models.QuerySet):
@@ -74,8 +86,14 @@ class PersonForm(TimeStampedModel):
         _("Les répondant⋅es n'ont pas besoin d'être connecté⋅es"), default=False
     )
 
-    send_answers_to = models.EmailField(
-        _("Envoyer les réponses par email à une adresse email (facultatif)"), blank=True
+    send_answers_to = models.CharField(
+        _("Envoyer les réponses à"),
+        max_length=900,
+        blank=True,
+        validators=[validate_emails],
+        help_text=_(
+            "Entrez une ou plusieurs adresses e-mail séparées par des virgules. Laissez vide si aucune notification n'est souhaitée."
+        ),
     )
 
     description = DescriptionField(
