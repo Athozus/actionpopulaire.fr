@@ -226,9 +226,9 @@ class UserGroupsView(ListAPIView):
     def get_queryset(self):
         return (
             SupportGroup.objects.active()
+            .with_serializer_prefetch(person=self.request.user.person)
             .filter(memberships__person=self.request.user.person)
             .order_by("name")
-            .with_serializer_prefetch(person=self.request.user.person)
         )
 
 
