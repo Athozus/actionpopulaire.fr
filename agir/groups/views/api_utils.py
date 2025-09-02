@@ -1,7 +1,7 @@
-from agir.people.models import Person
+from agir.groups.models import SupportGroup
 
 
-def get_welcome_message_to_member(group_url):
+def get_welcome_message_to_member():
     return f"""Bienvenue dans notre groupe d'action !
 
 Tu peux consulter nos prochaines actions et/ou réunions dans l'agenda du groupe d'action.
@@ -12,5 +12,5 @@ Si tu as des questions sur le fonctionnement du groupe d'action, n'hésite pas n
 Au plaisir de te rencontrer bientôt 🙂"""
 
 
-def get_welcome_message_subject(person: Person):
-    return f"Bienvenue {person.display_name} !"
+def get_welcome_message_subject(group: SupportGroup):
+    return f"Bienvenue dans le groupe {group.name} !"

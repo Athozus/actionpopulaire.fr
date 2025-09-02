@@ -758,8 +758,8 @@ class JoinGroupAPIView(CreateAPIView, DestroyAPIView):
         if obj.is_full:
             raise PermissionDenied(detail={"error_code": "full_group"})
 
-    def prepare_join_message(self, membership, current_person):
-        subject = get_welcome_message_subject(current_person)
+    def prepare_join_message(self, membership: Membership):
+        subject = get_welcome_message_subject(membership.supportgroup)
         author = membership.person
         existing_message = SupportGroupMessage.objects.filter(
             supportgroup=membership.supportgroup,
@@ -772,7 +772,7 @@ class JoinGroupAPIView(CreateAPIView, DestroyAPIView):
                     supportgroup=membership.supportgroup,
                     author=author,
                     required_membership_type=Membership.MEMBERSHIP_TYPE_REFERENT,
-                    text=get_welcome_message_to_member(""),
+                    text=get_welcome_message_to_member(),
                     subject=subject,
                 )
                 send_mail_new_member_message_to_referents.delay(message.pk)
@@ -800,7 +800,7 @@ class JoinGroupAPIView(CreateAPIView, DestroyAPIView):
                     person=request.user.person,
                     membership_type=self.target_membership_type,
                 )
-                message = self.prepare_join_message(membership, request.user.person)
+                message = self.prepare_join_message(membership)
                 return Response(
                     status=status.HTTP_201_CREATED,
                     data={

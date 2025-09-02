@@ -53,14 +53,8 @@ def someone_joined_notification(membership, message_id):
     send_joined_notification_email.delay(membership.pk)
 
 
-import logging
-
-logger = logging.getLogger(__name__)
-
-
 @transaction.atomic()
 def new_message_notifications_to_new_member(message):
-    logger.error("wesh inside !!")
     Activity.objects.create(
         individual=message.author,
         supportgroup=message.supportgroup,

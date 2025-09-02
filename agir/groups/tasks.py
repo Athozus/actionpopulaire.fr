@@ -587,7 +587,41 @@ def send_message_to(message, recipients):
 @emailing_task(post_save=True)
 def send_message_new_member(message_pk):
     message = SupportGroupMessage.objects.get(pk=message_pk)
-    send_message_to(message, [message.author])
+    membership_type = None
+    membership = Membership.objects.filter(
+        person=message.author, supportgroup=message.supportgroup
+    )
+    if membership.exists():
+        membership_type = membership.first().membership_type
+    author_status = genrer_membership(message.author.gender, membership_type)
+
+    bindings = {
+        "GROUP_NAME": message.supportgroup.name,
+        "MESSAGE_HTML": message.html_content,
+        "DISPLAY_NAME": message.author.display_name,
+        "MESSAGE_LINK": front_url("user_message_details", kwargs={"pk": message.pk}),
+        "AUTHOR_STATUS": format_html(
+            '{} de <a href="{}">{}</a>',
+            author_status,
+            front_url("view_group", args=[message.supportgroup.pk]),
+            message.supportgroup.name,
+        ),
+    }
+
+    if message.subject:
+        subject = message.subject
+    else:
+        subject = f"Bienvenue dans le groupe {message.supportgroup.name} !"
+
+    subject = clean_subject_email(subject)
+
+    send_mosaico_email(
+        code="GROUP_WELCOME_MESSAGE",
+        subject=subject,
+        from_email=settings.EMAIL_FROM,
+        recipients=[message.author],
+        bindings=bindings,
+    )
 
 
 @emailing_task(post_save=True)
