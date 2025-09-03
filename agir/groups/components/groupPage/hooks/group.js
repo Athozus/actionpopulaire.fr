@@ -4,6 +4,7 @@ import logger from "@agir/lib/utils/logger";
 
 import * as api from "@agir/groups/utils/api";
 import { useIsOffline } from "@agir/front/offline/hooks";
+import { ENDPOINT } from "@agir/groups/utils/api";
 
 const log = logger(__filename);
 

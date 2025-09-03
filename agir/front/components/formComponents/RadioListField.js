@@ -56,7 +56,6 @@ const StyledField = styled.div`
   }
 
   ${StyledOptions} {
-    margin-top: 0.5rem;
     display: flex;
     flex-flow: row wrap;
     grid-gap: 0.5rem;
@@ -99,6 +98,12 @@ const RadioListField = (props) => {
     [onChange],
   );
 
+  function onClick(e) {
+    if (e?.target?.value === value) {
+      onChange(undefined);
+    }
+  }
+
   return (
     <StyledField
       $valid={!error}
@@ -116,6 +121,7 @@ const RadioListField = (props) => {
               {...rest}
               id={id + "_" + option.value}
               type="radio"
+              onClick={onClick}
               onChange={handleChange}
               checked={value === option.value}
               value={option.value}

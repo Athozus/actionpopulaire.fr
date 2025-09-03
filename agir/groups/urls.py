@@ -207,9 +207,29 @@ api_urlpatterns = [
         name="api_group_invitation",
     ),
     path(
+        "<uuid:pk>/allocation",
+        views.GroupAllocationAPIView.as_view(),
+        name="api_group_allocation",
+    ),
+    path(
+        "<uuid:group_pk>/spendingrequests",
+        views.GroupSpendingRequestAPIView.as_view(),
+        name="api_group_spendingrequests",
+    ),
+    path(
         "<uuid:pk>/finance/",
         views.GroupFinanceAPIView.as_view(),
         name="api_group_finance",
+    ),
+    path(
+        "<uuid:group_pk>/accountoperations",
+        views.GroupHistoryFinanceAPIView.as_view(),
+        name="api_group_finance_history",
+    ),
+    path(
+        "<uuid:pk>/finance/futur",
+        views.GroupFuturFinance.as_view(),
+        name="api_group_finance_futur",
     ),
     path(
         "<uuid:pk>/link/",

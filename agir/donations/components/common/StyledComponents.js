@@ -199,7 +199,7 @@ export const StyledMain = styled.main`
   padding: 0 1.5rem;
 
   @media (min-width: ${(props) => props.theme.collapse}px) {
-    max-width: 1200px;
+    max-width: ${(props) => (props.$maxWidth ? props.$maxWidth : "1200px")};
     justify-content: center;
   }
   @media (max-width: ${(props) => props.theme.collapse}px) {

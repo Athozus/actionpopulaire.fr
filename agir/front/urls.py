@@ -124,6 +124,11 @@ supportgroup_patterns = [
         views.SupportGroupContributionView.as_view(),
         name="supportgroup_contribution",
     ),
+    path(
+        "finance/history/",
+        views.SupportGroupFinanceHistoryView.as_view(),
+        name="supportgroup_finance_history",
+    ),
     path("agenda/", include(supportgroup_settings_patterns)),
     path("comptes-rendus/", include(supportgroup_settings_patterns)),
     path("messages/", include(supportgroup_settings_patterns)),

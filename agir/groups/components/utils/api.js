@@ -3,55 +3,56 @@ import axios from "@agir/lib/utils/axios";
 import { objectToFormData } from "@agir/lib/utils/forms";
 import useSWR from "swr";
 
+export const API_GROUP_PREFIX = "/api/groupes/";
+
 export const ENDPOINT = {
-  getGroup: "/api/groupes/:groupPk/",
-  getGroupSuggestions: "/api/groupes/:groupPk/suggestions/",
+  getGroup: `${API_GROUP_PREFIX}:groupPk/`,
+  getGroupSuggestions: `${API_GROUP_PREFIX}:groupPk/suggestions/`,
 
-  joinGroup: "/api/groupes/:groupPk/rejoindre/",
-  followGroup: "/api/groupes/:groupPk/suivre/",
-  updateOwnMembership: "/api/groupes/:groupPk/membre/",
-  quitGroup: "/api/groupes/:groupPk/quitter/",
+  joinGroup: `${API_GROUP_PREFIX}:groupPk/rejoindre/`,
+  followGroup: `${API_GROUP_PREFIX}:groupPk/suivre/`,
+  updateOwnMembership: `${API_GROUP_PREFIX}:groupPk/membre/`,
+  quitGroup: `${API_GROUP_PREFIX}:groupPk/quitter/`,
 
-  getUpcomingEvents: "/api/groupes/:groupPk/evenements/a-venir/",
+  getUpcomingEvents: `${API_GROUP_PREFIX}:groupPk/evenements/a-venir/`,
   getPastEvents:
-    "/api/groupes/:groupPk/evenements/passes/?page=:page&page_size=:pageSize",
-  getPastEventReports: "/api/groupes/:groupPk/evenements/compte-rendus/",
+    `${API_GROUP_PREFIX}:groupPk/evenements/passes/?page=:page&page_size=:pageSize`,
+  getPastEventReports: `${API_GROUP_PREFIX}:groupPk/evenements/compte-rendus/`,
 
-  getEventsJoinedByGroup: "/api/groupes/:groupPk/evenements-rejoints/",
+  getEventsJoinedByGroup: `${API_GROUP_PREFIX}:groupPk/evenements-rejoints/`,
 
-  getMessages: "/api/groupes/:groupPk/messages/?page=:page&page_size=:pageSize",
-  getMessage: "/api/groupes/messages/:messagePk/",
+  getMessages: `${API_GROUP_PREFIX}:groupPk/messages/?page=:page&page_size=:pageSize`,
+  getMessage: `${API_GROUP_PREFIX}messages/:messagePk/`,
 
-  createMessage: "/api/groupes/:groupPk/messages/",
-  createPrivateMessage: "/api/groupes/:groupPk/envoi-message-prive/",
-  updateMessage: "/api/groupes/messages/:messagePk/",
-  deleteMessage: "/api/groupes/messages/:messagePk/",
-  messageNotification: "/api/groupes/messages/notification/:messagePk/",
-  messageLocked: "/api/groupes/messages/verrouillage/:messagePk/",
-  messageParticipants: "/api/groupes/messages/:messagePk/participants/",
+  createMessage: `${API_GROUP_PREFIX}:groupPk/messages/`,
+  createPrivateMessage: `${API_GROUP_PREFIX}:groupPk/envoi-message-prive/`,
+  updateMessage: `${API_GROUP_PREFIX}messages/:messagePk/`,
+  deleteMessage: `${API_GROUP_PREFIX}messages/:messagePk/`,
+  messageNotification: `${API_GROUP_PREFIX}messages/notification/:messagePk/`,
+  messageLocked: `${API_GROUP_PREFIX}messages/verrouillage/:messagePk/`,
+  messageParticipants: `${API_GROUP_PREFIX}messages/:messagePk/participants/`,
 
-  getComments: "/api/groupes/messages/:messagePk/comments/",
-  createComment: "/api/groupes/messages/:messagePk/comments/",
-  deleteComment: "/api/groupes/messages/comments/:commentPk/",
-  setAllMessagesRead: "/api/messages/all-read/",
+  getComments: `${API_GROUP_PREFIX}messages/:messagePk/comments/`,
+  createComment: `${API_GROUP_PREFIX}messages/:messagePk/comments/`,
+  deleteComment: `${API_GROUP_PREFIX}messages/comments/:commentPk/`,
+  setAllMessagesRead: `/api/messages/all-read/`,
 
-  getMembers: "/api/groupes/:groupPk/membres/",
-  updateGroup: "/api/groupes/:groupPk/update/",
-  inviteToGroup: "/api/groupes/:groupPk/invitation/",
-  getMemberPersonalInformation: "/api/groupes/membres/:memberPk/informations/",
-  updateMember: "/api/groupes/membres/:memberPk/",
-  getFinance: "/api/groupes/:groupPk/finance/",
+  getMembers: `${API_GROUP_PREFIX}:groupPk/membres/`,
+  updateGroup: `${API_GROUP_PREFIX}:groupPk/update/`,
+  inviteToGroup: `${API_GROUP_PREFIX}:groupPk/invitation/`,
+  getMemberPersonalInformation: `${API_GROUP_PREFIX}membres/:memberPk/informations/`,
+  updateMember: `${API_GROUP_PREFIX}membres/:memberPk/`,
+  getFinance: `${API_GROUP_PREFIX}:groupPk/finance/`,
 
-  report: "/api/report/",
+  report: `/api/report/`,
 
-  createGroupExternalLink: "/api/groupes/:groupPk/link/",
-  groupExternalLink: "/api/groupes/:groupPk/link/:linkPk/",
+  createGroupExternalLink: `${API_GROUP_PREFIX}:groupPk/link/`,
+  groupExternalLink: `${API_GROUP_PREFIX}:groupPk/link/:linkPk/`,
 
-  searchGroups: "/api/groupes/recherche/",
-  geoSearchGroups: "/api/groupes/recherche/geo/",
+  searchGroups: `${API_GROUP_PREFIX}recherche/`,
+  geoSearchGroups: `${API_GROUP_PREFIX}recherche/geo/`,
 
-  getStatistics: "/api/groupes/:groupPk/stats/",
-
+  getStatistics: `${API_GROUP_PREFIX}:groupPk/stats/`,
 };
 
 export const useMembershipRemoveRequestById = (requestId) => useSWR(requestId ? `/api/groupes/request-membership-remove/${requestId}` : null)
@@ -71,9 +72,7 @@ export const useMembershipRemoveRequestRefuse = (requestId) => axios.patch(`/api
 
 export const useMembershipRemoveRequestValidate = (requestId) => axios.patch(`/api/groupes/request-membership-remove/${requestId}/validate`)
 
-export const getGroupEndpoint = (key, params, querystringParams) => {
-  let endpoint = ENDPOINT[key] || "";
-
+export const appendQueryParams = (endpoint, params, querystringParams) => {
   if (params) {
     Object.entries(params).forEach(([key, value]) => {
       endpoint = endpoint.replace(`:${key}`, value);
@@ -87,6 +86,12 @@ export const getGroupEndpoint = (key, params, querystringParams) => {
   }
 
   return endpoint;
+}
+
+export const getGroupEndpoint = (key, params, querystringParams) => {
+  let endpoint = ENDPOINT[key] || key;
+
+  return appendQueryParams(endpoint, params, querystringParams);
 };
 
 export const formatMessage = (message) => {

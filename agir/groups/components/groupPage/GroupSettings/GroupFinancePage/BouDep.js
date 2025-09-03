@@ -14,6 +14,7 @@ import { StyledTitle } from "@agir/front/genericComponents/ObjectManagement/styl
 import { getGroupEndpoint } from "@agir/groups/utils/api";
 import { useGroup } from "@agir/groups/groupPage/hooks/group";
 import Link from "@agir/front/app/Link";
+import {formatCurrencyAmount} from "@agir/front/currency/utils.currency";
 
 const DonationSkeleton = styled.p`
   height: 2.25rem;
@@ -42,11 +43,7 @@ const BouDepFinancePage = (props) => {
       </StyledTitle>
       <PageFadeIn ready={!!data} wait={<DonationSkeleton />}>
         <p style={{ fontSize: "2rem", margin: 0 }}>
-          {data &&
-            new Intl.NumberFormat("fr-FR", {
-              style: "currency",
-              currency: "EUR",
-            }).format(data.allocation ? data.allocation / 100 : 0)}
+          {data && formatCurrencyAmount(data.allocation)}
         </p>
         <Spacer size=".5rem" />
         {data && data.allocation === 0 && (

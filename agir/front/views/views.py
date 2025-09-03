@@ -371,6 +371,12 @@ class SupportGroupContributionView(RedirectView):
         return front_url("contribution_amount", query={"group": pk})
 
 
+class SupportGroupFinanceHistoryView(ReactBaseView):
+    meta_title = "Historique du budget - Action Populaire"
+    meta_description = "Consulter l'historique de votre groupe d'action"
+    meta_type = "website"
+
+
 ## EVENT VIEWS
 
 

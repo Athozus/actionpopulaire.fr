@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useMemo, useState} from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSessionStorage } from "react-use";
 import useSWR from "swr";
 import useSWRImmutable from "swr/immutable";
@@ -67,16 +67,19 @@ export const useActivities = () => {
 };
 
 export const useUnreadActivityCount = () => {
-  const [isReady, setIsReady] = useState(false)
+  const [isReady, setIsReady] = useState(false);
   const { data: session } = useSWR("/api/session/");
-  const { data } = useSWR(isReady && getActivityEndpoint("unreadActivityCount"), {
-    dedupingInterval: 10000,
-    focusThrottleInterval: 10000,
-  });
+  const { data } = useSWR(
+    isReady && getActivityEndpoint("unreadActivityCount"),
+    {
+      dedupingInterval: 10000,
+      focusThrottleInterval: 10000,
+    },
+  );
 
   useEffect(() => {
     if (session?.user) {
-      setIsReady(true)
+      setIsReady(true);
     }
   }, [session]);
 

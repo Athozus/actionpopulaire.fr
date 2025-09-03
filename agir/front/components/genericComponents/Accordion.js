@@ -117,7 +117,7 @@ const Accordion = memo((props) => {
   }, [isOpen]);
 
   return (
-    <Frame $open={isOpen} $small={small}>
+    <Frame {...props} $open={isOpen} $small={small}>
       <Title type="button" onClick={() => setOpen((state) => !state)}>
         {icon ? (
           <RawFeatherIcon

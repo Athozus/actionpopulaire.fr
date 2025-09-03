@@ -3,8 +3,10 @@ import re
 from collections import defaultdict
 from functools import cached_property
 
+import boto3
 import reversion
 from dateutil.relativedelta import relativedelta
+from django.conf import settings
 from django.contrib.gis.db.models.functions import Distance
 from django.core.validators import validate_email
 from django.db import transaction
@@ -30,7 +32,6 @@ from django.db.models import (
 )
 from django.db.models.functions import Greatest, Concat
 from django.http import HttpResponseRedirect
-from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django_filters.rest_framework import DjangoFilterBackend
@@ -93,11 +94,8 @@ from agir.lib.pagination import (
 from agir.msgs.actions import update_recipient_message
 from agir.msgs.serializers import (
     SupportGroupMessageParticipantSerializer,
-    BaseMessageSerializer,
 )
 from agir.people.models import Person
-import boto3
-from django.conf import settings
 
 __all__ = [
     "LegacyGroupSearchAPIView",
@@ -130,7 +128,6 @@ __all__ = [
     "GroupInvitationAPIView",
     "MemberPersonalInformationAPIView",
     "GroupMemberUpdateAPIView",
-    "GroupFinanceAPIView",
     "CreateSupportGroupExternalLinkAPIView",
     "RetrieveUpdateDestroySupportGroupExternalLinkAPIView",
     "GroupUpdateOwnMembershipAPIView",
@@ -1071,60 +1068,6 @@ class GroupMemberUpdateAPIView(UpdateAPIView):
     def check_object_permissions(self, request, obj):
         super().check_object_permissions(request, obj)
         self.check_request_data_permissions(request, obj)
-
-
-class GroupFinancePermission(GlobalOrObjectPermissions):
-    perms_map = {
-        "GET": [],
-    }
-    object_perms_map = {
-        "GET": ["groups.view_group_finance"],
-    }
-
-
-class GroupFinanceAPIView(GenericAPIView):
-    queryset = SupportGroup.objects.all()
-    permission_classes = (
-        IsPersonPermission,
-        GroupFinancePermission,
-    )
-    serializer_class = SupportGroupSerializer
-
-    def get(self, request, *args, **kwargs):
-        group = self.get_object()
-        allocation = get_supportgroup_balance(group)
-        current_spending_requests = (
-            SpendingRequest.objects.filter(group=group)
-            .exclude(status=SpendingRequest.Status.PAID)
-            .order_by("-modified")
-            .only("id", "title", "status", "spending_date", "amount", "category")
-        )
-        last_year = timezone.now() - relativedelta(years=1)
-        past_spending_requests = (
-            SpendingRequest.objects.filter(group=group)
-            .filter(
-                status=SpendingRequest.Status.PAID,
-                modified__gte=last_year,
-            )
-            .order_by("-modified")
-            .only("id", "title", "status", "spending_date", "amount", "category")
-        )
-        spending_requests = [
-            {
-                "id": spending_request.id,
-                "title": spending_request.title,
-                "status": spending_request.status,
-                "category": spending_request.category,
-                "date": spending_request.spending_date,
-                "amount": spending_request.amount,
-            }
-            for spending_request in current_spending_requests | past_spending_requests
-        ]
-
-        return Response(
-            status=status.HTTP_200_OK,
-            data={"allocation": allocation, "spendingRequests": spending_requests},
-        )
 
 
 class CreateSupportGroupExternalLinkPermissions(GlobalOrObjectPermissions):

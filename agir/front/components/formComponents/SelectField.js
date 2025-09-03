@@ -45,7 +45,8 @@ const CustomMenu = (props) => (
 
 const StyledField = styled.label`
   display: flex;
-  flex-flow: column nowrap;
+  ${({ $asRow }) =>
+    $asRow ? `align-items: center;` : `flex-flow: column nowrap;`};
   gap: 0.5rem;
   font-size: 1rem;
   font-weight: 400;
@@ -54,13 +55,20 @@ const StyledField = styled.label`
 
   ${StyledLabel} {
     font-weight: 600;
+    min-width: 70px;
+  }
+
+  & > div {
+    width: 100%;
   }
 
   ${StyledHelpText} {
     line-height: 1.5;
-    ${({theme, $variant}) => {
+    ${({ theme, $variant }) => {
       if ($variant === "lfi") {
-        return css`color: ${theme.text500};`
+        return css`
+          color: ${theme.text500};
+        `;
       }
     }}
   }
@@ -74,7 +82,8 @@ const StyledField = styled.label`
   }
 
   .select__control {
-    border-radius: ${({theme, $variant}) => $variant === "lfi" ? 0 : theme.softBorderRadius };
+    border-radius: ${({ theme, $variant }) =>
+      $variant === "lfi" ? 0 : theme.softBorderRadius};
     border: 1px solid;
     max-width: 100%;
     min-height: 2.5rem;
@@ -293,6 +302,8 @@ const SelectField = (props) => {
     small,
     noWrapOptions,
     variant,
+    style,
+    asRow,
     ...rest
   } = props;
 
@@ -322,6 +333,8 @@ const SelectField = (props) => {
       $small={small}
       $noWrapOptions={noWrapOptions}
       $variant={variant}
+      $asRow={asRow}
+      style={style}
     >
       {label && <StyledLabel>{label}</StyledLabel>}
       {helpText && <StyledHelpText>{helpText}</StyledHelpText>}

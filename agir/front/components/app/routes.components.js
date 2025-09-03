@@ -14,9 +14,9 @@ const Routes = {
       ),
   ),
   CalendarPage: lazy(
-      () =>
+    () =>
       import(
-          /* webpackChunkName: "r-calendar" */ "@agir/events/calendarPage/Calendar"
+        /* webpackChunkName: "r-calendar" */ "@agir/events/calendarPage/Calendar"
       ),
   ),
   EventMap: lazy(
@@ -170,10 +170,11 @@ const Routes = {
       ),
   ),
   ChequeValidationPage: lazy(
-      () => import(
-          /* webpackChunkName: "r-chequeValidationPage" */
-          "@agir/donations/validation/ChequeValidation"
-      )
+    () =>
+      import(
+        /* webpackChunkName: "r-chequeValidationPage" */
+        "@agir/donations/validation/ChequeValidation"
+      ),
   ),
   ContributionSuccessPage: lazy(
     () =>
@@ -305,6 +306,12 @@ const Routes = {
     () =>
       import(
         /* webpackChunkName: "r-spendingrequesthistory" */ "@agir/donations/spendingRequest/spendingRequestPage/SpendingRequestHistoryPage"
+      ),
+  ),
+  GroupFinanceHistory: lazy(
+    () =>
+      import(
+        /* webpackChunkName: "r-groupfinancehistory" */ "@agir/groups/groupPage/GroupSettings/GroupFinancePage/GroupFinanceHistoryPage"
       ),
   ),
 };

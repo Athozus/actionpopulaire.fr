@@ -9,6 +9,7 @@ import {
 
 import { useLocalStorage } from "@agir/lib/utils/hooks";
 
+import "rsuite/DateRangePicker/styles/index.css";
 import * as LIGHT_STYLE from "@agir/front/genericComponents/_variables-light.scss";
 import * as DARK_STYLE from "@agir/front/genericComponents/_variables-dark.scss";
 
@@ -20,6 +21,21 @@ const GlobalStyle = createGlobalStyle`
   :root {
     --safe-area-max-inset-bottom: env(safe-area-max-inset-bottom, 40px);
     --bottom-bar-height: 72px;
+
+      --rs-primary-100: ${(props) => props.theme.primary500};
+      --rs-primary-500: ${(props) => props.theme.primary500};
+      --rs-primary-600: ${(props) => props.theme.primary600};
+      --rs-primary-700: ${(props) => props.theme.primary500};
+      --rs-primary-800: ${(props) => props.theme.primary600};
+      --rs-border-primary: ${(props) => props.theme.primary150}60;
+      --rs-bg-overlay: ${(props) => props.theme.background0};
+      
+      --rs-gray-800: ${(props) => props.theme.text1000};
+      --rs-gray-200: ${(props) => props.theme.text200};
+
+      --rs-calendar-range-bg: ${(props) => props.theme.primary100};
+
+      --rs-input-bg: ${(props) => props.theme.background0};
   }
 
   body {

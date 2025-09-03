@@ -252,6 +252,14 @@ export const routeConfig = {
     Component: RouteComponents.FullGroupPage,
     hasLayout: false,
   }),
+  groupFinanceHistory: new RouteConfig({
+    id: "groupFinanceHistory",
+    path: "/groupes/:groupPk/finance/history/",
+    exact: true,
+    neededAuthentication: AUTHENTICATION.HARD,
+    label: "Historique du budget",
+    Component: RouteComponents.GroupFinanceHistory,
+  }),
   groupSettings: new RouteConfig({
     id: "groupSettings",
     path: "/groupes/:groupPk/:activeTab?/gestion/:activePanel?/",
