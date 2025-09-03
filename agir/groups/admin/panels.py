@@ -500,13 +500,7 @@ class SupportGroupAdmin(VersionAdmin, CenterOnFranceMixin, OSMGeoAdmin):
             ),
         )
 
-        return qs.prefetch_related(
-            Prefetch(
-                "memberships",
-                queryset=Membership.objects.select_related("person"),
-                to_attr="prefetched_memberships",
-            )
-        )
+        return qs
 
     def get_search_results(self, request, queryset, search_term):
         if search_term:
