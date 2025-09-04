@@ -62,7 +62,6 @@ from ...carte.models import StaticMapImage
 __all__ = [
     "ManageEventView",
     "ModifyEventView",
-    "QuitEventView",
     "EventParticipationView",
     "EventIcsView",
     "ChangeEventLocationView",
@@ -272,62 +271,6 @@ class EventParticipationView(
             context_data["content"] = jitsi_fragment
 
         return context_data
-
-
-@method_decorator(never_cache, name="get")
-class QuitEventView(
-    SoftLoginRequiredMixin, GlobalOrObjectPermissionRequiredMixin, DeleteView
-):
-    template_name = "events/quit.html"
-    permission_required = "events.cancel_rsvp_for_event"
-    context_object_name = "rsvp"
-    queryset = Event.objects.public()
-
-    def get_success_url(self):
-        return self.object.get_absolute_url()
-
-    def get_rsvp(self):
-        rsvp = (
-            self.object.rsvps.participating()
-            .filter(event_id=self.kwargs["pk"], person=self.request.user.person)
-            .first()
-        )
-
-        if not rsvp:
-            success_url = self.get_success_url()
-            return HttpResponseRedirect(success_url)
-
-        return rsvp
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["event"] = self.object
-        context["object"] = self.get_rsvp()
-        context["success_url"] = self.get_success_url()
-
-        return context
-
-    def delete(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        rsvp = self.get_rsvp()
-        success_url = self.get_success_url()
-
-        try:
-            cancel_rsvp_and_payment(rsvp, self.request.user.person)
-        except RSVPException as e:
-            raise PermissionDenied(str(e))
-
-        messages.add_message(
-            request,
-            messages.SUCCESS,
-            format_html(
-                _("Vous ne participez plus à l'événement <em>{}</em>"),
-                self.object.name,
-            ),
-        )
-
-        return HttpResponseRedirect(success_url)
-
 
 @method_decorator(never_cache, name="get")
 class UploadEventImageView(

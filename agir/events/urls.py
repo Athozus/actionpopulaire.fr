@@ -35,11 +35,6 @@ urlpatterns = [
         name="edit_event",
     ),
     path(
-        "evenements/<uuid:pk>/quitter/",
-        views.QuitEventView.as_view(),
-        name="quit_event",
-    ),
-    path(
         "evenements/<uuid:pk>/inscription/",
         views.RSVPEventView.as_view(),
         name="rsvp_event",
