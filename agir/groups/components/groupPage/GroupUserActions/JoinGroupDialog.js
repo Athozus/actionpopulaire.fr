@@ -13,10 +13,13 @@ export const JoinGroup = (props) => {
     isLoading,
     groupName,
     groupReferents,
+    groupContact,
     personName,
+    personalInfoConsent,
     onJoin,
     onUpdate,
     onClose,
+    openMessageModal,
   } = props;
 
   switch (step) {
@@ -77,7 +80,7 @@ export const JoinGroup = (props) => {
             </strong>
             <Spacer size=".5rem" />
             Partagez vos coordonnées (nom complet, téléphone et adresse) avec
-            eux pour qu'ils puissent prendre contact avec vous en dehors d'Action Populaire.
+            eux pour qu'ils puissent prendre contact avec vous.
             <Spacer size=".5rem" />
             Vous pourrez retirer cette autorisation à tout moment. C'est
             maintenant que tout se joue&nbsp;!
@@ -105,20 +108,64 @@ export const JoinGroup = (props) => {
       );
     }
     case 3: {
+      const canContact = !!openMessageModal || !!groupContact?.email;
       return (
         <StyledDialog>
           <header>
+            {canContact ? (
+              <h3>Présentez-vous&nbsp;!</h3>
+            ) : (
               <h3>Bienvenue&nbsp;!</h3>
+            )}
           </header>
           <article>
-            <p>
             <strong>
-              Pour commencer vous allez être mis en lien avec les animateurs sur Action Populaire !
+              C’est noté ! Les gestionnaires du groupe pourront vous contacter
+              sur la messagerie d’Action Populaire,{" "}
+              {personalInfoConsent
+                ? "par e-mail et par téléphone"
+                : "et par e-mail"}
+              .
             </strong>
-            </p>
-            <Button color="primary" disabled={isLoading} onClick={onClose} block wrap>
-              Terminer
-            </Button>
+            {canContact ? (
+              <>
+                <Spacer size=".5rem" />
+                Envoyez-leur un message pour vous présenter&nbsp;:
+                <Spacer size="1rem" />
+                <footer>
+                  {openMessageModal ? (
+                    <Button
+                      color="primary"
+                      block
+                      wrap
+                      onClick={openMessageModal}
+                      icon="mail"
+                    >
+                      Je me présente&nbsp;!
+                    </Button>
+                  ) : (
+                    <ShareLink
+                      label="Copier"
+                      color="primary"
+                      url={groupContact?.email}
+                      $wrap
+                    />
+                  )}
+                  <Button disabled={isLoading} onClick={onClose} block wrap>
+                    Plus tard
+                  </Button>
+                </footer>
+              </>
+            ) : (
+              <>
+                <Spacer size="1rem" />
+                <footer>
+                  <Button disabled={isLoading} onClick={onClose} block wrap>
+                    J'ai compris
+                  </Button>
+                </footer>
+              </>
+            )}
           </article>
         </StyledDialog>
       );

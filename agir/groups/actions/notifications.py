@@ -9,7 +9,6 @@ from agir.groups.tasks import (
     send_joined_notification_email,
     send_message_notification_email,
     send_comment_notification_email,
-    send_message_new_member,
 )
 from agir.msgs.actions import (
     get_comment_recipients,
@@ -23,7 +22,7 @@ from agir.people.models import Person
 
 
 @transaction.atomic()
-def someone_joined_notification(membership, message_id):
+def someone_joined_notification(membership):
     recipients = membership.supportgroup.managers
     activity_type = (
         Activity.TYPE_NEW_MEMBER
@@ -37,10 +36,7 @@ def someone_joined_notification(membership, message_id):
                 recipient=r,
                 supportgroup=membership.supportgroup,
                 individual=membership.person,
-                meta={
-                    "email": membership.person.display_email,
-                    "message_id": str(message_id),
-                },
+                meta={"email": membership.person.display_email},
             )
             for r in recipients
         ],
@@ -51,25 +47,6 @@ def someone_joined_notification(membership, message_id):
         return
 
     send_joined_notification_email.delay(membership.pk)
-
-
-import logging
-
-logger = logging.getLogger(__name__)
-
-
-@transaction.atomic()
-def new_message_notifications_to_new_member(message):
-    logger.error("wesh inside !!")
-    Activity.objects.create(
-        individual=message.author,
-        supportgroup=message.supportgroup,
-        type=Activity.TYPE_NEW_MESSAGE,
-        recipient=message.author,
-        status=Activity.STATUS_UNDISPLAYED,
-        meta={"message": str(message.pk)},
-    )
-    send_message_new_member.delay(message.pk)
 
 
 @transaction.atomic()
