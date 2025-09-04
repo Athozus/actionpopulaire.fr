@@ -70,7 +70,6 @@ EVENT_ROUTES = {
     "details": "view_event",
     "map": "carte:single_event_map",
     "rsvp": "rsvp_event",
-    "cancel": "quit_event",
     "manage": "view_event_settings",
     "calendarExport": "ics_event",
     "report": "edit_event_report",

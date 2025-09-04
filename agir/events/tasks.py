@@ -148,7 +148,6 @@ def send_event_changed_notification(event_pk, changed_data):
         "EVENT_NAME": event.name,
         "EVENT_CHANGES": change_fragment,
         "EVENT_LINK": front_url("view_event", kwargs={"pk": event_pk}),
-        "EVENT_QUIT_LINK": front_url("quit_event", kwargs={"pk": event_pk}),
     }
 
     send_mosaico_email(

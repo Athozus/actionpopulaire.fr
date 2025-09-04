@@ -186,10 +186,6 @@ class EventTasksTestCase(TestCase):
             text = message.body.replace("\n", "")
 
             self.assertTrue(self.event.name in text, "event name not in message")
-            self.assertTrue(
-                front_url("quit_event", kwargs={"pk": self.event.pk}) in text,
-                "quit event link not in message",
-            )
 
             self.assertTrue(str(tasks.CHANGE_DESCRIPTION["information"]) in text)
             self.assertTrue(str(tasks.CHANGE_DESCRIPTION["timing"]) in text)
