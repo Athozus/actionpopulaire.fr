@@ -125,6 +125,12 @@ WITH message AS (
   {USER_MESSAGES_BASE_REQUEST}
   WHERE author_id = %(person_id)s
     AND NOT message.deleted
+    
+  UNION ALL
+  
+  {USER_MESSAGES_BASE_REQUEST}
+  WHERE participant_id = %(person_id)s
+    AND NOT message.deleted
 )
 """
 

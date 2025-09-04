@@ -292,6 +292,7 @@ MERGE_STRATEGIES = {
     "membership_remove_requests": merge_reassign_related,
     "smsdiffusion_person": merge_reassign_related,
     "announcementactivity": None,
+    "participant": merge_reassign_related,
 }
 
 

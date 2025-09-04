@@ -3,6 +3,10 @@ from agir.api.fixtures.person import populate_people_groups, get_superperson
 import logging
 import sys
 
+from agir.api.settings import EMAIL_SUPPORT
+from agir.lib.tests.mixins import create_person
+from agir.people.models import PersonEmail
+
 logger = logging.getLogger(__name__)
 
 logger.info(
@@ -12,6 +16,11 @@ logger.info(
 =========================================
 """
 )
+
+support = create_person(
+    "Action", "Populaire", display_name="Action populaire", email=EMAIL_SUPPORT
+)
+support.public_email = PersonEmail.objects.filter(person=support).first()
 
 if get_superperson() is None:
     logger.error(

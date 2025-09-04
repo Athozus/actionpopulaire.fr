@@ -76,10 +76,7 @@ def as_default(fun):
 
 # PEOPLE
 def create_person(
-    first_name=None,
-    last_name=None,
-    gender=None,
-    email=None,
+    first_name=None, last_name=None, gender=None, email=None, display_name=None
 ):
     first_name = fake.first_name() if first_name is None else first_name
     last_name = fake.first_name() if last_name is None else last_name
@@ -102,6 +99,7 @@ def create_person(
         "password": PASSWORD,
         "first_name": first_name,
         "last_name": last_name,
+        "display_name": display_name if display_name else first_name,
         "email": email,
         "contact_phone": "+33600000000",
         "gender": gender,

@@ -53,6 +53,7 @@ const ConnectedUserActions = (props) => {
   const onSelectMessage = useSelectMessage();
   const history = useHistory();
   const sendToast = useToast();
+  const [joinGroupMessageId, setJoinGroupMessageId] = useState()
 
   const [isLoading, setIsLoading] = useState(false);
   const [openDialog, setOpenDialog] = useState(null);
@@ -69,10 +70,15 @@ const ConnectedUserActions = (props) => {
     setJoiningStep(1);
   }, []);
 
-  const closeJoinDialog = useCallback(() => {
+  const closeJoinDialog = useCallback(async () => {
     setOpenDialog(null);
     setJoiningStep(0);
-  }, []);
+    if (joinGroupMessageId) {
+      return history.push(routeConfig.messages.getLink({
+        messagePk: joinGroupMessageId,
+      }));
+    }
+  }, [joinGroupMessageId]);
 
   const openEditDialog = useCallback(() => {
     setOpenDialog("edit");
@@ -92,6 +98,7 @@ const ConnectedUserActions = (props) => {
     if (response.error) {
       return window.location.reload();
     }
+    setJoinGroupMessageId(response.data?.message?.id)
     mutate(api.getGroupEndpoint("getGroup", { groupPk: id }), (group) => ({
       ...group,
       isMember: true,
@@ -228,6 +235,7 @@ const ConnectedUserActions = (props) => {
         onClose={closeJoinDialog}
         openMessageModal={isMessagingEnabled ? openMessageModal : undefined}
         groupContact={contact}
+        joinGroupMessageId={joinGroupMessageId}
       />
       {isMember && (
         <>

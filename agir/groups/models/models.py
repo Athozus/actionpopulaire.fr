@@ -237,6 +237,9 @@ class MembershipQuerySet(models.QuerySet):
             )
         )
 
+    def only_managers(self):
+        return self.filter(membership_type=Membership.MEMBERSHIP_TYPE_MANAGER)
+
     def managers(self):
         return self.filter(membership_type__gte=Membership.MEMBERSHIP_TYPE_MANAGER)
 
@@ -427,6 +430,15 @@ class SupportGroup(
             "pas partie du segment seront automatiquement supprimés."
         ),
     )
+
+    @property
+    def only_managers(self):
+        return [
+            m.person
+            for m in self.memberships.only_managers()
+            .select_related("person")
+            .with_email()
+        ]
 
     @property
     def managers(self):

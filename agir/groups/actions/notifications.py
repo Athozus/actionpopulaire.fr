@@ -1,3 +1,4 @@
+from enum import member
 from functools import partial
 
 from django.db import transaction
@@ -9,6 +10,7 @@ from agir.groups.tasks import (
     send_joined_notification_email,
     send_message_notification_email,
     send_comment_notification_email,
+    send_message_new_member,
 )
 from agir.msgs.actions import (
     get_comment_recipients,
@@ -21,14 +23,15 @@ from agir.notifications.models import Subscription
 from agir.people.models import Person
 
 
-@transaction.atomic()
-def someone_joined_notification(membership):
-    recipients = membership.supportgroup.managers
-    activity_type = (
+def activity_type_from(membership):
+    return (
         Activity.TYPE_NEW_MEMBER
         if membership.is_active_member
         else Activity.TYPE_NEW_FOLLOWER
     )
+
+
+def create_activities_for(activity_type, recipients, membership, message_id=None):
     Activity.objects.bulk_create(
         [
             Activity(
@@ -36,17 +39,49 @@ def someone_joined_notification(membership):
                 recipient=r,
                 supportgroup=membership.supportgroup,
                 individual=membership.person,
-                meta={"email": membership.person.display_email},
+                meta={
+                    "email": membership.person.display_email,
+                    "message_id": str(message_id) if message_id else None,
+                },
             )
             for r in recipients
         ],
         send_post_save_signal=True,
     )
 
+
+@transaction.atomic()
+def someone_joined_notification_activity(membership, message_id=None):
+    activity_type = activity_type_from(membership)
+    create_activities_for(
+        activity_type, membership.supportgroup.only_managers, membership
+    )
+    create_activities_for(
+        activity_type, membership.supportgroup.referents, membership, message_id
+    )
+
+
+@transaction.atomic()
+def someone_joined_notification(membership, message_id=None):
+    someone_joined_notification_activity(membership, message_id)
+
     if not membership.is_active_member:
         return
 
     send_joined_notification_email.delay(membership.pk)
+
+
+@transaction.atomic()
+def new_message_notifications_to_new_member(message):
+    Activity.objects.create(
+        individual=message.participant,
+        supportgroup=message.supportgroup,
+        type=Activity.TYPE_NEW_MESSAGE,
+        recipient=message.author,
+        status=Activity.STATUS_UNDISPLAYED,
+        meta={"message": str(message.pk)},
+    )
+    send_message_new_member.delay(message.pk)
 
 
 @transaction.atomic()

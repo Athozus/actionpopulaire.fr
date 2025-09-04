@@ -22,6 +22,9 @@ def can_view_message(role, message=None):
     if message.author_id == role.person.id:
         return True
 
+    if message.participant and message.participant_id == role.person.id:
+        return True
+
     # Is member and has the right membership_type
     return Membership.objects.filter(
         supportgroup_id=message.supportgroup_id,

@@ -4,10 +4,11 @@ from unittest.mock import patch
 from django.utils import timezone
 from rest_framework.test import APITestCase
 
+from agir.api.settings import EMAIL_SUPPORT
 from agir.donations.models import SpendingRequest, AccountOperation
 from agir.groups.models import SupportGroup, Membership, SupportGroupExternalLink
-from agir.lib.tests.mixins import create_membership
-from agir.people.models import Person
+from agir.lib.tests.mixins import create_membership, create_person
+from agir.people.models import Person, PersonEmail
 
 
 class UserGroupsAPITestCase(APITestCase):
@@ -75,6 +76,10 @@ class GroupJoinAPITestCase(APITestCase):
         self.person = Person.objects.create_person(
             email="person@example.com", create_role=True, is_political_support=True
         )
+        support = create_person(
+            "Action", "Populaire", display_name="Action populaire", email=EMAIL_SUPPORT
+        )
+        support.public_email = PersonEmail.objects.filter(person=support).first()
 
     def test_anonymous_person_cannot_join(self):
         self.client.logout()
@@ -154,6 +159,19 @@ class GroupJoinAPITestCase(APITestCase):
         self, someone_joined_notification
     ):
         group = SupportGroup.objects.create()
+        group.is_private_messaging_enabled = False
+        group.save()
+        self.client.force_login(self.person.role)
+        someone_joined_notification.assert_not_called()
+        res = self.client.post(f"/api/groupes/{group.pk}/rejoindre/")
+        self.assertEqual(res.status_code, 201)
+        someone_joined_notification.assert_called()
+
+    @patch("agir.groups.views.api_views.new_message_notifications_to_new_member")
+    def test_someone_joined_notification_is_sent_upon_joining(
+        self, someone_joined_notification
+    ):
+        group = SupportGroup.objects.create()
         self.client.force_login(self.person.role)
         someone_joined_notification.assert_not_called()
         res = self.client.post(f"/api/groupes/{group.pk}/rejoindre/")
@@ -166,6 +184,10 @@ class GroupFollowAPITestCase(APITestCase):
         self.person = Person.objects.create_person(
             email="person@example.com", create_role=True, is_political_support=True
         )
+        support = create_person(
+            "Action", "Populaire", display_name="Action populaire", email=EMAIL_SUPPORT
+        )
+        support.public_email = PersonEmail.objects.filter(person=support).first()
 
     def test_anonymous_person_cannot_follow(self):
         self.client.logout()
@@ -239,17 +261,6 @@ class GroupFollowAPITestCase(APITestCase):
         self.assertTrue(
             Membership.objects.filter(person=self.person, supportgroup=group).exists()
         )
-
-    @patch("agir.groups.views.api_views.someone_joined_notification")
-    def test_someone_joined_notification_is_sent_upon_joining(
-        self, someone_joined_notification
-    ):
-        group = SupportGroup.objects.create()
-        self.client.force_login(self.person.role)
-        someone_joined_notification.assert_not_called()
-        res = self.client.post(f"/api/groupes/{group.pk}/rejoindre/")
-        self.assertEqual(res.status_code, 201)
-        someone_joined_notification.assert_called()
 
 
 class QuitGroupAPITestCase(APITestCase):

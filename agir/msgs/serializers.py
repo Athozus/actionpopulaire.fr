@@ -194,6 +194,7 @@ class SupportGroupMessageSerializer(BaseMessageSerializer):
         "id",
         "created",
         "author",
+        "participant",
         "subject",
         "text",
         "group",
@@ -206,6 +207,7 @@ class SupportGroupMessageSerializer(BaseMessageSerializer):
         "readonly",
     )
 
+    participant = serializers.SerializerMethodField()
     lastUpdate = serializers.DateTimeField(read_only=True, source="last_update")
     group = serializers.SerializerMethodField(read_only=True)
     linkedEvent = LinkedEventField(
@@ -236,6 +238,15 @@ class SupportGroupMessageSerializer(BaseMessageSerializer):
         required=False,
         read_only=True,
     )
+
+    def get_participant(self, obj):
+        if obj.participant is not None:
+            return PersonSerializer(
+                obj.participant,
+                context=self.context,
+                fields=["id", "displayName", "image"],
+            ).data
+        return None
 
     def get_group(self, obj):
         user = self.context["request"].user.person
@@ -286,6 +297,7 @@ class SupportGroupMessageSerializer(BaseMessageSerializer):
             "id",
             "created",
             "author",
+            "participant",
             "subject",
             "text",
             "attachment",

@@ -170,6 +170,14 @@ class SupportGroupMessage(AbstractMessage):
         verbose_name="Groupe / équipe",
         related_name="messages",
     )
+    participant = models.ForeignKey(
+        "people.Person",
+        on_delete=models.PROTECT,
+        verbose_name="Participant·e",
+        related_name="participant",
+        null=True,
+        blank=True,
+    )
     linked_event = models.ForeignKey(
         "events.Event",
         blank=True,

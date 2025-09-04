@@ -63,6 +63,7 @@ class SupportGroupMessageAdmin(MessageAdminMixin, VersionAdmin):
         "id",
         "created",
         "modified",
+        "participant_link",
         "author_link",
         "group",
         "text",
@@ -75,6 +76,7 @@ class SupportGroupMessageAdmin(MessageAdminMixin, VersionAdmin):
     )
     readonly_fields = (
         "id",
+        "participant_link",
         "author_link",
         "group",
         "text",
@@ -110,6 +112,10 @@ class SupportGroupMessageAdmin(MessageAdminMixin, VersionAdmin):
     )
 
     inlines = (InlineSupportGroupMessageCommentAdmin,)
+
+    @admin.display(description="Participant·e supplémentaire")
+    def participant_link(self, obj):
+        return display_link(obj.participant)
 
     @admin.display(description="Nombre de commentaires")
     def comment_count(self, obj):
