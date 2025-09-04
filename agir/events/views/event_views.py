@@ -272,6 +272,7 @@ class EventParticipationView(
 
         return context_data
 
+
 @method_decorator(never_cache, name="get")
 class UploadEventImageView(
     SoftLoginRequiredMixin, GlobalOrObjectPermissionRequiredMixin, CreateView
