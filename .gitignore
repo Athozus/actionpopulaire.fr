@@ -32,6 +32,7 @@ db.sqlite3
 !agir/api/tests/*.csv
 
 # clé google
+gce_key.json
 gce.json
 
 # Storybook build dir
