@@ -867,7 +867,12 @@ def copier_rsvp_vers_feuille_externe(rsvp_id):
     except RSVP.DoesNotExist:
         return
 
-    sheet_id = parse_sheet_link(rsvp.event.lien_feuille_externe)
+    lien = (
+        rsvp.event.lien_feuille_externe
+        if rsvp.event.lien_feuille_externe
+        else rsvp.event.subscription_form.lien_feuille_externe
+    )
+    sheet_id = parse_sheet_link(lien)
 
     if not sheet_id:
         logger.warning(

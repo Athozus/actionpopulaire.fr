@@ -39,6 +39,11 @@ from ..actions.rsvps import (
 )
 from ..forms import BillingForm, GuestsForm, BaseRSVPForm, ExternalRSVPForm
 from ..models import Event, RSVP, IdentifiedGuest
+from agir.people.tasks import copier_reponse_vers_feuille_externe
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class RSVPEventView(SoftLoginRequiredMixin, DetailView):

@@ -361,6 +361,7 @@ def copier_reponse_vers_feuille_externe(person_form_submission_id):
             id=person_form_submission_id
         )
     except PersonFormSubmission.DoesNotExist:
+        logger.error("Person Form submission does not exist, cancel operation")
         return
 
     sheet_id = parse_sheet_link(submission.form.lien_feuille_externe)

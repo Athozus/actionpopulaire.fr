@@ -8,10 +8,14 @@ from .tasks import (
     copier_identified_guest_vers_feuille_externe,
 )
 from ..people.models import Person
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def copier_participant_feuille_externe(instance, sheet):
     if not sheet:
+        logger.info(f"No sheet provided for copier_participant_feuille_externe")
         return
 
     task = None
@@ -23,13 +27,22 @@ def copier_participant_feuille_externe(instance, sheet):
         task = copier_identified_guest_vers_feuille_externe
 
     if not task:
+        logger.info("No task when trying to copier_participant_feuille_externe")
         return
 
     task.delay(instance.pk)
 
 
 @receiver(post_save, sender=RSVP, dispatch_uid="copier_rsvp_feuille_externe")
-def signal_copier_rsvp_feuille_externe(sender, instance, **kwargs):
+def signal_copier_rsvp_feuille_externe(sender, instance: RSVP, **kwargs):
+    if (
+        not instance.event.lien_feuille_externe
+        and instance.event.subscription_form.lien_feuille_externe
+    ):
+        copier_participant_feuille_externe(
+            instance, instance.event.subscription_form.lien_feuille_externe
+        )
+
     copier_participant_feuille_externe(
         instance,
         instance.event.lien_feuille_externe,
