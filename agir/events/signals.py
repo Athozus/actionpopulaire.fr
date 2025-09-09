@@ -37,6 +37,7 @@ def copier_participant_feuille_externe(instance, sheet):
 def signal_copier_rsvp_feuille_externe(sender, instance: RSVP, **kwargs):
     if (
         not instance.event.lien_feuille_externe
+        and instance.event.subscription
         and instance.event.subscription_form.lien_feuille_externe
     ):
         copier_participant_feuille_externe(
