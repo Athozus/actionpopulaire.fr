@@ -95,7 +95,8 @@ const MAPPING_TYPE_TO_FORM_BUILDER = {
     'group': 'group',
     'person': 'person',
     "commune": "commune",
-    "departements_circonscriptions_afe": "departements_circonscriptions_afe"
+    "region": "region",
+    "departements_circonscriptions_afe": "departements_circonscriptions_afe",
 };
 
 const MAPPING_TYPE_TO_CRISPY = Object.keys(MAPPING_TYPE_TO_FORM_BUILDER).reduce((acc, current) => {

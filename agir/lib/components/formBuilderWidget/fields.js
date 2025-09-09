@@ -1,6 +1,7 @@
 import CIRCONSCRIPTIONS from './circonscription.json'
 import CIRCONSCRIPTIONS_CONSULAIRES from './circonscriptionConsulaire.json'
 import CANTONS from './cantons.json'
+import REGIONS from './regions.json'
 
 export const CUSTOM_FORM_BUILDER_FIELDS = [
     {
@@ -69,8 +70,16 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
         icon: "🚩"
     },
     {
-        label: "Departements Assemblée des Français de l’Étranger",
+        label: "Departements",
         type: "departements_circonscriptions_afe",
+    },
+    {
+        label: "Régions",
+        type: "select",
+        name: "region",
+        multiple: false,
+        values: REGIONS,
+        icon: "®️",
     },
     {
         label: "Circonscriptions",

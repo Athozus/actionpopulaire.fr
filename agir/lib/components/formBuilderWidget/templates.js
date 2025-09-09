@@ -34,6 +34,7 @@ export const CUSTOM_FORM_BUILDER_TEMPLATES = {
     person: USER_TEMPLATE,
     commune: DEFAULT_TEMPLATE,
     boolean: BOOLEAN_TEMPLATE,
+    region: DEFAULT_TEMPLATE,
     departements_circonscriptions_afe: DEFAULT_TEMPLATE
 }
 
