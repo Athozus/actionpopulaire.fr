@@ -5,13 +5,10 @@ from django import forms
 from django.template.defaultfilters import floatformat
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-from phonenumber_field.formfields import PhoneNumberField
 
-from agir.events.actions import legal
 from agir.lib.form_components import *
 from agir.lib.form_mixins import (
     GeocodingBaseForm,
-    MetaFieldsMixin,
 )
 from agir.payments.payment_modes import PaymentModeField
 from agir.people.forms import BasePersonForm
