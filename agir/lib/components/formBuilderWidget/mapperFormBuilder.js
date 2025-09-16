@@ -1,4 +1,4 @@
-import {CUSTOM_FORM_BUILDER_FIELDS, mapPersonIdToLabel, TYPE_USER_ATTRS} from "@agir/lib/formBuilderWidget/fields";
+import {TYPE_USER_ATTRS} from "@agir/lib/formBuilderWidget/fields";
 
 export function mapFormBuildFieldToCrispy(field) {
     const crispyField = {
@@ -15,6 +15,11 @@ export function mapFormBuildFieldToCrispy(field) {
         })
     }
     TYPE_USER_ATTRS[crispyField.type]?.toCrispy?.(field, crispyField);
+
+    // exception to avoid the unsupported multiple field on Django side
+    if (crispyField.type === 'choice' && crispyField.multiple !== undefined) {
+        delete crispyField.multiple
+    }
 
     return crispyField
 }
@@ -52,7 +57,8 @@ const MAPPING_COMMON_PARAMS_TO_FORM_BUILDER = {
     "max_value": "max",
     "types": "types",
     "allowed_extensions": "allowed_extensions",
-    "group_type": "group_type"
+    "group_type": "group_type",
+    "multiple": "multiple"
 }
 
 const MAPPING_COMMON_PARAMS_TO_CRISPY = Object.keys(MAPPING_COMMON_PARAMS_TO_FORM_BUILDER).reduce((acc, current) => {
