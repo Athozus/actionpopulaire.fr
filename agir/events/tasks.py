@@ -651,7 +651,9 @@ def send_group_coorganization_invitation_notification(invitation_pk):
         r
         for r in recipients
         if Subscription.objects.filter(
-            person=r, activity_type=Activity.TYPE_GROUP_COORGANIZATION_INVITE
+            person=r,
+            activity_type=Activity.TYPE_GROUP_COORGANIZATION_INVITE,
+            membership__supportgroup=group,
         )
     ]
 
@@ -775,7 +777,9 @@ def send_accepted_group_coorganization_invitation_notification(invitation_id):
             r
             for r in recipients
             if Subscription.objects.filter(
-                person=r, activity_type=Activity.TYPE_GROUP_COORGANIZATION_ACCEPTED
+                person=r,
+                activity_type=Activity.TYPE_GROUP_COORGANIZATION_ACCEPTED,
+                membership__supportgroup=event.organizers_groups.last(),
             )
         ],
         bindings=bindings,
