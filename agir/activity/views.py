@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.generic import DetailView
-from django.db.models import Q, Prefetch
+from django.db.models import Q, Prefetch, OuterRef, Exists
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.generics import (
@@ -28,6 +28,7 @@ from agir.activity.serializers import (
 )
 from agir.api import settings
 from agir.events.models import Event
+from agir.groups.models import SupportGroup
 from agir.lib.pagination import APIPageNumberPagination
 from agir.lib.rest_framework_permissions import (
     GlobalOrObjectPermissions,
@@ -230,22 +231,30 @@ def get_unread_activity_count(request):
         and hasattr(request.user, "person")
         and request.user.person
     ):
-        unread_activity_count = (
-            Activity.objects.displayed()
-            .filter(recipient=request.user.person)
-            .exclude(supportgroup__isnull=False, supportgroup__published=False)
-            .exclude(~Q(event__visibility=Event.VISIBILITY_PUBLIC), event__isnull=False)
-            .filter(
-                ~Q(type=Activity.TYPE_ANNOUNCEMENT)
-                | Q(
-                    type=Activity.TYPE_ANNOUNCEMENT,
-                    announcement__custom_display__exact="",
-                )
-            )
-            .filter(status=Activity.STATUS_UNDISPLAYED)
-            .count()
+        qs = Activity.objects.displayed().filter(
+            recipient=request.user.person,
+            status=Activity.STATUS_UNDISPLAYED,
         )
 
+        qs = qs.filter(
+            Q(supportgroup__isnull=True)
+            | Exists(
+                SupportGroup.objects.filter(
+                    id=OuterRef("supportgroup_id"), published=True
+                )
+            )
+        )
+
+        qs = qs.filter(
+            Q(event__isnull=True)
+            | Exists(
+                Event.objects.filter(
+                    id=OuterRef("event_id"), visibility=Event.VISIBILITY_PUBLIC
+                )
+            )
+        )
+
+        unread_activity_count = qs.count()
     return Response({"unreadActivityCount": unread_activity_count})
 
 
