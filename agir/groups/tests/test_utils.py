@@ -148,7 +148,7 @@ class SupportGroupCertificationCriteriaTestCase(TestCase):
             criteria = check_certification_criteria(group)
             self.assertEqual(criteria["activity"], i == 3)
 
-    def test_supportgroup_gender(self):
+    def test_supportgroup_without_enough_referent(self):
         group = SupportGroup.objects.create(name="G")
         criteria = check_certification_criteria(group)
         self.assertFalse(criteria["gender"])
@@ -164,6 +164,18 @@ class SupportGroupCertificationCriteriaTestCase(TestCase):
         criteria = check_certification_criteria(group)
         self.assertFalse(criteria["gender"])
 
+    def test_supportgroup_referentes_woman(self):
+        group = SupportGroup.objects.create(name="G")
+
+        person = Person.objects.create_person(
+            f"f@agir.local", gender=Person.GENDER_FEMALE, create_role=True
+        )
+        Membership.objects.create(
+            supportgroup=group,
+            person=person,
+            membership_type=Membership.MEMBERSHIP_TYPE_REFERENT,
+        )
+
         person = Person.objects.create_person(
             f"ff@agir.local", gender=Person.GENDER_FEMALE, create_role=True
         )
@@ -173,21 +185,23 @@ class SupportGroupCertificationCriteriaTestCase(TestCase):
             membership_type=Membership.MEMBERSHIP_TYPE_REFERENT,
         )
         criteria = check_certification_criteria(group)
-        self.assertFalse(criteria["gender"])
+
+        self.assertTrue(criteria["gender"])
+
+    def test_supportgroup_referentes_non_binary(self):
+        group = SupportGroup.objects.create(name="G")
 
         person = Person.objects.create_person(
-            f"m@agir.local", gender=Person.GENDER_MALE, create_role=True
+            f"f@agir.local", gender=Person.GENDER_OTHER, create_role=True
         )
         Membership.objects.create(
             supportgroup=group,
             person=person,
-            membership_type=Membership.MEMBERSHIP_TYPE_MEMBER,
+            membership_type=Membership.MEMBERSHIP_TYPE_REFERENT,
         )
-        criteria = check_certification_criteria(group)
-        self.assertFalse(criteria["gender"])
 
         person = Person.objects.create_person(
-            f"mm@agir.local", gender=Person.GENDER_MALE, create_role=True
+            f"ff@agir.local", gender=Person.GENDER_FEMALE, create_role=True
         )
         Membership.objects.create(
             supportgroup=group,
@@ -195,6 +209,55 @@ class SupportGroupCertificationCriteriaTestCase(TestCase):
             membership_type=Membership.MEMBERSHIP_TYPE_REFERENT,
         )
         criteria = check_certification_criteria(group)
+
+        self.assertTrue(criteria["gender"])
+
+    def test_supportgroup_referents_man(self):
+        group = SupportGroup.objects.create(name="G")
+
+        person = Person.objects.create_person(
+            f"f@agir.local", gender=Person.GENDER_MALE, create_role=True
+        )
+        Membership.objects.create(
+            supportgroup=group,
+            person=person,
+            membership_type=Membership.MEMBERSHIP_TYPE_REFERENT,
+        )
+
+        person = Person.objects.create_person(
+            f"ff@agir.local", gender=Person.GENDER_MALE, create_role=True
+        )
+        Membership.objects.create(
+            supportgroup=group,
+            person=person,
+            membership_type=Membership.MEMBERSHIP_TYPE_REFERENT,
+        )
+        criteria = check_certification_criteria(group)
+
+        self.assertFalse(criteria["gender"])
+
+    def test_supportgroup_referents_women_men(self):
+        group = SupportGroup.objects.create(name="G")
+
+        person = Person.objects.create_person(
+            f"f@agir.local", gender=Person.GENDER_MALE, create_role=True
+        )
+        Membership.objects.create(
+            supportgroup=group,
+            person=person,
+            membership_type=Membership.MEMBERSHIP_TYPE_REFERENT,
+        )
+
+        person = Person.objects.create_person(
+            f"ff@agir.local", gender=Person.GENDER_FEMALE, create_role=True
+        )
+        Membership.objects.create(
+            supportgroup=group,
+            person=person,
+            membership_type=Membership.MEMBERSHIP_TYPE_REFERENT,
+        )
+        criteria = check_certification_criteria(group)
+
         self.assertTrue(criteria["gender"])
 
     def test_supportgroup_exclusivity(self):

@@ -1,6 +1,6 @@
 from datetime import timedelta
 
-from django.db.models import Count
+from django.db.models import Count, Max
 from django.utils import timezone
 
 from agir.events.models import Event
@@ -91,7 +91,7 @@ activity_abroad AS (
 gender AS (
   SELECT 
     gm.supportgroup_id, 
-    COUNT(DISTINCT pp.gender) >= %(gender_limit_n)s AS satisfied 
+    SELECT MAX(pp.gender) = 'M' AND COUNT(DISTINCT pp.gender) = 1 as unsatisfied
   FROM 
     groups_membership gm 
     INNER JOIN active_people_person pp ON (
@@ -149,7 +149,7 @@ criteria AS (
         WHEN COALESCE(activity_abroad.satisfied, FALSE) THEN NULL 
         ELSE COALESCE(activity.satisfied, FALSE) 
         END cc_activity, 
-      COALESCE(gender.satisfied, FALSE) AS cc_gender, 
+      1 - COALESCE(gender.unsatisfied, TRUE) AS cc_gender, 
       COALESCE(exclusivity.satisfied, TRUE) AS cc_exclusivity
     FROM 
       groups_supportgroup g 
@@ -264,14 +264,23 @@ def check_criterion_gender(group, params=None):
     referents = group.memberships.filter(
         membership_type__gte=params.get("membership_type_referent")
     )
+
     referent_genders = (
         referents.exclude(person__gender__exact="")
         .values("person__gender")
-        .annotate(c=Count("person__gender"))
-        .order_by("person__gender")
-        .count()
+        .distinct()
+        .aggregate(
+            gender_contained=Max("person__gender"), count=Count("person__gender")
+        )
     )
-    return params.get("gender_limit_n") <= referent_genders
+
+    return (
+        not (
+            referent_genders["count"] == 1
+            and referent_genders["gender_contained"] == "M"
+        )
+        and referents.count() == 2
+    )
 
 
 def check_criterion_exclusivity(group, params=None):
@@ -296,6 +305,11 @@ def check_criterion_exclusivity(group, params=None):
         )
 
     return exclusivity
+
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def check_certification_criteria(group, with_labels=False):
