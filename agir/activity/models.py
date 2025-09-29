@@ -303,6 +303,16 @@ class Activity(TimeStampedModel):
             models.Index(
                 fields=("recipient", "timestamp"), name="notifications_by_recipient"
             ),
+            models.Index(
+                fields=["supportgroup"],
+                name="activity_supportgroup_pub_idx",
+                condition=models.Q(supportgroup__published=True),
+            ),
+            models.Index(
+                fields=["event"],
+                name="activity_event_visible_idx",
+                condition=models.Q(event__visibility="P"),
+            ),
         )
         constraints = [
             models.UniqueConstraint(

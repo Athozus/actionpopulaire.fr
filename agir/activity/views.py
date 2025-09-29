@@ -231,30 +231,31 @@ def get_unread_activity_count(request):
         and hasattr(request.user, "person")
         and request.user.person
     ):
-        qs = Activity.objects.displayed().filter(
-            recipient=request.user.person,
-            status=Activity.STATUS_UNDISPLAYED,
+        person = request.user.person
+
+        sg_published = SupportGroup.objects.filter(
+            id=OuterRef("supportgroup_id"), published=True
         )
 
-        qs = qs.filter(
-            Q(supportgroup__isnull=True)
-            | Exists(
-                SupportGroup.objects.filter(
-                    id=OuterRef("supportgroup_id"), published=True
-                )
+        ev_visible = Event.objects.filter(
+            id=OuterRef("event_id"), visibility=Event.VISIBILITY_PUBLIC
+        )
+
+        qs = (
+            Activity.objects.filter(
+                recipient=person,
+                status=Activity.STATUS_UNDISPLAYED,
+                type__in=Activity.DISPLAYED_TYPES,
             )
-        )
-
-        qs = qs.filter(
-            Q(event__isnull=True)
-            | Exists(
-                Event.objects.filter(
-                    id=OuterRef("event_id"), visibility=Event.VISIBILITY_PUBLIC
-                )
+            .annotate(sg_ok=Exists(sg_published), ev_ok=Exists(ev_visible))
+            .filter(
+                Q(supportgroup_id__isnull=True) | Q(sg_ok=True),
+                Q(event_id__isnull=True) | Q(ev_ok=True),
             )
         )
 
         unread_activity_count = qs.count()
+
     return Response({"unreadActivityCount": unread_activity_count})
 
 
