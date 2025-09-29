@@ -216,9 +216,9 @@ def send_person_form_confirmation(submission_pk):
 
     if not person and submission.data["email"]:
         person = submission.data["email"].strip()
-    else:
+    elif not person:
         logger.error(
-            f"Impossible de trouver de person pour l'envoi de submission: {submission_pk}"
+            f"Impossible de trouver de personne ou d'email pour l'envoi de submission: {submission_pk}"
         )
 
     bindings = {"CONFIRMATION_NOTE": mark_safe(form.confirmation_note)}
