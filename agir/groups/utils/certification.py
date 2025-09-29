@@ -10,7 +10,7 @@ from agir.lib.geo import FRENCH_COUNTRY_CODES
 CERTIFICATION_CRITERIA_LABELS = {
     "gender": {
         "label": "Animation paritaire",
-        "help": "Le groupe est animé par au moins deux personnes de genre différent",
+        "help": "Le groupe est animé par au moins deux personnes de genre différent (ou deux femmes, ou deux autres)",
     },
     "activity": {
         "label": "Trois actions de terrain",
@@ -279,7 +279,7 @@ def check_criterion_gender(group, params=None):
             referent_genders["count"] == 1
             and referent_genders["gender_contained"] == "M"
         )
-        and referents.count() == 2
+        and referents.exclude(person__gender__exact="").count() == 2
     )
 
 
