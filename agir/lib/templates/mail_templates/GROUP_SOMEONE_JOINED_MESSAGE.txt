@@ -1,0 +1,7 @@
+Participer à l'échange avec votre nouveau membre !
+
+Participaer à l'échange :
+{{ MESSAGE_LINK }}
+
+Vous souhaitez recevoir moins de mails de notre part : {{ preferences_link }} modifier ses préférences ou se désinscrire.
+Ce mail a été adressé à {{ email }}

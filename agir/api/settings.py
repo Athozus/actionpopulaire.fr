@@ -338,6 +338,8 @@ EMAIL_TEMPLATES = {
     "GROUP_CREATION": "https://mosaico.lafranceinsoumise.fr/emails/d852c994-f46d-41ce-89a5-05cfa553476d.html",
     # GROUP_CHANGED variables: GROUP_NAME, GROUP_CHANGES, GROUP_LINK
     "GROUP_CHANGED": "https://mosaico.lafranceinsoumise.fr/emails/e3932ae5-3648-4686-b607-4b744d15dfe8.html",
+    # GROUP_SOMEONE_JOINED_MESSAGE varaibles: [MESSAGE_LINK]
+    "GROUP_SOMEONE_JOINED_MESSAGE": "https://mosaico.lafranceinsoumise.fr/edit/abe22680-0a26-4533-a08d-48d245b96880",
     # GROUP_SOMEONE_JOINED_NOTIFICATION variables: GROUP_NAME, PERSON_INFORMATION, MANAGE_GROUP_LINK
     "GROUP_SOMEONE_JOINED_NOTIFICATION": "https://mosaico.lafranceinsoumise.fr/emails/d19f4012-40e5-44d9-87b6-e49ada121bed.html",
     # GROUP_EXTERNAL_JOIN_OPTION variables: [GROUP_NAME], [JOIN_LINK]
