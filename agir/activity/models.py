@@ -10,7 +10,6 @@ from firebase_admin import messaging
 from stdimage import StdImageField
 from stdimage.validators import MinSizeValidator
 
-
 from agir.lib.models import TimeStampedModel, DescriptionField, BaseAPIResource
 from agir.lib.utils import front_url, is_absolute_url
 
@@ -304,14 +303,12 @@ class Activity(TimeStampedModel):
                 fields=("recipient", "timestamp"), name="notifications_by_recipient"
             ),
             models.Index(
-                fields=["supportgroup"],
-                name="activity_supportgroup_pub_idx",
-                condition=models.Q(supportgroup__published=True),
+                fields=["supportgroup_id"], name="notifications_by_supportgroup"
             ),
+            models.Index(fields=["event_id"], name="notifications_by_event_id"),
             models.Index(
-                fields=["event"],
-                name="activity_event_visible_idx",
-                condition=models.Q(event__visibility="P"),
+                fields=["recipient", "status", "type"],
+                name="notifications_by_type_status",
             ),
         )
         constraints = [

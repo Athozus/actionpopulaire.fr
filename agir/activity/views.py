@@ -233,28 +233,44 @@ def get_unread_activity_count(request):
     ):
         person = request.user.person
 
-        sg_published = SupportGroup.objects.filter(
-            id=OuterRef("supportgroup_id"), published=True
-        )
+        # Activités sans event ni supportgroup
+        count_none = Activity.objects.filter(
+            recipient=person,
+            status=Activity.STATUS_UNDISPLAYED,
+            type__in=Activity.DISPLAYED_TYPES,
+            event__isnull=True,
+            supportgroup__isnull=True,
+        ).count()
 
-        ev_visible = Event.objects.filter(
-            id=OuterRef("event_id"), visibility=Event.VISIBILITY_PUBLIC
-        )
+        # Activités avec supportgroup publié seulement
+        count_sg = Activity.objects.filter(
+            recipient=person,
+            status=Activity.STATUS_UNDISPLAYED,
+            type__in=Activity.DISPLAYED_TYPES,
+            event__isnull=True,
+            supportgroup__published=True,
+        ).count()
 
-        qs = (
-            Activity.objects.filter(
-                recipient=person,
-                status=Activity.STATUS_UNDISPLAYED,
-                type__in=Activity.DISPLAYED_TYPES,
-            )
-            .annotate(sg_ok=Exists(sg_published), ev_ok=Exists(ev_visible))
-            .filter(
-                Q(supportgroup_id__isnull=True) | Q(sg_ok=True),
-                Q(event_id__isnull=True) | Q(ev_ok=True),
-            )
-        )
+        # Activités avec event visible seulement
+        count_event = Activity.objects.filter(
+            recipient=person,
+            status=Activity.STATUS_UNDISPLAYED,
+            type__in=Activity.DISPLAYED_TYPES,
+            supportgroup__isnull=True,
+            event__visibility=Event.VISIBILITY_PUBLIC,
+        ).count()
 
-        unread_activity_count = qs.count()
+        # Activités avec les deux : supportgroup publié + event visible
+        count_both = Activity.objects.filter(
+            recipient=person,
+            status=Activity.STATUS_UNDISPLAYED,
+            type__in=Activity.DISPLAYED_TYPES,
+            supportgroup__published=True,
+            event__visibility=Event.VISIBILITY_PUBLIC,
+        ).count()
+
+        # Somme totale
+        unread_activity_count = count_none + count_sg + count_event + count_both
 
     return Response({"unreadActivityCount": unread_activity_count})
 

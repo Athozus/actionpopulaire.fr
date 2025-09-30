@@ -605,6 +605,9 @@ class SupportGroup(
         permissions = (
             ("view_hidden_supportgroup", _("Peut afficher les groupes non publiés")),
         )
+        indexes = [
+            models.Index(fields=["published"], name="supportgroup_published_index"),
+        ]
 
     def __str__(self):
         return self.name
