@@ -20,6 +20,13 @@ from django.db.models import (
     Avg,
     ExpressionWrapper,
     DurationField,
+    OuterRef,
+    Exists,
+    Prefetch,
+    Case,
+    When,
+    IntegerField,
+    Max,
 )
 from django.db.models.functions import Greatest, Concat
 from django.http import HttpResponseRedirect
@@ -61,6 +68,7 @@ from agir.groups.models import (
     SupportGroupSubtype,
     Membership,
     SupportGroupExternalLink,
+    SupportGroupTag,
 )
 from agir.groups.proxys import ThematicGroup
 from agir.groups.serializers import (
@@ -223,12 +231,60 @@ class UserGroupsView(ListAPIView):
     required_scopes = ("view_membership",)
 
     def get_queryset(self):
-        return (
+        user_person = self.request.user.person
+
+        promo_tag_label = settings.PROMO_CODE_TAG
+
+        # Base queryset
+        qs = (
             SupportGroup.objects.active()
-            .with_serializer_prefetch(person=self.request.user.person)
-            .filter(memberships__person=self.request.user.person)
-            .order_by("name")
+            .filter(memberships__person=user_person)
+            .distinct()
         )
+
+        qs = qs.annotate(
+            organized_event_count=Count(
+                "organized_events",
+                filter=Q(organized_events__visibility=Event.VISIBILITY_PUBLIC),
+                distinct=True,
+            ),
+            membership_count=Count(
+                "memberships",
+                filter=Q(memberships__person__role__is_active=True),
+                distinct=True,
+            ),
+            active_membership_count=Count(
+                "memberships",
+                filter=Q(
+                    memberships__person__role__is_active=True,
+                    memberships__membership_type__gte=Membership.MEMBERSHIP_TYPE_MEMBER,
+                ),
+                distinct=True,
+            ),
+            has_promo_codes=Max(
+                Case(
+                    When(tags__label=promo_tag_label, then=1),
+                    default=0,
+                    output_field=IntegerField(),
+                )
+            ),
+        )
+
+        qs = qs.prefetch_related(
+            Prefetch(
+                "memberships",
+                queryset=user_person.memberships.active(),
+                to_attr="_pf_person_membership",
+            ),
+            Prefetch("subtypes", to_attr="_pf_subtypes"),
+            Prefetch(
+                "tags",
+                queryset=SupportGroupTag.objects.filter(label=promo_tag_label),
+                to_attr="_pf_tags",
+            ),
+        )
+
+        return qs.order_by("name")
 
 
 class UserGroupSuggestionsView(ListAPIView):
