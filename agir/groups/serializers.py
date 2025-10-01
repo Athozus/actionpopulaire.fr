@@ -120,11 +120,11 @@ class SupportGroupSerializerMixin(FlexibleFieldsMixin, serializers.Serializer):
         return super().to_representation(obj)
 
     def get_membership(self, obj):
-        if hasattr(obj, "_membership"):
-            return obj._membership
+        if hasattr(obj, "_pf_person_membership"):
+            return obj._pf_person_membership[0] if obj._pf_person_membership else None
 
-        obj._membership = getattr(obj, "_pf_person_membership", [None])[0]
-        return obj._membership
+        user_person = self.context["request"].user.person
+        return obj.memberships.filter(person=user_person).first()
 
     def get_membership_type(self, obj):
         membership = self.get_membership(obj)
@@ -150,20 +150,17 @@ class SupportGroupSerializerMixin(FlexibleFieldsMixin, serializers.Serializer):
         membership = self.get_membership(obj)
         return membership is not None and membership.is_referent
 
+    def get_discount_codes(self, obj):
+        return get_promo_codes(obj)
+
 
 class SupportGroupSerializer(SupportGroupSerializerMixin):
     url = serializers.HyperlinkedIdentityField(view_name="view_group", read_only=True)
     location = SimpleLocationSerializer(source="*", with_address=False)
     eventCount = serializers.IntegerField(source="events_count", read_only=True)
     membersCount = serializers.IntegerField(source="members_count", read_only=True)
-    activeMembersCount = serializers.IntegerField(
-        source="active_members_count", read_only=True
-    )
     labels = serializers.SerializerMethodField(read_only=True)
     routes = RoutesField(routes=GROUP_ROUTES, read_only=True)
-    discountCodes = serializers.SerializerMethodField(
-        method_name="get_discount_codes", read_only=True
-    )
     membershipType = serializers.SerializerMethodField(
         method_name="get_membership_type", read_only=True
     )
@@ -195,18 +192,6 @@ class SupportGroupSerializer(SupportGroupSerializerMixin):
             for s in getattr(obj, "_pf_subtypes", [])
             if s.description and not s.hide_text_label
         ]
-
-    def get_discount_codes(self, obj):
-        membership = self.get_membership(obj)
-        if membership is None or not membership.is_manager:
-            return []
-
-        tags = getattr(obj, "_pf_tags", [])
-        has_promo_codes = any(t.label == settings.PROMO_CODE_TAG for t in tags)
-        if not has_promo_codes:
-            return []
-
-        return get_promo_codes(obj)
 
 
 class ThematicGroupSerializer(serializers.ModelSerializer):
