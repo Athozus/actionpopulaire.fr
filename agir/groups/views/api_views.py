@@ -231,34 +231,17 @@ class UserGroupsView(ListAPIView):
     required_scopes = ("view_membership",)
 
     def get_queryset(self):
-        user_person = self.request.user.person
-
+        user_person = getattr(self.request.user, "person", None)
         promo_tag_label = settings.PROMO_CODE_TAG
 
-        # Base queryset
-        qs = (
-            SupportGroup.objects.active()
-            .filter(memberships__person=user_person)
-            .distinct()
-        )
+        qs = SupportGroup.objects.active()
+        if user_person:
+            qs = qs.filter(memberships__person=user_person).distinct()
 
         qs = qs.annotate(
             organized_event_count=Count(
                 "organized_events",
                 filter=Q(organized_events__visibility=Event.VISIBILITY_PUBLIC),
-                distinct=True,
-            ),
-            membership_count=Count(
-                "memberships",
-                filter=Q(memberships__person__role__is_active=True),
-                distinct=True,
-            ),
-            active_membership_count=Count(
-                "memberships",
-                filter=Q(
-                    memberships__person__role__is_active=True,
-                    memberships__membership_type__gte=Membership.MEMBERSHIP_TYPE_MEMBER,
-                ),
                 distinct=True,
             ),
             has_promo_codes=Max(
@@ -270,12 +253,16 @@ class UserGroupsView(ListAPIView):
             ),
         )
 
+        if user_person:
+            qs = qs.prefetch_related(
+                Prefetch(
+                    "memberships",
+                    queryset=user_person.memberships.active(),
+                    to_attr="_pf_person_membership",
+                ),
+            )
+
         qs = qs.prefetch_related(
-            Prefetch(
-                "memberships",
-                queryset=user_person.memberships.active(),
-                to_attr="_pf_person_membership",
-            ),
             Prefetch("subtypes", to_attr="_pf_subtypes"),
             Prefetch(
                 "tags",
