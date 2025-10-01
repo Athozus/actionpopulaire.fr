@@ -742,6 +742,10 @@ class Membership(ExportModelOperationsMixin("membership"), TimeStampedModel):
         verbose_name_plural = _("adhésions")
         unique_together = ("supportgroup", "person")
         ordering = ["-membership_type"]
+        indexes = [
+            models.Index(fields=["person_id"], name="membership_person_idx"),
+            models.Index(fields=["supportgroup_id"], name="membership_group_idx"),
+        ]
 
     def __str__(self):
         return _("{person} --> {supportgroup},  ({type})").format(

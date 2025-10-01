@@ -657,6 +657,7 @@ class Person(
             models.Index(fields=["contact_phone"], name="contact_phone_index"),
             models.Index(fields=["created"], name="created_index"),
             models.Index(fields=["created", "id"], name="created_id_index"),
+            models.Index(fields=["role"]),
         )
 
     def save(self, *args, **kwargs):
