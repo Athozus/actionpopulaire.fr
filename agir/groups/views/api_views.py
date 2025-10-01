@@ -845,7 +845,10 @@ class JoinGroupAPIView(CreateAPIView, DestroyAPIView):
                     person=request.user.person,
                     membership_type=self.target_membership_type,
                 )
-                if supportgroup.is_private_messaging_enabled:
+                if (
+                    supportgroup.is_private_messaging_enabled
+                    and supportgroup.type == SupportGroup.TYPE_LOCAL_GROUP
+                ):
                     message = self.prepare_join_message(membership, request.user.person)
                     return Response(
                         status=status.HTTP_201_CREATED,
