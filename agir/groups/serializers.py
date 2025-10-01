@@ -120,11 +120,25 @@ class SupportGroupSerializerMixin(FlexibleFieldsMixin, serializers.Serializer):
         return super().to_representation(obj)
 
     def get_membership(self, obj):
-        if hasattr(obj, "_pf_person_membership"):
-            return obj._pf_person_membership[0] if obj._pf_person_membership else None
+        if hasattr(self, "_membership"):
+            return self._membership
 
-        user_person = self.context["request"].user.person
-        return obj.memberships.filter(person=user_person).first()
+        self._membership = None
+        user = getattr(self, "user", None) or self.context["request"].user
+
+        if getattr(obj, "_pf_person_membership", None):
+            self._membership = obj._pf_person_membership[0]
+        elif (
+            user
+            and not user.is_anonymous
+            and hasattr(user, "person")
+            and user.person is not None
+        ):
+            self._membership = (
+                obj.memberships.active().filter(person=user.person).first()
+            )
+
+        return self._membership
 
     def get_membership_type(self, obj):
         membership = self.get_membership(obj)
