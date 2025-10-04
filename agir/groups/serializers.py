@@ -165,6 +165,20 @@ class SupportGroupSerializerMixin(FlexibleFieldsMixin, serializers.Serializer):
         return membership is not None and membership.is_referent
 
     def get_discount_codes(self, obj):
+        membership = self.get_membership(obj)
+
+        if membership is None or not membership.is_manager:
+            return []
+
+        has_promo_codes = (
+            obj.has_promo_codes
+            if hasattr(obj, "has_promo_codes")
+            else obj.tags.filter(label=settings.PROMO_CODE_TAG).exists()
+        )
+
+        if not has_promo_codes:
+            return []
+
         return get_promo_codes(obj)
 
 
