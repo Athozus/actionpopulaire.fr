@@ -28,7 +28,6 @@ def get_activities(person):
             ~Q(type=Activity.TYPE_ANNOUNCEMENT)
             | Q(type=Activity.TYPE_ANNOUNCEMENT, announcement__custom_display__exact="")
         )
-        .distinct()
         # Always display undisplayed announcement activities first
         .annotate(
             sort=Case(
