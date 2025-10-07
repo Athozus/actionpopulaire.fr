@@ -37,7 +37,10 @@ class MapGroupSerializer(CountryFieldMixin, serializers.ModelSerializer):
         return front_url("map_group_details", args=(obj.pk,), absolute=True)
 
     def get_first_subtype(self, obj):
-        return obj.subtypes.active().values_list("id", flat=True).first()
+        active_subtypes = [
+            s for s in obj.subtypes.all() if getattr(s, "is_active", True)
+        ]
+        return active_subtypes[0].id if active_subtypes else None
 
     class Meta:
         model = SupportGroup

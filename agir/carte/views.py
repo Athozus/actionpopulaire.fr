@@ -12,7 +12,7 @@ from data_france.models import (
 from django import forms
 from django.contrib.gis.db.models import Extent, MultiPolygonField, Union
 from django.contrib.gis.geos import Polygon
-from django.db.models import Count, Q
+from django.db.models import Count, Q, Prefetch
 from django.db.models.functions import Cast
 from django.http import QueryDict, Http404
 from django.utils.decorators import method_decorator
@@ -141,13 +141,13 @@ class EventsView(AnonymousAPIView, ListAPIView):
 
 
 class GroupFilterSet(django_filters.rest_framework.FilterSet):
-    subtype = FixedModelMultipleChoiceFilter(
+    subtype = django_filters.ModelMultipleChoiceFilter(
         field_name="subtypes",
         to_field_name="label",
         queryset=SupportGroupSubtype.objects.all(),
     )
 
-    tag = FixedModelMultipleChoiceFilter(
+    tag = django_filters.ModelMultipleChoiceFilter(
         field_name="tags",
         to_field_name="label",
         queryset=SupportGroupTag.objects.all(),
@@ -168,6 +168,11 @@ class GroupFilterSet(django_filters.rest_framework.FilterSet):
     class Meta:
         model = SupportGroup
         fields = ("subtype", "tag", "certified")
+
+    @property
+    def qs(self):
+        queryset = super().qs
+        return queryset.prefetch_related("subtypes")
 
 
 class GroupsView(AnonymousAPIView, ListAPIView):
