@@ -10,7 +10,7 @@ class EventSitemap(Sitemap):
     changefreq = "always"
 
     def items(self):
-        return Event.objects.listed()
+        return Event.objects.listed().only("id", "modified", "end_time")
 
     def location(self, obj):
         return reverse("view_event", args=[obj.id])
