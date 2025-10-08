@@ -1,23 +1,32 @@
 {% load static %}
 {% include "gis/admin/osm.html" %}
 
-<div class="form-row">
-  <label><p>Ajouter un département, une région ou un arrondissement à la sélection&nbsp;:</p>
-    <select id="french-area-widget-select-1">
-      <option></option>
-    </select><br/>
-    <button id="french-area-widget-button-1" class="button">Ajouter</button>
-  </label>
-  <div class="help">Mais en vrai vous ne devriez pas en avoir besoin, utilisez le filtre par code postal.</div>
-</div>
+<div style="display: flex;flex-direction: column;">
+    <div class="form-row">
+      <label><p>Ajouter une circonscription à la sélection&nbsp;:</p>
+        <select id="french-circo-area-widget-select-1">
+          <option></option>
+        </select><br/>
+        <button id="french-circo-area-widget-button-1" class="button">Ajouter</button>
+      </label>
+    </div>
 
-<div class="form-row">
-  <label style="width: auto;"><p>Ajouter une commune à la sélection&nbsp;:</p>
-    <select id="french-area-widget-select-2" style="width: 150px;"></select><br/>
-    <button id="french-area-widget-button-2" class="button">Ajouter</button>
-  </label><br/>
+    <div class="form-row">
+      <label><p>Ajouter un département, une région ou un arrondissement à la sélection&nbsp;:</p>
+        <select id="french-area-widget-select-1">
+          <option></option>
+        </select><br/>
+        <button id="french-area-widget-button-1" class="button">Ajouter</button>
+      </label>
+      <div class="help">Mais en vrai vous ne devriez pas en avoir besoin, utilisez le filtre par code postal.</div>
+    </div>
+    <div class="form-row">
+      <label style="width: auto;"><p>Ajouter une commune à la sélection&nbsp;:</p>
+        <select id="french-area-widget-select-2" style="width: 150px;"></select><br/>
+        <button id="french-area-widget-button-2" class="button">Ajouter</button>
+      </label><br/>
+    </div>
 </div>
-
 <script>
 (function($) {
     var geojson_format = new OpenLayers.Format.GeoJSON({
@@ -47,12 +56,33 @@
     var $select2 = $("#french-area-widget-select-2");
     var $button2 = $("#french-area-widget-button-2");
 
+    const $selectCirco = $("#french-circo-area-widget-select-1")
+    const $buttonCirco = $("#french-circo-area-widget-button-1")
+
+    $.when(
+      $.getJSON("{% static "lib/circonscriptions-legislatives-p20.geojson" %}")
+    ).then((circos) => {
+      const features = circos.features;
+
+      features.forEach((feat, index) => {
+        $selectCirco.append($("<option></option>").attr("value", index).text(`${feat.properties.nomDepartement} ${feat.properties.nomCirconscription}`))
+      })
+
+      $selectCirco.select2()
+      $buttonCirco.click((e) => {
+        e.preventDefault();
+        const feature = geojson_format.read(features[$selectCirco.val()], "Feature");
+        $selectCirco.val(null).trigger("change");
+        addToField(feature)
+      })
+    })
+
     $.when(
       $.getJSON("{% static "lib/regions-100m.geojson" %}"),
       $.getJSON("{% static "lib/departements-100m.geojson" %}"),
       $.getJSON("{% static "lib/arrondissements_paris.geojson" %}"),
       $.getJSON("{% static "lib/arrondissements_marseille.geojson" %}"),
-      $.getJSON("{% static "lib/arrondissements_lyon.geojson" %}")
+      $.getJSON("{% static "lib/arrondissements_lyon.geojson" %}"),
     ).then(function(dataRegions, dataDepartements, arrondissementsParis, arrondissementsMarseille, arrondissementsLyon) {
       const features = dataRegions[0].features
         .concat(dataDepartements[0].features)
