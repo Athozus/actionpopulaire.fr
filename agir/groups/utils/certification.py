@@ -91,7 +91,7 @@ activity_abroad AS (
 gender AS (
   SELECT 
     gm.supportgroup_id, 
-    SELECT MAX(pp.gender) = 'M' AND COUNT(DISTINCT pp.gender) = 1 as unsatisfied
+    MAX(pp.gender) = 'M' AND COUNT(DISTINCT pp.gender) = 1 as unsatisfied
   FROM 
     groups_membership gm 
     INNER JOIN active_people_person pp ON (
@@ -149,7 +149,7 @@ criteria AS (
         WHEN COALESCE(activity_abroad.satisfied, FALSE) THEN NULL 
         ELSE COALESCE(activity.satisfied, FALSE) 
         END cc_activity, 
-      1 - COALESCE(gender.unsatisfied, TRUE) AS cc_gender, 
+      NOT COALESCE(gender.unsatisfied, TRUE) AS cc_gender, 
       COALESCE(exclusivity.satisfied, TRUE) AS cc_exclusivity
     FROM 
       groups_supportgroup g 
