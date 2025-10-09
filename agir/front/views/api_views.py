@@ -60,6 +60,7 @@ class SearchSupportGroupsAndEventsAPIView(ListAPIView):
         result_limit=20,
         group_type=None,
         sort=None,
+        uncertified=None,
         inactive=None,
         commune=None,
         country=None,
@@ -74,12 +75,10 @@ class SearchSupportGroupsAndEventsAPIView(ListAPIView):
             groups = groups.filter(location_country=country)
 
         if group_type:
-            if group_type == self.GROUP_FILTER_CERTIFIED:
-                groups = groups.certified()
-            elif group_type == self.GROUP_FILTER_NOT_CERTIFIED:
-                groups = groups.uncertified()
-            else:
-                groups = groups.filter(type=group_type)
+            groups = groups.filter(type=group_type)
+
+        if uncertified != "1":
+            groups = groups.certified()
 
         if inactive != "1":
             groups = groups.filter(is_active_group_filter())
@@ -174,6 +173,7 @@ class SearchSupportGroupsAndEventsAPIView(ListAPIView):
             group_filters = {
                 "group_type": request.GET.get("filters[groupType]"),
                 "sort": request.GET.get("filters[groupSort]"),
+                "uncertified": request.GET.get("filters[groupUncertified]"),
                 "inactive": request.GET.get("filters[groupInactive]"),
             }
             results[self.RESULT_TYPE_GROUPS] = self.get_groups(

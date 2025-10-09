@@ -237,25 +237,28 @@ export const GroupFilters = ({ filters, setFilter }) => {
         onChange={(value) => setFilter("groupType", value)}
         options={OPTIONS.GroupType}
       />
-      <div
-        css={`
-          display: flex;
-          align-items: flex-end;
-          padding: 10px 0;
-        `}
-      >
-        <CheckboxField
-          label="Uniquement les groupes les plus actifs"
-          name="groupInactive"
-          value={!filters?.groupInactive}
-          onChange={({ target }) =>
-            setFilter(
-              "groupInactive",
-              target.checked ? undefined : { value: "1" },
-            )
-          }
-        />
-      </div>
+      <CheckboxField
+        label="Groupes certifiés uniquement"
+        name="groupUncertified"
+        value={!filters?.groupUncertified}
+        onChange={({ target }) =>
+          setFilter(
+            "groupUncertified",
+            target.checked ? undefined : { value: "1" },
+          )
+        }
+      />
+      <CheckboxField
+        label="Groupes actifs uniquement"
+        name="groupInactive"
+        value={!filters?.groupInactive}
+        onChange={({ target }) =>
+          setFilter(
+            "groupInactive",
+            target.checked ? undefined : { value: "1" },
+          )
+        }
+      />
     </>
   );
 };
