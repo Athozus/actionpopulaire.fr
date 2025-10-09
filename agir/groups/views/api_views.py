@@ -254,14 +254,33 @@ class UserGroupsView(ListAPIView):
             ),
         )
 
-        membership_qs = Membership.objects.select_related("person__role")
+        if user_person:
+            qs = qs.prefetch_related(
+                Prefetch(
+                    "memberships",
+                    queryset=user_person.memberships.active(),
+                    to_attr="_pf_person_membership",
+                ),
+                Prefetch(
+                    "memberships",
+                    queryset=Membership.objects.active().select_related(
+                        "person", "person__role"
+                    ),
+                    to_attr="_pf_all_memberships",
+                ),
+            )
+        else:
+            qs = qs.prefetch_related(
+                Prefetch(
+                    "memberships",
+                    queryset=Membership.objects.active().select_related(
+                        "person", "person__role"
+                    ),
+                    to_attr="_pf_all_memberships",
+                ),
+            )
 
         qs = qs.prefetch_related(
-            Prefetch(
-                "memberships",
-                queryset=membership_qs,
-                to_attr="_pf_person_membership",
-            ),
             Prefetch("subtypes", to_attr="_pf_subtypes"),
             Prefetch(
                 "tags",

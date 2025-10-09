@@ -475,8 +475,8 @@ class SupportGroup(
 
     @property
     def members_count(self):
-        if hasattr(self, "_pf_person_membership"):
-            return sum(1 for m in self._pf_person_membership if m.is_active_member)
+        if hasattr(self, "_pf_all_memberships"):
+            return sum(1 for m in self._pf_all_memberships if m.is_active_member)
         return self.memberships.active().count()
 
     @property
