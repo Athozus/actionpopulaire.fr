@@ -62,8 +62,6 @@ export const GroupSort = [
 ];
 export const GroupType = [
   { label: "Tous les groupes", value: null },
-  { label: "Certifiés", value: "CERTIFIED" },
-  { label: "Non certifiés", value: "NOT_CERTIFIED" },
   { label: "Groupe local", value: "L" },
   { label: "Groupe thématique", value: "B" },
   { label: "Groupe fonctionnel", value: "F" },
