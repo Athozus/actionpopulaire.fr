@@ -166,16 +166,6 @@ const RightLinks = (props) => {
             <span>Groupes</span>
           </IconLink>
           <CounterIconLink
-            route="activities"
-            $active={routeConfig.activities.match(path)}
-          >
-            <i>
-              <FeatherIcon name="bell" />
-              <CounterBadge value={unreadActivityCount} />
-            </i>
-            <span>Notifications</span>
-          </CounterIconLink>
-          <CounterIconLink
             route="messages"
             $active={routeConfig.messages.match(path)}
           >
@@ -184,6 +174,16 @@ const RightLinks = (props) => {
               <CounterBadge value={unreadMessageCount} />
             </i>
             <span>Messages</span>
+          </CounterIconLink>
+          <CounterIconLink
+            route="activities"
+            $active={routeConfig.activities.match(path)}
+          >
+            <i>
+              <FeatherIcon name="bell" />
+              <CounterBadge value={unreadActivityCount} />
+            </i>
+            <span>Notifications</span>
           </CounterIconLink>
           <IconLink as="button" onClick={openUserMenu} ref={userMenuLink}>
             <Avatar
