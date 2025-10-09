@@ -235,6 +235,7 @@ class UserGroupsView(ListAPIView):
         promo_tag_label = settings.PROMO_CODE_TAG
 
         qs = SupportGroup.objects.active()
+
         if user_person:
             qs = qs.filter(memberships__person=user_person).distinct()
 
@@ -253,16 +254,14 @@ class UserGroupsView(ListAPIView):
             ),
         )
 
-        if user_person:
-            qs = qs.prefetch_related(
-                Prefetch(
-                    "memberships",
-                    queryset=user_person.memberships.active(),
-                    to_attr="_pf_person_membership",
-                ),
-            )
+        membership_qs = Membership.objects.select_related("person__role")
 
         qs = qs.prefetch_related(
+            Prefetch(
+                "memberships",
+                queryset=membership_qs,
+                to_attr="_pf_person_membership",
+            ),
             Prefetch("subtypes", to_attr="_pf_subtypes"),
             Prefetch(
                 "tags",
