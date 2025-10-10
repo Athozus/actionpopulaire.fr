@@ -1190,13 +1190,8 @@ class FichierOrdreVirementAdmin(admin.ModelAdmin):
             context = {
                 **self.admin_site.each_context(request),
                 "title": "Importation fichier de virements",
-                "subtitle": None,
                 "adminform": admin_form,
-                "object_id": None,
-                "original": None,
                 "is_popup": False,
-                "to_field": None,
-                "media": None,
                 "inline_admin_formsets": (),
                 "errors": helpers.AdminErrorList(form, ()),
                 "preserved_filters": self.get_preserved_filters(request),

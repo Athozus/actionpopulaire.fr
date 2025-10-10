@@ -120,7 +120,9 @@ class FichierOrdreDeVirement(TimeStampedModel):
         self.montant_total = df["MONTANT"].sum() * 100
         self.nombre_transaction = df["MONTANT"].count()
         iban_from_excel = self.get_iban_debiteur_from_excel(df)
+
         virements = extract_virements(df)
+
         emetteur_iban = self.compte_emetteur.emetteur_iban
         if (emetteur_iban is None or emetteur_iban is "") and iban_from_excel is None:
             raise ValidationError("L'emetteur n'a pas de IBAN, merci d'en ajouter un.")
