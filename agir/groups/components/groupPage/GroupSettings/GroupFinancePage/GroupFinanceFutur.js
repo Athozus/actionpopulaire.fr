@@ -50,7 +50,11 @@ function GroupFinanceFutur({ groupPk }) {
           style={{
             borderRadius: "10px",
           }}
-          name={`${amountFutursOperation} opérations à venir`}
+          name={
+            amountFutursOperation
+              ? `${amountFutursOperation} opérations à venir`
+              : "Aucune opération à venir"
+          }
         >
           <GroupFinanceFuturContent>
             <p>
@@ -58,7 +62,9 @@ function GroupFinanceFutur({ groupPk }) {
               fonction des dons mensuels et des précédentes cotisations, c'est
               une estimation.
             </p>
-            {FUTURS_OPERATIONS.map((operation) => (
+            {FUTURS_OPERATIONS.filter(
+              (operation) => operations?.[operation.key] > 0,
+            ).map((operation) => (
               <OperationRow
                 key={operation.key}
                 operation={{
