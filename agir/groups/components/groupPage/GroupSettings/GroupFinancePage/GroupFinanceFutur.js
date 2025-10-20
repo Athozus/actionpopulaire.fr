@@ -35,7 +35,7 @@ function GroupFinanceFutur({ groupPk }) {
   const { data: operations } = useGroupFinanceFutur(groupPk);
   const { data: spendingRequests } = useGroupSpendingRequests(
     groupPk,
-    "G,R,I,T",
+    "G,R,I",
   );
 
   const amountFutursOperation =
