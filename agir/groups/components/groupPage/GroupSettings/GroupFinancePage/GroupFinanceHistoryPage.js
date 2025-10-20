@@ -23,12 +23,13 @@ import startOfWeek from "date-fns/startOfWeek";
 import endOfWeek from "date-fns/endOfWeek";
 import startOfMonth from "date-fns/startOfMonth";
 import DateRangePicker from "@agir/front/formComponents/DateRangePicker";
+import { isValid } from "date-fns";
 
 const RowFilter = styled.div`
   display: flex;
   gap: 15px;
   justify-content: space-between;
-    
+
   @media (max-width: ${(props) => props.theme.collapse}px) {
     flex-direction: column-reverse;
   }
@@ -124,13 +125,17 @@ function GroupFinanceHistoryPage({ groupPk }) {
                 style={{ flexGrow: 1 }}
                 ranges={predefinedBottomRanges}
                 placeholder="Filtrer par date"
-                onChange={(values) =>
-                  values
+                onChange={(values) => {
+                  if (!isValid(values[0]) || !isValid(values[1])) {
+                    return;
+                  }
+
+                  return values
                     ? setSelectedDateRange(
                         values.map((date) => date.toISOString()),
                       )
-                    : setSelectedDateRange([])
-                }
+                    : setSelectedDateRange([]);
+                }}
               />
               <SelectField
                 style={{ flexGrow: 1 }}

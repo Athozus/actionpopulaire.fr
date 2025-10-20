@@ -183,6 +183,7 @@ function CustomDateRangePicker(props) {
           onClose={() => setIsOpen(false)}
           caretAs={() => <i className="fa-regular fa-calendar" />}
           showOneCalendar={!isWide}
+          editable={isWide}
           {...props}
         />
       </StyledDateRangePicker>
