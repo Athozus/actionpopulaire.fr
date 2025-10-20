@@ -74,6 +74,10 @@ const OperationInformation = styled.div`
     gap: 6px;
     align-items: center;
 
+    span:last-child {
+      height: 100%;
+    }
+
     @media (max-width: ${(props) => props.theme.collapse}px) {
       align-items: start;
       flex-direction: column;
