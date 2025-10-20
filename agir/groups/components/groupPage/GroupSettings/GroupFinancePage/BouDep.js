@@ -14,7 +14,9 @@ import { StyledTitle } from "@agir/front/genericComponents/ObjectManagement/styl
 import { getGroupEndpoint } from "@agir/groups/utils/api";
 import { useGroup } from "@agir/groups/groupPage/hooks/group";
 import Link from "@agir/front/app/Link";
-import {formatCurrencyAmount} from "@agir/front/currency/utils.currency";
+import { formatCurrencyAmount } from "@agir/front/currency/utils.currency";
+import { Row } from "@agir/front/genericComponents/grid";
+import { Box } from "./Group";
 
 const DonationSkeleton = styled.p`
   height: 2.25rem;
@@ -38,14 +40,26 @@ const BouDepFinancePage = (props) => {
   return (
     <>
       <HeaderPanel onBack={onBack} illustration={illustration} />
-      <StyledTitle style={{ fontSize: "1.25rem" }}>
-        Montant alloué à la boucle
-      </StyledTitle>
+      <Box>
+        <StyledTitle style={{ fontSize: "1.25rem" }}>
+          Montant alloué à la boucle
+        </StyledTitle>
+        <Row gutter={0} justify="space-between">
+          <p style={{ fontWeight: "500", fontSize: "2.2rem", margin: 0 }}>
+            {data && formatCurrencyAmount(data.allocation)}
+          </p>
+          <Button
+            link
+            route="groupFinanceHistory"
+            routeParams={{ groupPk: groupPk ?? "" }}
+            icon="arrow-right"
+          >
+            Voir le détail du budget
+          </Button>
+        </Row>
+      </Box>
+      <Spacer size="1rem" />
       <PageFadeIn ready={!!data} wait={<DonationSkeleton />}>
-        <p style={{ fontSize: "2rem", margin: 0 }}>
-          {data && formatCurrencyAmount(data.allocation)}
-        </p>
-        <Spacer size=".5rem" />
         {data && data.allocation === 0 && (
           <p
             css={`

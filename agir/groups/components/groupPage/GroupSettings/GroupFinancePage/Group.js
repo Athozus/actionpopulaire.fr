@@ -9,12 +9,12 @@ import ShareLink from "@agir/front/genericComponents/ShareLink";
 import Spacer from "@agir/front/genericComponents/Spacer";
 import HeaderPanel from "@agir/front/genericComponents/ObjectManagement/HeaderPanel";
 import SpendingRequests from "../SpendingRequests";
-import {Row} from "@agir/front/genericComponents/grid";
+import { Row } from "@agir/front/genericComponents/grid";
 import { StyledTitle } from "@agir/front/genericComponents/ObjectManagement/styledComponents";
 
 import { getGroupEndpoint } from "@agir/groups/utils/api";
 import { useGroup } from "@agir/groups/groupPage/hooks/group.js";
-import {formatCurrencyAmount} from "@agir/front/currency/utils.currency";
+import { formatCurrencyAmount } from "@agir/front/currency/utils.currency";
 
 const DonationSkeleton = styled.p`
   height: 36px;
@@ -30,10 +30,12 @@ const StyledButtons = styled.p`
 `;
 
 export const Box = styled.div`
-    box-shadow: 0 0 1px 0 ${(props) => props.theme.background200}, 0px 1px 1px 0px ${(props) => props.theme.background200};
-    border-radius: ${(props) => props.theme.borderRadius};
-    padding: 0.8rem;
-`
+  box-shadow:
+    0 0 1px 0 ${(props) => props.theme.background200},
+    0px 1px 1px 0px ${(props) => props.theme.background200};
+  border-radius: ${(props) => props.theme.borderRadius};
+  padding: 0.8rem;
+`;
 
 const GroupFinancePage = (props) => {
   const { onBack, illustration, groupPk } = props;
@@ -47,13 +49,13 @@ const GroupFinancePage = (props) => {
 
       <PageFadeIn ready={!!data} wait={<DonationSkeleton />}>
         <Box>
-            <StyledTitle style={{ fontSize: "1.25rem" }}>
-                Budget alloué à mon groupe
-            </StyledTitle>
-            <Row gutter={0} justify="space-between">
-                <p style={{ fontWeight: "500", fontSize: "2.2rem", margin: 0 }}>
-                {data && formatCurrencyAmount(data.allocation)}
-                </p>
+          <StyledTitle style={{ fontSize: "1.25rem" }}>
+            Budget alloué à mon groupe
+          </StyledTitle>
+          <Row gutter={0} justify="space-between">
+            <p style={{ fontWeight: "500", fontSize: "2.2rem", margin: 0 }}>
+              {data && formatCurrencyAmount(data.allocation)}
+            </p>
             <Button
               link
               route="groupFinanceHistory"
@@ -62,7 +64,7 @@ const GroupFinancePage = (props) => {
             >
               Voir le détail du budget
             </Button>
-            </Row>
+          </Row>
         </Box>
         <Spacer size=".5rem" />
         {data && data.allocation === 0 && (
