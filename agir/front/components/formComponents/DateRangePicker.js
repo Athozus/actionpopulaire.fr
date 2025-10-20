@@ -52,7 +52,7 @@ const RsPickerPopupStyle = createGlobalStyle`
       css`
         .rs-picker-popup {
           left: 0 !important;
-          bottom: 0;
+          bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0));
           top: initial !important;
           width: 100%;
           position: sticky !important;
