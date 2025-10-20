@@ -1,7 +1,6 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Box } from "@agir/groups/groupPage/GroupSettings/GroupFinancePage/Group";
 import CategoryIcon from "@agir/donations/spendingRequest/common/CategoryIcon";
-import { Column } from "@agir/front/genericComponents/grid";
 import PropTypes from "prop-types";
 import React from "react";
 import { CATEGORY_OPTIONS_WITH_DONS } from "./GroupFinanceHistoryPage";
@@ -109,13 +108,17 @@ function OperationRow({ operation }) {
         <OperationInformation>
           <LeftColumn>
             <CategoryIcon
-              category={CATEGORY_OPTIONS_WITH_DONS[operation.category]}
+              category={
+                CATEGORY_OPTIONS_WITH_DONS[operation.category ?? "QUESTION"]
+              }
               size="1.5rem"
             />
           </LeftColumn>
           <CenterColumn>
             <span>
-              <TitleRow>{operation.title}</TitleRow>
+              <TitleRow>
+                {operation.title === "Operation" ? "Autre" : operation.title}
+              </TitleRow>
               <DateRow>
                 {(operation.spendingDate || operation.datetime) &&
                   new Date(

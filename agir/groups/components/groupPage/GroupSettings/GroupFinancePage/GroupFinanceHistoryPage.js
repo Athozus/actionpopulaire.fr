@@ -71,6 +71,11 @@ export const CATEGORY_OPTIONS_WITH_DONS = {
     value: "COTISATIONS",
     icon: "fa:money-bill-1-wave",
   },
+  QUESTION: {
+    label: "Question",
+    value: "QUESTION",
+    icon: "fa:question",
+  },
 };
 
 const StyledFinanceHistory = styled.div`
@@ -81,7 +86,10 @@ const StyledFinanceHistory = styled.div`
 `;
 
 const ALL_CATEGORY = { label: "Toutes catégories", value: "" };
-const DEFAULT_SORT = { label: "Date décroissante ↓", value: "-datetime" };
+const DEFAULT_SORT = {
+  label: "Du plus récent au plus ancien ↓",
+  value: "-datetime",
+};
 
 function GroupFinanceHistoryPage({ groupPk }) {
   const [selectedCategory, setSelectedCategory] = useState(ALL_CATEGORY);
@@ -178,7 +186,10 @@ function GroupFinanceHistoryPage({ groupPk }) {
                 value={sort}
                 onChange={setSort}
                 options={[
-                  { label: "Date croissante ↑", value: "datetime" },
+                  {
+                    label: "Du plus ancien au plus récent ↑",
+                    value: "datetime",
+                  },
                   DEFAULT_SORT,
                   { label: "Montant croissant ↑", value: "amount" },
                   { label: "Montant décroissant ↓️", value: "-amount" },
