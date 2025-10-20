@@ -1,6 +1,7 @@
 from django.utils.html import format_html
 
 from . import views
+from .filters import SupportGroupSearchFilter
 from .. import models
 from django.contrib import admin
 
@@ -61,7 +62,7 @@ class MembershipRemoveRequestAdmin(admin.ModelAdmin):
 
     date_hierarchy = "created"
 
-    list_filter = ("created",)
+    list_filter = ("created", SupportGroupSearchFilter, "status", "reason_type")
 
     @admin.display(description="Status", ordering="status")
     def status_colored(self, obj):
@@ -118,3 +119,6 @@ class MembershipRemoveRequestAdmin(admin.ModelAdmin):
 
     def delete_member(self, request, pk, group_id, member_id):
         return views.delete_member_from_group(self, request, pk, group_id, member_id)
+
+    class Media:
+        pass

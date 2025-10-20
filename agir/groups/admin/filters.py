@@ -10,6 +10,7 @@ from django.utils.translation import gettext_lazy as _
 from agir.events.models import Event
 from .. import models
 from ..models import Membership
+from ...lib.admin.autocomplete_filter import AutocompleteRelatedModelFilter
 from ...lib.time import dehumanize_naturaltime
 
 
@@ -170,3 +171,18 @@ class LastManagerLoginFilter(admin.SimpleListFilter):
         )
 
         return qs
+
+
+class SupportGroupSearchFilter(AutocompleteRelatedModelFilter):
+    title = "Groupe d'action"
+    parameter_name = "supportgroup"
+    field_name = "supportgroup"
+
+    def lookups(self, request, model_admin):
+        return []
+
+    def queryset(self, request, queryset):
+        value = request.GET.get(self.parameter_name)
+        if value:
+            return queryset.filter(supportgroup__name__icontains=value)
+        return queryset
