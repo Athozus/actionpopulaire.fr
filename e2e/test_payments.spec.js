@@ -14,7 +14,7 @@ test("test don 10€ cb anonyme", async ({ page }) => {
   await page.getByText('25, Passage Dubail, Quartier').click();
   await page.getByRole('textbox', { name: 'Commune*' }).click();
   await page.getByRole('textbox', { name: 'Commune*' }).fill('Paris');
-  await page.locator('.sc-dtImxT.gZwKgz > .css-b62m3t-container > .select__control > .select__value-container > .select__input-container').click();
+  await page.locator('.sc-dtImxT.fZYwuO > .css-b62m3t-container > .select__control > .select__value-container > .select__input-container').click();
   await page.getByRole('combobox', { name: '120 results available.Use Up' }).fill('75');
   await page.getByRole('option', { name: '— Paris' }).click();
   await page
@@ -54,7 +54,7 @@ test("test don mensuel anonyme", async ({ page }) => {
   await page.getByText('25, Passage Dubail, Quartier').click();
   await page.getByRole('textbox', { name: 'Commune*' }).click();
   await page.getByRole('textbox', { name: 'Commune*' }).fill('Paris');
-  await page.locator('.sc-dtImxT.gZwKgz > .css-b62m3t-container > .select__control > .select__value-container > .select__input-container').click();
+  await page.locator('.sc-dtImxT.fZYwuO > .css-b62m3t-container > .select__control > .select__value-container > .select__input-container').click();
   await page.getByRole('combobox', { name: '120 results available.Use Up' }).fill('75');
   await page.getByRole('option', { name: '— Paris' }).click();
   await page
@@ -98,7 +98,7 @@ test("test si l'ordre du cheque est bien affiché lors qu'on est pas connecté",
   await page.getByText('25, Passage Dubail, Quartier').click();
   await page.getByRole('textbox', { name: 'Commune*' }).click();
   await page.getByRole('textbox', { name: 'Commune*' }).fill('Paris');
-  await page.locator('.sc-dtImxT.gZwKgz > .css-b62m3t-container > .select__control > .select__value-container > .select__input-container').click();
+  await page.locator('.sc-dtImxT.fZYwuO > .css-b62m3t-container > .select__control > .select__value-container > .select__input-container').click();
   await page.getByRole('combobox', { name: '120 results available.Use Up' }).fill('75');
   await page.getByRole('option', { name: '— Paris' }).click();
   await page
