@@ -52,7 +52,7 @@ export const useGroupSpendingRequests = (groupPk, status) => {
     appendQueryParams(
       `${API_GROUP_PREFIX}:groupPk/spendingrequests`,
       { groupPk },
-      { status },
+      { status_in: status },
     ),
   );
 };
