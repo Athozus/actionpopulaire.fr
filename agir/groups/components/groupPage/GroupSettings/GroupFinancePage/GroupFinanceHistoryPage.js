@@ -71,10 +71,10 @@ export const CATEGORY_OPTIONS_WITH_DONS = {
     value: "COTISATIONS",
     icon: "fa:money-bill-1-wave",
   },
-  QUESTION: {
-    label: "Question",
-    value: "QUESTION",
-    icon: "fa:question",
+  ELLIPSIS: {
+    label: "Ellipsis",
+    value: "ELLIPSIS",
+    icon: "fa:ellipsis",
   },
 };
 

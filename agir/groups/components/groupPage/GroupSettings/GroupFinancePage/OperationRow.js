@@ -109,7 +109,7 @@ function OperationRow({ operation }) {
           <LeftColumn>
             <CategoryIcon
               category={
-                CATEGORY_OPTIONS_WITH_DONS[operation.category ?? "QUESTION"]
+                CATEGORY_OPTIONS_WITH_DONS[operation.category ?? "ELLIPSIS"]
               }
               size="1.5rem"
             />
