@@ -21,6 +21,11 @@ const GlobalStyle = createGlobalStyle`
   :root {
     --safe-area-max-inset-bottom: env(safe-area-max-inset-bottom, 40px);
     --bottom-bar-height: 72px;
+    --top-bar-height: 72px;
+
+      @media (max-width: ${(props) => props.theme.collapse}px) {
+          --top-bar-height: 54px;
+      }
 
       --rs-primary-100: ${(props) => props.theme.primary500};
       --rs-primary-500: ${(props) => props.theme.primary500};

@@ -14,12 +14,8 @@ const DesktopNavBar = lazy(() => import("./DesktopNavBar/DesktopNavBar"));
 const StyledNav = styled.div`
   position: relative;
   width: 100%;
-  height: var(--bottom-bar-height);
+  height: var(--top-bar-height);
   box-shadow: ${(props) => props.theme.elaborateShadow};
-
-  @media (max-width: ${(props) => props.theme.collapse}px) {
-    height: 54px;
-  }
 
   & > * {
     margin: 0 auto;
