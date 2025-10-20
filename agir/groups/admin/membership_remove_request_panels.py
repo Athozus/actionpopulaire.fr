@@ -26,6 +26,7 @@ class MembershipRemoveRequestAdmin(admin.ModelAdmin):
         "resolved_date",
         "status_colored",
         "created_by",
+        "person",
         "group_link",
     ]
     fieldsets = (
@@ -55,6 +56,12 @@ class MembershipRemoveRequestAdmin(admin.ModelAdmin):
         "resolved_date",
         "request_actions",
     )
+
+    search_fields = ("created_by__search", "person__search", "supportgroup__name")
+
+    date_hierarchy = "created"
+
+    list_filter = ("created",)
 
     @admin.display(description="Status", ordering="status")
     def status_colored(self, obj):
