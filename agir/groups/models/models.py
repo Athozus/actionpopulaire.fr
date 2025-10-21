@@ -14,6 +14,7 @@ from django.db.models.functions import Coalesce
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
+from django.utils.html import format_html
 from django_prometheus.models import ExportModelOperationsMixin
 
 from agir.activity.models import Activity
@@ -748,10 +749,14 @@ class Membership(ExportModelOperationsMixin("membership"), TimeStampedModel):
         ]
 
     def __str__(self):
-        return _("{person} --> {supportgroup},  ({type})").format(
-            person=self.person,
-            supportgroup=self.supportgroup,
-            type=self.get_membership_type_display(),
+        created_str = timezone.localtime(self.created).strftime("%d/%m/%Y à %H:%M")
+        return format_html(
+            "<div style='line-height:1.4em;'>"
+            "  <div style='font-weight:500'>{}</div>"
+            "  <div style='color:#777;font-size:0.9em;'>a rejoint le {}</div>"
+            "</div>",
+            self.person,
+            created_str,
         )
 
     @property

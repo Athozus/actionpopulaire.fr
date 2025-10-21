@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.utils.html import escape
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext as _
+from django.utils import timezone
 
 from .. import models
 from ...lib.admin.utils import display_link, admin_url
@@ -78,11 +79,14 @@ class MembershipInline(admin.TabularInline):
 
     @admin.display(description="Personne")
     def person_link(self, obj):
+        created_str = timezone.localtime(obj.created).strftime("%d/%m/%Y à %H:%M")
         return mark_safe(
             '<a href="%s">%s</a>'
+            "<div>a rejoint le %s</div>"
             % (
                 reverse("admin:people_person_change", args=(obj.person.id,)),
                 escape(obj.person),
+                escape(created_str),
             )
         )
 
