@@ -460,10 +460,10 @@ def delete_membership_htmx(request, group_id, membership_id):
         raise PermissionDenied
 
     group = get_object_or_404(SupportGroup, pk=group_id)
-    if not model_admin.has_delete_permission(request, obj=group):
+    membership = get_object_or_404(Membership, pk=membership_id, supportgroup=group)
+    if not model_admin.has_delete_permission(request, obj=membership):
         raise PermissionDenied
 
-    membership = get_object_or_404(Membership, pk=membership_id, supportgroup=group)
     membership.delete()
     return HttpResponse("")
 
