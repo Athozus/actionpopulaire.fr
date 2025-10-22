@@ -240,6 +240,7 @@ export const GroupFilters = ({ filters, setFilter }) => {
       <CheckboxField
         label="Groupes certifiés uniquement"
         name="groupUncertified"
+        toggle
         value={!filters?.groupUncertified}
         onChange={({ target }) =>
           setFilter(
@@ -251,6 +252,7 @@ export const GroupFilters = ({ filters, setFilter }) => {
       <CheckboxField
         label="Groupes actifs uniquement"
         name="groupInactive"
+        toggle
         value={!filters?.groupInactive}
         onChange={({ target }) =>
           setFilter(
