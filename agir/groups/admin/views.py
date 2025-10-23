@@ -455,14 +455,11 @@ def group_members_partial_view(request, pk):
 @require_POST
 @csrf_protect
 def delete_membership_htmx(request, group_id, membership_id):
-    model_admin = site._registry.get(SupportGroup)
-    if model_admin is None:
+    if not request.user.has_perm("groups.delete_membership"):
         raise PermissionDenied
 
     group = get_object_or_404(SupportGroup, pk=group_id)
     membership = get_object_or_404(Membership, pk=membership_id, supportgroup=group)
-    if not model_admin.has_delete_permission(request, obj=membership):
-        raise PermissionDenied
 
     membership.delete()
     return HttpResponse("")
