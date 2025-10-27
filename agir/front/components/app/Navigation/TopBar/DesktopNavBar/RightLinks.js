@@ -171,7 +171,7 @@ const RightLinks = (props) => {
           >
             <i>
               <i
-                style={{ fontSize: "1.9em" }}
+                style={{ fontSize: "2em", fontWeight: 350 }}
                 className="fa-regular fa-comments"
               ></i>
               <CounterBadge value={unreadMessageCount} />

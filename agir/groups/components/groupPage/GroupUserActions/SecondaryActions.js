@@ -21,6 +21,9 @@ const StyledContainer = styled.div`
   button,
   ${StyledLink} {
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
     flex: 0 1 auto;
     min-width: 1px;
     padding: 0.75rem;
@@ -33,6 +36,10 @@ const StyledContainer = styled.div`
 
     &:hover,
     &:focus {
+      color: ${(props) => props.theme.linkHoverColor};
+    }
+
+    & > span:hover {
       text-decoration: underline;
     }
 
@@ -65,12 +72,15 @@ const SecondaryActions = ({
           id={id}
           contact={contact}
           isMessagingEnabled={isMessagingEnabled}
-          autoOpen
+          autoOpefeather-uploan
         />
       )}
       {isCertified && (
         <StyledLink route="contributions" params={{ group: id }}>
-          <RawFeatherIcon name="upload" width="1.5rem" height="1.5rem" />
+          <i
+            className="fa-regular fa-circle-euro"
+            style={{ fontSize: "1.8em", fontWeight: 400 }}
+          />
           <span>Financer</span>
         </StyledLink>
       )}

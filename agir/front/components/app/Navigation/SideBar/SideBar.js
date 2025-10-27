@@ -46,6 +46,14 @@ const MenuLink = styled(Link)`
     margin-right: 0;
     margin-left: 0.5rem;
   }
+
+  i {
+    margin-right: 1rem;
+    font-size: 1.3em;
+
+    color: ${({ $active, theme }) =>
+      $active ? theme.primary500 : theme.text500};
+  }
 `;
 
 const LINKS = CONFIG.menuLinks.filter(({ desktop }) => !!desktop);
