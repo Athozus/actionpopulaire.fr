@@ -63,6 +63,7 @@ const MAPPING_COMMON_PARAMS_TO_FORM_BUILDER = {
   allowed_extensions: "allowed_extensions",
   group_type: "group_type",
   multiple: "multiple",
+  event_theme_type: "event_theme_type",
 };
 
 const MAPPING_COMMON_PARAMS_TO_CRISPY = Object.keys(
@@ -117,6 +118,7 @@ const MAPPING_TYPE_TO_FORM_BUILDER = {
   commune: "commune",
   region: "region",
   datetimes: "datetimes",
+  event_theme: "event_theme",
   departements_circonscriptions_afe: "departements_circonscriptions_afe",
 };
 

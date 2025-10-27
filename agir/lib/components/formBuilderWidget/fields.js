@@ -121,6 +121,11 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
     type: "datetimes",
     icon: "🗓️",
   },
+  {
+    label: "Thème d'événement",
+    type: "event_theme",
+    icon: "🧮",
+  },
 ];
 
 export function defaultToCrispy(fbField, crispyField) {
@@ -205,6 +210,12 @@ export const TYPE_USER_ATTRS = {
     min: {
       label: "La date de départ du calendrier",
       value: "3 weeks from now",
+    },
+  },
+  event_theme: {
+    event_theme_type: {
+      label: "Nom du type du thème d'événement",
+      value: "",
     },
   },
   group: {

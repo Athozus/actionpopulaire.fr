@@ -37,4 +37,5 @@ export const CUSTOM_FORM_BUILDER_TEMPLATES = {
   region: DEFAULT_TEMPLATE,
   departements_circonscriptions_afe: DEFAULT_TEMPLATE,
   datetimes: DEFAULT_TEMPLATE,
+  event_theme: DEFAULT_TEMPLATE,
 };
