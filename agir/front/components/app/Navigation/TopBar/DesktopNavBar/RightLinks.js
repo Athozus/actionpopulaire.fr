@@ -170,7 +170,10 @@ const RightLinks = (props) => {
             $active={routeConfig.messages.match(path)}
           >
             <i>
-              <FeatherIcon name="mail" />
+              <i
+                style={{ fontSize: "1.9em" }}
+                className="fa-regular fa-comments"
+              ></i>
               <CounterBadge value={unreadMessageCount} />
             </i>
             <span>Messages</span>

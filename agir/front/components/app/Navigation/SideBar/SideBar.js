@@ -75,7 +75,11 @@ const NavigationLink = ({
         {link.unreadActivityBadge && (
           <CounterBadge value={unreadActivityCount} />
         )}
-        <RawFeatherIcon name={link.icon} />
+        {link.icon?.includes("fa-") ? (
+          <i className={`fa-regular ${link.icon}`} />
+        ) : (
+          <RawFeatherIcon name={link.icon} />
+        )}
         <span>{link.title}</span>
         {link.external && (
           <RawFeatherIcon

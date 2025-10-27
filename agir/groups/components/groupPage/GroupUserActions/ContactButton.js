@@ -75,7 +75,7 @@ const ContactButton = (props) => {
         <Button
           small
           color="primary"
-          icon="mail"
+          icon="fa-mail"
           onClick={user ? handleMessageOpen : redirectToLogin}
         >
           Contacter
@@ -85,7 +85,10 @@ const ContactButton = (props) => {
           type="button"
           onClick={user ? handleMessageOpen : redirectToLogin}
         >
-          <RawFeatherIcon name="mail" width="1.5rem" height="1.5rem" />
+          <i
+            className="fa-regular fa-comments"
+            style={{ fontSize: "1.4rem", fontWeight: 300, height: "1.8rem" }}
+          />
           <span>Contacter</span>
         </button>
       )}

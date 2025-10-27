@@ -97,7 +97,18 @@ const BottomBar = ({ active, unreadMessageCount, unreadActivityCount }) => (
             {link.unreadActivityBadge && (
               <CounterBadge value={unreadActivityCount} />
             )}
-            <RawFeatherIcon name={link.icon} inline />
+            {link.icon?.includes("fa-") ? (
+              <i
+                className={`fa-regular ${link.icon}`}
+                style={{
+                  fontSize: "2.2em",
+                  fontWeight: 300,
+                  paddingBottom: "2px",
+                }}
+              />
+            ) : (
+              <RawFeatherIcon name={link.icon} inline />
+            )}
             <Title>{link.title}</Title>
           </MenuLink>
         </li>

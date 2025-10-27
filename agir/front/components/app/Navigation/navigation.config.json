@@ -35,7 +35,7 @@
     },
     {
       "id": "messages",
-      "icon": "mail",
+      "icon": "fa-comments",
       "title": "Messages",
       "route": "messages",
       "unreadMessageBadge": true,
