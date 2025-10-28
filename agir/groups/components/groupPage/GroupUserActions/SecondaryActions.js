@@ -34,8 +34,13 @@ const StyledContainer = styled.div`
     font-size: 0.875rem;
     font-weight: 500;
 
+    i {
+      font-size: 1.8em;
+    }
+
     &:hover,
     &:focus {
+      text-decoration: none !important;
       color: ${(props) => props.theme.linkHoverColor};
     }
 
@@ -77,10 +82,7 @@ const SecondaryActions = ({
       )}
       {isCertified && (
         <StyledLink route="contributions" params={{ group: id }}>
-          <i
-            className="fa-regular fa-circle-euro"
-            style={{ fontSize: "1.8em", fontWeight: 400 }}
-          />
+          <i className="fa-regular fa-circle-euro" />
           <span>Financer</span>
         </StyledLink>
       )}

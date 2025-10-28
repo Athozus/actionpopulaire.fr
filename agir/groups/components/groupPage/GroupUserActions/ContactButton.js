@@ -87,7 +87,7 @@ const ContactButton = (props) => {
         >
           <i
             className="fa-regular fa-comments"
-            style={{ fontSize: "1.4rem", fontWeight: 300, height: "1.8rem" }}
+            style={{ fontSize: "1.4rem", height: "1.8rem" }}
           />
           <span>Contacter</span>
         </button>
