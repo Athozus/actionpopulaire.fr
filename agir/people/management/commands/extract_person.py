@@ -43,8 +43,35 @@ def get_all_fields(m):
 
 
 class Command(BaseCommand):
+    """
+    Export detailed information about a Person as JSON.
+
+    This Django management command retrieves a Person object using its email address
+    and serializes all related information, including:
+    - personal data (name, contact info, country, etc.)
+    - roles, memberships, event participation, payments, subscriptions, images, and tags.
+
+    Data is transformed into a structured dictionary using `glom`
+    and then printed as JSON to standard output.
+
+    Usage:
+        python manage.py <command_name> <person_email>
+
+    Example:
+        python manage.py export_person jean.luc@melenchon.com
+
+    Arguments:
+        person_email : the email address of the person to export
+
+    Output:
+        A JSON structure printed to stdout containing all available information
+        about the person.
+    """
+
     def add_arguments(self, parser):
-        parser.add_argument("person_email", type=str)
+        parser.add_argument(
+            "person_email", type=str, help="the email address of the person to export"
+        )
 
     def handle(self, *args, person_email, **options):
         try:
