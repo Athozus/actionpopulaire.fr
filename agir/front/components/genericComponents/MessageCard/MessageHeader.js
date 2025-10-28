@@ -62,13 +62,22 @@ const StyledMessageHeader = styled.div`
     height: unset;
     border: none;
   }
+  div:first-child {
+    display: flex;
+    align-items: center;
+  }
+
+  i {
+    font-size: 1.5em;
+    margin-right: 0.7rem;
+  }
 `;
 
 const MessageReadonlyHeader = ({ message, subject }) => {
   return (
     <StyledMessageHeader>
       <div style={{ display: "flex" }}>
-        <RawFeatherIcon name="mail" style={{ marginRight: "1rem" }} />
+        <i className="fa-regular fa-comments" />
         <div
           style={{
             display: "flex",
@@ -92,7 +101,7 @@ MessageReadonlyHeader.propTypes = {
 
 const MessageHeader = (props) => {
   const { message, subject, isAuthor, readOnly } = props;
-  const {isManager} = message.group
+  const { isManager } = message.group;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -107,7 +116,7 @@ const MessageHeader = (props) => {
   return (
     <StyledMessageHeader>
       <div style={{ display: "flex" }}>
-        <RawFeatherIcon name="mail" style={{ marginRight: "1rem" }} />
+        <i className="fa-regular fa-comments" />
         <div
           style={{
             display: "flex",
