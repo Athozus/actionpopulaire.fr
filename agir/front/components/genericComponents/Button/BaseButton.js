@@ -159,7 +159,14 @@ export const BaseButton = styled.button
     white-space: inherit;
     text-overflow: inherit;
     overflow: ${({ link }) => (link ? "hidden" : "inherit")};
+
+      i {
+          margin-right: 5px;
+          min-width: 1.1em;
+      }
   }
+    
+
 `;
 
 BaseButton.propTypes = {

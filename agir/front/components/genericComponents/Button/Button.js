@@ -436,23 +436,23 @@ const LinkButton = styled(BaseButton)`
 `;
 
 const LFIButtonActiveMixin = css`
-    color: ${(props) => props.theme.text25};
-    background-color: ${(props) => props.theme.LFIprimary500};
-    fill: white;
-`
+  color: ${(props) => props.theme.text25};
+  background-color: ${(props) => props.theme.LFIprimary500};
+  fill: white;
+`;
 
 const LFIButton = styled(BaseButton)`
   font-size: inherit;
   font-weight: bold;
   padding-left: ${({ small }) => (small ? "0.5rem 0.75rem" : "0.75rem 1.5rem")};
-  padding-right: ${({ small }) => (small ? "0.5rem 0.75rem" : "0.75rem 1.5rem")};
+  padding-right: ${({ small }) =>
+    small ? "0.5rem 0.75rem" : "0.75rem 1.5rem"};
   color: ${(props) => props.theme.textColor};
   fill: ${(props) => props.theme.textColor};
   background-color: transparent;
   border-color: ${(props) => props.theme.text200};
   border-width: 1px;
   border-radius: 0;
-
 
   &[disabled],
   &[disabled]:hover,
@@ -463,25 +463,27 @@ const LFIButton = styled(BaseButton)`
   }
 
   &:hover {
-      &[disabled]:active {
-          color: ${(props) => props.theme.LFIprimary500};
-      }
-      border-color: ${(props) => props.theme.LFIprimary500};
-      fill: ${(props) => props.theme.LFIprimary500};
+    &[disabled]:active {
+      color: ${(props) => props.theme.LFIprimary500};
+    }
+    border-color: ${(props) => props.theme.LFIprimary500};
+    fill: ${(props) => props.theme.LFIprimary500};
   }
-    
+
   &:focus,
   &:active {
-      ${LFIButtonActiveMixin}
-  }
-    
-  ${({active}) => active && css`
     ${LFIButtonActiveMixin}
-  `}
+  }
+
+  ${({ active }) =>
+    active &&
+    css`
+      ${LFIButtonActiveMixin}
+    `}
 
   &:before {
     background-image: ${(props) =>
-    getIconDataUrl({ color: props.theme.primary500 })};
+      getIconDataUrl({ color: props.theme.primary500 })};
   }
 `;
 
@@ -501,8 +503,8 @@ const LFIPrimaryButton = styled(LFIButton)`
   }
 
   &:hover {
-      color: ${(props) => props.theme.LFIprimary500};
-      background-color: ${(props) => props.theme.white};
+    color: ${(props) => props.theme.LFIprimary500};
+    background-color: ${(props) => props.theme.white};
   }
 
   &:focus,
@@ -513,7 +515,7 @@ const LFIPrimaryButton = styled(LFIButton)`
 
   &:before {
     background-image: ${(props) =>
-    getIconDataUrl({ color: props.theme.primary500 })};
+      getIconDataUrl({ color: props.theme.primary500 })};
   }
 `;
 
@@ -534,7 +536,7 @@ const variants = {
   facebook: FacebookButton,
   link: LinkButton,
   lfi: LFIButton,
-  lfiPrimary: LFIPrimaryButton
+  lfiPrimary: LFIPrimaryButton,
 };
 
 const Button = styled(
@@ -543,7 +545,14 @@ const Button = styled(
     // eslint-disable-next-line react/prop-types
     const { color } = props;
     const B = color && variants[color] ? variants[color] : variants.default;
-    return <B ref={ref} {...props} />;
+    return (
+      <B ref={ref} {...props}>
+        {props.icon?.includes("fa-") && (
+          <i className={`fa-regular ${props.icon}`} />
+        )}
+        {props.children}
+      </B>
+    );
   }),
 )``;
 
