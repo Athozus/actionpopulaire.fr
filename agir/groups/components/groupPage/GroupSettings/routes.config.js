@@ -123,7 +123,7 @@ export const routeConfig = {
     path: "membres/",
     exact: true,
     label: "Membres actifs",
-    icon: "users",
+    icon: "fa-users",
     getComponent: (group) =>
       group.isEditable
         ? GroupSettingsActiveMembers
@@ -136,7 +136,7 @@ export const routeConfig = {
     path: "statistiques/",
     exact: true,
     label: "Statistiques",
-    icon: "trello",
+    icon: "fa-chart-line",
     Component: GroupSettingsStats,
     illustration: illustrationStats,
     isActive: true,
@@ -147,7 +147,7 @@ export const routeConfig = {
     path: "contacts/",
     exact: true,
     label: "Contacts",
-    icon: "rss",
+    icon: "fa-address-book",
     Component: GroupSettingsContacts,
     isActive: (group) => group.isEditable,
     menuGroup: 1,
@@ -178,7 +178,7 @@ export const routeConfig = {
     path: "materiel/",
     exact: true,
     label: "Matériel",
-    icon: "shopping-bag",
+    icon: "fa-box-taped",
     Component: GroupSettingsMateriel,
     isActive: (group) =>
       Array.isArray(group.discountCodes) && group.discountCodes.length > 0,
@@ -190,7 +190,7 @@ export const routeConfig = {
     exact: true,
     label: (group) =>
       group.isBoucleDepartementale ? "Caisse de la boucle" : "Caisse du groupe",
-    icon: "briefcase",
+    icon: "fa-pig",
     getComponent: (group) =>
       group.isBoucleDepartementale
         ? GroupSettingsFinance__BouDep
@@ -236,7 +236,7 @@ export const routeConfig = {
     path: "contact/",
     exact: true,
     label: "Moyens de contact",
-    icon: "mail",
+    icon: "fa-comment-question",
     Component: GroupSettingsContact,
     illustration: illustrationContact,
     isActive: (group) => group.isEditable,
@@ -258,7 +258,7 @@ export const routeConfig = {
     path: "ressources/",
     exact: true,
     label: "Ressources",
-    icon: "more-horizontal",
+    icon: "fa-folder-open",
     Component: GroupSettingsHelp,
     illustration: illustrationHelp,
     isActive: true,

@@ -8,6 +8,7 @@ import { RawFeatherIcon } from "@agir/front/genericComponents/FeatherIcon";
 import Spacer from "@agir/front/genericComponents/Spacer";
 
 import BackButton from "./BackButton";
+import Icon from "@agir/front/genericComponents/Icon";
 
 const StyledWarning = styled.p`
   font-size: 0.875rem;
@@ -66,7 +67,7 @@ const StyledMenuItem = styled(NavLink)`
     font-size: 0.75rem;
   }
 
-  ${RawFeatherIcon} {
+  ${RawFeatherIcon}, i {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
@@ -94,7 +95,7 @@ const StyledMenuItem = styled(NavLink)`
         $cancel ? theme.error500 : disabled ? theme.text500 : theme.primary500};
     }
 
-    ${RawFeatherIcon} {
+    ${RawFeatherIcon}, i {
       background-color: ${({ disabled, theme }) => {
         if (disabled) return theme.text100;
         return theme.primary500;
@@ -170,7 +171,7 @@ const ManagementMenuItem = (props) => {
 
   return (
     <StyledMenuItem to={getLink()} $cancel={isCancel} disabled={disabled}>
-      {icon && <RawFeatherIcon width="1rem" height="1rem" name={icon} />}
+      <Icon name={icon} />
       <div>
         <span>{label}</span>
         {disabled && (
