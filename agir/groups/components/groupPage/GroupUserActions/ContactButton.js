@@ -75,7 +75,7 @@ const ContactButton = (props) => {
         <Button
           small
           color="primary"
-          icon="fa-mail"
+          icon="fa-comments"
           onClick={user ? handleMessageOpen : redirectToLogin}
         >
           Contacter
