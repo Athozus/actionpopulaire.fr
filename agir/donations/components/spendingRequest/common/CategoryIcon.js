@@ -9,11 +9,11 @@ const CategoryIcon = ({ category, size, ...rest }) => {
     return null;
   }
 
-  return category.icon.startsWith("fa:") ? (
+  return category.icon.startsWith("fa-") ? (
     <FaIcon
       {...rest}
       title={category.name}
-      icon={category.icon.replace("fa:", "")}
+      icon={category.icon.replace("fa-", "")}
       size={size}
     />
   ) : (

@@ -63,18 +63,18 @@ export const CATEGORY_OPTIONS_WITH_DONS = {
   },
   CNS: {
     label: "Caisse nationale de solidarité",
-    icon: "fa:box-heart",
+    icon: "fa-box-heart",
     value: "CNS",
   },
   COTISATIONS: {
     label: "Cotisations d'élu·e",
     value: "COTISATIONS",
-    icon: "fa:money-bill-1-wave",
+    icon: "fa-money-bill-1-wave",
   },
   ELLIPSIS: {
     label: "Ellipsis",
     value: "ELLIPSIS",
-    icon: "fa:ellipsis",
+    icon: "fa-ellipsis",
   },
 };
 

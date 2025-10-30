@@ -8,8 +8,6 @@ import FaIcon from "@agir/front/genericComponents/FaIcon";
 import { RawFeatherIcon } from "@agir/front/genericComponents/FeatherIcon";
 import { Hide } from "@agir/front/genericComponents/grid";
 
-import vpIcon from "@agir/voting_proxies/Common/images/vp_icon.png";
-
 const StyledCardItem = styled(Link)`
   padding: 1.5rem;
   display: flex;
@@ -40,7 +38,7 @@ const StyledCardItem = styled(Link)`
     align-items: center;
     justify-content: center;
     line-height: 0;
-    font-size: 0;
+    font-size: 1.8em;
   }
 
   & > i,
@@ -91,14 +89,13 @@ export const ActionTools = () => {
     <StyledCard>
       <StyledCardItem route="donationLanding" $highlight="primary50">
         <i
+          className="fa-regular fa-circle-euro"
           aria-hidden="true"
           css={`
             background-color: #fd3d66;
             color: ${theme.background0};
           `}
-        >
-          <RawFeatherIcon name="heart" />
-        </i>
+        />
         <span>
           <strong>Soutenir financièrement la France insoumise</strong>
           <span>
@@ -162,14 +159,13 @@ export const ActionTools = () => {
       </StyledCardItem>
       <StyledCardItem route="materiel">
         <i
+          className="fa-regular fa-box-taped"
           aria-hidden="true"
           css={`
             background-color: ${theme.secondary500};
             color: ${theme.text1000};
           `}
-        >
-          <RawFeatherIcon name="shopping-bag" />
-        </i>
+        />
         <span>
           <strong>Commander du matériel</strong>
           <span>

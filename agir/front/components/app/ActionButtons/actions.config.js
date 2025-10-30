@@ -18,7 +18,7 @@ const ACTIONS = {
           key: "donations",
           route: "donationLanding",
           label: ["Don", "Faire un don"],
-          icon: "heart",
+          icon: "fa-circle-euro",
           color: "#FD3D66",
         },
   contributions: (user) =>
@@ -84,7 +84,7 @@ const ACTIONS = {
     key: "materiel",
     route: "materiel",
     label: "Matériel",
-    icon: "shopping-bag",
+    icon: "fa-box-taped",
     color: "secondary500",
     textColor: "text1000",
   },

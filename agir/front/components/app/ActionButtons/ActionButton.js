@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Link from "@agir/front/app/Link";
 import { useResponsiveMemo } from "@agir/front/genericComponents/grid";
 import { RawFeatherIcon } from "@agir/front/genericComponents/FeatherIcon";
+import Icon from "@agir/front/genericComponents/Icon";
 
 const StyledButton = styled(Link)`
   display: inline-flex;
@@ -41,7 +42,12 @@ const StyledButton = styled(Link)`
     text-decoration: line-through;
   }
 
-  & > ${RawFeatherIcon}, & > span:has(> svg) {
+  i {
+    font-size: 2em;
+  }
+
+  & > ${RawFeatherIcon}, & > span:has(> svg),
+  i {
     border: 1px solid;
     border-color: ${(props) =>
       props.$borderColor
@@ -51,7 +57,8 @@ const StyledButton = styled(Link)`
       props.$color ? props.theme[props.$color] || props.$color : "transparent"};
   }
 
-  & > span {
+  & > span,
+  i {
     flex: 0 0 50px;
     width: 50px;
     height: 50px;
@@ -110,7 +117,7 @@ const ActionButton = (props) => {
       route={route}
       routeParams={routeParams}
     >
-      {typeof icon === "string" ? <RawFeatherIcon name={icon} /> : icon}
+      {typeof icon === "string" ? <Icon name={icon} /> : icon}
       <strong title={Array.isArray(label) ? label[1] : label}>
         {visibileLabel}
       </strong>
