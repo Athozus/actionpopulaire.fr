@@ -7,6 +7,7 @@ import Card from "@agir/front/genericComponents/Card";
 import { useIsDesktop } from "@agir/front/genericComponents/grid";
 
 import { RawFeatherIcon } from "@agir/front/genericComponents/FeatherIcon";
+import Icon from "@agir/front/genericComponents/Icon";
 
 const StyledCard = styled(Card)`
   display: flex;
@@ -23,7 +24,7 @@ const StyledCard = styled(Card)`
     display: flex;
     flex-flow: row nowrap;
     gap: 0.5rem;
-    align-items: flex-start;
+    align-items: center;
     line-height: 1.5;
     min-height: 1px;
     max-width: 100%;
@@ -67,7 +68,7 @@ const FileCard = (props) => {
   return (
     <StyledCard>
       <h5>
-        <RawFeatherIcon name={icon || "file-text"} />
+        <Icon name={icon} />
         {isNew && <strong>Nouveau</strong>}
         <span>{title}</span>
       </h5>

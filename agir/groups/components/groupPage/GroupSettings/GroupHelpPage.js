@@ -39,7 +39,7 @@ const GroupHelpPage = (props) => {
           <FileCard
             title="Liste d'émargement"
             text="Une liste d'émargement des membres à utiliser lors des événements internes du groupe pour noter les personnes présentes"
-            icon="file-text"
+            icon="fa-list-check"
             href={group.routes.downloadAttendanceList}
             downloadLabel="Télécharger la liste d'émargement"
             isNew={false}
@@ -58,7 +58,7 @@ const GroupHelpPage = (props) => {
       <FileCard
         title="Charte des groupes d'action"
         text="La charte que tous les animateurs et toutes les animatrices de groupe s’engagent à respecter."
-        icon="file-text"
+        icon="fa-memo-circle-check"
         route="charteEquipes"
         downloadLabel="Voir la charte"
         downloadIcon="eye"
@@ -67,7 +67,7 @@ const GroupHelpPage = (props) => {
       <FileCard
         title="Livret de l’animateur·rice"
         text="Un guide pratique qui répond à la plupart des intérrogations concernant l'animation d'un groupe d'action."
-        icon="file-text"
+        icon="fa-book-user"
         route="livretAnimateurice"
         downloadLabel="Télécharger le livret"
       />
