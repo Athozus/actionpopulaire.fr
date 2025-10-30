@@ -195,7 +195,7 @@ const GroupCard = ({
             route="groupSettings"
             routeParams={{ groupPk: id }}
             backLink={backLink}
-            icon="settings"
+            icon="fa-screwdriver-wrench"
           >
             Gestion
           </Button>

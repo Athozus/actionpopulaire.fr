@@ -142,7 +142,7 @@ const ManagerActions = (props) => {
       <Button link route="createEvent" color="primary" icon="plus" small>
         Créer un événement du groupe
       </Button>
-      <Button link to={groupSettingsLinks?.menu} icon="settings" small>
+      <Button link to={groupSettingsLinks?.menu} icon="fa-screwdriver-wrench" small>
         Gestion du groupe
       </Button>
     </StyledWrapper>
