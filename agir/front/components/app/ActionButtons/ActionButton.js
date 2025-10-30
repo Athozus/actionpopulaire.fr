@@ -57,6 +57,13 @@ const StyledButton = styled(Link)`
       props.$color ? props.theme[props.$color] || props.$color : "transparent"};
   }
 
+  ${RawFeatherIcon} {
+    svg {
+      width: 1.7em;
+      height: 1.7rem;
+    }
+  }
+
   & > span,
   i {
     flex: 0 0 50px;
