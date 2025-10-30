@@ -15,7 +15,6 @@ import {
 } from "@agir/front/globalContext/GlobalContext";
 import { getIsSessionLoaded } from "@agir/front/globalContext/reducers";
 
-import FeedbackButton from "@agir/front/allPages/FeedbackButton";
 import Layout from "@agir/front/app/Layout";
 
 import logger from "@agir/lib/utils/logger";
@@ -23,6 +22,9 @@ import ErrorBoundary from "./ErrorBoundary";
 
 import Redirect from "./Redirect";
 import BannerAnnouncement from "@agir/activity/BannerAnnouncements/BannerAnnouncement";
+import FloatButton from "@agir/front/allPages/FloatButton";
+import HelpButton from "@agir/front/allPages/HelpButton";
+import FeedbackButton from "@agir/front/allPages/FeedbackButton";
 
 const log = logger(__filename);
 
@@ -126,9 +128,7 @@ const Page = (props) => {
         <StyledPage $hasTopBar={hasTopBar}>
           <Suspense fallback={<div style={{ minHeight: "100vh" }} />}>
             <Component route={routeConfig} {...routeParams} {...rest} />
-            {!routeConfig.hideFeedbackButton && (
-              <FeedbackButton style={{ bottom: "1rem" }} />
-            )}
+            <HelpButton />
           </Suspense>
         </StyledPage>
       </ErrorBoundary>
@@ -142,7 +142,7 @@ const Page = (props) => {
         <Layout {...(routeConfig?.layoutProps || {})} active={routeConfig.id}>
           <Suspense fallback={<div style={{ minHeight: "100vh" }} />}>
             <Component route={routeConfig} {...routeParams} {...rest} />
-            {!routeConfig.hideFeedbackButton && <FeedbackButton />}
+            <HelpButton />
           </Suspense>
         </Layout>
       </StyledPage>

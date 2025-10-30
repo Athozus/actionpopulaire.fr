@@ -1,5 +1,5 @@
 import React from "react";
-import { FeedbackButton } from "./FeedbackButton";
+import FeedbackButton from "./FeedbackButton";
 
 export default {
   component: FeedbackButton,

@@ -28,6 +28,8 @@ import {
 import logger from "@agir/lib/utils/logger";
 import { getAgendaEndpoint } from "./api.js";
 import NotificationRationaleModal from "@agir/events/agendaPage/NotificationRationaleModal";
+import FloatButton from "@agir/front/allPages/FloatButton";
+import HelpButton from "@agir/front/allPages/HelpButton";
 
 const log = logger(__filename);
 
@@ -230,7 +232,7 @@ const Agenda = () => {
           <Spacer size="4rem" />
         </RenderIfVisibile>
       </PageFadeIn>
-      <FeedbackButton />
+      <HelpButton />
     </StyledAgenda>
   );
 };
