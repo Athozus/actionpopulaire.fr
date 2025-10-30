@@ -12,6 +12,7 @@ import illustrationContact from "@agir/front/genericComponents/images/group_cont
 import illustrationLinks from "@agir/front/genericComponents/images/group_links.svg";
 import illustrationHelp from "@agir/front/genericComponents/images/group_help.svg";
 import illustrationStats from "@agir/front/genericComponents/images/group_stats.svg";
+import { useMemo } from "react";
 
 const GroupSettingsReadOnlyMembers = lazy(
   () =>
@@ -104,11 +105,12 @@ const GroupSettingsStats = lazy(
     ),
 );
 const GroupRemoveRequestMembershipPage = lazy(
-    () =>
-        import(
-            /* webpackChunkName: "r-groupremovemembershiprequest" */
-            "@agir/groups/groupPage/GroupSettings/GroupMembershipRemoveRequestPage"),
-)
+  () =>
+    import(
+      /* webpackChunkName: "r-groupremovemembershiprequest" */
+      "@agir/groups/groupPage/GroupSettings/GroupMembershipRemoveRequestPage"
+    ),
+);
 
 export const menuRoute = {
   id: "menu",
@@ -257,7 +259,7 @@ export const routeConfig = {
     id: "help",
     path: "ressources/",
     exact: true,
-    label: "Ressources",
+    label: "Ressources et documents",
     icon: "fa-folder-open",
     Component: GroupSettingsHelp,
     illustration: illustrationHelp,
@@ -273,7 +275,7 @@ export const routeConfig = {
     label: "Requête de suppression de membre",
     Component: GroupRemoveRequestMembershipPage,
     illustration: illustrationHelp,
-  }
+  },
 };
 
 export const getMenuRoute = (basePath) =>
@@ -292,6 +294,18 @@ const getActiveRoutes = (group) =>
     }
     return !!route.isActive;
   });
+
+export const groupGroupRoutes = (routes) => {
+  return Object.values(
+    routes.reduce((o, item) => {
+      if (item.menuGroup) {
+        o[item.menuGroup] = o[item.menuGroup] || [];
+        o[item.menuGroup].push(item);
+      }
+      return o;
+    }, {}),
+  );
+};
 
 export const getRoutes = (basePath, group) =>
   getActiveRoutes(group).map(

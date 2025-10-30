@@ -1,10 +1,15 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 
 import Button from "@agir/front/genericComponents/Button";
 import { RawFeatherIcon } from "@agir/front/genericComponents/FeatherIcon";
 import Link from "@agir/front/app/Link";
+import { routeConfig } from "@agir/front/app/routes.config";
+import getRoutes, {
+  groupGroupRoutes,
+} from "@agir/groups/groupPage/GroupSettings/routes.config";
+import Icon from "@agir/front/genericComponents/Icon";
 
 const StyledPanel = styled.div`
   width: 100%;
@@ -28,7 +33,13 @@ const StyledPanel = styled.div`
   && ul {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0 0 0 0.7em;
+
+    hr {
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+      border-color: ${(props) => props.theme.background700};
+    }
 
     li {
       font-size: 0.813rem;
@@ -50,6 +61,11 @@ const StyledPanel = styled.div`
       align-items: center;
       font-weight: normal;
       font-size: 0.875rem;
+
+      i,
+      svg {
+        color: ${(props) => props.theme.primary500};
+      }
 
       a {
         margin-left: 0.5rem;
@@ -86,6 +102,11 @@ const StyledWrapper = styled.div`
 const ManagerActions = (props) => {
   const { id, groupSettingsLinks, isBoucleDepartementale } = props;
 
+  const basePath = routeConfig.groupDetails.getLink({ groupPk: id });
+  const routes = getRoutes(basePath, props);
+
+  const groupedItems = useMemo(() => groupGroupRoutes(routes), [routes]);
+
   return (
     <StyledWrapper>
       <StyledPanel>
@@ -101,66 +122,21 @@ const ManagerActions = (props) => {
           Créer un événement du groupe
         </Button>
         <ul>
-          {groupSettingsLinks?.members && (
-            <li>
-              <RawFeatherIcon color="primary500" name="users" />
-              <Link to={groupSettingsLinks.members}>Membres</Link>
-            </li>
-          )}
-          {groupSettingsLinks?.contacts && (
-            <li>
-              <RawFeatherIcon color="primary500" name="rss" />
-              <Link to={groupSettingsLinks.contacts}>Contacts</Link>
-            </li>
-          )}
-          {groupSettingsLinks?.general && (
-            <li>
-              <RawFeatherIcon color="primary500" name="file-text" />
-              <Link to={groupSettingsLinks.general}>Informations</Link>
-            </li>
-          )}
-          {groupSettingsLinks?.manage && (
-            <li>
-              <RawFeatherIcon color="primary500" name="lock" />
-              <Link to={groupSettingsLinks.manage}>
-                Animateur·ices et gestionnaires
-              </Link>
-            </li>
-          )}
-          {groupSettingsLinks?.finance && (
-            <li>
-              <RawFeatherIcon color="primary500" name="briefcase" />
-              <Link to={groupSettingsLinks.finance}>
-                {isBoucleDepartementale
-                  ? "Caisse de la boucle"
-                  : "Caisse du groupe"}
-              </Link>
-            </li>
-          )}
-          {groupSettingsLinks?.upcomingEvents && (
-            <li>
-              <RawFeatherIcon color="primary500" name="calendar" />
-              <Link to={groupSettingsLinks.upcomingEvents}>Agenda</Link>
-            </li>
-          )}
-          {groupSettingsLinks?.links && (
-            <li>
-              <RawFeatherIcon color="primary500" name="loader" />
-              <Link to={groupSettingsLinks.links}>Liens externes</Link>
-            </li>
-          )}
-          {groupSettingsLinks?.stats && (
-            <li>
-              <RawFeatherIcon color="primary500" name="trello" />
-              <Link to={groupSettingsLinks.stats}>Statistiques</Link>
-            </li>
-          )}
-          {groupSettingsLinks?.help && (
-              <li>
-                  <RawFeatherIcon color="primary500" name="file" />
-                  <Link to={groupSettingsLinks.help}>Ressources - Documents</Link>
-              </li>
-          )}
+          {groupedItems.map((groupRoutes, index) => {
+            return (
+              <>
+                {index > 0 && <hr />}
+                {groupRoutes.map((subRoute) => {
+                  return (
+                    <li key={subRoute.id}>
+                      <Icon name={subRoute.icon} />
+                      <Link to={subRoute.path}>{subRoute.label}</Link>
+                    </li>
+                  );
+                })}
+              </>
+            );
+          })}
         </ul>
       </StyledPanel>
       <Button link route="createEvent" color="primary" icon="plus" small>

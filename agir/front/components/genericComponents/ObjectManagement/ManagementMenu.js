@@ -9,6 +9,7 @@ import Spacer from "@agir/front/genericComponents/Spacer";
 
 import BackButton from "./BackButton";
 import Icon from "@agir/front/genericComponents/Icon";
+import {groupGroupRoutes} from "@agir/groups/groupPage/GroupSettings/routes.config";
 
 const StyledWarning = styled.p`
   font-size: 0.875rem;
@@ -200,19 +201,7 @@ ManagementMenuItem.propTypes = {
 const ManagementMenu = (props) => {
   const { items, title, subtitle, warning, onBack, children } = props;
 
-  const groupedItems = useMemo(
-    () =>
-      Object.values(
-        items.reduce((o, item) => {
-          if (item.menuGroup) {
-            o[item.menuGroup] = o[item.menuGroup] || [];
-            o[item.menuGroup].push(item);
-          }
-          return o;
-        }, {}),
-      ),
-    [items],
-  );
+  const groupedItems = useMemo(() => groupGroupRoutes(items), [items]);
 
   return (
     <StyledMenu id="managementMenu">
