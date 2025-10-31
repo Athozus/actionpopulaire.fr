@@ -15,6 +15,7 @@ class TPEPaymentMode(AbstractTPEPaymentMode):
     id = "tpe"
     url_fragment = "tpe"
     label = "Paiement sur place par carte bleue"
+    title = "Paiement par TPE"
 
 
 class SolidaireMode(AbstractPOSPaymentMode):

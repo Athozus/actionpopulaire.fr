@@ -17,6 +17,7 @@ from agir.lib.rest_framework_permissions import (
     GlobalOrObjectPermissions,
     GlobalOnlyPermissions,
     IsActionPopulaireClientPermission,
+    IsStaffActionPopulairePermission,
 )
 from agir.people.actions.subscription import SUBSCRIPTION_TYPE_AP
 from agir.people.models import Person
@@ -66,6 +67,41 @@ class PersonProfilePermissions(GlobalOrObjectPermissions):
         "PUT": ["people.change_person"],
         "PATCH": ["people.change_person"],
     }
+
+
+class PersonInfoAPIView(RetrieveAPIView):
+    serializer_class = PersonSerializer
+    queryset = Person.objects.all()
+    permission_classes = (
+        IsActionPopulaireClientPermission,
+        IsStaffActionPopulairePermission,
+        PersonProfilePermissions,
+    )
+
+    def get_serializer(self, *args, **kwargs):
+        return super().get_serializer(
+            *args,
+            fields=[
+                "id",
+                "displayName",
+                "firstName",
+                "lastName",
+                "address1",
+                "address2",
+                "zip",
+                "city",
+                "country",
+                "contactPhone",
+                "isPoliticalSupport",
+                "mandat",
+                "newsletters",
+                "actionRadius",
+                "hasLocation",
+                "created",
+                "dateOfBirth",
+            ],
+            **kwargs,
+        )
 
 
 class PersonProfileAPIView(RetrieveUpdateAPIView):

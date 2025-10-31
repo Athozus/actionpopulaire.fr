@@ -1,0 +1,352 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_modify %}
+
+{% block extrahead %}{{ block.super }}
+  <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+  {{ media }}
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}
+  <link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}"/>{% endblock %}
+
+{% block coltype %}colM{% endblock %}
+
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-form{% endblock %}
+
+{% if not is_popup %}
+  {% block breadcrumbs %}
+    <div class="breadcrumbs">
+      <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+      &rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a>
+      &rsaquo; {% if has_change_permission %}
+      <a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}
+      {{ opts.verbose_name_plural|capfirst }}{% endif %}
+      &rsaquo; {% blocktrans %}Quête aux dons{% endblocktrans %}
+    </div>
+  {% endblock %}
+{% endif %}
+
+{% block content %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+  .button-action {
+    width: 100%;
+    min-width: 250px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .button-action:disabled {
+    background-color: #a0a0a0;
+  }
+  .submit-row {
+    display: flex;
+    flex-direction: column;
+  }
+  .message {
+    font-size: 1.1em;
+  }
+  .buttons-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+  }
+  .required::after {
+    content: "*" !important;
+  }
+  .payment-failed {
+    background-color: var(--delete-button-hover-bg) !important;
+  }
+  .payment-validated {
+    background-color: #15a45d !important;
+  }
+
+  .loader {
+    display: flex;
+    justify-content: center;
+    font-size: 2em;
+  }
+
+  .spin {
+    animation: spin 3s linear infinite;
+  }
+
+  @keyframes spin {
+    100% {
+      transform:rotate(360deg);
+    }
+  }
+  </style>
+  <script>
+
+    const MANDATORY_FIELDS = ["location_zip", "location_city", "amount"]
+
+    function toCamel(field) {
+      return field.toLowerCase().replace(/([_][a-z])/g, group =>
+        group
+          .toUpperCase()
+          .replace('_', '')
+      );
+    }
+
+    const getTextFields = () => Array.from(document.querySelectorAll("#event_form input[type='text']"));
+
+    function clearTextFields() {
+      getTextFields().forEach((input) => {
+        input.value = "";
+      })
+
+    }
+
+    let currentStep = 0;
+    const STEPS = [
+      {
+        buttons: [
+          {
+            id: "setupTPE",
+            value: "PRÉSENTER LE TPE AVEC LE MONTANT",
+          },
+          {
+            allowToBeDisabled: false,
+            value: "ANNULER",
+            id: "cancelPayment",
+            onclick: () => {
+              location.reload()
+            }
+          }
+        ],
+      },
+      {
+        onload: () => {
+          const submitRow = document.getElementsByClassName("submit-row")?.[0];
+
+          const iconContainer = document.createElement("div");
+          iconContainer.className = "loader";
+          const icon = document.createElement("i");
+          icon.className = "spin fa-solid fa-circle-notch";
+          iconContainer.append(icon);
+
+          submitRow.append(iconContainer);
+          setTimeout(() => {
+            iconContainer.remove();
+            createStep(STEPS[++currentStep]);
+          }, 2500)
+        },
+      },
+      {
+        buttons: [
+          {
+            value: "PAIEMENT VALIDÉ",
+            id: "paymentValidated",
+            classList: ["payment-validated"],
+            onclick: () => {
+              const form = document.getElementsByTagName("form")[0];
+              form?.submit()
+            }
+          },
+          {
+            value: "PAIEMENT ÉCHOUÉ",
+            id: "paymentFailed",
+            classList: ["payment-failed"],
+            allowToBeDisabled: false,
+            onclick: () => {
+              backStep();
+              backStep();
+            }
+          },
+
+        ]
+      }
+    ]
+
+    function backStep() {
+      const buttonContainers = Array.from(document.getElementsByClassName("buttons-container"));
+      buttonContainers[currentStep]?.remove();
+
+      currentStep--;
+
+      STEPS[currentStep].buttons?.forEach(({ id }) => {
+        const button = document.getElementById(id);
+        if (button) {
+          button.disabled = false;
+        }
+      });
+
+    }
+
+    function onClickAction(event) {
+      event.target.disabled = true;
+
+      createStep(STEPS[++currentStep]);
+    }
+
+    function createStep(step) {
+      const submitRow = document.getElementsByClassName("submit-row")?.[0];
+
+      const buttons = []
+
+      step.onload?.()
+
+      step.buttons?.forEach((button) => {
+        const buttonStep = document.createElement("input")
+        buttonStep.id = button.id;
+        buttonStep.value = button.value;
+        buttonStep.classList.add("button-action");
+        button.classList?.forEach((cls) => buttonStep.classList.add(cls))
+        buttonStep.onclick = (event) => {
+          button.onclick?.();
+          if (button.allowToBeDisabled === undefined || button.allowToBeDisabled === true) {
+            onClickAction(event);
+          }
+        }
+        buttons.push(buttonStep)
+      });
+
+      if (buttons.length > 0) {
+        const buttonsContainer = document.createElement("div");
+        buttonsContainer.classList = "buttons-container";
+        buttons.forEach((button) => buttonsContainer.append(button))
+
+        submitRow?.append(buttonsContainer);
+      }
+    }
+
+    function getCurrentStep() {
+      const reversedSteps = [...STEPS].reverse()
+
+      let index = reversedSteps.length;
+      for (let step of reversedSteps) {
+        const currentButton = document.getElementById(step?.buttons?.[0].id)
+        if (currentButton) {
+          return index - 1;
+        }
+        index--;
+      }
+    }
+
+    function removeDjangoSubmitButtons() {
+      const submitInputs = document.querySelectorAll(".submit-row input")
+      submitInputs?.forEach((input) => input.remove())
+    }
+
+    function prepareSubmitButton() {
+      createStep(STEPS[0])
+    }
+
+    function getMessageElement() {
+      const messageElementId = "messageElement";
+      let messageElement = document.getElementById(messageElementId);
+
+      if (!messageElement) {
+        const wrapper = document.getElementsByClassName("submit-row")?.[0];
+
+        messageElement = document.createElement("p");
+        messageElement.className = "message"
+        messageElement.id = messageElementId;
+        wrapper.append(messageElement);
+      }
+
+      return messageElement;
+
+    }
+
+    function setCurrentMessage(message) {
+      if (getMessageElement().innerText !== message) {
+        getMessageElement().innerText = message;
+      }
+    }
+
+    function onPersonFieldChange(personField) {
+      const childrenArray = Array.from(personField.children)
+      const selectedId = childrenArray[childrenArray.length - 1]?.value
+
+      if (!selectedId) return;
+
+      const inputs = getTextFields();
+      clearTextFields();
+
+      fetch(`/api/user/${selectedId}`)
+        .then(response => response.json())
+        .then(user => {
+
+          for (let input of inputs) {
+            let currentField = input.name;
+            if (input.name?.includes("location_")) {
+              currentField = input.name.replace("location_", "")
+            }
+
+            currentField = toCamel(currentField)
+            if (user[currentField]) {
+              input.value = user[currentField]
+            }
+          }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const personField = document.querySelector('#id_existing_person');
+      removeDjangoSubmitButtons()
+
+      if (personField) {
+        personField.addEventListener('DOMNodeInserted', () => onPersonFieldChange(personField));
+      }
+
+      setInterval(() => {
+        const allFilled = MANDATORY_FIELDS.reduce((prev, currField) => prev && document.getElementsByName(currField)?.[0]?.value !== "", true)
+
+        if (!allFilled) {
+          setCurrentMessage("Remplissez les champs obligatoires pour procéder au paiement.")
+        } else {
+          setCurrentMessage("Suivez les étapes :")
+          if (getCurrentStep() === undefined) {
+            prepareSubmitButton();
+          }
+        }
+      }, 600)
+    });
+
+  </script>
+
+  <div id="content-main">
+    <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post"
+          id="{{ opts.model_name }}_form" novalidate>{% csrf_token %}{% block form_top %}{% endblock %}
+      <div>
+        {% if is_popup %}<input type="hidden" name="{{ is_popup_var }}" value="1"/>{% endif %}
+        {% if to_field %}<input type="hidden" name="{{ to_field_var }}" value="{{ to_field }}"/>{% endif %}
+        {% if save_on_top %}{% block submit_buttons_top %}{% submit_row %}{% endblock %}{% endif %}
+        {% if errors %}
+          <p class="errornote">
+            {% if errors|length == 1 %}{% trans "Please correct the error below." %}{% else %}
+              {% trans "Please correct the errors below." %}{% endif %}
+          </p>
+          {{ adminform.form.non_field_errors }}
+        {% endif %}
+
+        {% block field_sets %}
+          {% for fieldset in adminform %}
+            {% include "admin/includes/fieldset.html" %}
+          {% endfor %}
+        {% endblock %}
+
+        {% block after_field_sets %}{% endblock %}
+
+        {% block submit_buttons_bottom %}{% submit_row %}{% endblock %}
+
+        {% block admin_change_form_document_ready %}
+          <script type="text/javascript"
+                  id="django-admin-form-add-constants"
+                  src="{% static 'admin/js/change_form.js' %}"
+            {% if adminform and add %}
+                  data-model-name="{{ opts.model_name }}"
+            {% endif %}>
+          </script>
+        {% endblock %}
+
+
+        {# JavaScript for prepopulated fields #}
+        {% prepopulated_fields_js %}
+
+      </div>
+    </form>
+  </div>
+{% endblock %}

@@ -41,6 +41,7 @@ from .filters import (
 from .forms import EventAdminForm, EventSubtypeAdminForm
 from .views import reset_feuille_externe
 from ..serializers import EventEmailCampaignSerializer
+from .don_quest_view import DonQuestView
 from ...event_requests.admin.inlines import EventAssetInline
 from ...lib.admin.utils import (
     display_link,
@@ -500,6 +501,12 @@ class EventAdmin(FormSubmissionViewsMixin, CenterOnFranceMixin, OSMGeoAdmin):
 
         links = []
 
+        links.extend(
+            [
+                ("admin:events_dons_quest", "💸 Quête aux dons"),
+            ]
+        )
+
         if object.subscription_form:
             links.extend(
                 [
@@ -636,6 +643,11 @@ class EventAdmin(FormSubmissionViewsMixin, CenterOnFranceMixin, OSMGeoAdmin):
 
     def get_urls(self):
         return [
+            path(
+                "<uuid:pk>/dons_quest/",
+                self.admin_site.admin_view(DonQuestView.as_view(model_admin=self)),
+                name="events_dons_quest",
+            ),
             path(
                 "<uuid:pk>/add_organizer/",
                 self.admin_site.admin_view(self.add_organizer),

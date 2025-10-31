@@ -45,8 +45,6 @@ from ..utils.certification import (
 )
 from ...donations.allocations import (
     get_account_name_for_group,
-    DONATIONS_ACCOUNT,
-    SPENDING_ACCOUNT,
 )
 from ...lib.admin.utils import admin_url
 

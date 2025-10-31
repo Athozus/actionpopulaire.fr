@@ -25,6 +25,7 @@ api_urls = [
         api.PersonProfileAPIView.as_view(),
         name="api_people_profile",
     ),
+    path("api/user/<uuid:pk>", api.PersonInfoAPIView.as_view(), name="api_info_view"),
     path(
         "api/people/newsletters/",
         api.ManageNewslettersAPIView.as_view(),

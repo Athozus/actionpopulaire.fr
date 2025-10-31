@@ -30,6 +30,7 @@ __all__ = [
     "SpendingRequest",
     "Document",
     "MonthlyAllocation",
+    "DonQuest",
 ]
 
 spending_request_rib_path = FilePattern(
@@ -876,3 +877,16 @@ class MonthlyAllocation(AllocationModelMixin):
     class Meta:
         verbose_name = "Allocation mensuelle"
         verbose_name_plural = "Allocations mensuelles"
+
+
+class DonQuest(models.Model):
+    """
+    Custom model pour permettre à l'admin d'afficher le panel correspondant
+    """
+
+    class Meta:
+        verbose_name = "Quête aux dons"
+        managed = False  # Django ne crée pas de table
+
+    def __str__(self):
+        return "Quête aux dons"

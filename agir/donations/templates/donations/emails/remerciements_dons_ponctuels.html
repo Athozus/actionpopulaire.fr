@@ -17,6 +17,13 @@
     mobilisations partout dans le pays.</p>
 
   <p>Ensemble, nous construisons la victoire !</p>
+
+  <div class="col-responsive">
+    <p>
+      <a class="btn btn-primary" href="{% url "view_payments" %}">Voir l'ensemble de mes paiements</a>
+    </p>
+  </div>
+
   <p>Amitiés,<br>La France insoumise</p>
 {% endblock %}
 
@@ -30,6 +37,9 @@ est une aide précieuse qui nous aide à assurer nos actions et mobilisations pa
 le pays.
 
 Ensemble, nous construisons la victoire !
+
+
+Cliquez sur le lien suivant pour retrouver vos paiements : {% url "view_payments" %}
 
 Amitiés,
 

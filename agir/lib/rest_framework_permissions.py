@@ -158,6 +158,11 @@ def request_has_person(request):
     return True
 
 
+class IsStaffActionPopulairePermission(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.is_staff
+
+
 class IsActionPopulaireClientPermission(BasePermission):
     """
     Allow access only to requests that are not authenticated through an OAuth2 token
