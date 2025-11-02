@@ -3,6 +3,10 @@ import { RawFeatherIcon } from "@agir/front/genericComponents/FeatherIcon";
 import PropTypes from "prop-types";
 
 function Icon({ name }) {
+  if (!name) {
+    return null;
+  }
+
   return name?.includes("fa-") ? (
     <i className={`fa-regular ${name}`} />
   ) : (
