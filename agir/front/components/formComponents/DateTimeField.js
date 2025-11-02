@@ -15,7 +15,7 @@ import FeatherIcon from "@agir/front/genericComponents/FeatherIcon";
 import "moment/locale/fr";
 import "react-datetime/css/react-datetime.css";
 
-import {FieldRequiredLabelMixin} from "@agir/front/formComponents/TextField";
+import { FieldRequiredLabelMixin } from "@agir/front/formComponents/TextField";
 
 const StyledLabel = styled.span``;
 const StyledHelpText = styled.span``;
@@ -226,8 +226,6 @@ const DateTimeField = (props) => {
         cursorPosition,
       );
   }, [time, cursorPosition]);
-
-  const currentDate = new Date()
 
   return (
     <StyledField $required={!!required} $valid={!error} $invalid={!!error} $empty={!!value}>

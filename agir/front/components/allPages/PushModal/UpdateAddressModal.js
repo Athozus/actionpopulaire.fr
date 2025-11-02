@@ -10,12 +10,15 @@ import Modal from "@agir/front/genericComponents/Modal";
 import CountryField from "@agir/front/formComponents/CountryField";
 import Spacer from "@agir/front/genericComponents/Spacer";
 import TextField from "@agir/front/formComponents/TextField";
+import DateTimeField from "@agir/front/formComponents/DateTimeField";
 
 const StyledModalContent = styled.div`
   position: relative;
   max-width: 600px;
+  min-height: 450px;
   padding: 2.25rem;
   margin: 60px auto 0;
+
   box-shadow: ${(props) => props.theme.elaborateShadow};
   border-radius: ${(props) => props.theme.borderRadius};
   background-color: ${(props) => props.theme.background0};
@@ -38,11 +41,12 @@ export const UpdateAddressModal = (props) => {
   const { shouldShow, isLoading, initialData, errors, onSubmit } = props;
 
   const [data, setData] = useState({
-    address1: initialData?.address1 || "",
-    address2: initialData?.address2 || "",
-    zip: initialData?.zip || "",
-    city: initialData?.city || "",
-    country: initialData?.country || "FR",
+    address1: initialData?.address1 ?? "",
+    address2: initialData?.address2 ?? "",
+    zip: initialData?.zip ?? "",
+    city: initialData?.city ?? "",
+    country: initialData?.country ?? "FR",
+    dateOfBirth: initialData?.dateOfBirth,
   });
 
   const handleSubmit = (e) => {
@@ -63,71 +67,123 @@ export const UpdateAddressModal = (props) => {
   }, []);
 
   return (
-    <Modal shouldShow={shouldShow} noScroll>
+    <Modal shouldShow={shouldShow} noScroll disableFocusTrap>
       <StyledModalContent>
-        <h4>Localisation</h4>
-        <Spacer size=".5rem" />
+        <h4>Informations manquantes</h4>
         <p>
-          Entrez votre adresse pour que nous puissions vous suggérer les
-          événements à proximité de chez vous.
+          Les informations suivantes sont essentiels pour l'utilisation de la
+          plateforme d'Action Populaire, merci de les renseigner.
         </p>
-        <Spacer size="1.5rem" />
-        <form onSubmit={handleSubmit}>
-          <TextField
-            label="Adresse"
-            id="address1"
-            error={errors?.address1}
-            name="address1"
-            placeholder=""
-            onChange={handleChange}
-            value={data.address1}
-            disabled={isLoading}
-          />
+
+        <form autoComplete="off" onSubmit={handleSubmit}>
+          {!initialData?.dateOfBirth && (
+            <>
+              <Spacer size="1rem" />
+
+              <DateTimeField
+                dateFieldProps={{
+                  closeOnSelect: true,
+                  initialViewDate: "01/01/2000",
+                }}
+                error={errors?.dateOfBirth}
+                id="dateOfBirth"
+                label="Date de naissance"
+                onChange={(dateBirth) =>
+                  setData((oldData) => ({
+                    ...oldData,
+                    dateOfBirth: dateBirth?.split("T")?.[0] ?? "",
+                  }))
+                }
+                type="date"
+              />
+            </>
+          )}
+
           <Spacer size="1rem" />
-          <TextField
-            label="Complément d'adresse"
-            id="address2"
-            error={errors?.address2}
-            name="address2"
-            placeholder=""
-            onChange={handleChange}
-            value={data.address2}
-            disabled={isLoading}
-          />
-          <Spacer size="1rem" />
-          <TextField
-            label="Code postal"
-            id="zip"
-            error={errors?.zip}
-            name="zip"
-            placeholder=""
-            onChange={handleChange}
-            value={data.zip}
-            disabled={isLoading}
-          />
-          <Spacer size="1rem" />
-          <TextField
-            label="Commune"
-            id="city"
-            error={errors?.city}
-            name="city"
-            placeholder=""
-            onChange={handleChange}
-            value={data.city}
-            disabled={isLoading}
-          />
-          <Spacer size="1rem" />
-          <CountryField
-            label="Pays"
-            id="country"
-            error={errors?.country}
-            name="country"
-            placeholder=""
-            onChange={handleChangeCountry}
-            value={data.country}
-            disabled={isLoading}
-          />
-          <Spacer size="1rem" />
+          {!initialData?.zip && (
+            <>
+              <p>
+                Votre adresse est nécessaire pour vous suggérer des événements à
+                proximité de chez vous.
+              </p>
+              <Spacer size="1rem" />
+            </>
+          )}
+
+          {!initialData?.zip && !initialData?.address1 && (
+            <>
+              <TextField
+                label="Adresse"
+                id="address1"
+                error={errors?.address1}
+                name="address1"
+                placeholder=""
+                onChange={handleChange}
+                value={data.address1}
+                disabled={isLoading}
+                autoFocus
+              />
+              <Spacer size="1rem" />
+            </>
+          )}
+          {!initialData?.zip && !initialData?.address2 && (
+            <>
+              <TextField
+                label="Complément d'adresse"
+                id="address2"
+                error={errors?.address2}
+                name="address2"
+                placeholder=""
+                onChange={handleChange}
+                value={data.address2}
+                disabled={isLoading}
+              />
+              <Spacer size="1rem" />
+            </>
+          )}
+          {!initialData?.zip && (
+            <>
+              <TextField
+                label="Code postal"
+                id="zip"
+                error={errors?.zip}
+                name="zip"
+                placeholder=""
+                onChange={handleChange}
+                value={data.zip}
+                disabled={isLoading}
+              />
+              <Spacer size="1rem" />
+            </>
+          )}
+          {!initialData?.zip && !initialData?.city && (
+            <>
+              <TextField
+                label="Commune"
+                id="city"
+                error={errors?.city}
+                name="city"
+                placeholder=""
+                onChange={handleChange}
+                value={data.city}
+                disabled={isLoading}
+              />
+              <Spacer size="1rem" />
+            </>
+          )}
+          {!initialData?.country && (
+            <CountryField
+              label="Pays"
+              id="country"
+              error={errors?.country}
+              name="country"
+              placeholder=""
+              onChange={handleChangeCountry}
+              value={data.country}
+              disabled={isLoading}
+            />
+          )}
+
           {errors?.global && (
             <p
               css={`
@@ -164,6 +220,7 @@ UpdateAddressModal.propTypes = {
     zip: PropTypes.string,
     city: PropTypes.string,
     country: PropTypes.string,
+    dateOfBirth: PropTypes.string,
     global: PropTypes.string,
   }),
   initialData: PropTypes.shape({
@@ -172,6 +229,7 @@ UpdateAddressModal.propTypes = {
     zip: PropTypes.string,
     city: PropTypes.string,
     country: PropTypes.string,
+    dateOfBirth: PropTypes.string,
   }),
 };
 
@@ -189,7 +247,7 @@ const ConnectedUpdateAddressModal = () => {
   }, []);
 
   useEffect(() => {
-    if (user && !user.zip) {
+    if (user && (!user.zip || !user.dateOfBirth)) {
       setShouldShow(true);
     }
   }, [user]);
@@ -222,15 +280,19 @@ const ConnectedUpdateAddressModal = () => {
     [close, mutate],
   );
 
-  return (
-    <UpdateAddressModal
-      shouldShow={shouldShow}
-      isLoading={isLoading || isUpdating}
-      errors={errors}
-      onSubmit={handleSubmit}
-      initialData={user}
-    />
-  );
+  if (user) {
+    return (
+      <UpdateAddressModal
+        shouldShow={shouldShow}
+        isLoading={isLoading || isUpdating}
+        errors={errors}
+        onSubmit={handleSubmit}
+        initialData={user}
+      />
+    );
+  }
+
+  return null;
 };
 
 ConnectedUpdateAddressModal.propTypes = {
@@ -242,6 +304,7 @@ ConnectedUpdateAddressModal.propTypes = {
     zip: PropTypes.string,
     city: PropTypes.string,
     country: PropTypes.string,
+    dateOfBirth: PropTypes.string,
   }),
 };
 

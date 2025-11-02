@@ -115,7 +115,14 @@ ModalCloseButton.propTypes = {
 };
 
 const Modal = (props) => {
-  const { shouldShow = false, children, onClose, noScroll, className } = props;
+  const {
+    shouldShow = false,
+    children,
+    onClose,
+    noScroll,
+    className,
+    disableFocusTrap,
+  } = props;
 
   const modalRef = useDisableBodyScroll(noScroll, shouldShow);
   const modalContentRef = useFocusTrap(shouldShow);
@@ -143,7 +150,7 @@ const Modal = (props) => {
         <ModalFrame ref={modalRef} className={className}>
           <AnimatedOverlay onClick={onClose} shouldShow={shouldShow} />
           <ModalContent
-            ref={modalContentRef}
+            {...(!disableFocusTrap ? { ref: modalContentRef } : {})}
             style={style}
             aria-modal="true"
             role="dialog"

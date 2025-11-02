@@ -30,6 +30,7 @@ import { getAgendaEndpoint } from "./api.js";
 import NotificationRationaleModal from "@agir/events/agendaPage/NotificationRationaleModal";
 import FloatButton from "@agir/front/allPages/FloatButton";
 import HelpButton from "@agir/front/allPages/HelpButton";
+import DateTimeField from "@agir/front/formComponents/DateTimeField";
 
 const log = logger(__filename);
 
@@ -132,6 +133,7 @@ const Agenda = () => {
         <Hide as={Spacer} $over size="1.5rem" />
         <Hide as={Spacer} $under size="1.5rem" />
         <TopBar>
+
           <LayoutTitle><Bonjour user={user} /></LayoutTitle>
           <Hide as="nav" $under>
             <Button
