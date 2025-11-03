@@ -71,7 +71,7 @@ export const UpdateAddressModal = (props) => {
       <StyledModalContent>
         <h4>Informations manquantes</h4>
         <p>
-          Les informations suivantes sont essentiels pour l'utilisation de la
+          Les informations suivantes sont essentielles pour l'utilisation de la
           plateforme d'Action Populaire, merci de les renseigner.
         </p>
 
