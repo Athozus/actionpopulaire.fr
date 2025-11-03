@@ -82,6 +82,12 @@ export const CUSTOM_FORM_BUILDER_FIELDS = [
     icon: "®️",
   },
   {
+    label: "Pays",
+    type: "countries",
+    name: "countries",
+    icon: "🏝️",
+  },
+  {
     label: "Circonscriptions",
     type: "select",
     name: "circonscriptions",
@@ -138,6 +144,24 @@ export const TYPE_USER_ATTRS = {
       crispyField.choices = "departements_circonscriptions_afe";
       crispyField.type = "choice";
       crispyField.id = "departement";
+    },
+  },
+  countries: {
+    field: {
+      label: "Valeur par défault",
+      value: "FR",
+    },
+    toCrispy: (fbField, crispyField) => {
+      crispyField.choices = "countries";
+      crispyField.id = "location_country";
+      crispyField.type = "autocomplete_choice";
+      crispyField.label = fbField.label;
+    },
+    toFormBuilder: (crispyField, fbField) => {
+      fbField.label = crispyField.label;
+      fbField.type = "countries";
+      fbField.id = "location_country";
+      fbField.choies = "countries";
     },
   },
   person: {

@@ -13,6 +13,7 @@ export const FORM_BUILDER_ORDER = [
   "file",
   "boolean",
   "select",
+  "countries",
   "commune",
   "departement",
   "departements_circonscriptions_afe",

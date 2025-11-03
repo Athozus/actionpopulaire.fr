@@ -117,6 +117,7 @@ const MAPPING_TYPE_TO_FORM_BUILDER = {
   person: "person",
   commune: "commune",
   region: "region",
+  countries: "countries",
   datetimes: "datetimes",
   event_theme: "event_theme",
   departements_circonscriptions_afe: "departements_circonscriptions_afe",
@@ -137,6 +138,8 @@ export function mapCrispyTypeToFormBuilder(field) {
     return "person";
   } else if (field.id === "departement") {
     return "departements_circonscriptions_afe";
+  } else if (field.choices === "countries") {
+    return "countries";
   }
   return MAPPING_TYPE_TO_FORM_BUILDER[field.type] || "text";
 }
