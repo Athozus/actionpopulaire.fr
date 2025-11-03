@@ -26,7 +26,7 @@ const StyledModalContent = styled.div`
   overflow-y: auto;
 
   @media (max-width: ${(props) => props.theme.collapse}px) {
-    margin-top: 20px;
+    margin-top: 10px;
     max-width: calc(100% - 40px);
     padding: 1.5rem;
   }

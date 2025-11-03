@@ -65,14 +65,13 @@ const ModalContent = styled(animated.div)`
 
 const ModalFrame = styled.div`
   position: fixed;
-  top: 0;
+  top: var(--top-bar-height, 0);
   bottom: 0;
   left: 0;
   right: 0;
   padding: 0;
   margin: 0;
   width: 100vw;
-  min-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
   z-index: ${(props) => props.theme.zindexModal};
