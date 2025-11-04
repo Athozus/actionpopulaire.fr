@@ -956,13 +956,13 @@ class Event(
             if isinstance(self.payment_parameters.get("free_pricing"), str):
                 field = self.payment_parameters["free_pricing"]
                 current_value = submission_data.get(field, 0)
-                if current_value == "":
+                if current_value == "" or current_value is None:
                     current_value = 0
                 price += max(0, int(int(current_value) * 100))
             else:
                 for field_name in self.payment_parameters.get("free_pricing", []):
                     current_value = submission_data.get(field_name, 0)
-                    if current_value == "":
+                    if current_value == "" or current_value is None:
                         current_value = 0
                     price += max(0, int(int(current_value) * 100))
 
