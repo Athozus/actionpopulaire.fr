@@ -38,7 +38,7 @@ export const RawFeatherIcon = styled.span
       }
 
       return {
-        dangerouslySetInnerHTML: { __html: icons[name].toSvg(attrs) },
+        dangerouslySetInnerHTML: { __html: icons[name]?.toSvg(attrs) ?? "" },
       };
     },
   )`

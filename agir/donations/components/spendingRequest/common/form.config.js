@@ -68,7 +68,7 @@ export const CATEGORY_OPTIONS = {
   AB: {
     value: "AB",
     label: "Abonnement",
-    icon: "fa:file-signature:light",
+    icon: "fa-file-signature:regular",
   },
 };
 
