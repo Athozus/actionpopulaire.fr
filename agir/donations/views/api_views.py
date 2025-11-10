@@ -19,6 +19,8 @@ from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 
 from agir.api import settings
+from agir.api.settings import PAYMENT_MODES
+from agir.checks import DonationCheckPaymentMode
 from agir.donations.actions import (
     existing_monthly_payment,
     is_renewable_contribution,

@@ -60,6 +60,7 @@ export default function DonationValidation() {
     const config = CONFIG[paymentType];
     const results = validateDonationData(context, config);
     update({ errors: results });
+
     if (!results) {
       const { data, error } = await api.createDonation(
         mapContextToDonation(context),

@@ -4,6 +4,7 @@ from django.http.response import HttpResponseRedirect
 from django.template import loader
 from django.utils import timezone
 
+from agir.checks import DonationCheckPaymentMode, AbstractCheckPaymentMode
 from agir.payments.models import Payment
 from agir.payments.payment_modes import DEFAULT_MODE, PAYMENT_MODES
 from agir.payments.types import PAYMENT_TYPES
@@ -64,9 +65,16 @@ def create_payment(*, person=None, type, price, mode=DEFAULT_MODE, meta=None, **
             kwargs.setdefault(field, meta.get(field, ""))
         kwargs.setdefault("phone_number", meta.get("contact_phone"))
 
-    return Payment.objects.create(
+    payment = Payment.objects.create(
         person=person, type=type, mode=mode, price=price, meta=meta, **kwargs
     )
+
+    if isinstance(PAYMENT_MODES[payment.mode], AbstractCheckPaymentMode):
+        from agir.checks.tasks import send_check_information
+
+        send_check_information.delay(payment.id)
+
+    return payment
 
 
 def change_payment_status(payment, status):

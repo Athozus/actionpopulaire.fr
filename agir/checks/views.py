@@ -34,7 +34,4 @@ class CheckView(TemplateView):
         )
 
     def get(self, request, *args, **kwargs):
-        from agir.checks.tasks import send_check_information
-
-        send_check_information.delay(kwargs["payment"].id)
         return super().get(request, *args, **kwargs)
