@@ -100,7 +100,7 @@ export default function DonationPersonInformation() {
             locationAddress1: `${rawAddress?.house_number ?? ""} ${rawAddress?.road ?? ""}`,
             locationCity: rawAddress?.town ?? rawAddress?.municipality ?? rawAddress?.village ?? "",
             locationZip: rawAddress?.postcode ?? "",
-            departement: rawAddress?.["ISO3166-2-lvl6"]?.split("-")?.[1] ?? rawAddress?.postcode.substring(0, 2) ?? "",
+            departement: rawAddress?.["ISO3166-2-lvl6"]?.split("-")?.[1] ?? rawAddress?.postcode?.substring(0, 2) ?? "",
             locationCountry: rawAddress?.["ISO3166-2-lvl6"]?.split("-")?.[0] ?? "FR"
         })
     }
