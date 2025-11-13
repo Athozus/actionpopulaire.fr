@@ -248,13 +248,15 @@ class SubscriptionAdmin(PersonLinkMixin, admin.ModelAdmin):
     def terminate_button(self, subscription):
         if subscription._state.adding:
             return "-"
-        else:
+        elif subscription.status == Subscription.STATUS_ACTIVE:
             return format_html(
                 '<a href="{}" class="button">Désactiver l\'abonnement</a>',
                 reverse(
                     "admin:payments_subscription_terminate", args=(subscription.pk,)
                 ),
             )
+        else:
+            return "-"
 
     def terminate_view(self, request, subscription_pk):
         try:
