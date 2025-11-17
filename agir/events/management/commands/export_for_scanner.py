@@ -71,6 +71,9 @@ class Command(BaseCommand):
 
         for rsvp in rsvps:
             data = rsvp.form_submission.data
+            contribution = data.get(contribution_field, 0)
+            if contribution is None:
+                contribution = 0
             writer.writerow(
                 [
                     f"R{rsvp.pk}",
@@ -81,14 +84,9 @@ class Command(BaseCommand):
                     rsvp.person.gender or "",
                     data.get(category_field, ""),
                     display_price(
-                        rsvp.payment.price + data.get(contribution_field, 0) * 100
+                        rsvp.payment.price + contribution * 100
                         if rsvp.payment
-                        else (
-                            0
-                            if data.get(contribution_field, 0)
-                            or data.get(contribution_field, 0) < 0
-                            else 0
-                        )
+                        else (0 if contribution or contribution < 0 else 0)
                     ),
                     "completed" if rsvp.status == RSVP.Status.CONFIRMED else "on-hold",
                     rsvp.created.isoformat() if data.get("admin", False) else None,
@@ -98,6 +96,9 @@ class Command(BaseCommand):
 
         for guest in guests:
             data = guest.submission.data
+            contribution = data.get(contribution_field, 0)
+            if contribution is None:
+                contribution = 0
             writer.writerow(
                 [
                     f"G{guest.rsvp_id}g{guest.pk}",
@@ -108,14 +109,9 @@ class Command(BaseCommand):
                     data.get("gender", ""),
                     data.get(category_field, ""),
                     display_price(
-                        guest.payment.price + data.get(contribution_field, 0) * 100
+                        guest.payment.price + contribution * 100
                         if guest.payment
-                        else (
-                            0
-                            if data.get(contribution_field, 0)
-                            or data.get(contribution_field, 0) < 0
-                            else 0
-                        )
+                        else (0 if contribution or contribution < 0 else 0)
                     ),
                     "completed" if guest.status == RSVP.Status.CONFIRMED else "on-hold",
                     None,
