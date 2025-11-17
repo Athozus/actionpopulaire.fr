@@ -190,7 +190,7 @@ class SystemPayWebhookView(APIView):
                 else:
                     return self.handle_payment(serializer)
         except serializers.ValidationError:
-            logger.exception(
+            logger.error(
                 "Erreur lors du traitement d'une transaction",
                 extra={"request": request},
             )
