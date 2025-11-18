@@ -20,7 +20,7 @@
 
   <div class="col-responsive">
     <p>
-      <a class="btn btn-primary" href="{% url "view_payments" %}">Voir l'ensemble de mes paiements</a>
+      <a class="btn btn-primary" href="{{ payment_link }}">Voir l'ensemble de mes paiements</a>
     </p>
   </div>
 
@@ -38,8 +38,7 @@ le pays.
 
 Ensemble, nous construisons la victoire !
 
-
-Cliquez sur le lien suivant pour retrouver vos paiements : {% url "view_payments" %}
+Cliquez sur le lien suivant pour retrouver vos paiements : {{ payment_link }}
 
 Amitiés,
 

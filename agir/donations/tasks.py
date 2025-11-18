@@ -45,7 +45,10 @@ def send_donation_email(person_pk, payment_type):
         send_template_email(
             template_name=template_code,
             from_email=email_from,
-            bindings={"profil": front_url("personal_information")},
+            bindings={
+                "profil": front_url("personal_information"),
+                "payment_link": front_url("view_payments"),
+            },
             recipients=[person],
         )
     else:
@@ -53,7 +56,10 @@ def send_donation_email(person_pk, payment_type):
             code=template_code,
             subject="Merci d'avoir donné !",
             from_email=email_from,
-            bindings={"PROFILE_LINK": front_url("personal_information")},
+            bindings={
+                "PROFILE_LINK": front_url("personal_information"),
+                "payment_link": front_url("view_payments"),
+            },
             recipients=[person],
         )
 
