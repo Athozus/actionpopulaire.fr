@@ -58,6 +58,22 @@ lando manage makemigrations your_app
 lando manage migrate 
 ```
 
+### Debugging
+
+#### Logs
+
+`lando logs --service=django -f`
+
+Remplacer django par le service concerné : celery|webpack|redis|database
+
+#### Django Toolbar
+Vous pouvez activer la toolbar de Django, qui vous permet de suivre les requêtes SQL, HTTP, les signaux, le cache, etc.
+directement depuis l'interface web.  
+1. Dans `.env` mettre `ENABLE_DEBUG_TOOLBAR=true`
+2. Redemarrer Django `docker restart ap_django_1`
+
+![Django toolbar](https://github.com/lafranceinsoumise/actionpopulaire.fr/blob/staging/.docs/images/toolbar.png "Toolbar")
+
 ### Tests
 
 ```bash
