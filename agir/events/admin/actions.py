@@ -2,7 +2,7 @@ from django.http import StreamingHttpResponse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from agir.events.models import Event
+from agir.events.models import Event, RSVP
 from ..actions import events_to_csv_lines
 
 
@@ -45,3 +45,10 @@ def unpublish(modeladmin, request, queryset):
 unpublish.short_description = _(
     "Passer les événements en visibilité administrateurices"
 )
+
+
+def cancel_rsvps(modeladmin, request, queryset):
+    updated = queryset.update(status=RSVP.Status.CANCELLED)
+
+
+cancel_rsvps.short_description = _("Annuler les RSVP sélectionnées")

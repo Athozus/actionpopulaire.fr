@@ -1199,11 +1199,11 @@ class RSVPAdmin(admin.ModelAdmin):
         "rsvp_created",
         "guest_count",
     )
-    fields = readonly_fields = (
+
+    readonly_fields = (
         "id",
         "rsvp_created",
         "person_created",
-        "status",
         "event_link",
         "person_link",
         "person_contact_phone",
@@ -1213,15 +1213,22 @@ class RSVPAdmin(admin.ModelAdmin):
         "submission_data",
         "guest_count",
     )
+
+    fields = ("status",) + readonly_fields
+
     search_fields = ("person__search", "event__name")
     list_filter = (RelatedEventFilter, "status", RSVPGuestFilter)
     inlines = (IdentifiedGuestInline,)
+
+    actions = {
+        actions.cancel_rsvps,
+    }
 
     def has_add_permission(self, request, obj=None):
         return False
 
     def has_change_permission(self, request, obj=None):
-        return False
+        return request.user.has_perm("events.change_rsvp")
 
     def has_delete_permission(self, request, obj=None):
         return request.user.has_perm("events.delete_rsvp")
