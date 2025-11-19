@@ -46,7 +46,7 @@ membre@lfi.fr - membre de votre GA
 
 ### Contribuer au projet
 
-Pour contribuer au projet suivre les [guidelines](https://github.com/lafranceinsoumise/actionpopulaire.fr/blob/staging/GUIDELINES.md)
+Pour contribuer au projet suivre [ce document](https://github.com/lafranceinsoumise/actionpopulaire.fr/blob/staging/CONTRIBUTING.md)
 
 ## Commandes utiles
 
